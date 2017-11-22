@@ -21,11 +21,11 @@ class NavBar extends React.Component {
             </ul>
 
             <ul className="sign-in-row">
-              <li><a href="#"><i class="fa fa-envelope-open-o" aria-hidden="true"></i>
+              <li><a href="#"><i className="fa fa-envelope-open-o" aria-hidden="true"></i>
 Sell tickets</a></li>
               <li>
-                <a href="#"><i class="fa fa-ticket lg" aria-hidden="true"></i>
-                  My tickets<i class="fa fa-angle-down" aria-hidden="true"></i>
+                <a href="#"><i className="fa fa-ticket lg" aria-hidden="true"></i>
+                  My tickets<i className="fa fa-angle-down" aria-hidden="true"></i>
                 </a>
                 <ul className="my-tickets-menu-dropdown">
                   <li><a href="#">Orders</a></li>
@@ -35,7 +35,7 @@ Sell tickets</a></li>
                 </ul>
 
               </li>
-              <li><a href="#"><i class="fa fa-user-o lg" aria-hidden="true"></i>Profile<i class="fa fa-angle-down" aria-hidden="true"></i>
+              <li><a href="#"><i className="fa fa-user-o lg" aria-hidden="true"></i>Profile<i className="fa fa-angle-down" aria-hidden="true"></i>
 </a></li>
             </ul>
           </div>

@@ -1,7 +1,7 @@
 class Api::UsersController < ApplicationController
 
   def new
-    @user = User.new
+
   end
 
   def create
@@ -9,10 +9,9 @@ class Api::UsersController < ApplicationController
 
     if @user.save
       login(@user)
-      redirect_to links_url
-    else
-      flash.now[:errors] = @user.errors.full_messages
       render :new
+    else
+      render json: @user.errors.full_messages
     end
   end
 
