@@ -119,6 +119,7 @@ a i {
   padding: 20px 30px;
   margin: 0;
   font-size: 16px;
+  overflow:hidden;
 }
 
 .menu-dropdown li:hover:after {
