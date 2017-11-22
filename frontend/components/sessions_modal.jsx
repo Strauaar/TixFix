@@ -33,6 +33,19 @@ class SessionsModal extends React.Component {
               <span className="modal-header">Get seats you'll love, anytime</span>
               <div className="modal-form-input-container">
 
+                <button className="fb-button">
+                  Sign in with facebook
+                </button>
+                <span className="connect-with-fb">Connect with friends on TixFix</span>
+                <div className="hr-divider">
+                  <hr>
+
+                  </hr>
+                  <span>OR</span>
+                  <hr>
+
+                  </hr>
+                </div>
                 <div className="input">
                   <input type="text" onChange={this.emailChange} placeholder={"Email"}></input>
                 </div>
@@ -49,7 +62,11 @@ class SessionsModal extends React.Component {
                 <div className="reset-password">
                   <span><a href="#">Forgot your password?</a></span>
                 </div>
+                <div className="sign-up">
+                  <p><span>New to TixFix?</span><a href="#">  Sign up</a></p>
+                </div>
               </div>
+
             </div>
           </form>
           <div className="modal-screen js-modal-close"></div>

@@ -32,7 +32,7 @@ form {
 
 .modal-form-input-container {
   position: relative;
-  top: 100px;
+  top: 40px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -45,7 +45,7 @@ form {
   left: 50%;
   margin-left: -350px;
   width: 750px;
-  height: 720px;
+  height: 700px;
   background: #fff;
   z-index: 3;
   border: none;
@@ -53,7 +53,6 @@ form {
   background-position: center;
   background-size: cover;
   overflow: hidden;
-
 }
 
 .white-box {
@@ -62,7 +61,7 @@ form {
   width: 900px;
   height: 1000px;
   z-index: -1;
-  left: 300px;
+  left: 280px;
   transform: rotate(8deg);
 }
 
@@ -111,6 +110,11 @@ form {
   padding: 20px;
 }
 
+.submit > button:hover {
+  cursor: pointer;
+  background-color: #ff5ea7;
+}
+
 .reset-password {
   color: #085F99;
   font-weight: bold;
@@ -120,4 +124,65 @@ form {
 .reset-password a {
   text-decoration: none;
   font-size: 18px;
+}
+
+.fb-button {
+  color: white;
+  width: 320px;
+  font-weight: 400;
+  background: #4C68A7;
+  border: #4267B2;
+  border-radius: 1px;
+  font-size: 18px;
+  padding: 20px;
+  position: relative;
+}
+
+.fb-button:hover {
+  cursor: pointer;
+  background-color: #3F5F99;
+}
+
+.connect-with-fb {
+  font-size: 16px;
+  color: #aaa;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-weight: 700;
+  position: relative;
+  margin-top: 13px;
+}
+
+.hr-divider {
+  display: flex;
+  flex-direction: row;
+  margin-top: 13px;
+
+}
+
+.hr-divider span {
+  transform: scaleY(0.9);
+  font-weight: bold;
+  color: #aaa;
+}
+
+.hr-divider hr{
+  width: 150px;
+  margin: 10px;
+}
+
+.sign-up {
+  position: relative;
+  top: 90px;
+  color: #085F99;
+  font-weight: bold;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 18px;
+}
+
+.sign-up span {
+  color: black;
+}
+
+.sign-up a {
+  text-decoration: none;
 }
