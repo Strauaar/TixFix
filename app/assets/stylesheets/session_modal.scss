@@ -20,11 +20,23 @@ form {
 }
 
 .modal-form-container {
+  margin-left: 165px;
   position: relative;
   display: flex;
+  width: 380px;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: flex-start;
+  left: 210px;
+}
+
+.modal-form-input-container {
+  position: relative;
+  top: 100px;
+  display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   align-items: center;
-  left: 150px;
 }
 
 .modal-form {
@@ -55,7 +67,7 @@ form {
 }
 
 .modal-header {
-  font-size: 30px;
+  font-size: 38px;
   font-weight: 700;
   font-family: 'Roboto Condensed', sans-serif;
   margin-top: 50px;
