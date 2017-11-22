@@ -27,9 +27,10 @@ class SessionsModal extends React.Component {
     return(
       <div className="modal">
           <form className="modal-form">
+            <div className="white-box"></div>
             <div className="modal-form-container" >
               <span className="modal-close js-modal-close">&times;</span>
-              <span>Get seats you'll love, anytime</span>
+              <span className="modal-header">Get seats you'll love, anytime</span>
               <div className="input">
                 <input type="text" onChange={this.emailChange} placeholder={"Email"}></input>
               </div>

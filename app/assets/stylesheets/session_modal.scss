@@ -1,3 +1,6 @@
+form {
+}
+
 .modal {
   display: none;
 }
@@ -17,10 +20,11 @@
 }
 
 .modal-form-container {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 200px;
+  left: 150px;
 }
 
 .modal-form {
@@ -28,13 +32,33 @@
   top: 100px;
   left: 50%;
   margin-left: -350px;
-  width: 700px;
-  height: 700px;
-  padding: 20px;
+  width: 750px;
+  height: 720px;
   background: #fff;
   z-index: 3;
-  border: 1px solid #000;
-  background-image: url("images/modal-splash.jpg");
+  border: none;
+  background-image: url("modal-splash.jpg");
+  background-position: center;
+  background-size: cover;
+  overflow: hidden;
+
+}
+
+.white-box {
+  position: absolute;
+  background-color: white;
+  width: 900px;
+  height: 1000px;
+  z-index: -1;
+  left: 300px;
+  transform: rotate(8deg);
+}
+
+.modal-header {
+  font-size: 30px;
+  font-weight: 700;
+  font-family: 'Roboto Condensed', sans-serif;
+  margin-top: 50px;
 }
 
 .modal-close {
