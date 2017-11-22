@@ -100,29 +100,40 @@ a i {
   color: #62989E;
 }
 
-.my-tickets-menu-dropdown {
+.menu-dropdown {
   display: none;
   position: absolute;
-  top: 24px;
+  top: 20px;
   min-width: 110px;
   padding: 10px;
   white-space: nowrap;
+  padding: 0px;
   background: #62989E;
   overflow: hidden;
   list-style: none;
 }
 
-.my-tickets-menu-dropdown > li {
+.menu-dropdown > li {
   position: relative;
-  padding: 15px 0px;
+  padding: 20px 30px;
   margin: 0;
   font-size: 32px;
 }
 
-.my-tickets-menu-dropdown > li:hover {
-  background: #62989E;
+.menu-dropdown > li:hover {
+  background: #456C70;
 }
 
-li:hover .my-tickets-menu-dropdown {
+.menu-dropdown a:hover {
+  color: white;
+}
+
+li:hover .menu-dropdown {
   display: block;
+}
+
+.list-item {
+  width: 100%;
+  height: 100%;
+  /*box-sizing: border-box;*/
 }
