@@ -109,7 +109,7 @@ a i {
   padding: 10px;
   white-space: nowrap;
   padding: 0px;
-  background: #62989E;
+  background: #00B5B5;
   overflow: hidden;
   list-style: none;
 }
@@ -121,8 +121,23 @@ a i {
   font-size: 16px;
 }
 
+.menu-dropdown li:hover:after {
+  transform: translateY(11px) rotateZ(-1.2deg);
+}
+.menu-dropdown li:after {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 20px;
+  background-color: #CFEB34;
+  content: "";
+  transform: translate3d(0, 24px, 0) rotateZ(0deg);
+  transition: 0.3s transform ease-in-out;
+}
+
 .menu-dropdown li:hover {
-  background: #456C70;
+  background: #00A1A1;
 }
 
 .menu-dropdown a:hover {
@@ -131,10 +146,4 @@ a i {
 
 li:hover .menu-dropdown {
   display: block;
-}
-
-.list-item {
-  /*width: 100%;
-  height: 100%;*/
-  /*box-sizing: border-box;*/
 }
