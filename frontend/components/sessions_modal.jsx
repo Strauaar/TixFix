@@ -27,24 +27,26 @@ class SessionsModal extends React.Component {
     return(
       <div className="modal">
           <form className="modal-form">
+            <div className="modal-form-container" >
+              <span className="modal-close js-modal-close">&times;</span>
+              <span>Get seats you'll love, anytime</span>
+              <div className="input">
+                <input type="text" onChange={this.emailChange} placeholder={"Email"}></input>
+              </div>
+              <div className="input">
+                <input type="password" onChange={this.passwordChange} placeholder={"Password"}></input>
+              </div>
+              <br/>
 
-            <span className="modal-close js-modal-close">&times;</span>
+              <div className="submit">
+                <button onClick={this.login}><span>Sign In</span></button><br/>
+              </div>
+              <br/>
 
-            <div className="input">
-              <label>Email</label>
-              <input type="text" onChange={this.emailChange}></input>
+              <div className="reset-password">
+                <span><a href="#">Forgot your password?</a></span>
+              </div>
             </div>
-
-            <div className="input">
-              <label>Password</label>
-              <input type="password" onChange={this.passwordChange}></input>
-            </div>
-
-            <div className="submit">
-              <button onClick={this.login}>Sign In</button>
-              <span className="button-alternative">or <strong className="js-modal-close">Cancel</strong></span>
-            </div>
-
           </form>
           <div className="modal-screen js-modal-close"></div>
         </div>
