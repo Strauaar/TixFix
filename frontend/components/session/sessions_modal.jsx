@@ -63,13 +63,13 @@ class SessionsModal extends React.Component {
     if(this.props.location.pathname === '/session') {
       return (
         <div className="submit">
-          <button onClick={() => this.props.loginUser(this.state)}><span>Sign In</span></button><br/>
+          <button onClick={() => this.props.loginUser(this.state)}><span> Sign In</span></button><br/>
         </div>
       )
     } else {
       return (
         <div className="submit">
-          <button onClick={() => this.props.createUser(this.state)}><span>Sign Up</span></button><br/>
+          <button onClick={() => this.props.createUser(this.state)}><span> Sign Up</span></button><br/>
         </div>
       )
     }

@@ -171,9 +171,8 @@ form {
 }
 
 .sign-up {
-  position: fixed;
-  top: 740px;
-  right: 285px;
+  position: relative;
+  top: 70px;
   color: #085F99;
   font-weight: bold;
   font-family: 'Roboto Condensed', sans-serif;
@@ -189,9 +188,7 @@ form {
 }
 
 .sign-in {
-  position: fixed;
-  top: 740px;
-  right: 260px;
+  position: relative;
   color: #085F99;
   font-weight: bold;
   font-family: 'Roboto Condensed', sans-serif;
