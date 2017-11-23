@@ -20,7 +20,7 @@ class NavBar extends React.Component {
           </div>
           <div className="navbar-right">
 
-            <NavBarMiscHelp />
+            <NavBarMiscHelp/>
             <UserMenuItems currentUser={this.props.currentUser}/>
 
           </div>

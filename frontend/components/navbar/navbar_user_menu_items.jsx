@@ -22,10 +22,10 @@ const UserMenuItems = ({currentUser}) => {
           My tickets<i className="fa fa-angle-down" aria-hidden="true"></i>
         </a>
         <ul className="menu-dropdown">
-          <a className="list-item" href="#"><li>Orders</li></a>
-          <a className="list-item" href="#"><li>Listings</li></a>
-          <a className="list-item" href="#"><li>Sales</li></a>
-          <a className="list-item" href="#"><li>Payements</li></a>
+          <Link to={path("/orders")}><li>Orders</li></Link>
+          <Link to={path("/listings")}><li>Listings</li></Link>
+          <Link to={path("/sales")}><li>Sales</li></Link>
+          <Link to={path("/payments")}><li>Payments</li></Link>
         </ul>
       </li>
 
@@ -34,10 +34,10 @@ const UserMenuItems = ({currentUser}) => {
         </a>
         <ul className="menu-dropdown">
           <Link to={path("/profile")}><li>My Hub</li></Link>
-          <a className="list-item" href="#"><li>Activity Feed</li></a>
-          <a className="list-item" href="#"><li>Friends</li></a>
-          <a className="list-item" href="#"><li>Gift Codes</li></a>
-          <a className="list-item" href="#"><li>Settings</li></a>
+          <Link to={path("/feed")}><li>Activity Feed</li></Link>
+          <Link to={path("/friends")}><li>Friends</li></Link>
+          <Link to={path("/gift")}><li>Gift Codes</li></Link>
+          <Link to={path("/settings")}><li>Settings</li></Link>
         </ul>
       </li>
 
