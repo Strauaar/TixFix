@@ -13,7 +13,7 @@
  *= require_tree .
  *= require_self
  */
-@import './session_modal.scss';
+@import 'session_modal.scss';
 
 body, div {
   margin: 0;
