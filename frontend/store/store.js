@@ -3,8 +3,22 @@ import  thunk  from 'redux-thunk';
 import  logger  from 'redux-logger';
 import rootReducer from '../reducers/root_reducer';
 
-const configureStore = (preloadedState = {}) => (
-  createStore(rootReducer, applyMiddleware(thunk, logger))
-);
+const check_state = () => {
+  let state = {}
+  if(window.currentUser) {
+    state = {
+              session:
+                  {
+                    currentUser: window.currentUser
+                  }
+            };
+  }
+  return state
+}
+
+const configureStore = () => {
+  let preloadedState = check_state();
+  return createStore(rootReducer,preloadedState, applyMiddleware(thunk, logger))
+};
 
 export default configureStore;

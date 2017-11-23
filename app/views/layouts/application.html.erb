@@ -8,6 +8,12 @@
     <link href="https://fonts.googleapis.com/css?family=News+Cycle:700" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+    <script >
+    <% if signed_in? %>
+  	   window.currentUser = <%= render("api/users/user.json.jbuilder",
+  		 user: current_user).html_safe %>
+    <% end %>
+    </script>
   </head>
 
   <body>
