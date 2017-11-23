@@ -48,6 +48,21 @@ body {
 
 }
 
+.navbar-left {
+  float: left;
+  position:relative;
+  top: 15px;
+}
+
+.navbar-left span {
+  color: white;
+  font-size: 55px;
+  font-family: 'News Cycle', sans-serif;
+}
+
+.small-header {
+  font-size: 40px !important;
+}
 .navbar-right {
   display:flex;
   flex-direction: column;

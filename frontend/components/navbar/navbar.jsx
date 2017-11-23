@@ -19,6 +19,9 @@ class NavBar extends React.Component {
       <div className="wholenav">
         <div className="navbar">
           <div className="navbar-left">
+            <span>
+              T<span className="small-header">ix</span>F<span className="small-header">ix</span>
+            </span>
           </div>
           <div className="navbar-right">
             <NavBarMiscHelp/>
@@ -26,7 +29,7 @@ class NavBar extends React.Component {
           </div>
         </div>
         <Route exact path="/" component={SearchBarContainer}></Route>
-        
+
         <Route path="/new" component={SessionsModalContainer}></Route>
         <Route path="/session" component={SessionsModalContainer}></Route>
       </div>
