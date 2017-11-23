@@ -23,6 +23,14 @@ class SessionsModal extends React.Component {
     this.props.loginUser(this.state);
   }
 
+  renderHeader() {
+    if(this.props.location.pathname === '/new') {
+      return "Sign up and make it happen"
+    } else {
+      return "Get seats you'll love, anytime"
+    }
+  }
+
   renderNameInput(){
     if(this.props.location.pathname === '/new'){
       return (
@@ -37,6 +45,35 @@ class SessionsModal extends React.Component {
       )
     }
   }
+
+  renderResetPassword(){
+    if(this.props.location.pathname === '/session') {
+      return (
+        <div className="reset-password">
+          <span><a href="#">Forgot your password?</a></span>
+        </div>
+      )
+    }
+  }
+
+  renderSignInPrompt(){
+    if(this.props.location.pathname === '/session') {
+      return (
+        <div className="sign-up">
+          <p><span>New to TixFix?</span><Link to="/new">Sign Up</Link></p>
+        </div>
+      )
+    } else {
+      return (
+        <div className="sign-up">
+          <p><span>Have a TixFix account?</span><Link to="/session">Sign in</Link></p>
+        </div>
+      )
+    }
+  }
+
+
+
 
   render() {
     $("body").on("click", ".js-modal-open", function(event){
@@ -55,7 +92,7 @@ class SessionsModal extends React.Component {
             <div className="white-box"></div>
             <div className="modal-form-container" >
               <span className="modal-close js-modal-close">&times;</span>
-              <span className="modal-header">Get seats you'll love, anytime</span>
+              <span className="modal-header">{this.renderHeader()}</span>
               <div className="modal-form-input-container">
 
                 <button className="fb-button">
@@ -85,12 +122,9 @@ class SessionsModal extends React.Component {
                 </div>
                 <br/>
 
-                <div className="reset-password">
-                  <span><a href="#">Forgot your password?</a></span>
-                </div>
-                <div className="sign-up">
-                  <p><span>New to TixFix?</span><Link to="/new">Sign Up</Link></p>
-                </div>
+                {this.renderResetPassword()}
+                {this.renderSignInPrompt()}
+
               </div>
 
             </div>
