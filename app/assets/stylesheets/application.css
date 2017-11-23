@@ -15,6 +15,7 @@
  */
 @import 'session_modal.scss';
 @import 'searchbar.scss';
+@import 'category_card.scss';
 
 body, div {
   margin: 0;

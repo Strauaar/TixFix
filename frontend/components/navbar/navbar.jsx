@@ -5,6 +5,7 @@ import UserMenuItems from './navbar_user_menu_items';
 import SessionsModalContainer from '../session/sessions_modal_container';
 import SearchBarContainer from './searchbar_container';
 import { AuthRoute, ProtectedRoute } from '../../utils/route_util';
+// import LocationDateFilter from './location_date_filter';
 
 
 class NavBar extends React.Component {
@@ -25,6 +26,7 @@ class NavBar extends React.Component {
           </div>
         </div>
         <Route exact path="/" component={SearchBarContainer}></Route>
+        
         <Route path="/new" component={SessionsModalContainer}></Route>
         <Route path="/session" component={SessionsModalContainer}></Route>
       </div>

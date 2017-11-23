@@ -13,7 +13,7 @@ class Searchbar extends React.Component {
           <input className="searchbar" placeholder="Search for events, artists, teams, or venues">
 
           </input>
-          <span className="icon-container"><i class="fa fa-search search-icon fa-2x" aria-hidden="true"></i></span>
+          <span className="icon-container"><i className="fa fa-search search-icon fa-2x" aria-hidden="true"></i></span>
         </div>
       </div>
     )
