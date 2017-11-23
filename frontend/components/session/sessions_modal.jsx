@@ -7,28 +7,31 @@ class SessionsModal extends React.Component {
     this.state = {email: "", password: "", first_name: "", last_name: ""};
     this.props.clearErrors();
     this.demoLogin = this.demoLogin.bind(this);
+    this.type = this.type.bind(this);
   }
 
   demoLogin() {
-    this.emailI = "demoemail@email.com";
-    let passwordI = "password";
+    let email = "demoemail@email.com";
+    let password = "password";
+    let currentChar=1;
 
-    this.delay=100;
-    this.currentChar=1;
-    if (this.currentChar < this.emailI.length) {
-      this.type.apply(this);
+    this.type('email', email, currentChar);
+    this.type('password', password, currentChar);
+
+  }
+
+  type(field, word, currentChar, cb) {
+    let i = currentChar;
+    this.setState({[field]: word.substr(0, i)});
+    i++;
+    if (i <= word.length) {
+      setTimeout(() => this.type(field, word, i), 110);
+    } else {
+      if (field === 'email') {
+        setTimeout(() => this.props.loginUser(this.state), 200);
+      }
     }
   }
-
-  type() {
-    this.setState({email: this.emailI.substr(0, this.currentChar)});
-    this.currentChar++;
-
-    setTimeout(() => this.type(), this.delay);
-
-
-  }
-
 
 
   update(property) {
@@ -125,7 +128,7 @@ class SessionsModal extends React.Component {
       $(".modal").removeClass("is-open");
       this.props.history.push("/");
     }.bind(this));
-    console.log(this.props.createUser);
+
     return(
       <div className="modal is-open">
           <form className="modal-form">
@@ -155,7 +158,7 @@ class SessionsModal extends React.Component {
                   <input id="emailInput" type="text" onChange={this.update('email')} placeholder={"Email"} value={this.state.email}></input>
                 </div>
                 <div className="input">
-                  <input id="pwInput" type="password" onChange={this.update('password')} placeholder={"Password"} value-={this.state.password}></input>
+                  <input id="pwInput" type="password" onChange={this.update('password')} placeholder={"Password"} value={this.state.password}></input>
                 </div>
                 <br/>
 
