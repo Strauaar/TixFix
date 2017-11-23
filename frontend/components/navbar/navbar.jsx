@@ -19,9 +19,9 @@ class NavBar extends React.Component {
       <div className="wholenav">
         <div className="navbar">
           <div className="navbar-left">
-            <span>
-              T<span className="small-header">ix</span>F<span className="small-header">ix</span>
-            </span>
+            <span>TF<span className="small-header"></span><span className="small-header"></span></span>
+            <div className="title-container">
+            </div>
           </div>
           <div className="navbar-right">
             <NavBarMiscHelp/>

@@ -58,11 +58,14 @@ body {
   color: white;
   font-size: 55px;
   font-family: 'News Cycle', sans-serif;
+  z-index: 100;
 }
 
 .small-header {
   font-size: 40px !important;
 }
+
+
 .navbar-right {
   display:flex;
   flex-direction: column;
