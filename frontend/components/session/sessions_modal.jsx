@@ -6,7 +6,30 @@ class SessionsModal extends React.Component {
     super(props);
     this.state = {email: "", password: "", first_name: "", last_name: ""};
     this.props.clearErrors();
+    this.demoLogin = this.demoLogin.bind(this);
   }
+
+  demoLogin() {
+    this.emailI = "demoemail@email.com";
+    let passwordI = "password";
+
+    this.delay=100;
+    this.currentChar=1;
+    if (this.currentChar < this.emailI.length) {
+      this.type.apply(this);
+    }
+  }
+
+  type() {
+    this.setState({email: this.emailI.substr(0, this.currentChar)});
+    this.currentChar++;
+
+    setTimeout(() => this.type(), this.delay);
+
+
+  }
+
+
 
   update(property) {
    return e => this.setState({ [property]: e.target.value });
@@ -53,7 +76,8 @@ class SessionsModal extends React.Component {
     if(this.props.location.pathname === '/session') {
       return (
         <div className="reset-password">
-          <span><a href="#">Forgot your password?</a></span>
+          <p><a >Forgot your password?</a></p>
+          <p><a onClick={this.demoLogin}>Demo Login</a></p>
         </div>
       )
     }
@@ -63,13 +87,13 @@ class SessionsModal extends React.Component {
     if(this.props.location.pathname === '/session') {
       return (
         <div className="submit">
-          <button onClick={() => this.props.loginUser(this.state)}><span> Sign In</span></button><br/>
+          <button onClick={() => this.props.loginUser(this.state)}><span>Sign In</span></button><br/>
         </div>
       )
     } else {
       return (
         <div className="submit">
-          <button onClick={() => this.props.createUser(this.state)}><span> Sign Up</span></button><br/>
+          <button onClick={() => this.props.createUser(this.state)}><span>Sign Up</span></button><br/>
         </div>
       )
     }
@@ -79,13 +103,13 @@ class SessionsModal extends React.Component {
     if(this.props.location.pathname === '/session') {
       return (
         <div className="sign-up">
-          <p><span>New to TixFix?</span><Link to="/new">Sign Up</Link></p>
+          <p><span>New to TixFix?</span><Link to="/new"> Sign Up</Link></p>
         </div>
       )
     } else {
       return (
         <div className="sign-in">
-          <p><span>Have a TixFix account?</span><Link to="/session">Sign in</Link></p>
+          <p><span>Have a TixFix account?</span><Link to="/session"> Sign in</Link></p>
         </div>
       )
     }
@@ -128,10 +152,10 @@ class SessionsModal extends React.Component {
 
                 {this.renderNameInput()}
                 <div className="input">
-                  <input type="text" onChange={this.update('email')} placeholder={"Email"}></input>
+                  <input id="emailInput" type="text" onChange={this.update('email')} placeholder={"Email"} value={this.state.email}></input>
                 </div>
                 <div className="input">
-                  <input type="password" onChange={this.update('password')} placeholder={"Password"}></input>
+                  <input id="pwInput" type="password" onChange={this.update('password')} placeholder={"Password"} value-={this.state.password}></input>
                 </div>
                 <br/>
 

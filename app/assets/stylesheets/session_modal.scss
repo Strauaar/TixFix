@@ -119,11 +119,23 @@ form {
   color: #085F99;
   font-weight: bold;
   font-family: 'Roboto Condensed', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .reset-password a {
   text-decoration: none;
+  color: #085F99;
   font-size: 18px;
+}
+
+.reset-password a:hover {
+  cursor: pointer;
+}
+
+.reset-password p {
+  margin: 5px 0;
 }
 
 .fb-button {
@@ -156,7 +168,6 @@ form {
   display: flex;
   flex-direction: row;
   margin-top: 13px;
-
 }
 
 .hr-divider span {
@@ -172,7 +183,7 @@ form {
 
 .sign-up {
   position: relative;
-  top: 70px;
+  top: 40px;
   color: #085F99;
   font-weight: bold;
   font-family: 'Roboto Condensed', sans-serif;
@@ -185,10 +196,12 @@ form {
 
 .sign-up a {
   text-decoration: none;
+  color: #085F99;
 }
 
 .sign-in {
   position: relative;
+  bottom: 10px;
   color: #085F99;
   font-weight: bold;
   font-family: 'Roboto Condensed', sans-serif;
@@ -201,6 +214,7 @@ form {
 
 .sign-in a {
   text-decoration: none;
+  color: #085F99;
 }
 
 
@@ -227,7 +241,7 @@ form {
   flex-direction: column;
   list-style: none;
   font-size: 11px;
-  margin-top: 10px;
+  margin-top: 7px;
 }
 
 .error-list li {
