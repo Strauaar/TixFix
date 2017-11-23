@@ -23,9 +23,18 @@ class SessionsModal extends React.Component {
   }
 
   render() {
+    $("body").on("click", ".js-modal-open", function(event){
+      event.preventDefault();
+      $(".modal").addClass("is-open");
+    });
+    $("body").on("click", ".js-modal-close", function(event){
+      event.preventDefault();
+      $(".modal").removeClass("is-open");
+      this.props.history.push("/");
+    }.bind(this));
 
     return(
-      <div className="modal">
+      <div className="modal is-open">
           <form className="modal-form">
             <div className="white-box"></div>
             <div className="modal-form-container" >

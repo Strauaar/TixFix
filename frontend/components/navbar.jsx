@@ -1,4 +1,5 @@
 import React from 'react';
+import { Route } from 'react-router-dom';
 import NavBarMiscHelp from './navbar/navbar_misc_menu_items';
 import UserMenuItems from './navbar/navbar_user_menu_items';
 import SessionsModalContainer from './sessions_modal_container';
@@ -6,18 +7,11 @@ import SessionsModalContainer from './sessions_modal_container';
 class NavBar extends React.Component {
   constructor(props) {
     super(props);
-    
+
   }
 
   render() {
-    $("body").on("click", ".js-modal-open", function(event){
-      event.preventDefault();
-      $(".modal").addClass("is-open");
-    });
-    $("body").on("click", ".js-modal-close", function(event){
-      event.preventDefault();
-      $(".modal").removeClass("is-open");
-    });
+
     return(
       <div>
         <div className="navbar">
@@ -32,7 +26,7 @@ class NavBar extends React.Component {
           </div>
 
         </div>
-        <SessionsModalContainer/>
+        <Route path="/session" component={SessionsModalContainer}></Route>
       </div>
     )
   }
