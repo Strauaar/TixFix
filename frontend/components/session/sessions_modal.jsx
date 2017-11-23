@@ -5,8 +5,7 @@ class SessionsModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {email: "", password: "", first_name: "", last_name: ""};
-    this.login = this.login.bind(this);
-    this.createUser = this.createUser.bind(this);
+    
   }
 
   update(property) {
@@ -18,6 +17,16 @@ class SessionsModal extends React.Component {
       return "Sign up and make it happen"
     } else {
       return "Get seats you'll love, anytime"
+    }
+  }
+
+  renderErrors() {
+    if(this.props.errors.length !== 0) {
+      return (
+        <ul className="error-list">
+          {this.props.errors.map(error => <li>{error}</li>)}
+        </ul>
+      )
     }
   }
 
@@ -71,15 +80,12 @@ class SessionsModal extends React.Component {
       )
     } else {
       return (
-        <div className="sign-up">
+        <div className="sign-in">
           <p><span>Have a TixFix account?</span><Link to="/session">Sign in</Link></p>
         </div>
       )
     }
   }
-
-
-
 
   render() {
     $("body").on("click", ".js-modal-open", function(event){
@@ -106,14 +112,16 @@ class SessionsModal extends React.Component {
                 </button>
                 <span className="connect-with-fb">Connect with friends on TixFix</span>
                 <div className="hr-divider">
-                  <hr>
 
-                  </hr>
+                  <hr></hr>
+
                   <span>OR</span>
-                  <hr>
 
-                  </hr>
+                  <hr></hr>
+
                 </div>
+                {this.renderErrors()}
+
                 {this.renderNameInput()}
                 <div className="input">
                   <input type="text" onChange={this.update('email')} placeholder={"Email"}></input>
