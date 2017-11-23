@@ -15,22 +15,18 @@ class NavBar extends React.Component {
   render() {
 
     return(
-      <div>
+      <div className="wholenav">
         <div className="navbar">
           <div className="navbar-left">
-
           </div>
           <div className="navbar-right">
-
             <NavBarMiscHelp/>
             <UserMenuItems currentUser={this.props.currentUser}/>
-
           </div>
-
         </div>
+        <Route exact path="/" component={SearchBarContainer}></Route>
         <Route path="/new" component={SessionsModalContainer}></Route>
         <Route path="/session" component={SessionsModalContainer}></Route>
-        <Route exact path="/" component={SearchBarContainer}></Route>
       </div>
     )
   }

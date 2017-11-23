@@ -3,6 +3,7 @@ form {
 
 .modal {
   display: none;
+  z-index: 2000;
 }
 
 .modal.is-open {
