@@ -4,24 +4,14 @@ import { Link } from 'react-router-dom';
 class SessionsModal extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {email: "", password: ""};
-    this.emailChange = this.emailChange.bind(this);
-    this.passwordChange = this.passwordChange.bind(this);
+    this.state = {email: "", password: "", first_name: "", last_name: ""};
     this.login = this.login.bind(this);
+    this.createUser = this.createUser.bind(this);
   }
 
-  emailChange(e) {
-    this.setState({email: e.target.value});
-  }
-
-  passwordChange(e) {
-    this.setState({password: e.target.value});
-  }
-
-  login(e) {
-    e.preventDefault();
-    this.props.loginUser(this.state);
-  }
+  update(property) {
+   return e => this.setState({ [property]: e.target.value });
+ }
 
   renderHeader() {
     if(this.props.location.pathname === '/new') {
@@ -36,10 +26,10 @@ class SessionsModal extends React.Component {
       return (
         <div className="name-input">
           <div className="input">
-            <input type="text" onChange={this.firstNameChange} placeholder={"First Name"}></input>
+            <input type="text" onChange={this.update('first_name')} placeholder={"First Name"}></input>
           </div>
           <div className="input">
-            <input type="text" onChange={this.lastNameChange} placeholder={"Last Name"}></input>
+            <input type="text" onChange={this.update('last_name')} placeholder={"Last Name"}></input>
           </div>
         </div>
       )
@@ -51,6 +41,22 @@ class SessionsModal extends React.Component {
       return (
         <div className="reset-password">
           <span><a href="#">Forgot your password?</a></span>
+        </div>
+      )
+    }
+  }
+
+  renderSignInButton() {
+    if(this.props.location.pathname === '/session') {
+      return (
+        <div className="submit">
+          <button onClick={() => this.props.loginUser(this.state)}><span>Sign In</span></button><br/>
+        </div>
+      )
+    } else {
+      return (
+        <div className="submit">
+          <button onClick={() => this.props.createUser(this.state)}><span>Sign Up</span></button><br/>
         </div>
       )
     }
@@ -85,7 +91,7 @@ class SessionsModal extends React.Component {
       $(".modal").removeClass("is-open");
       this.props.history.push("/");
     }.bind(this));
-    console.log(this.props.location.pathname === '/session');
+    console.log(this.props.createUser);
     return(
       <div className="modal is-open">
           <form className="modal-form">
@@ -110,16 +116,15 @@ class SessionsModal extends React.Component {
                 </div>
                 {this.renderNameInput()}
                 <div className="input">
-                  <input type="text" onChange={this.emailChange} placeholder={"Email"}></input>
+                  <input type="text" onChange={this.update('email')} placeholder={"Email"}></input>
                 </div>
                 <div className="input">
-                  <input type="password" onChange={this.passwordChange} placeholder={"Password"}></input>
+                  <input type="password" onChange={this.update('password')} placeholder={"Password"}></input>
                 </div>
                 <br/>
 
-                <div className="submit">
-                  <button onClick={this.login}><span>Sign In</span></button><br/>
-                </div>
+                {this.renderSignInButton()}
+
                 <br/>
 
                 {this.renderResetPassword()}
