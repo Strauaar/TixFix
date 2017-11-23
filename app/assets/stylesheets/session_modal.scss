@@ -171,8 +171,9 @@ form {
 }
 
 .sign-up {
-  position: relative;
-  top: 90px;
+  position: fixed;
+  top: 740px;
+  right: 285px;
   color: #085F99;
   font-weight: bold;
   font-family: 'Roboto Condensed', sans-serif;
@@ -229,6 +230,7 @@ form {
   flex-direction: column;
   list-style: none;
   font-size: 11px;
+  margin-top: 10px;
 }
 
 .error-list li {

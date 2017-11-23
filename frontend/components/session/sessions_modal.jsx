@@ -5,7 +5,7 @@ class SessionsModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {email: "", password: "", first_name: "", last_name: ""};
-    
+    this.props.clearErrors();
   }
 
   update(property) {
@@ -21,11 +21,15 @@ class SessionsModal extends React.Component {
   }
 
   renderErrors() {
-    if(this.props.errors.length !== 0) {
+    if(this.props.errors.length > 1) {
       return (
         <ul className="error-list">
           {this.props.errors.map(error => <li>{error}</li>)}
         </ul>
+      )
+    } else if (this.props.errors.length === 1) {
+      return (
+        <span className="error-list">{this.props.errors[0]}</span>
       )
     }
   }
