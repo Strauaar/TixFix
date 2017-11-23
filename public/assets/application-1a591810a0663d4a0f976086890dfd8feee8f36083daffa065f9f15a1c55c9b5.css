@@ -1,0 +1,412 @@
+/* line 4, /home/aaron/full_stack/stubhub_clone/app/assets/stylesheets/session_modal.scss */
+.modal {
+  display: none;
+}
+
+/* line 8, /home/aaron/full_stack/stubhub_clone/app/assets/stylesheets/session_modal.scss */
+.modal.is-open {
+  display: block;
+}
+
+/* line 12, /home/aaron/full_stack/stubhub_clone/app/assets/stylesheets/session_modal.scss */
+.modal-screen {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.7);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+
+/* line 22, /home/aaron/full_stack/stubhub_clone/app/assets/stylesheets/session_modal.scss */
+.modal-form-container {
+  margin-left: 165px;
+  position: relative;
+  display: flex;
+  width: 380px;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: flex-start;
+  left: 210px;
+}
+
+/* line 33, /home/aaron/full_stack/stubhub_clone/app/assets/stylesheets/session_modal.scss */
+.modal-form-input-container {
+  position: relative;
+  top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* line 42, /home/aaron/full_stack/stubhub_clone/app/assets/stylesheets/session_modal.scss */
+.modal-form {
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  margin-left: -350px;
+  width: 750px;
+  height: 700px;
+  background: #fff;
+  z-index: 3;
+  border: none;
+  background-image: url("modal-splash.jpg");
+  background-position: center;
+  background-size: cover;
+  overflow: hidden;
+}
+
+/* line 58, /home/aaron/full_stack/stubhub_clone/app/assets/stylesheets/session_modal.scss */
+.white-box {
+  position: absolute;
+  background-color: white;
+  width: 900px;
+  height: 1000px;
+  z-index: -1;
+  left: 280px;
+  transform: rotate(8deg);
+}
+
+/* line 68, /home/aaron/full_stack/stubhub_clone/app/assets/stylesheets/session_modal.scss */
+.modal-header {
+  font-size: 38px;
+  font-weight: 700;
+  font-family: 'Roboto Condensed', sans-serif;
+  margin-top: 50px;
+}
+
+/* line 75, /home/aaron/full_stack/stubhub_clone/app/assets/stylesheets/session_modal.scss */
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 36px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+/* line 84, /home/aaron/full_stack/stubhub_clone/app/assets/stylesheets/session_modal.scss */
+.modal-close:hover {
+  color: #f00;
+}
+
+/* line 88, /home/aaron/full_stack/stubhub_clone/app/assets/stylesheets/session_modal.scss */
+.input input {
+  width: 330px;
+  height: 35px;
+  margin-top: 10px;
+  border-style: none;
+  border-bottom: 1px solid #B76281;
+  font-size: 20px;
+  font-family: serif;
+}
+
+/* line 98, /home/aaron/full_stack/stubhub_clone/app/assets/stylesheets/session_modal.scss */
+.input input:focus {
+  border-bottom: 2px solid #B76281;
+  outline: none;
+}
+
+/* line 102, /home/aaron/full_stack/stubhub_clone/app/assets/stylesheets/session_modal.scss */
+.submit > button {
+  width: 320px;
+  background-color: #B76281;
+  border-style: none;
+  color: white;
+  font-size: 18px;
+  margin-top: 25px;
+  padding: 20px;
+}
+
+/* line 113, /home/aaron/full_stack/stubhub_clone/app/assets/stylesheets/session_modal.scss */
+.submit > button:hover {
+  cursor: pointer;
+  background-color: #ff5ea7;
+}
+
+/* line 118, /home/aaron/full_stack/stubhub_clone/app/assets/stylesheets/session_modal.scss */
+.reset-password {
+  color: #085F99;
+  font-weight: bold;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+/* line 124, /home/aaron/full_stack/stubhub_clone/app/assets/stylesheets/session_modal.scss */
+.reset-password a {
+  text-decoration: none;
+  font-size: 18px;
+}
+
+/* line 129, /home/aaron/full_stack/stubhub_clone/app/assets/stylesheets/session_modal.scss */
+.fb-button {
+  color: white;
+  width: 320px;
+  font-weight: 400;
+  background: #4C68A7;
+  border: #4267B2;
+  border-radius: 1px;
+  font-size: 18px;
+  padding: 20px;
+  position: relative;
+}
+
+/* line 141, /home/aaron/full_stack/stubhub_clone/app/assets/stylesheets/session_modal.scss */
+.fb-button:hover {
+  cursor: pointer;
+  background-color: #3F5F99;
+}
+
+/* line 146, /home/aaron/full_stack/stubhub_clone/app/assets/stylesheets/session_modal.scss */
+.connect-with-fb {
+  font-size: 16px;
+  color: #aaa;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-weight: 700;
+  position: relative;
+  margin-top: 13px;
+}
+
+/* line 155, /home/aaron/full_stack/stubhub_clone/app/assets/stylesheets/session_modal.scss */
+.hr-divider {
+  display: flex;
+  flex-direction: row;
+  margin-top: 13px;
+}
+
+/* line 162, /home/aaron/full_stack/stubhub_clone/app/assets/stylesheets/session_modal.scss */
+.hr-divider span {
+  transform: scaleY(0.9);
+  font-weight: bold;
+  color: #aaa;
+}
+
+/* line 168, /home/aaron/full_stack/stubhub_clone/app/assets/stylesheets/session_modal.scss */
+.hr-divider hr {
+  width: 150px;
+  margin: 10px;
+}
+
+/* line 173, /home/aaron/full_stack/stubhub_clone/app/assets/stylesheets/session_modal.scss */
+.sign-up {
+  position: relative;
+  top: 70px;
+  color: #085F99;
+  font-weight: bold;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 18px;
+}
+
+/* line 182, /home/aaron/full_stack/stubhub_clone/app/assets/stylesheets/session_modal.scss */
+.sign-up span {
+  color: black;
+}
+
+/* line 186, /home/aaron/full_stack/stubhub_clone/app/assets/stylesheets/session_modal.scss */
+.sign-up a {
+  text-decoration: none;
+}
+
+/* line 190, /home/aaron/full_stack/stubhub_clone/app/assets/stylesheets/session_modal.scss */
+.sign-in {
+  position: relative;
+  color: #085F99;
+  font-weight: bold;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 18px;
+}
+
+/* line 198, /home/aaron/full_stack/stubhub_clone/app/assets/stylesheets/session_modal.scss */
+.sign-in span {
+  color: black;
+}
+
+/* line 202, /home/aaron/full_stack/stubhub_clone/app/assets/stylesheets/session_modal.scss */
+.sign-in a {
+  text-decoration: none;
+}
+
+/* line 208, /home/aaron/full_stack/stubhub_clone/app/assets/stylesheets/session_modal.scss */
+.name-input {
+  position: relative;
+  right: -5px;
+  display: flex;
+  flex-direction: row;
+  width: inherit;
+}
+
+/* line 217, /home/aaron/full_stack/stubhub_clone/app/assets/stylesheets/session_modal.scss */
+.name-input input:first-child {
+  width: 160px;
+}
+
+/* line 221, /home/aaron/full_stack/stubhub_clone/app/assets/stylesheets/session_modal.scss */
+.name-input input:first-child {
+  margin-right: 10px;
+}
+
+/* line 225, /home/aaron/full_stack/stubhub_clone/app/assets/stylesheets/session_modal.scss */
+.error-list {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  font-size: 11px;
+  margin-top: 10px;
+}
+
+/* line 233, /home/aaron/full_stack/stubhub_clone/app/assets/stylesheets/session_modal.scss */
+.error-list li {
+  margin-top: 5px;
+}
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+
+
+ */
+
+@import 'session_modal.scss';
+
+body, div {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #F6F8F9;
+}
+
+.nav-bar-background {
+  height: 80px;
+  width: 100%;
+  background-color: #281750;
+  position:absolute;
+  z-index: -1;
+
+}
+
+.navbar {
+  margin: 0 300px;
+}
+
+.navbar-right {
+  display:flex;
+  flex-direction: column;
+  float:right;
+}
+
+.misc-help {
+  display: flex;
+  flex-direction:row;
+  margin: 0;
+  max-width: 300px;
+  justify-content: space-between;
+  /*float:right;*/
+  padding-top: 13px;
+  margin-left: 140px;
+  list-style: none;
+}
+
+.misc-help a {
+  color: white;
+  text-decoration: none;
+  /*margin-left: 20px;*/
+  font-size: 15px;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-weight: 700;
+  margin-left:15px;
+}
+
+.misc-help a:hover {
+  color: #62989E;
+}
+
+a i {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.sign-in-row {
+  display: flex;
+  flex-direction:row;
+  list-style: none;
+  min-width: 400px;
+  justify-content: space-between;
+  /*float:right;*/
+}
+
+.sign-in-row a {
+  color: white;
+  text-decoration: none;
+  /*margin-left: 20px;*/
+  font-size: 17px;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-weight: 700;
+  /*float:right;*/
+}
+
+.sign-in-row li {
+  position: relative;
+}
+
+.sign-in-row a:hover {
+  color: #62989E;
+}
+
+.menu-dropdown {
+  display: none;
+  position: absolute;
+  top: 20px;
+  min-width: 110px;
+  padding: 10px;
+  white-space: nowrap;
+  padding: 0px;
+  background: #00B5B5;
+  overflow: hidden;
+  list-style: none;
+}
+
+.menu-dropdown  li {
+  position: relative;
+  padding: 20px 30px;
+  margin: 0;
+  font-size: 16px;
+  overflow:hidden;
+}
+
+.menu-dropdown li:hover:after {
+  transform: translateY(11px) rotateZ(-1.2deg);
+}
+.menu-dropdown li:after {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 20px;
+  background-color: #CFEB34;
+  content: "";
+  transform: translate3d(0, 24px, 0) rotateZ(0deg);
+  transition: 0.3s transform ease-in-out;
+}
+
+.menu-dropdown li:hover {
+  background: #00A1A1;
+}
+
+.menu-dropdown a:hover {
+  color: white;
+}
+
+li:hover .menu-dropdown {
+  display: block;
+}
