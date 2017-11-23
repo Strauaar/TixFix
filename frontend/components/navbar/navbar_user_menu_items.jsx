@@ -2,8 +2,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 
-const UserMenuItems = () => {
-  
+const UserMenuItems = ({currentUser}) => {
+  const path = (path) => {
+    if(currentUser != null) {
+      return path;
+    } else {
+      return "/session";
+    }
+  };
+
   return (
     <ul className="sign-in-row">
       <li><a href="#"> <i className="fa fa-envelope-open-o" aria-hidden="true"></i>
@@ -26,7 +33,7 @@ const UserMenuItems = () => {
         <a href="#"><i className="fa fa-user-o lg" aria-hidden="true"></i>Sign in<i className="fa  fa-angle-down"  aria-hidden="true"></i>
         </a>
         <ul className="menu-dropdown">
-          <Link to="/session"><li>My Hub</li></Link>
+          <Link to={path("/profile")}><li>My Hub</li></Link>
           <a className="list-item" href="#"><li>Activity Feed</li></a>
           <a className="list-item" href="#"><li>Friends</li></a>
           <a className="list-item" href="#"><li>Gift Codes</li></a>

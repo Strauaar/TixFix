@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import NavBarMiscHelp from './navbar/navbar_misc_menu_items';
-import UserMenuItems from './navbar/navbar_user_menu_items';
-import SessionsModalContainer from './sessions_modal_container';
+import NavBarMiscHelp from './navbar_misc_menu_items';
+import UserMenuItems from './navbar_user_menu_items';
+import SessionsModalContainer from '../sessions_modal_container';
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -21,7 +21,7 @@ class NavBar extends React.Component {
           <div className="navbar-right">
 
             <NavBarMiscHelp />
-            <UserMenuItems />
+            <UserMenuItems currentUser={this.props.currentUser}/>
 
           </div>
 

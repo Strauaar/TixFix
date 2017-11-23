@@ -7,7 +7,7 @@ import {
   Link,
   HashRouter
 } from 'react-router-dom';
-import NavBar from './navbar.jsx';
+import NavBar from './navbar/navbar';
 
 const App = () => (
   <div>
