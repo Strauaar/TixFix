@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class SessionsModal extends React.Component {
   constructor(props) {
@@ -22,6 +23,21 @@ class SessionsModal extends React.Component {
     this.props.loginUser(this.state);
   }
 
+  renderNameInput(){
+    if(this.props.location.pathname === '/new'){
+      return (
+        <div className="name-input">
+          <div className="input">
+            <input type="text" onChange={this.firstNameChange} placeholder={"First Name"}></input>
+          </div>
+          <div className="input">
+            <input type="text" onChange={this.lastNameChange} placeholder={"Last Name"}></input>
+          </div>
+        </div>
+      )
+    }
+  }
+
   render() {
     $("body").on("click", ".js-modal-open", function(event){
       event.preventDefault();
@@ -32,7 +48,7 @@ class SessionsModal extends React.Component {
       $(".modal").removeClass("is-open");
       this.props.history.push("/");
     }.bind(this));
-
+    console.log(this.props.location.pathname === '/session');
     return(
       <div className="modal is-open">
           <form className="modal-form">
@@ -55,6 +71,7 @@ class SessionsModal extends React.Component {
 
                   </hr>
                 </div>
+                {this.renderNameInput()}
                 <div className="input">
                   <input type="text" onChange={this.emailChange} placeholder={"Email"}></input>
                 </div>
@@ -72,7 +89,7 @@ class SessionsModal extends React.Component {
                   <span><a href="#">Forgot your password?</a></span>
                 </div>
                 <div className="sign-up">
-                  <p><span>New to TixFix?</span><a href="#">  Sign up</a></p>
+                  <p><span>New to TixFix?</span><Link to="/new">Sign Up</Link></p>
                 </div>
               </div>
 

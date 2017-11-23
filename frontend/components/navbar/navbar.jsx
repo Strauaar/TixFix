@@ -2,12 +2,12 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import NavBarMiscHelp from './navbar_misc_menu_items';
 import UserMenuItems from './navbar_user_menu_items';
-import SessionsModalContainer from '../sessions_modal_container';
+import SessionsModalContainer from '../session/sessions_modal_container';
+
 
 class NavBar extends React.Component {
   constructor(props) {
     super(props);
-
   }
 
   render() {
@@ -26,6 +26,7 @@ class NavBar extends React.Component {
           </div>
 
         </div>
+        <Route path="/new" component={SessionsModalContainer}></Route>
         <Route path="/session" component={SessionsModalContainer}></Route>
       </div>
     )

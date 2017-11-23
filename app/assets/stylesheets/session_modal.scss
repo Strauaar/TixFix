@@ -186,3 +186,20 @@ form {
 .sign-up a {
   text-decoration: none;
 }
+
+.name-input {
+  position: relative;
+  right: -5px;
+  display: flex;
+  flex-direction: row;
+  width: inherit;
+  // justify-content: space-between;
+}
+
+.name-input input:first-child {
+  width: 160px;
+}
+
+.name-input input:first-child {
+  margin-right: 10px;
+}
