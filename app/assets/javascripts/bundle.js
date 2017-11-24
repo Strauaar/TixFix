@@ -3531,7 +3531,7 @@ var _root = __webpack_require__(87);
 
 var _root2 = _interopRequireDefault(_root);
 
-var _event_util = __webpack_require__(138);
+var _event_actions = __webpack_require__(139);
 
 var _session_util = __webpack_require__(39);
 
@@ -3551,13 +3551,11 @@ document.addEventListener("DOMContentLoaded", function () {
   window.loginUser = _session_actions.loginUser;
   window.logoutUser = _session_actions.logoutUser;
   window.createUser = _session_actions.createUser;
-  window.fetchEvents = _event_util.fetchEvents;
+  window.fetchEvents = _event_actions.fetchEvents;
   // window.apicreateUser = SessionApiUtil.createUser;
   var rootEl = document.getElementById("root");
   _reactDom2.default.render(_react2.default.createElement(_root2.default, { store: store }), rootEl);
 });
-
-// import { loginUser, logoutUser } from './utils/session_util';
 
 /***/ }),
 /* 53 */
@@ -21561,11 +21559,22 @@ exports.default = (0, _redux.combineReducers)({
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _event_actions = __webpack_require__(139);
+
 var eventsReducer = function eventsReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments[1];
 
-  return state;
+  Object.freeze(state);
+  var newState = {};
+  switch (action.type) {
+    case _event_actions.RECEIVE_EVENTS:
+      newState = Object.assign({}, action.events);
+      return newState;
+    default:
+      return state;
+  }
 };
 
 exports.default = eventsReducer;
@@ -27061,6 +27070,41 @@ var fetchEvents = exports.fetchEvents = function fetchEvents() {
     method: 'GET',
     url: 'api/events'
   });
+};
+
+/***/ }),
+/* 139 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.fetchEvents = exports.RECEIVE_EVENTS = undefined;
+
+var _event_util = __webpack_require__(138);
+
+var EventApiUtil = _interopRequireWildcard(_event_util);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+var RECEIVE_EVENTS = exports.RECEIVE_EVENTS = "RECEIVE_EVENTS";
+
+var receiveEvents = function receiveEvents(events) {
+  return {
+    type: RECEIVE_EVENTS,
+    events: events
+  };
+};
+
+var fetchEvents = exports.fetchEvents = function fetchEvents() {
+  return function (dispatch) {
+    return EventApiUtil.fetchEvents().then(function (events) {
+      return dispatch(receiveEvents(events));
+    });
+  };
 };
 
 /***/ })

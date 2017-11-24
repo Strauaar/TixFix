@@ -2,9 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import configureStore from './store/store';
 import Root from './components/root';
-
-// import { loginUser, logoutUser } from './utils/session_util';
-import { fetchEvents } from './utils/event_util';
+import { fetchEvents } from './actions/event_actions';
 import * as SessionApiUtil from './utils/session_util';
 import { RECEIVE_CURRENT_USER,
          LOGOUT_CURRENT_USER,
