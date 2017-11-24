@@ -1,8 +1,9 @@
 import React from 'react';
-
+// 
 class CategoryCard extends React.Component {
   constructor(props) {
     super(props)
+
   }
 
 
