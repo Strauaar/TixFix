@@ -1,4 +1,5 @@
 import React from 'react';
+import EventCard from './event_card_item';
 
 class EventsList extends React.Component {
   constructor(props) {
@@ -14,7 +15,7 @@ class EventsList extends React.Component {
       <div>
         <ul>
           {
-            this.props.events.map( event => <li>{event.name}</li>)
+            this.props.events.map( event => <EventCard event={event}/>)
           }
         </ul>
       </div>

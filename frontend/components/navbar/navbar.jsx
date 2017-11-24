@@ -27,10 +27,10 @@ class NavBar extends React.Component {
             <UserMenuItems currentUser={this.props.currentUser} logout={this.props.logout}/>
           </div>
         </div>
-        <Route exact path="/" component={SearchBarContainer}></Route>
+        <Route path="/" component={SearchBarContainer}></Route>
         <LocationDateFilterContainer />
         <Route path="/new" component={SessionsModalContainer}></Route>
-        <Route path="/session" component={SessionsModalContainer}></Route>
+        <AuthRoute path="/session" component={SessionsModalContainer}></AuthRoute>
       </div>
     )
   }
