@@ -28,7 +28,6 @@
     "npm": "3.10.10"
   },
   "scripts": {
-    "webpack": "webpack --watch",
     "postinstall": "webpack"
   },
   "repository": {
