@@ -5,11 +5,19 @@ class EventsList extends React.Component {
     super(props)
   }
 
+  componentDidMount() {
+    this.props.fetchEvents();
+  }
+
   render() {
     return(
-      <button onClick={this.props.fetchEvents}>
-        CLICK MEEEEE
-      </button>
+      <div>
+        <ul>
+          {
+            this.props.events.map( event => <li>{event.name}</li>)
+          }
+        </ul>
+      </div>
     )
   }
 }

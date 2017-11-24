@@ -2470,11 +2470,13 @@ function compose() {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.fetchEvents = exports.filterByCategory = exports.FILTER_BY_CATEGORY = exports.RECEIVE_EVENTS = undefined;
+exports.filterByCategory = exports.fetchEvents = exports.FILTER_BY_CATEGORY = exports.RECEIVE_EVENTS = undefined;
 
 var _event_util = __webpack_require__(86);
 
 var EventApiUtil = _interopRequireWildcard(_event_util);
+
+var _event_selectors = __webpack_require__(142);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -2488,17 +2490,18 @@ var receiveEvents = function receiveEvents(events) {
   };
 };
 
-var filterByCategory = exports.filterByCategory = function filterByCategory(categoryId) {
-  return {
-    type: FILTER_BY_CATEGORY,
-    categoryId: categoryId
-  };
-};
-
 var fetchEvents = exports.fetchEvents = function fetchEvents() {
   return function (dispatch) {
     return EventApiUtil.fetchEvents().then(function (events) {
       return dispatch(receiveEvents(events));
+    });
+  };
+};
+
+var filterByCategory = exports.filterByCategory = function filterByCategory(categoryId) {
+  return function (dispatch) {
+    return EventApiUtil.fetchEvents().then(function (events) {
+      return dispatch(receiveEvents((0, _event_selectors.eventsByCategory)(events, categoryId)));
     });
   };
 };
@@ -21605,8 +21608,6 @@ Object.defineProperty(exports, "__esModule", {
 
 var _event_actions = __webpack_require__(39);
 
-var _event_selectors = __webpack_require__(142);
-
 var eventsReducer = function eventsReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments[1];
@@ -21617,9 +21618,6 @@ var eventsReducer = function eventsReducer() {
     case _event_actions.RECEIVE_EVENTS:
       newState = Object.assign({}, action.events);
       return newState;
-    case _event_actions.FILTER_BY_CATEGORY:
-      newState = Object.assign({}, state);
-      return (0, _event_selectors.eventByCategory)(newState, action.categoryId);
     default:
       return state;
   }
@@ -27011,9 +27009,9 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _category_card = __webpack_require__(139);
+var _category_card_container = __webpack_require__(143);
 
-var _category_card2 = _interopRequireDefault(_category_card);
+var _category_card_container2 = _interopRequireDefault(_category_card_container);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -27041,16 +27039,16 @@ var CategoryCardList = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         { className: 'category-list-container' },
-        _react2.default.createElement(_category_card2.default, { icon: function icon() {
+        _react2.default.createElement(_category_card_container2.default, { icon: function icon() {
             return _react2.default.createElement('i', { className: 'fa-2x fa fa-home', 'aria-hidden': 'true' });
           }, text: 'All Events' }),
-        _react2.default.createElement(_category_card2.default, { icon: function icon() {
+        _react2.default.createElement(_category_card_container2.default, { id: 2, icon: function icon() {
             return _react2.default.createElement('i', { className: 'fa-2x fa fa-futbol-o', 'aria-hidden': 'true' });
           }, text: 'Sports' }),
-        _react2.default.createElement(_category_card2.default, { icon: function icon() {
+        _react2.default.createElement(_category_card_container2.default, { id: 1, icon: function icon() {
             return _react2.default.createElement('i', { className: 'fa-2x fa fa-microphone', 'aria-hidden': 'true' });
           }, text: 'Concerts' }),
-        _react2.default.createElement(_category_card2.default, { icon: function icon() {
+        _react2.default.createElement(_category_card_container2.default, { icon: function icon() {
             return _react2.default.createElement('i', { className: 'fa-2x fa fa-smile-o', 'aria-hidden': 'true' });
           }, text: 'Theater & Comedy' })
       );
@@ -27089,27 +27087,35 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-// 
 var CategoryCard = function (_React$Component) {
   _inherits(CategoryCard, _React$Component);
 
   function CategoryCard(props) {
     _classCallCheck(this, CategoryCard);
 
-    return _possibleConstructorReturn(this, (CategoryCard.__proto__ || Object.getPrototypeOf(CategoryCard)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (CategoryCard.__proto__ || Object.getPrototypeOf(CategoryCard)).call(this, props));
+
+    _this.getEventsByCategory = _this.getEventsByCategory.bind(_this);
+    return _this;
   }
 
   _createClass(CategoryCard, [{
+    key: "getEventsByCategory",
+    value: function getEventsByCategory() {
+      this.props.filterByCategory(this.props.id);
+    }
+  }, {
     key: "render",
     value: function render() {
       var _props = this.props,
           icon = _props.icon,
-          text = _props.text;
+          text = _props.text,
+          id = _props.id;
 
 
       return _react2.default.createElement(
         "button",
-        { className: "category-card-container" },
+        { onClick: this.getEventsByCategory, className: "category-card-container" },
         icon(),
         _react2.default.createElement(
           "p",
@@ -27160,12 +27166,27 @@ var EventsList = function (_React$Component) {
   }
 
   _createClass(EventsList, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.props.fetchEvents();
+    }
+  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
-        'button',
-        { onClick: this.props.fetchEvents },
-        'CLICK MEEEEE'
+        'div',
+        null,
+        _react2.default.createElement(
+          'ul',
+          null,
+          this.props.events.map(function (event) {
+            return _react2.default.createElement(
+              'li',
+              null,
+              event.name
+            );
+          })
+        )
       );
     }
   }]);
@@ -27222,12 +27243,60 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var eventByCategory = exports.eventByCategory = function eventByCategory(state, categoryId) {
-  var eventObjs = Object.values(state.entities.events);
-  return eventObjs.filter(function (eventObj) {
-    return eventObj.category.id = categoryId;
+var eventsByCategory = exports.eventsByCategory = function eventsByCategory(events, categoryId) {
+  console.log(events);
+  var eventObjs = Object.values(events);
+  console.log(eventObjs);
+
+  var filteredEvents = eventObjs.filter(function (eventObj) {
+    return eventObj.category.id === categoryId;
   });
+  console.log(filteredEvents);
+
+  var newState = {};
+  filteredEvents.forEach(function (event) {
+    newState[event.id] = event;
+  });
+  return newState;
 };
+
+/***/ }),
+/* 143 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = __webpack_require__(6);
+
+var _event_actions = __webpack_require__(39);
+
+var _category_card = __webpack_require__(139);
+
+var _category_card2 = _interopRequireDefault(_category_card);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {};
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    filterByCategory: function filterByCategory(id) {
+      return dispatch((0, _event_actions.filterByCategory)(id));
+    },
+    fetchEvents: function fetchEvents() {
+      return dispatch((0, _event_actions.fetchEvents)());
+    }
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(_category_card2.default);
 
 /***/ })
 /******/ ]);

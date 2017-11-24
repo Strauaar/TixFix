@@ -1,5 +1,5 @@
 import React from 'react';
-import CategoryCard from './category_card';
+import CategoryCardContainer from './category_card_container';
 
 class CategoryCardList extends React.Component {
   constructor() {
@@ -10,10 +10,13 @@ class CategoryCardList extends React.Component {
   render() {
     return (
       <div className="category-list-container">
-        <CategoryCard icon={() => (<i className="fa-2x fa fa-home" aria-hidden="true"></i>)} text="All Events"></CategoryCard>
-        <CategoryCard icon={() => (<i className="fa-2x fa fa-futbol-o" aria-hidden="true"></i>)} text="Sports"></CategoryCard>
-        <CategoryCard icon={() => <i className="fa-2x fa fa-microphone" aria-hidden="true"></i>} text="Concerts"></CategoryCard>
-        <CategoryCard icon={() => (<i className="fa-2x fa fa-smile-o" aria-hidden="true"></i>)} text="Theater &amp; Comedy"></CategoryCard>
+        <CategoryCardContainer icon={() => (<i className="fa-2x fa fa-home" aria-hidden="true"></i>)} text="All Events"></CategoryCardContainer>
+
+        <CategoryCardContainer id={2} icon={() => (<i className="fa-2x fa fa-futbol-o" aria-hidden="true"></i>)} text="Sports"></CategoryCardContainer>
+
+        <CategoryCardContainer id={1} icon={() => <i className="fa-2x fa fa-microphone" aria-hidden="true"></i>} text="Concerts"></CategoryCardContainer>
+
+        <CategoryCardContainer icon={() => (<i className="fa-2x fa fa-smile-o" aria-hidden="true"></i>)} text="Theater &amp; Comedy"></CategoryCardContainer>
       </div>
     )
   }
