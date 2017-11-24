@@ -1,7 +1,6 @@
-class Venue < ApplicationRecord
-
+class Category < ApplicationRecord
   has_many :events,
     primary_key: :id,
     class_name: :Event,
-    foreign_key: :venue_id
+    foreign_key: :category_id
 end

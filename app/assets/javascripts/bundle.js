@@ -3531,6 +3531,8 @@ var _root = __webpack_require__(87);
 
 var _root2 = _interopRequireDefault(_root);
 
+var _event_util = __webpack_require__(138);
+
 var _session_util = __webpack_require__(39);
 
 var SessionApiUtil = _interopRequireWildcard(_session_util);
@@ -3541,7 +3543,6 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// import { loginUser, logoutUser } from './utils/session_util';
 document.addEventListener("DOMContentLoaded", function () {
   // window.loginUser = SessionApiUtil.loginUser;
   // window.logoutUser = SessionApiUtil.logoutUser;
@@ -3550,10 +3551,13 @@ document.addEventListener("DOMContentLoaded", function () {
   window.loginUser = _session_actions.loginUser;
   window.logoutUser = _session_actions.logoutUser;
   window.createUser = _session_actions.createUser;
+  window.fetchEvents = _event_util.fetchEvents;
   // window.apicreateUser = SessionApiUtil.createUser;
   var rootEl = document.getElementById("root");
   _reactDom2.default.render(_react2.default.createElement(_root2.default, { store: store }), rootEl);
 });
+
+// import { loginUser, logoutUser } from './utils/session_util';
 
 /***/ }),
 /* 53 */
@@ -27041,6 +27045,23 @@ var CategoryCard = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = CategoryCard;
+
+/***/ }),
+/* 138 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var fetchEvents = exports.fetchEvents = function fetchEvents() {
+  return $.ajax({
+    method: 'GET',
+    url: 'api/events'
+  });
+};
 
 /***/ })
 /******/ ]);
