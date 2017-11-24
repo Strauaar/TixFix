@@ -19,6 +19,14 @@ const UserMenuItems = ({currentUser, logout}) => {
     }
   }
 
+  const renderMenuItem = () => {
+    if(currentUser !== null) {
+      return "Profile"
+    } else {
+      return "Sign in"
+    }
+  }
+
   return (
     <ul className="sign-in-row">
       <li><a href="#"> <i className="fa fa-envelope-open-o" aria-hidden="true"></i>
@@ -27,7 +35,7 @@ const UserMenuItems = ({currentUser, logout}) => {
 
       <li>
         <a href="#"><i className="fa fa-ticket lg" aria-hidden="true"></i>
-          My tickets<i className="fa fa-angle-down" aria-hidden="true"></i>
+        My tickets<i className="fa fa-angle-down" aria-hidden="true"></i>
         </a>
         <ul className="menu-dropdown">
           <Link to={path("/orders")}><li>Orders</li></Link>
@@ -38,7 +46,7 @@ const UserMenuItems = ({currentUser, logout}) => {
       </li>
 
       <li>
-        <a href="#"><i className="fa fa-user-o lg" aria-hidden="true"></i>Sign in<i className="fa  fa-angle-down"  aria-hidden="true"></i>
+        <a href="#"><i className="fa fa-user-o lg" aria-hidden="true"></i>  {renderMenuItem()}<i className="fa  fa-angle-down"  aria-hidden="true"></i>
         </a>
         <ul className="menu-dropdown">
           <Link to={path("/profile")}><li>My Hub</li></Link>
