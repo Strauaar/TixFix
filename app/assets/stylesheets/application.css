@@ -16,6 +16,7 @@
 @import 'session_modal';
 @import 'searchbar';
 @import 'category_card';
+@import 'event_card';
 
 body, div {
   margin: 0;
@@ -181,7 +182,7 @@ li:hover .menu-dropdown {
 }
 
 .filter-block {
-  margin: 0 250px;
+  margin: 0 210px;
 }
 
 .navbar-date-location-filter-container {

@@ -2,14 +2,18 @@
 .category-list-container {
   display: flex;
   flex-direction: row;
-  padding: 0 200px;
+  margin: 0 200px;
   justify-content: center;
   margin-top: 10px;
 }
 
+.category-list-container button:first-child {
+  margin-left: 0;
+}
+
 .category-card-container {
   padding: 20px 30px;
-  width: 280px;
+  width: 300px;
   margin-left: 40px;
   display: flex;
   flex-direction: column;
@@ -20,6 +24,7 @@
   border: 1px solid #E6E9EB;
   color: #2F343B;
 }
+
 
 .category-card-container:focus {
   outline: 0;

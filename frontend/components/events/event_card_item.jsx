@@ -7,9 +7,9 @@ class EventCard extends React.Component {
 
   render() {
     return (
-      <div>
+      <li className="event-card-block">
         {this.props.event.name}
-      </div>
+      </li>
     )
   }
 }

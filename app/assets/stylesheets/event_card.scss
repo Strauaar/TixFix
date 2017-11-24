@@ -1,0 +1,29 @@
+.events-list-container {
+  margin: 0 200px;
+  margin-top: 30px;
+  height: auto;
+}
+
+.event-list {
+  padding: 0;
+  height: auto;
+  display:flex;
+  justify-content: center;
+}
+.event-list li {
+  list-style: none;
+}
+
+.event-list li:nth-child(3n+1){
+  margin-left: 0;
+}
+
+.event-card-block {
+  min-height: 300px;
+  min-height: 200px;
+  width: 29.5%;
+  background-color: white;
+  border: 1px solid #E6E9EB;
+  float:left;
+  margin-left: 20px;
+}

@@ -27181,10 +27181,10 @@ var EventsList = function (_React$Component) {
     value: function render() {
       return _react2.default.createElement(
         'div',
-        null,
+        { className: 'events-list-container' },
         _react2.default.createElement(
           'ul',
-          null,
+          { className: 'event-list' },
           this.props.events.map(function (event) {
             return _react2.default.createElement(_event_card_item2.default, { event: event });
           })
@@ -27302,11 +27302,11 @@ var EventCard = function (_React$Component) {
   }
 
   _createClass(EventCard, [{
-    key: 'render',
+    key: "render",
     value: function render() {
       return _react2.default.createElement(
-        'div',
-        null,
+        "li",
+        { className: "event-card-block" },
         this.props.event.name
       );
     }
