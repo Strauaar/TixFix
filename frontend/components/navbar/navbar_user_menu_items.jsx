@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 
-const UserMenuItems = ({currentUser}) => {
+const UserMenuItems = ({currentUser, logout}) => {
   const path = (path) => {
     if(currentUser != null) {
       return path;
@@ -10,6 +10,14 @@ const UserMenuItems = ({currentUser}) => {
       return "/session";
     }
   };
+
+  const renderSignOut = () => {
+    if(currentUser !== null) {
+      return (
+        <Link to="/" onClick={()=>logout()}><li>Sign out</li></Link>
+      )
+    }
+  }
 
   return (
     <ul className="sign-in-row">
@@ -38,6 +46,7 @@ const UserMenuItems = ({currentUser}) => {
           <Link to={path("/friends")}><li>Friends</li></Link>
           <Link to={path("/gift")}><li>Gift Codes</li></Link>
           <Link to={path("/settings")}><li>Settings</li></Link>
+          {renderSignOut()}
         </ul>
       </li>
 

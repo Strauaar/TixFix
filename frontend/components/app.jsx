@@ -7,13 +7,13 @@ import {
   Link,
   HashRouter
 } from 'react-router-dom';
-import NavBar from './navbar/navbar';
+import NavBarContainer from './navbar/navbar_container';
 import CategoryCardList from './categories/category_card_list';
 
 const App = () => (
   <div>
     <div className="nav-bar-background"></div>
-    <NavBar></NavBar>
+    <NavBarContainer></NavBarContainer>
     <CategoryCardList/>
   </div>
 );

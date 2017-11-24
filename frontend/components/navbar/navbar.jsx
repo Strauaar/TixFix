@@ -14,7 +14,6 @@ class NavBar extends React.Component {
   }
 
   render() {
-
     return(
       <div className="wholenav">
         <div className="navbar">
@@ -25,7 +24,7 @@ class NavBar extends React.Component {
           </div>
           <div className="navbar-right">
             <NavBarMiscHelp/>
-            <UserMenuItems currentUser={this.props.currentUser}/>
+            <UserMenuItems currentUser={this.props.currentUser} logout={this.props.logout}/>
           </div>
         </div>
         <Route exact path="/" component={SearchBarContainer}></Route>
