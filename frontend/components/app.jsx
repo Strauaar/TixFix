@@ -9,12 +9,14 @@ import {
 } from 'react-router-dom';
 import NavBarContainer from './navbar/navbar_container';
 import CategoryCardList from './categories/category_card_list';
+import EventsListContainer from './events/events_list_container';
 
 const App = () => (
   <div>
     <div className="nav-bar-background"></div>
     <NavBarContainer></NavBarContainer>
     <CategoryCardList/>
+    <EventsListContainer />
   </div>
 );
 
