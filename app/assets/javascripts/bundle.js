@@ -2470,18 +2470,15 @@ function compose() {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.filterByCategory = exports.fetchEvents = exports.FILTER_BY_CATEGORY = exports.RECEIVE_EVENTS = undefined;
+exports.filterByCategory = exports.fetchEvents = exports.RECEIVE_EVENTS = undefined;
 
 var _event_util = __webpack_require__(86);
 
 var EventApiUtil = _interopRequireWildcard(_event_util);
 
-var _event_selectors = __webpack_require__(142);
-
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 var RECEIVE_EVENTS = exports.RECEIVE_EVENTS = "RECEIVE_EVENTS";
-var FILTER_BY_CATEGORY = exports.FILTER_BY_CATEGORY = "FILTER_BY_CATEGORY";
 
 var receiveEvents = function receiveEvents(events) {
   return {
@@ -2500,8 +2497,8 @@ var fetchEvents = exports.fetchEvents = function fetchEvents() {
 
 var filterByCategory = exports.filterByCategory = function filterByCategory(categoryId) {
   return function (dispatch) {
-    return EventApiUtil.fetchEvents().then(function (events) {
-      return dispatch(receiveEvents((0, _event_selectors.eventsByCategory)(events, categoryId)));
+    return EventApiUtil.fetchEventByCategory(categoryId).then(function (events) {
+      return dispatch(receiveEvents(events));
     });
   };
 };
@@ -3579,6 +3576,8 @@ var _root2 = _interopRequireDefault(_root);
 
 var _event_actions = __webpack_require__(39);
 
+var _event_util = __webpack_require__(86);
+
 var _session_util = __webpack_require__(40);
 
 var SessionApiUtil = _interopRequireWildcard(_session_util);
@@ -3590,15 +3589,16 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 document.addEventListener("DOMContentLoaded", function () {
-  // window.loginUser = SessionApiUtil.loginUser;
-  // window.logoutUser = SessionApiUtil.logoutUser;
   var store = (0, _store2.default)();
+
   window.store = store;
   window.loginUser = _session_actions.loginUser;
   window.logoutUser = _session_actions.logoutUser;
   window.createUser = _session_actions.createUser;
   window.fetchEvents = _event_actions.fetchEvents;
-  // window.apicreateUser = SessionApiUtil.createUser;
+  window.fetchEventByCategory = _event_util.fetchEventByCategory;
+  window.filterByCategory = _event_actions.filterByCategory;
+
   var rootEl = document.getElementById("root");
   _reactDom2.default.render(_react2.default.createElement(_root2.default, { store: store }), rootEl);
 });
@@ -21642,6 +21642,13 @@ var fetchEvents = exports.fetchEvents = function fetchEvents() {
   });
 };
 
+var fetchEventByCategory = exports.fetchEventByCategory = function fetchEventByCategory(categoryId) {
+  return $.ajax({
+    method: 'GET',
+    url: 'api/categories/' + categoryId
+  });
+};
+
 /***/ }),
 /* 87 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -27093,29 +27100,24 @@ var CategoryCard = function (_React$Component) {
   function CategoryCard(props) {
     _classCallCheck(this, CategoryCard);
 
-    var _this = _possibleConstructorReturn(this, (CategoryCard.__proto__ || Object.getPrototypeOf(CategoryCard)).call(this, props));
-
-    _this.getEventsByCategory = _this.getEventsByCategory.bind(_this);
-    return _this;
+    return _possibleConstructorReturn(this, (CategoryCard.__proto__ || Object.getPrototypeOf(CategoryCard)).call(this, props));
   }
 
   _createClass(CategoryCard, [{
-    key: "getEventsByCategory",
-    value: function getEventsByCategory() {
-      this.props.filterByCategory(this.props.id);
-    }
-  }, {
     key: "render",
     value: function render() {
       var _props = this.props,
           icon = _props.icon,
           text = _props.text,
-          id = _props.id;
+          id = _props.id,
+          filterByCategory = _props.filterByCategory;
 
 
       return _react2.default.createElement(
         "button",
-        { onClick: this.getEventsByCategory, className: "category-card-container" },
+        { onClick: function onClick() {
+            return filterByCategory(id);
+          }, className: "category-card-container" },
         icon(),
         _react2.default.createElement(
           "p",
@@ -27234,33 +27236,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_events_list2.default);
 
 /***/ }),
-/* 142 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var eventsByCategory = exports.eventsByCategory = function eventsByCategory(events, categoryId) {
-  console.log(events);
-  var eventObjs = Object.values(events);
-  console.log(eventObjs);
-
-  var filteredEvents = eventObjs.filter(function (eventObj) {
-    return eventObj.category.id === categoryId;
-  });
-  console.log(filteredEvents);
-
-  var newState = {};
-  filteredEvents.forEach(function (event) {
-    newState[event.id] = event;
-  });
-  return newState;
-};
-
-/***/ }),
+/* 142 */,
 /* 143 */
 /***/ (function(module, exports, __webpack_require__) {
 
