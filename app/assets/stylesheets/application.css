@@ -13,9 +13,9 @@
  *= require_tree .
  *= require_self
  */
-@import 'session_modal.scss';
-@import 'searchbar.scss';
-@import 'category_card.scss';
+@import 'session_modal';
+@import 'searchbar';
+@import 'category_card';
 
 body, div {
   margin: 0;
