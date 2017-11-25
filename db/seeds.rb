@@ -5,3 +5,14 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+for i in 0..30
+  Event.create(
+    name: "Jay Z",
+    venue_id: 1,
+    category_id: 2,
+    image_url: "jayz.jpg",
+    dates: ["Dec 20, 2017"]
+  )
+end
