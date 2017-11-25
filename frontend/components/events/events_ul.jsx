@@ -3,6 +3,7 @@ import React from 'react';
 class EventsUl extends React.Component {
   constructor(props){
     super(props)
+    
 
   }
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import EventCardItem from './event_card_item';
-import EventsUl from './events_ul';
+import EventsUlContainer from './events_ul_container';
 
 class EventsList extends React.Component {
   constructor(props) {
@@ -15,11 +15,11 @@ class EventsList extends React.Component {
   render() {
     return(
       <div className="events-list-container">
-        <EventsUl>
+        <EventsUlContainer>
           {
             this.props.events.map( event => <EventCardItem event={event}/>)
           }
-        </EventsUl>
+        </EventsUlContainer>
       </div>
     )
   }

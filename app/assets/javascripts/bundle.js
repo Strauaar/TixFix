@@ -27222,9 +27222,9 @@ var _event_card_item = __webpack_require__(143);
 
 var _event_card_item2 = _interopRequireDefault(_event_card_item);
 
-var _events_ul = __webpack_require__(145);
+var _events_ul_container = __webpack_require__(146);
 
-var _events_ul2 = _interopRequireDefault(_events_ul);
+var _events_ul_container2 = _interopRequireDefault(_events_ul_container);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -27255,7 +27255,7 @@ var EventsList = function (_React$Component) {
         'div',
         { className: 'events-list-container' },
         _react2.default.createElement(
-          _events_ul2.default,
+          _events_ul_container2.default,
           null,
           this.props.events.map(function (event) {
             return _react2.default.createElement(_event_card_item2.default, { event: event });
@@ -27504,6 +27504,29 @@ var EventsUl = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = EventsUl;
+
+/***/ }),
+/* 146 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = __webpack_require__(5);
+
+var _events_ul = __webpack_require__(145);
+
+var _events_ul2 = _interopRequireDefault(_events_ul);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {};
+
+exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(_events_ul2.default);
 
 /***/ })
 /******/ ]);
