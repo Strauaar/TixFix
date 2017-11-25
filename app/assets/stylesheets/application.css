@@ -13,8 +13,8 @@
  *= require_tree .
  *= require_self
  */
-@import 'session_modal';
 @import 'searchbar';
+@import 'session_modal';
 @import 'category_card';
 @import 'event_card';
 
