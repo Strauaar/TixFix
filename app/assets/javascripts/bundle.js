@@ -27549,10 +27549,27 @@ var EventsUl = function (_React$Component) {
       }
     }
   }, {
-    key: "render",
-    value: function render() {
+    key: "renderLoadMoreButton",
+    value: function renderLoadMoreButton(childrenCount) {
       var _this2 = this;
 
+      if (childrenCount % 10 === 0) {
+        return _react2.default.createElement(
+          "div",
+          null,
+          _react2.default.createElement(
+            "button",
+            { onClick: function onClick() {
+                return _this2.loadMoreEvents(childrenCount, _this2.props.categoryId);
+              }, className: "load-more-btn" },
+            "Load More"
+          )
+        );
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
       console.log(this.props);
       var childrenCount = _react2.default.Children.count(this.props.children);
       var children = _react2.default.Children.toArray(this.props.children);
@@ -27567,17 +27584,7 @@ var EventsUl = function (_React$Component) {
             return EventCardItemComponent;
           })
         ),
-        _react2.default.createElement(
-          "div",
-          null,
-          _react2.default.createElement(
-            "button",
-            { onClick: function onClick() {
-                return _this2.loadMoreEvents(childrenCount, _this2.props.categoryId);
-              }, className: "load-more-btn" },
-            "Load More"
-          )
-        )
+        this.renderLoadMoreButton(childrenCount)
       );
     }
   }]);

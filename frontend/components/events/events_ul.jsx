@@ -13,6 +13,17 @@ class EventsUl extends React.Component {
 
     }
   }
+
+  renderLoadMoreButton(childrenCount) {
+    if(childrenCount % 10 === 0) {
+      return <div>
+        <button onClick={() =>
+            this.loadMoreEvents(childrenCount, this.props.categoryId)} className="load-more-btn">
+            Load More
+          </button>
+        </div>
+    }
+  }
   render() {
     console.log(this.props);
     const childrenCount = React.Children.count(this.props.children);
@@ -25,12 +36,7 @@ class EventsUl extends React.Component {
             children.map(EventCardItemComponent => EventCardItemComponent)
           }
         </div>
-        <div>
-          <button onClick={() =>
-             this.loadMoreEvents(childrenCount, this.props.categoryId)} className="load-more-btn">
-            Load More
-          </button>
-        </div>
+        {this.renderLoadMoreButton(childrenCount)}
       </div>
     )
   }
