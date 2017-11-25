@@ -5,6 +5,14 @@ class EventsUl extends React.Component {
     super(props)
   }
 
+  loadMoreEvents(childrenCount, categoryId) {
+    if(categoryId === undefined) {
+      this.props.fetchMoreEvents(childrenCount);
+    } else {
+      this.props.fetchMoreEventsByCategory(childrenCount, this.props.categoryId)
+
+    }
+  }
   render() {
     console.log(this.props);
     const childrenCount = React.Children.count(this.props.children);
@@ -18,7 +26,8 @@ class EventsUl extends React.Component {
           }
         </div>
         <div>
-          <button onClick={() => this.props.fetchMoreEventsByCategory(childrenCount, this.props.categoryId)} className="load-more-btn">
+          <button onClick={() =>
+             this.loadMoreEvents(childrenCount, this.props.categoryId)} className="load-more-btn">
             Load More
           </button>
         </div>

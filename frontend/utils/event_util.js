@@ -1,8 +1,7 @@
-export const fetchEvents = (currentCount) => (
+export const fetchEvents = () => (
   $.ajax({
     method: 'GET',
     url: 'api/events',
-    data: { currentCount }
   })
 );
 

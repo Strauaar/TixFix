@@ -15,7 +15,7 @@ const receiveMoreEvents = events => ({
 });
 
 export const fetchEvents = (currentCount) => dispatch => (
-  EventApiUtil.fetchEvents(2).then(events => dispatch(receiveEvents(events)))
+  EventApiUtil.fetchEvents().then(events => dispatch(receiveEvents(events)))
 );
 
 export const filterByCategory = categoryId => dispatch => (

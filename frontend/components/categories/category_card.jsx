@@ -8,7 +8,7 @@ class CategoryCard extends React.Component {
 
   filter(id) {
     if(id === null) {
-      this.props.fetchEvents(2);
+      this.props.fetchEvents();
     } else {
       this.props.filterByCategory(id);
     }
