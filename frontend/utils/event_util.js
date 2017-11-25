@@ -19,3 +19,11 @@ export const fetchMoreEvents = (currentCount) => (
     data: { currentCount }
   })
 );
+
+export const fetchMoreEventsByCategory = (currentCount, categoryId) => (
+  $.ajax({
+    method: 'GET',
+    url: `api/categories/${categoryId}`,
+    data: { currentCount }
+  })
+);

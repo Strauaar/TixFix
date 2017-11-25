@@ -9,7 +9,7 @@ class EventsUl extends React.Component {
     console.log(this.props);
     const childrenCount = React.Children.count(this.props.children);
     const children = React.Children.toArray(this.props.children);
-    
+
     return (
       <div>
         <div className="event-list">
@@ -18,7 +18,7 @@ class EventsUl extends React.Component {
           }
         </div>
         <div>
-          <button onClick={() => this.props.fetchMoreEvents(childrenCount)} className="load-more-btn">
+          <button onClick={() => this.props.fetchMoreEventsByCategory(childrenCount, this.props.categoryId)} className="load-more-btn">
             Load More
           </button>
         </div>

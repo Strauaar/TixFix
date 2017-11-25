@@ -10,7 +10,7 @@ class CategoryCardList extends React.Component {
   render() {
     return (
       <div className="category-list-container">
-        <CategoryCardContainer icon={() => (<i className="fa-2x fa fa-home" aria-hidden="true"></i>)} text="All Events"></CategoryCardContainer>
+        <CategoryCardContainer id={null} icon={() => (<i className="fa-2x fa fa-home" aria-hidden="true"></i>)} text="All Events"></CategoryCardContainer>
 
         <CategoryCardContainer id={2} icon={() => (<i className="fa-2x fa fa-futbol-o" aria-hidden="true"></i>)} text="Sports"></CategoryCardContainer>
 

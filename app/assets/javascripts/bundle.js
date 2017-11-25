@@ -985,7 +985,7 @@ if (process.env.NODE_ENV !== 'production' && typeof isCrushed.name === 'string' 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.fetchMoreEvents = exports.filterByCategory = exports.fetchEvents = exports.RECEIVE_MORE_EVENTS = exports.RECEIVE_EVENTS = undefined;
+exports.fetchMoreEventsByCategory = exports.fetchMoreEvents = exports.filterByCategory = exports.fetchEvents = exports.RECEIVE_MORE_EVENTS = exports.RECEIVE_EVENTS = undefined;
 
 var _event_util = __webpack_require__(40);
 
@@ -996,10 +996,11 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 var RECEIVE_EVENTS = exports.RECEIVE_EVENTS = "RECEIVE_EVENTS";
 var RECEIVE_MORE_EVENTS = exports.RECEIVE_MORE_EVENTS = "RECEIVE_MORE_EVENTS";
 
-var receiveEvents = function receiveEvents(events) {
+var receiveEvents = function receiveEvents(events, categoryId) {
   return {
     type: RECEIVE_EVENTS,
-    events: events
+    events: events,
+    categoryId: categoryId
   };
 };
 
@@ -1021,7 +1022,7 @@ var fetchEvents = exports.fetchEvents = function fetchEvents() {
 var filterByCategory = exports.filterByCategory = function filterByCategory(categoryId) {
   return function (dispatch) {
     return EventApiUtil.fetchEventByCategory(categoryId).then(function (events) {
-      return dispatch(receiveEvents(events));
+      return dispatch(receiveEvents(events, categoryId));
     });
   };
 };
@@ -1033,6 +1034,14 @@ var fetchMoreEvents = exports.fetchMoreEvents = function fetchMoreEvents(current
     });
   };
 };
+
+var fetchMoreEventsByCategory = exports.fetchMoreEventsByCategory = function fetchMoreEventsByCategory(currentCount, categoryId) {
+  return function (dispatch) {
+    return EventApiUtil.fetchMoreEventsByCategory(currentCount, categoryId).then(function (events) {
+      return dispatch(receiveMoreEvents(events));
+    });
+  };
+};;
 
 /***/ }),
 /* 16 */
@@ -2547,6 +2556,14 @@ var fetchMoreEvents = exports.fetchMoreEvents = function fetchMoreEvents(current
   return $.ajax({
     method: 'GET',
     url: 'api/events',
+    data: { currentCount: currentCount }
+  });
+};
+
+var fetchMoreEventsByCategory = exports.fetchMoreEventsByCategory = function fetchMoreEventsByCategory(currentCount, categoryId) {
+  return $.ajax({
+    method: 'GET',
+    url: 'api/categories/' + categoryId,
     data: { currentCount: currentCount }
   });
 };
@@ -27081,7 +27098,7 @@ var CategoryCardList = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         { className: 'category-list-container' },
-        _react2.default.createElement(_category_card_container2.default, { icon: function icon() {
+        _react2.default.createElement(_category_card_container2.default, { id: null, icon: function icon() {
             return _react2.default.createElement('i', { className: 'fa-2x fa fa-home', 'aria-hidden': 'true' });
           }, text: 'All Events' }),
         _react2.default.createElement(_category_card_container2.default, { id: 2, icon: function icon() {
@@ -27129,6 +27146,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     filterByCategory: function filterByCategory(id) {
       return dispatch((0, _event_actions.filterByCategory)(id));
+    },
+    fetchEvents: function fetchEvents() {
+      return dispatch((0, _event_actions.fetchEvents)());
     }
   };
 };
@@ -27166,23 +27186,36 @@ var CategoryCard = function (_React$Component) {
   function CategoryCard(props) {
     _classCallCheck(this, CategoryCard);
 
-    return _possibleConstructorReturn(this, (CategoryCard.__proto__ || Object.getPrototypeOf(CategoryCard)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (CategoryCard.__proto__ || Object.getPrototypeOf(CategoryCard)).call(this, props));
+
+    _this.filter = _this.filter.bind(_this);
+    return _this;
   }
 
   _createClass(CategoryCard, [{
+    key: "filter",
+    value: function filter(id) {
+      if (id === null) {
+        this.props.fetchEvents();
+      } else {
+        this.props.filterByCategory(id);
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       var _props = this.props,
           icon = _props.icon,
           text = _props.text,
-          id = _props.id,
-          filterByCategory = _props.filterByCategory;
+          id = _props.id;
 
 
       return _react2.default.createElement(
         "button",
         { onClick: function onClick() {
-            return filterByCategory(id);
+            return _this2.filter(id);
           }, className: "category-card-container" },
         icon(),
         _react2.default.createElement(
@@ -27531,7 +27564,7 @@ var EventsUl = function (_React$Component) {
           _react2.default.createElement(
             "button",
             { onClick: function onClick() {
-                return _this2.props.fetchMoreEvents(childrenCount);
+                return _this2.props.fetchMoreEventsByCategory(childrenCount, _this2.props.categoryId);
               }, className: "load-more-btn" },
             "Load More"
           )
@@ -27566,15 +27599,24 @@ var _event_actions = __webpack_require__(15);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    categoryId: state.ui.categoryId
+  };
+};
+
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     fetchMoreEvents: function fetchMoreEvents(currentCount) {
       return dispatch((0, _event_actions.fetchMoreEvents)(currentCount));
+    },
+    fetchMoreEventsByCategory: function fetchMoreEventsByCategory(currentCount, categoryId) {
+      return dispatch((0, _event_actions.fetchMoreEventsByCategory)(currentCount, categoryId));
     }
   };
 };
 
-exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(_events_ul2.default);
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_events_ul2.default);
 
 /***/ }),
 /* 147 */
@@ -44679,8 +44721,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _event_actions = __webpack_require__(15);
+
 var initialState = {
-  category: null
+  categoryId: null
 };
 
 var uiReducer = function uiReducer() {
@@ -44688,7 +44732,11 @@ var uiReducer = function uiReducer() {
   var action = arguments[1];
 
   Object.freeze(state);
+  var newState = {};
   switch (action.type) {
+    case _event_actions.RECEIVE_EVENTS:
+      newState = Object.assign({}, { categoryId: action.categoryId });
+      return newState;
     default:
       return state;
   }
