@@ -11,3 +11,11 @@ export const fetchEventByCategory = (categoryId) => (
     url: `api/categories/${categoryId}`
   })
 );
+
+export const receiveMoreEvents = (currentCount) => (
+  $.ajax({
+    method: 'GET',
+    url: 'api/events',
+    data: { currentCount }
+  })
+);

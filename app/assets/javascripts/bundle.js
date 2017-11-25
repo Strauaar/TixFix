@@ -985,7 +985,7 @@ if (process.env.NODE_ENV !== 'production' && typeof isCrushed.name === 'string' 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.filterByCategory = exports.fetchEvents = exports.RECEIVE_EVENTS = undefined;
+exports.fetchMoreEvents = exports.filterByCategory = exports.fetchEvents = exports.RECEIVE_MORE_EVENTS = exports.RECEIVE_EVENTS = undefined;
 
 var _event_util = __webpack_require__(40);
 
@@ -994,10 +994,18 @@ var EventApiUtil = _interopRequireWildcard(_event_util);
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 var RECEIVE_EVENTS = exports.RECEIVE_EVENTS = "RECEIVE_EVENTS";
+var RECEIVE_MORE_EVENTS = exports.RECEIVE_MORE_EVENTS = "RECEIVE_MORE_EVENTS";
 
 var receiveEvents = function receiveEvents(events) {
   return {
     type: RECEIVE_EVENTS,
+    events: events
+  };
+};
+
+var receiveMoreEvents = function receiveMoreEvents(events) {
+  return {
+    type: RECEIVE_MORE_EVENTS,
     events: events
   };
 };
@@ -1014,6 +1022,14 @@ var filterByCategory = exports.filterByCategory = function filterByCategory(cate
   return function (dispatch) {
     return EventApiUtil.fetchEventByCategory(categoryId).then(function (events) {
       return dispatch(receiveEvents(events));
+    });
+  };
+};
+
+var fetchMoreEvents = exports.fetchMoreEvents = function fetchMoreEvents(currentCount) {
+  return function (dispatch) {
+    return EventApiUtil.fetchMoreEvents(currentCount).then(function (events) {
+      return dispatch(receiveMoreEvents(events));
     });
   };
 };
@@ -2524,6 +2540,14 @@ var fetchEventByCategory = exports.fetchEventByCategory = function fetchEventByC
   return $.ajax({
     method: 'GET',
     url: 'api/categories/' + categoryId
+  });
+};
+
+var receiveMoreEvents = exports.receiveMoreEvents = function receiveMoreEvents(currentCount) {
+  return $.ajax({
+    method: 'GET',
+    url: 'api/events',
+    data: { currentCount: currentCount }
   });
 };
 
