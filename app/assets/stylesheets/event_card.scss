@@ -35,3 +35,33 @@
   height:150px;
   width:100%;
 }
+
+.card-detail-container {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid #E6E9EB;
+  padding-bottom:20px;
+  padding-top: 10px;
+}
+
+.card-detail-date-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  border-right: 1px solid #E6E9EB;
+}
+
+.card-detail-day {
+  color: #00A1A1;
+  font-weight: 600;
+  font-size: 28px;
+
+}
+
+.card-detail-date {
+  color: #00A1A1;
+  font-weight: 700;
+  font-size: 16px;
+}

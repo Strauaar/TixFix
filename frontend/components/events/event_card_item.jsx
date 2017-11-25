@@ -18,11 +18,8 @@ class EventCard extends React.Component {
 
       <li className="event-card-block">
         {this.renderImage()}
-        {
-          this.props.event.dates.map(date =>
-            <EventCardItemDetails date={date} event={event} />
-          )
-        }
+        <EventCardItemDetails eventQ={this.props.event} />
+
       </li>
     )
   }
