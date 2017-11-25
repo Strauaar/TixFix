@@ -26939,7 +26939,7 @@ var LocationDateFilter = function LocationDateFilter() {
         _react2.default.createElement(
           "a",
           { href: "#" },
-          _react2.default.createElement("i", { className: "fa fa-map-marker", "aria-hidden": "true" }),
+          _react2.default.createElement("i", { className: "fa fa-calendar", "aria-hidden": "true" }),
           "Choose dates",
           _react2.default.createElement("i", { className: "fa fa-angle-down", "aria-hidden": "true" })
         ),
@@ -27298,15 +27298,26 @@ var EventCard = function (_React$Component) {
   function EventCard(props) {
     _classCallCheck(this, EventCard);
 
-    return _possibleConstructorReturn(this, (EventCard.__proto__ || Object.getPrototypeOf(EventCard)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (EventCard.__proto__ || Object.getPrototypeOf(EventCard)).call(this, props));
+
+    _this.renderImage = _this.renderImage.bind(_this);
+    return _this;
   }
 
   _createClass(EventCard, [{
-    key: "render",
+    key: 'renderImage',
+    value: function renderImage() {
+      if (this.props.event.image_url) {
+        return _react2.default.createElement('div', { className: 'event-card-image', style: { backgroundImage: 'url(' + this.props.event.image_url + ')' } });
+      }
+    }
+  }, {
+    key: 'render',
     value: function render() {
       return _react2.default.createElement(
-        "li",
-        { className: "event-card-block" },
+        'li',
+        { className: 'event-card-block' },
+        this.renderImage(),
         this.props.event.name
       );
     }

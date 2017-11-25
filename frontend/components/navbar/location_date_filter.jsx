@@ -13,7 +13,7 @@ const LocationDateFilter = () => {
           </ul>
         </li>
         <li>
-          <a href="#"><i className="fa fa-map-marker" aria-hidden="true"></i>
+          <a href="#"><i className="fa fa-calendar" aria-hidden="true"></i>
             Choose dates<i className="fa fa-angle-down" aria-hidden="true"></i>
           </a>
           <ul className="filter-dropdown">
