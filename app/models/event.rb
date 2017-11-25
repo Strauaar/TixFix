@@ -1,6 +1,6 @@
 class Event < ApplicationRecord
-  validates :name, :date, :category_id, :venue_id, presence: true
-
+  validates :name, :category_id, :venue_id, presence: true
+  
   belongs_to :venue,
     primary_key: :id,
     class_name: :Venue,

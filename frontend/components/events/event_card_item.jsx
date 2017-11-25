@@ -1,4 +1,5 @@
 import React from 'react';
+import EventCardItemDetails from './event_card_item_details';
 
 class EventCard extends React.Component {
   constructor(props) {
@@ -17,7 +18,11 @@ class EventCard extends React.Component {
 
       <li className="event-card-block">
         {this.renderImage()}
-
+        {
+          this.props.event.dates.map(date =>
+            <EventCardItemDetails date={date} event={event} />
+          )
+        }
       </li>
     )
   }

@@ -27284,6 +27284,10 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _event_card_item_details = __webpack_require__(145);
+
+var _event_card_item_details2 = _interopRequireDefault(_event_card_item_details);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -27317,7 +27321,10 @@ var EventCard = function (_React$Component) {
       return _react2.default.createElement(
         'li',
         { className: 'event-card-block' },
-        this.renderImage()
+        this.renderImage(),
+        this.props.event.dates.map(function (date) {
+          return _react2.default.createElement(_event_card_item_details2.default, { date: date, event: event });
+        })
       );
     }
   }]);
@@ -27326,6 +27333,40 @@ var EventCard = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = EventCard;
+
+/***/ }),
+/* 145 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var EventCardItemDetails = function EventCardItemDetails(_ref) {
+  var date = _ref.date,
+      event = _ref.event;
+
+  return _react2.default.createElement(
+    'div',
+    null,
+    _react2.default.createElement(
+      'p',
+      null,
+      date
+    )
+  );
+};
+
+exports.default = EventCardItemDetails;
 
 /***/ })
 /******/ ]);

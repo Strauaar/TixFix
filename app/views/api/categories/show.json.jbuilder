@@ -1,6 +1,6 @@
 @category.events.each do |event|
   json.set! event.id do
-    json.extract! event, :id, :name, :date, :details
+    json.extract! event, :id, :name, :dates, :details
     json.venue event.venue
     json.category event.category
     if event.image_url
