@@ -27222,6 +27222,10 @@ var _event_card_item = __webpack_require__(143);
 
 var _event_card_item2 = _interopRequireDefault(_event_card_item);
 
+var _events_ul = __webpack_require__(145);
+
+var _events_ul2 = _interopRequireDefault(_events_ul);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -27251,8 +27255,8 @@ var EventsList = function (_React$Component) {
         'div',
         { className: 'events-list-container' },
         _react2.default.createElement(
-          'ul',
-          { className: 'event-list' },
+          _events_ul2.default,
+          null,
           this.props.events.map(function (event) {
             return _react2.default.createElement(_event_card_item2.default, { event: event });
           })
@@ -27432,6 +27436,74 @@ var EventCardItemDetails = function EventCardItemDetails(_ref) {
 };
 
 exports.default = EventCardItemDetails;
+
+/***/ }),
+/* 145 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var EventsUl = function (_React$Component) {
+  _inherits(EventsUl, _React$Component);
+
+  function EventsUl(props) {
+    _classCallCheck(this, EventsUl);
+
+    return _possibleConstructorReturn(this, (EventsUl.__proto__ || Object.getPrototypeOf(EventsUl)).call(this, props));
+  }
+
+  _createClass(EventsUl, [{
+    key: "render",
+    value: function render() {
+      var childrenCount = _react2.default.Children.count(this.props.children);
+      var children = _react2.default.Children.toArray(this.props.children);
+      console.log(childrenCount);
+      return _react2.default.createElement(
+        "div",
+        null,
+        _react2.default.createElement(
+          "div",
+          { className: "event-list" },
+          children.map(function (EventCardItemComponent) {
+            return EventCardItemComponent;
+          })
+        ),
+        _react2.default.createElement(
+          "div",
+          null,
+          _react2.default.createElement(
+            "button",
+            { className: "load-more-btn" },
+            "Load More"
+          )
+        )
+      );
+    }
+  }]);
+
+  return EventsUl;
+}(_react2.default.Component);
+
+exports.default = EventsUl;
 
 /***/ })
 /******/ ]);
