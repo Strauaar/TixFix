@@ -4,7 +4,7 @@ import CategoryCard from './category_card';
 
 const mapDispatchToProps = dispatch => ({
   filterByCategory: (id) => dispatch(filterByCategory(id)),
-  fetchEvents: () => dispatch(fetchEvents())
+  fetchEvents: () => dispatch(fetchEvents(2))
 });
 
 export default connect(null, mapDispatchToProps)(CategoryCard);

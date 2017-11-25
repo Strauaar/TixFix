@@ -1011,9 +1011,9 @@ var receiveMoreEvents = function receiveMoreEvents(events) {
   };
 };
 
-var fetchEvents = exports.fetchEvents = function fetchEvents() {
+var fetchEvents = exports.fetchEvents = function fetchEvents(currentCount) {
   return function (dispatch) {
-    return EventApiUtil.fetchEvents().then(function (events) {
+    return EventApiUtil.fetchEvents(2).then(function (events) {
       return dispatch(receiveEvents(events));
     });
   };
@@ -2538,10 +2538,11 @@ function compose() {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var fetchEvents = exports.fetchEvents = function fetchEvents() {
+var fetchEvents = exports.fetchEvents = function fetchEvents(currentCount) {
   return $.ajax({
     method: 'GET',
-    url: 'api/events'
+    url: 'api/events',
+    data: { currentCount: currentCount }
   });
 };
 
@@ -27148,7 +27149,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
       return dispatch((0, _event_actions.filterByCategory)(id));
     },
     fetchEvents: function fetchEvents() {
-      return dispatch((0, _event_actions.fetchEvents)());
+      return dispatch((0, _event_actions.fetchEvents)(2));
     }
   };
 };
@@ -27196,7 +27197,7 @@ var CategoryCard = function (_React$Component) {
     key: "filter",
     value: function filter(id) {
       if (id === null) {
-        this.props.fetchEvents();
+        this.props.fetchEvents(2);
       } else {
         this.props.filterByCategory(id);
       }
