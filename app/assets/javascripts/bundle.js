@@ -27333,10 +27333,14 @@ var EventCard = function (_React$Component) {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
-        'li',
-        { className: 'event-card-block' },
-        this.renderCardHeader(),
-        _react2.default.createElement(_event_card_item_details2.default, { eventQ: this.props.event })
+        'div',
+        { className: 'top-event-card-block' },
+        _react2.default.createElement(
+          'li',
+          { className: 'event-card-block' },
+          this.renderCardHeader(),
+          _react2.default.createElement(_event_card_item_details2.default, { eventQ: this.props.event })
+        )
       );
     }
   }]);

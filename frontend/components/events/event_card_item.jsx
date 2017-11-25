@@ -22,12 +22,12 @@ class EventCard extends React.Component {
 
   render() {
     return (
-
-      <li className="event-card-block">
-        {this.renderCardHeader()}
-        <EventCardItemDetails eventQ={this.props.event} />
-
-      </li>
+      <div className="top-event-card-block">
+        <li className="event-card-block">
+          {this.renderCardHeader()}
+          <EventCardItemDetails eventQ={this.props.event} />
+        </li>
+      </div>
     )
   }
 }

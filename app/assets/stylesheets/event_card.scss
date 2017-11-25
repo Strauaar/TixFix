@@ -15,6 +15,9 @@
   list-style: none;
 }
 
+.top-event-card-block {
+  margin-left: 25px;
+}
 
 .event-card-block {
   min-height: auto;
@@ -22,12 +25,12 @@
   background-color: white;
   border: 1px solid #E6E9EB;
   float:left;
-  margin-left: 25px;
+  // margin-left: 25px;
   // overflow:hidden;
   font-family: 'Roboto Condensed', sans-serif;
 }
 
-.event-list li:nth-child(3n+1){
+.event-list div:nth-child(3n+1){
   margin-left: 0;
 }
 
@@ -46,6 +49,7 @@
 
 .event-card-header-block {
   margin-left: 10px;
+  padding-left: 10px;
   padding-top: 20px;
   color: #006969;
   font-weight: 700;
