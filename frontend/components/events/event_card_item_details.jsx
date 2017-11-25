@@ -16,6 +16,7 @@ const EventCardItemDetails = ({ eventQ }) => {
             </div>
             <div className="card-detail-event-block">
               <p className="card-detail-event-name">{eventQ.name}</p>
+              <span className="card-detail-date-venue">{new Date(date).toString().slice(19, 24)} - {eventQ.venue.name}</span>
             </div>
           </div>
         ))

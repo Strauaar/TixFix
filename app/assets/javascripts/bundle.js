@@ -27303,15 +27303,30 @@ var EventCard = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (EventCard.__proto__ || Object.getPrototypeOf(EventCard)).call(this, props));
 
-    _this.renderImage = _this.renderImage.bind(_this);
+    _this.renderCardHeader = _this.renderCardHeader.bind(_this);
     return _this;
   }
 
   _createClass(EventCard, [{
-    key: 'renderImage',
-    value: function renderImage() {
+    key: 'renderCardHeader',
+    value: function renderCardHeader() {
       if (this.props.event.image_url) {
         return _react2.default.createElement('div', { className: 'event-card-image', style: { backgroundImage: 'url(' + this.props.event.image_url + ')' } });
+      } else {
+        return _react2.default.createElement(
+          'div',
+          { className: 'event-card-header' },
+          _react2.default.createElement(
+            'div',
+            { className: 'event-card-header-block' },
+            _react2.default.createElement('i', { className: 'fa fa-heart-o fa-2x header-icon', 'aria-hidden': 'true' }),
+            _react2.default.createElement(
+              'p',
+              { className: 'event-card-header-text' },
+              this.props.event.name
+            )
+          )
+        );
       }
     }
   }, {
@@ -27320,7 +27335,7 @@ var EventCard = function (_React$Component) {
       return _react2.default.createElement(
         'li',
         { className: 'event-card-block' },
-        this.renderImage(),
+        this.renderCardHeader(),
         _react2.default.createElement(_event_card_item_details2.default, { eventQ: this.props.event })
       );
     }
@@ -27380,6 +27395,13 @@ var EventCardItemDetails = function EventCardItemDetails(_ref) {
             "p",
             { className: "card-detail-event-name" },
             eventQ.name
+          ),
+          _react2.default.createElement(
+            "span",
+            { className: "card-detail-date-venue" },
+            new Date(date).toString().slice(19, 24),
+            " - ",
+            eventQ.venue.name
           )
         )
       );

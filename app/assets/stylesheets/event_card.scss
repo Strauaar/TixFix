@@ -36,6 +36,33 @@
   width:100%;
 }
 
+.event-card-header {
+  height: 80px;
+  width: 100%;
+  background-color: white;
+  border-bottom: 1px solid #E6E9EB;
+}
+
+.event-card-header-block {
+  margin-left: 10px;
+  padding-top: 20px;
+  color: #006969;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+}
+
+.header-icon {
+  transform: scale(0.7);
+  
+}
+
+.event-card-header-text {
+  margin-left: 14px;
+  transform: scaleX(1.2);
+  display: inline-block;
+}
+
 .card-detail-container {
   display: flex;
   flex-direction: row;
@@ -64,4 +91,21 @@
   color: #00A1A1;
   font-weight: 700;
   font-size: 16px;
+}
+
+.card-detail-event-block {
+  margin-left: 23px;
+  transform: scaleX(1.2);
+}
+
+.card-detail-event-name {
+  margin: 0;
+  margin-bottom: 2px;
+  font-size: 18px;
+  color: #085F99;
+}
+
+.card-detail-date-venue {
+  font-size: 13px;
+  color: #87909A;
 }
