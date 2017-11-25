@@ -2543,7 +2543,7 @@ var fetchEventByCategory = exports.fetchEventByCategory = function fetchEventByC
   });
 };
 
-var receiveMoreEvents = exports.receiveMoreEvents = function receiveMoreEvents(currentCount) {
+var fetchMoreEvents = exports.fetchMoreEvents = function fetchMoreEvents(currentCount) {
   return $.ajax({
     method: 'GET',
     url: 'api/events',
@@ -3646,6 +3646,7 @@ document.addEventListener("DOMContentLoaded", function () {
   window.fetchEvents = _event_actions.fetchEvents;
   window.fetchEventByCategory = _event_util.fetchEventByCategory;
   window.filterByCategory = _event_actions.filterByCategory;
+  window.fetchMoreEvents = _event_util.fetchMoreEvents;
 
   var rootEl = document.getElementById("root");
   _reactDom2.default.render(_react2.default.createElement(_root2.default, { store: store }), rootEl);

@@ -12,7 +12,7 @@ export const fetchEventByCategory = (categoryId) => (
   })
 );
 
-export const receiveMoreEvents = (currentCount) => (
+export const fetchMoreEvents = (currentCount) => (
   $.ajax({
     method: 'GET',
     url: 'api/events',

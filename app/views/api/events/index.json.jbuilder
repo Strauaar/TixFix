@@ -1,6 +1,6 @@
 
 if @count
-  eventsToAdd = @events[@count, @count + 10]
+  eventsToAdd = @events[@count.to_i, @count.to_i + 1]
   eventsToAdd.each do |event|
     json.set! event.id do
       json.extract! event, :id, :name, :dates, :details

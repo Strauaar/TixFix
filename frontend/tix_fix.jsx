@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import configureStore from './store/store';
 import Root from './components/root';
 import { fetchEvents, filterByCategory } from './actions/event_actions';
-import { fetchEventByCategory } from './utils/event_util';
+import { fetchEventByCategory, fetchMoreEvents } from './utils/event_util';
 import * as SessionApiUtil from './utils/session_util';
 import { RECEIVE_CURRENT_USER,
          LOGOUT_CURRENT_USER,
@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.fetchEvents = fetchEvents;
   window.fetchEventByCategory = fetchEventByCategory;
   window.filterByCategory = filterByCategory;
+  window.fetchMoreEvents = fetchMoreEvents;
 
   const rootEl = document.getElementById("root");
   ReactDOM.render(<Root store={store} />, rootEl);
