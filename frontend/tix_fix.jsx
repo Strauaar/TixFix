@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import configureStore from './store/store';
 import Root from './components/root';
-import { fetchEvents, filterByCategory } from './actions/event_actions';
-import { fetchEventByCategory, fetchMoreEvents } from './utils/event_util';
+import { fetchEvents, filterByCategory, fetchMoreEvents } from './actions/event_actions';
+import { fetchEventByCategory } from './utils/event_util';
 import * as SessionApiUtil from './utils/session_util';
 import { RECEIVE_CURRENT_USER,
          LOGOUT_CURRENT_USER,

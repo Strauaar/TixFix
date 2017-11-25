@@ -66,11 +66,12 @@
 }
 
 .event-card-block {
-  min-height: auto;
-  width: 420px;
+  min-height: 420;
+  max-width: 420px;
+  width:420px;
   background-color: white;
   border: 1px solid #E6E9EB;
-  
+
   // margin-left: 25px;
   // overflow:hidden;
   font-family: 'Roboto Condensed', sans-serif;
