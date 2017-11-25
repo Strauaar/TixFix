@@ -1,0 +1,5 @@
+class RemoveDateColumnFromEvents < ActiveRecord::Migration[5.1]
+  def change
+    remove_column :events, :date
+  end
+end

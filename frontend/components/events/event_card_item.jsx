@@ -17,7 +17,7 @@ class EventCard extends React.Component {
 
       <li className="event-card-block">
         {this.renderImage()}
-        {this.props.event.name}
+
       </li>
     )
   }

@@ -17,12 +17,13 @@
 
 .event-card-block {
   min-height: 200px;
-  width: 400px;
+  width: 420px;
   background-color: white;
   border: 1px solid #E6E9EB;
   float:left;
   margin-left: 25px;
   // overflow:hidden;
+  font-family: 'Roboto Condensed', sans-serif;
 }
 
 .event-list li:nth-child(3n+1){
