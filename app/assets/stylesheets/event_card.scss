@@ -4,6 +4,7 @@
   height: auto;
 }
 
+
 .event-list {
   padding: 0;
   height: auto;
@@ -16,7 +17,7 @@
 
 
 .event-card-block {
-  min-height: 200px;
+  min-height: auto;
   width: 420px;
   background-color: white;
   border: 1px solid #E6E9EB;
@@ -54,7 +55,7 @@
 
 .header-icon {
   transform: scale(0.7);
-  
+
 }
 
 .event-card-header-text {
