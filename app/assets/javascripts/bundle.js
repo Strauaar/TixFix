@@ -21613,12 +21613,17 @@ var _errors_reducer = __webpack_require__(88);
 
 var _errors_reducer2 = _interopRequireDefault(_errors_reducer);
 
+var _ui_reducer = __webpack_require__(148);
+
+var _ui_reducer2 = _interopRequireDefault(_ui_reducer);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = (0, _redux.combineReducers)({
   entities: _entities_reducer2.default,
   session: _sessions_reducer2.default,
-  errors: _errors_reducer2.default
+  errors: _errors_reducer2.default,
+  ui: _ui_reducer2.default
 });
 
 /***/ }),
@@ -44662,6 +44667,34 @@ exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(_events_ul2
 }.call(this));
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(21), __webpack_require__(77)(module)))
+
+/***/ }),
+/* 148 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var initialState = {
+  category: null
+};
+
+var uiReducer = function uiReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+  var action = arguments[1];
+
+  Object.freeze(state);
+  switch (action.type) {
+    default:
+      return state;
+  }
+};
+
+exports.default = uiReducer;
 
 /***/ })
 /******/ ]);
