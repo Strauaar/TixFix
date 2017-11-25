@@ -27320,14 +27320,15 @@ var EventCard = function (_React$Component) {
             _react2.default.createElement(
               'div',
               { className: 'header-icon-box' },
-              _react2.default.createElement('i', { className: 'fa fa-heart-o fa-2x header-icon in-image-icon', 'aria-hidden': 'true' })
+              _react2.default.createElement('i', { className: 'fa fa-heart fa-2x header-icon in-image-icon', 'aria-hidden': 'true' })
             ),
             _react2.default.createElement(
               'p',
               { className: 'event-card-header-text in-image-text' },
               this.props.event.name
             )
-          )
+          ),
+          _react2.default.createElement('div', { className: 'event-card-image-layer' })
         );
       } else {
         return _react2.default.createElement(
