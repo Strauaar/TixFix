@@ -77,7 +77,7 @@ class SessionsModal extends React.Component {
 
   renderResetPassword(){
     if(this.props.location.pathname === '/session') {
-      return (
+      (
         <div className="reset-password">
           <p><a >Forgot your password?</a></p>
           <p><a onClick={this.demoLogin}>Demo Login</a></p>
@@ -138,8 +138,8 @@ class SessionsModal extends React.Component {
               <span className="modal-header">{this.renderHeader()}</span>
               <div className="modal-form-input-container">
 
-                <button className="fb-button">
-                  Sign in with facebook
+                <button onClick={this.demoLogin} className="fb-button">
+                  Demo Login
                 </button>
                 <span className="connect-with-fb">Connect with friends on TixFix</span>
                 <div className="hr-divider">

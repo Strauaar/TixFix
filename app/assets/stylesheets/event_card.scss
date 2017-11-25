@@ -57,10 +57,24 @@
   align-items: center;
 }
 
-.header-icon {
-  transform: scale(0.7);
+.header-icon::before{
 
 }
+.header-icon {
+  transform: scale(0.7);
+}
+
+.header-icon:hover {
+  -webkit-animation: beat 1s ease;
+  animation: beat 0.1s ease;
+  fill: red;
+}
+
+@keyframes beat {
+  100% { transform: scale(0.9) };
+}
+
+
 
 .event-card-header-text {
   margin-left: 14px;

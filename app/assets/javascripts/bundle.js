@@ -26529,7 +26529,7 @@ var SessionsModal = function (_React$Component) {
     key: 'renderResetPassword',
     value: function renderResetPassword() {
       if (this.props.location.pathname === '/session') {
-        return _react2.default.createElement(
+        _react2.default.createElement(
           'div',
           { className: 'reset-password' },
           _react2.default.createElement(
@@ -26675,8 +26675,8 @@ var SessionsModal = function (_React$Component) {
               { className: 'modal-form-input-container' },
               _react2.default.createElement(
                 'button',
-                { className: 'fb-button' },
-                'Sign in with facebook'
+                { onClick: this.demoLogin, className: 'fb-button' },
+                'Demo Login'
               ),
               _react2.default.createElement(
                 'span',

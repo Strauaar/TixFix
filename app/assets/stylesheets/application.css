@@ -21,6 +21,8 @@
 body, div {
   margin: 0;
   padding: 0;
+  -webkit-font-smoothing: antialiased;
+
 }
 
 body {
@@ -155,7 +157,7 @@ a i {
 }
 
 .menu-dropdown li:hover:after {
-  transform: translateY(11px) rotateZ(-1.2deg);
+  transform: translateY(14px) rotateZ(-3deg);
 }
 .menu-dropdown li:after {
   position: absolute;
