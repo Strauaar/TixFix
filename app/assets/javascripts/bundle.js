@@ -27311,7 +27311,24 @@ var EventCard = function (_React$Component) {
     key: 'renderCardHeader',
     value: function renderCardHeader() {
       if (this.props.event.image_url) {
-        return _react2.default.createElement('div', { className: 'event-card-image', style: { backgroundImage: 'url(' + this.props.event.image_url + ')' } });
+        return _react2.default.createElement(
+          'div',
+          { className: 'event-card-image', style: { backgroundImage: 'url(' + this.props.event.image_url + ')' } },
+          _react2.default.createElement(
+            'div',
+            { className: 'event-card-header-block in-image' },
+            _react2.default.createElement(
+              'div',
+              { className: 'header-icon-box' },
+              _react2.default.createElement('i', { className: 'fa fa-heart-o fa-2x header-icon in-image-icon', 'aria-hidden': 'true' })
+            ),
+            _react2.default.createElement(
+              'p',
+              { className: 'event-card-header-text in-image-text' },
+              this.props.event.name
+            )
+          )
+        );
       } else {
         return _react2.default.createElement(
           'div',
