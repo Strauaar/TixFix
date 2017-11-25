@@ -14,6 +14,11 @@
  *= require_self
  */
 
+@import 'searchbar';
+@import 'session_modal';
+@import 'category_card';
+@import 'event_card';
+
 body, div {
   margin: 0;
   padding: 0;
