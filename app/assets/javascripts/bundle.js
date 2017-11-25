@@ -27355,13 +27355,15 @@ var EventCardItemDetails = function EventCardItemDetails(_ref) {
   var date = _ref.date,
       event = _ref.event;
 
+  console.log(date);
+  console.log(new Date(date).getMonth());
   return _react2.default.createElement(
     'div',
     null,
     _react2.default.createElement(
       'p',
       null,
-      date
+      new Date(date).getDay()
     )
   );
 };
