@@ -4,7 +4,6 @@ import CategoryCardContainer from './category_card_container';
 class CategoryCardList extends React.Component {
   constructor() {
     super();
-    this.state = {clicked: null};
   }
 
   render() {
@@ -16,7 +15,7 @@ class CategoryCardList extends React.Component {
 
         <CategoryCardContainer id={1} icon={() => <i className="fa-2x fa fa-microphone" aria-hidden="true"></i>} text="Concerts"></CategoryCardContainer>
 
-        <CategoryCardContainer icon={() => (<i className="fa-2x fa fa-smile-o" aria-hidden="true"></i>)} text="Theater &amp; Comedy"></CategoryCardContainer>
+        <CategoryCardContainer id={3} icon={() => (<i className="fa-2x fa fa-smile-o" aria-hidden="true"></i>)} text="Theater &amp; Comedy"></CategoryCardContainer>
       </div>
     )
   }

@@ -6,6 +6,15 @@ class CategoryCard extends React.Component {
     this.filter = this.filter.bind(this);
   }
 
+  buttonClass(){
+    console.log(this.props.selected);
+    if(this.props.selected) {
+      return "category-card-container category-btn-selected"
+    } else {
+      return "category-card-container"
+    }
+  }
+
   filter(id) {
     if(id === null) {
       this.props.fetchEvents();
@@ -18,7 +27,7 @@ class CategoryCard extends React.Component {
     let { icon, text, id } = this.props;
 
     return(
-      <button onClick={() => this.filter(id)} className="category-card-container">
+      <button onClick={() => this.filter(id)} className={this.buttonClass()}>
         {icon()}
         <p>{text}</p>
       </button>

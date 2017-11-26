@@ -44222,10 +44222,7 @@ var CategoryCardList = function (_React$Component) {
   function CategoryCardList() {
     _classCallCheck(this, CategoryCardList);
 
-    var _this = _possibleConstructorReturn(this, (CategoryCardList.__proto__ || Object.getPrototypeOf(CategoryCardList)).call(this));
-
-    _this.state = { clicked: null };
-    return _this;
+    return _possibleConstructorReturn(this, (CategoryCardList.__proto__ || Object.getPrototypeOf(CategoryCardList)).call(this));
   }
 
   _createClass(CategoryCardList, [{
@@ -44243,7 +44240,7 @@ var CategoryCardList = function (_React$Component) {
         _react2.default.createElement(_category_card_container2.default, { id: 1, icon: function icon() {
             return _react2.default.createElement('i', { className: 'fa-2x fa fa-microphone', 'aria-hidden': 'true' });
           }, text: 'Concerts' }),
-        _react2.default.createElement(_category_card_container2.default, { icon: function icon() {
+        _react2.default.createElement(_category_card_container2.default, { id: 3, icon: function icon() {
             return _react2.default.createElement('i', { className: 'fa-2x fa fa-smile-o', 'aria-hidden': 'true' });
           }, text: 'Theater & Comedy' })
       );
@@ -44278,6 +44275,12 @@ var _category_card2 = _interopRequireDefault(_category_card);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  return {
+    selected: state.ui.categoryId === ownProps.id
+  };
+};
+
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     filterByCategory: function filterByCategory(id) {
@@ -44289,7 +44292,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   };
 };
 
-exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(_category_card2.default);
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_category_card2.default);
 
 /***/ }),
 /* 142 */
@@ -44329,6 +44332,16 @@ var CategoryCard = function (_React$Component) {
   }
 
   _createClass(CategoryCard, [{
+    key: "buttonClass",
+    value: function buttonClass() {
+      console.log(this.props.selected);
+      if (this.props.selected) {
+        return "category-card-container category-btn-selected";
+      } else {
+        return "category-card-container";
+      }
+    }
+  }, {
     key: "filter",
     value: function filter(id) {
       if (id === null) {
@@ -44352,7 +44365,7 @@ var CategoryCard = function (_React$Component) {
         "button",
         { onClick: function onClick() {
             return _this2.filter(id);
-          }, className: "category-card-container" },
+          }, className: this.buttonClass() },
         icon(),
         _react2.default.createElement(
           "p",
