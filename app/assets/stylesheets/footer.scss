@@ -1,0 +1,25 @@
+.footer-container {
+  font-family: 'Roboto Condensed', sans-serif;
+  margin: 0 200;
+  display:flex;
+  justify-content: space-between;
+}
+
+.footer-top {
+  display: flex;
+  flex-direction: row;
+}
+
+.footer-list-header {
+  color: #006969
+}
+
+.footer-list {
+  list-style: none;
+  padding: 0;
+  color: #006969;
+}
+
+.footer-list li {
+  margin-bottom: 10px;
+}
