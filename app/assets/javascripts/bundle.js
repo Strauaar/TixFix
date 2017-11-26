@@ -43120,6 +43120,10 @@ var _events_list_container = __webpack_require__(143);
 
 var _events_list_container2 = _interopRequireDefault(_events_list_container);
 
+var _event_show_page_container = __webpack_require__(149);
+
+var _event_show_page_container2 = _interopRequireDefault(_event_show_page_container);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var App = function App() {
@@ -43129,7 +43133,8 @@ var App = function App() {
     _react2.default.createElement('div', { className: 'nav-bar-background' }),
     _react2.default.createElement(_navbar_container2.default, null),
     _react2.default.createElement(_category_card_list2.default, null),
-    _react2.default.createElement(_events_list_container2.default, null)
+    _react2.default.createElement(_events_list_container2.default, null),
+    _react2.default.createElement(_reactRouterDom.Route, { path: '/event/:eventId', component: _event_show_page_container2.default })
   );
 };
 
@@ -44511,7 +44516,7 @@ var EventCard = function (_React$Component) {
       if (this.props.event.image_url) {
         return _react2.default.createElement(
           'div',
-          { className: 'event-card-image', style: { backgroundImage: 'url(' + this.props.event.image_url + ')' } },
+          { className: 'event-card-image fade-in', style: { backgroundImage: 'url(' + this.props.event.image_url + ')' } },
           _react2.default.createElement(
             'div',
             { className: 'event-card-header-block in-image' },
@@ -44553,7 +44558,7 @@ var EventCard = function (_React$Component) {
         { className: 'top-event-card-block fade-in' },
         _react2.default.createElement(
           'li',
-          { className: 'event-card-block' },
+          { className: 'event-card-block fade-in' },
           this.renderCardHeader(),
           _react2.default.createElement(_event_card_item_details2.default, { eventQ: this.props.event })
         )
@@ -44759,6 +44764,85 @@ var EventsUl = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = EventsUl;
+
+/***/ }),
+/* 149 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = __webpack_require__(5);
+
+var _event_show_page = __webpack_require__(150);
+
+var _event_show_page2 = _interopRequireDefault(_event_show_page);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {};
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {};
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_event_show_page2.default);
+
+/***/ }),
+/* 150 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var EventShowPage = function (_React$Component) {
+  _inherits(EventShowPage, _React$Component);
+
+  function EventShowPage(props) {
+    _classCallCheck(this, EventShowPage);
+
+    return _possibleConstructorReturn(this, (EventShowPage.__proto__ || Object.getPrototypeOf(EventShowPage)).call(this, props));
+  }
+
+  _createClass(EventShowPage, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        'HI'
+      );
+    }
+  }]);
+
+  return EventShowPage;
+}(_react2.default.Component);
+
+exports.default = EventShowPage;
 
 /***/ })
 /******/ ]);
