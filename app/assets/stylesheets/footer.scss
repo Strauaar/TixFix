@@ -1,13 +1,19 @@
 .footer-container {
   font-family: 'Roboto Condensed', sans-serif;
-  margin: 0 200;
-  display:flex;
-  justify-content: space-between;
+  border-top: 1px solid #E6E9EB;
+  margin-top: 100px;
+  padding: 40px;
 }
 
 .footer-top {
   display: flex;
   flex-direction: row;
+  justify-content: flex-end;
+  margin: 0 300px;
+}
+
+.footer-top > div {
+  margin-left: 150px;
 }
 
 .footer-list-header {
@@ -21,5 +27,26 @@
 }
 
 .footer-list li {
-  margin-bottom: 10px;
+  margin-bottom: 13px;
+}
+
+.footer-social-icon-row {
+  width: 80px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.github-icon {
+  width:40px;
+  height: 40px;
+  background-image: url("github-icon.png");
+  background-repeat: no-repeat;
+}
+
+.linkedin-icon {
+  width:40px;
+  height: 40px;
+  background-image: url("linkedin-icon.png");
+  background-repeat: no-repeat;
 }

@@ -44920,7 +44920,21 @@ var Footer = function (_React$Component) {
           "div",
           { className: "footer-top" },
           _react2.default.createElement("div", { className: "footer-apps" }),
-          _react2.default.createElement("div", { className: "footer-social" }),
+          _react2.default.createElement(
+            "div",
+            { className: "footer-social" },
+            _react2.default.createElement(
+              "h4",
+              { className: "footer-list-header" },
+              "Connect with me"
+            ),
+            _react2.default.createElement(
+              "div",
+              { className: "footer-social-icon-row" },
+              _react2.default.createElement("div", { className: "github-icon" }),
+              _react2.default.createElement("div", { className: "linkedin-icon" })
+            )
+          ),
           _react2.default.createElement(
             "div",
             { className: "footer-about" },

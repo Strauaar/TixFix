@@ -13,6 +13,11 @@ class Footer extends React.Component {
 
           </div>
           <div className="footer-social">
+              <h4 className="footer-list-header">Connect with me</h4>
+              <div className="footer-social-icon-row">
+                <div className="github-icon"></div>
+                <div className="linkedin-icon"></div>
+              </div>
           </div>
           <div className="footer-about">
             <h4 className="footer-list-header">About TixFix</h4>
