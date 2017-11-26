@@ -11,6 +11,7 @@ for i in 0..30
   Event.create(
     name: "Jay Z",
     venue_id: 1,
+    performer_id: 1,
     category_id: 2,
     image_url: "jayz.jpg",
     dates: ["Dec 20, 2017"]
