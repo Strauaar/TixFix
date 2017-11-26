@@ -15,9 +15,9 @@ const App = () => (
   <div>
     <div className="nav-bar-background"></div>
     <NavBarContainer></NavBarContainer>
-    <CategoryCardList/>
-    <EventsListContainer />
-    <Route path="/event/:eventId" component={EventShowPageContainer} />
+    <Route exact path="/"component={CategoryCardList}/>
+    <Route exact path="/" component={EventsListContainer}/>
+    <Route path="/events/:eventId" component={EventShowPageContainer} />
   </div>
 );
 

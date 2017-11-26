@@ -5,10 +5,12 @@ class EventShowPage extends React.Component {
     super(props)
   }
 
+
   render() {
+    let { eevent } = this.props;
     return (
-      <div>
-        HI
+      <div}>
+        Hi
       </div>
     )
   }
