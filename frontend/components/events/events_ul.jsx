@@ -32,9 +32,33 @@ class EventsUl extends React.Component {
     return (
       <div>
         <div className="event-list">
-          {
-            children.map(EventCardItemComponent => EventCardItemComponent)
-          }
+          <div className="col">
+            {
+              children.map((EventCardItemComponent, i) => {
+                if ( ((3*i) % i === 0) || i === 0 ) {
+                  return EventCardItemComponent;
+                }
+              })
+            }
+          </div>
+          <div className="col">
+            {
+              children.map((EventCardItemComponent, i) => {
+                if ( ((3*i + 1) % i === (i-1)) || i === 1 ){
+                  return EventCardItemComponent;
+                }
+              })
+            }
+          </div>
+          <div className="col">
+            {
+              children.map((EventCardItemComponent, i) => {
+                if ( ((3*i + 2) % (i+1) === i) || i === 2 ){
+                  return EventCardItemComponent;
+                }
+              })
+            }
+          </div>
         </div>
         {this.renderLoadMoreButton(childrenCount)}
       </div>
