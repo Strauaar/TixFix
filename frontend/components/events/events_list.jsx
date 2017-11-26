@@ -17,7 +17,7 @@ class EventsList extends React.Component {
       <div className="events-list-container">
         <EventsUlContainer>
           {
-            this.props.events.map( event => <EventCardItem event={event}/>)
+            this.props.events.map( event => <EventCardItem id={event.id} event={event}/>)
           }
         </EventsUlContainer>
       </div>

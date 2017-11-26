@@ -44457,7 +44457,7 @@ var EventsList = function (_React$Component) {
           _events_ul_container2.default,
           null,
           this.props.events.map(function (event) {
-            return _react2.default.createElement(_event_card_item2.default, { event: event });
+            return _react2.default.createElement(_event_card_item2.default, { id: event.id, event: event });
           })
         )
       );
@@ -44739,6 +44739,17 @@ var EventsUl = function (_React$Component) {
       }
     }
   }, {
+    key: "renderEventCards",
+    value: function renderEventCards(children, start_index) {
+      var result = [];
+      for (var i = start_index; i < children.length; i += 3) {
+        result.push(children[i]);
+      }
+      return result.map(function (EventCard) {
+        return EventCard;
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       console.log(this.props);
@@ -44754,29 +44765,17 @@ var EventsUl = function (_React$Component) {
           _react2.default.createElement(
             "div",
             { className: "col" },
-            children.map(function (EventCardItemComponent, i) {
-              if (3 * i % i === 0 || i === 0) {
-                return EventCardItemComponent;
-              }
-            })
+            this.renderEventCards(children, 0)
           ),
           _react2.default.createElement(
             "div",
             { className: "col" },
-            children.map(function (EventCardItemComponent, i) {
-              if ((3 * i + 1) % i === i - 1 || i === 1) {
-                return EventCardItemComponent;
-              }
-            })
+            this.renderEventCards(children, 1)
           ),
           _react2.default.createElement(
             "div",
             { className: "col" },
-            children.map(function (EventCardItemComponent, i) {
-              if ((3 * i + 2) % (i + 1) === i || i === 2) {
-                return EventCardItemComponent;
-              }
-            })
+            this.renderEventCards(children, 2)
           )
         ),
         this.renderLoadMoreButton(childrenCount)

@@ -24,6 +24,14 @@ class EventsUl extends React.Component {
         </div>
     }
   }
+
+  renderEventCards(children, start_index) {
+    let result = [];
+    for (let i = start_index; i < children.length; i+=3) {
+      result.push(children[i]);
+    }
+    return result.map(EventCard => EventCard);
+  }
   render() {
     console.log(this.props);
     const childrenCount = React.Children.count(this.props.children);
@@ -34,29 +42,17 @@ class EventsUl extends React.Component {
         <div className="event-list">
           <div className="col">
             {
-              children.map((EventCardItemComponent, i) => {
-                if ( ((3*i) % i === 0) || i === 0 ) {
-                  return EventCardItemComponent;
-                }
-              })
+              this.renderEventCards(children, 0)
             }
           </div>
           <div className="col">
             {
-              children.map((EventCardItemComponent, i) => {
-                if ( ((3*i + 1) % i === (i-1)) || i === 1 ){
-                  return EventCardItemComponent;
-                }
-              })
+              this.renderEventCards(children, 1)
             }
           </div>
           <div className="col">
             {
-              children.map((EventCardItemComponent, i) => {
-                if ( ((3*i + 2) % (i+1) === i) || i === 2 ){
-                  return EventCardItemComponent;
-                }
-              })
+              this.renderEventCards(children, 2)
             }
           </div>
         </div>
