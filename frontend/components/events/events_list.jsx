@@ -5,16 +5,27 @@ import EventsUlContainer from './events_ul_container';
 class EventsList extends React.Component {
   constructor(props) {
     super(props)
-
+    this.renderHeader = this.renderHeader.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchEvents();
   }
 
+  renderHeader() {
+    if(this.props.categoryId === 1) {
+      return "Concert Tickets"
+    } else if (this.props.categoryId === 2) {
+      return "Sport Tickets"
+    }
+  }
+
   render() {
     return(
       <div className="events-list-container">
+        <div className="events-list-header-container">
+          <p className="events-list-header fade-in">{this.renderHeader()}</p>
+        </div>
         <EventsUlContainer>
           {
             this.props.events.map( event => <EventCardItem id={event.id} event={event}/>)

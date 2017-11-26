@@ -3,7 +3,8 @@ import { fetchEvents } from '../../actions/event_actions';
 import EventsList from './events_list';
 
 const mapStateToProps = state => ({
-  events: Object.values(state.entities.events)
+  events: Object.values(state.entities.events),
+  categoryId: state.ui.categoryId
 });
 
 const mapDispatchToProps = dispatch => ({

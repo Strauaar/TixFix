@@ -44404,7 +44404,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    events: Object.values(state.entities.events)
+    events: Object.values(state.entities.events),
+    categoryId: state.ui.categoryId
   };
 };
 
@@ -44457,7 +44458,10 @@ var EventsList = function (_React$Component) {
   function EventsList(props) {
     _classCallCheck(this, EventsList);
 
-    return _possibleConstructorReturn(this, (EventsList.__proto__ || Object.getPrototypeOf(EventsList)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (EventsList.__proto__ || Object.getPrototypeOf(EventsList)).call(this, props));
+
+    _this.renderHeader = _this.renderHeader.bind(_this);
+    return _this;
   }
 
   _createClass(EventsList, [{
@@ -44466,11 +44470,29 @@ var EventsList = function (_React$Component) {
       this.props.fetchEvents();
     }
   }, {
+    key: 'renderHeader',
+    value: function renderHeader() {
+      if (this.props.categoryId === 1) {
+        return "Concert Tickets";
+      } else if (this.props.categoryId === 2) {
+        return "Sport Tickets";
+      }
+    }
+  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
         'div',
         { className: 'events-list-container' },
+        _react2.default.createElement(
+          'div',
+          { className: 'events-list-header-container' },
+          _react2.default.createElement(
+            'p',
+            { className: 'events-list-header fade-in' },
+            this.renderHeader()
+          )
+        ),
         _react2.default.createElement(
           _events_ul_container2.default,
           null,
