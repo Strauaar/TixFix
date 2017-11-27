@@ -7,5 +7,6 @@ Rails.application.routes.draw do
     resources :events, only: [:index]
     resources :subevents, path: :events, only: [:show]
     resources :categories, only: [:show]
+    resources :subcategories, only: [:show]
   end
 end

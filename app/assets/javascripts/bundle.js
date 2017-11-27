@@ -3700,6 +3700,12 @@ var SessionApiUtil = _interopRequireWildcard(_session_util);
 
 var _session_actions = __webpack_require__(17);
 
+var _category_util = __webpack_require__(157);
+
+var CategoryUtil = _interopRequireWildcard(_category_util);
+
+var _category_actions = __webpack_require__(158);
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -3715,6 +3721,7 @@ document.addEventListener("DOMContentLoaded", function () {
   window.fetchEventByCategory = _event_util.fetchEventByCategory;
   window.filterByCategory = _event_actions.filterByCategory;
   window.fetchMoreEvents = _event_actions.fetchMoreEvents;
+  window.fetchSubCategoryList = _category_actions.fetchSubCategoryList;
 
   var rootEl = document.getElementById("root");
   _reactDom2.default.render(_react2.default.createElement(_root2.default, { store: store }), rootEl);
@@ -38894,6 +38901,10 @@ Object.defineProperty(exports, "__esModule", {
 
 var _event_actions = __webpack_require__(8);
 
+var _category_actions = __webpack_require__(158);
+
+var _lodash = __webpack_require__(87);
+
 var initialState = {
   categoryId: null
 };
@@ -38907,6 +38918,9 @@ var uiReducer = function uiReducer() {
   switch (action.type) {
     case _event_actions.RECEIVE_EVENTS:
       newState = Object.assign({}, { categoryId: action.categoryId });
+      return newState;
+    case _category_actions.RECEIVE_CATEGORY_LIST:
+      newState = (0, _lodash.merge)({}, state, { subcategory_list: action.list });
       return newState;
     default:
       return state;
@@ -45444,6 +45458,58 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 };
 
 exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_subcategory_list2.default));
+
+/***/ }),
+/* 157 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var fetchSubCategoryList = exports.fetchSubCategoryList = function fetchSubCategoryList(categoryId) {
+  return $.ajax({
+    method: 'GET',
+    url: 'api/subcategories/' + categoryId
+  });
+};
+
+/***/ }),
+/* 158 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.fetchSubCategoryList = exports.RECEIVE_CATEGORY_LIST = undefined;
+
+var _category_util = __webpack_require__(157);
+
+var CategoryApiUtil = _interopRequireWildcard(_category_util);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+var RECEIVE_CATEGORY_LIST = exports.RECEIVE_CATEGORY_LIST = "RECEIVE_CATEGORY_LIST";
+
+var receiveCategoryList = function receiveCategoryList(list) {
+  return {
+    type: RECEIVE_CATEGORY_LIST,
+    list: list
+  };
+};
+
+var fetchSubCategoryList = exports.fetchSubCategoryList = function fetchSubCategoryList(id) {
+  return function (dispatch) {
+    return CategoryApiUtil.fetchSubCategoryList(id).then(function (subcategoryList) {
+      return dispatch(receiveCategoryList(subcategoryList));
+    });
+  };
+};
 
 /***/ })
 /******/ ]);

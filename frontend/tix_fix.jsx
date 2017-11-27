@@ -10,6 +10,8 @@ import { RECEIVE_CURRENT_USER,
          loginUser,
          logoutUser,
          createUser } from './actions/session_actions';
+import * as CategoryUtil from './utils/category_util';
+import { fetchSubCategoryList } from './actions/category_actions';
 
 document.addEventListener("DOMContentLoaded", () => {
   const store = configureStore();
@@ -22,6 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.fetchEventByCategory = fetchEventByCategory;
   window.filterByCategory = filterByCategory;
   window.fetchMoreEvents = fetchMoreEvents;
+  window.fetchSubCategoryList = fetchSubCategoryList;
 
   const rootEl = document.getElementById("root");
   ReactDOM.render(<Root store={store} />, rootEl);
