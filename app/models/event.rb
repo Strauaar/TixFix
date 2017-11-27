@@ -1,10 +1,5 @@
 class Event < ApplicationRecord
-  validates :name, :category_id, :venue_id, presence: true
-
-  belongs_to :venue,
-    primary_key: :id,
-    class_name: :Venue,
-    foreign_key: :venue_id
+  validates :name, :category_id, presence: true
 
   belongs_to :category,
     primary_key: :id,
@@ -15,5 +10,10 @@ class Event < ApplicationRecord
     primary_key: :id,
     class_name: :Performer,
     foreign_key: :performer_id
+
+  has_many :subevents,
+    primary_key: :id,
+    class_name: :Subevent,
+    foreign_key: :event_id
 
 end

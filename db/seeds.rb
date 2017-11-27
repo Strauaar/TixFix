@@ -7,15 +7,44 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 concerts_cateogry = Category.create(name:"Concerts" )
 jayz_performer = Performer.create(name: "Jay Z", category_id: concerts_cateogry.id)
+kaskade_performer = Performer.create(name:"Kaskade", category_id: concerts_cateogry.id)
 billyg_venue = Venue.create(name:"Billy G Pavilly", location:"San Fran", city: "FranPanScisco", state:"GA")
 
-for i in 0..30
-  Event.create(
+jayz_event = Event.create(
+  name: "Jay Z",
+  category_id: concerts_cateogry.id,
+  image_url: "jayz.jpg",
+  performer_id: jayz_performer.id
+)
+
+kaskade_event = Event.create(
+  name: "Kaskade",
+  category_id: concerts_cateogry.id,
+  image_url: "kaskade.jpg",
+  performer_id: kaskade_performer.id
+)
+
+
+
+for i in 0..2
+  Subevent.create(
     name: "Jay Z",
     venue_id: billyg_venue.id,
     performer_id: jayz_performer.id,
     category_id: concerts_cateogry.id,
     image_url: "jayz.jpg",
-    dates: ["Dec 20, 2017"]
+    date: "Dec 21, 2017",
+    event_id: jayz_event.id
+  )
+end
+for i in 0..2
+  Subevent.create(
+    name: "Kaskade",
+    venue_id: billyg_venue.id,
+    performer_id: jayz_performer.id,
+    category_id: concerts_cateogry.id,
+    image_url: "kaskade.jpg",
+    date: "Dec 20, 2017",
+    event_id: kaskade_event.id
   )
 end
