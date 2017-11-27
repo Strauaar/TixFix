@@ -5,6 +5,13 @@ export const fetchEvents = () => (
   })
 );
 
+export const fetchEvent = (id) => (
+  $.ajax({
+    method: 'GET',
+    url: `api/events/${id}`,
+  })
+);
+
 export const fetchEventByCategory = (categoryId) => (
   $.ajax({
     method: 'GET',

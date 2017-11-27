@@ -8,4 +8,5 @@ class Api::EventsController < ApplicationController
     end
     render :index
   end
+
 end

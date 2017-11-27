@@ -10,8 +10,7 @@ class EventShowPage extends React.Component {
   }
 
   componentDidMount() {
-    // TODO: fetch tickets for event
-
+    this.props.fetchEvent(this.props.match.params.eventId)
   }
 
 
@@ -25,18 +24,23 @@ class EventShowPage extends React.Component {
     // let dates = new Date(date).toString().slice(4,10);
     // let time = new Date(date).toString().slice(19, 24);
     // console.log(day);
-  
+    console.log(this.props);
     return (
-      <div className="event-show-container">
-        <div className="event-show-scroll-container">
-          <div className="events-show-filter-block">
+      <div className="event-show-page">
+        <div className="event-show-top">
 
-          </div>
-          <div className="event-show-tickets-container">
-            <div className="event-show-ticket-scrollable-container">
-              {
+        </div>
+        <div className="event-show-container">
+          <div className="event-show-scroll-container">
+            <div className="events-show-filter-block">
 
-              }
+            </div>
+            <div className="event-show-tickets-container">
+              <div className="event-show-ticket-scrollable-container">
+                {
+
+                }
+              </div>
             </div>
           </div>
         </div>

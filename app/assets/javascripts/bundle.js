@@ -560,7 +560,7 @@ module.exports = emptyFunction;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.fetchMoreEventsByCategory = exports.fetchMoreEvents = exports.filterByCategory = exports.fetchEvents = exports.RECEIVE_MORE_EVENTS = exports.RECEIVE_EVENTS = undefined;
+exports.fetchMoreEventsByCategory = exports.fetchMoreEvents = exports.filterByCategory = exports.fetchEvent = exports.fetchEvents = exports.RECEIVE_EVENT = exports.RECEIVE_MORE_EVENTS = exports.RECEIVE_EVENTS = undefined;
 
 var _event_util = __webpack_require__(41);
 
@@ -570,6 +570,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 var RECEIVE_EVENTS = exports.RECEIVE_EVENTS = "RECEIVE_EVENTS";
 var RECEIVE_MORE_EVENTS = exports.RECEIVE_MORE_EVENTS = "RECEIVE_MORE_EVENTS";
+var RECEIVE_EVENT = exports.RECEIVE_EVENT = "RECEIVE_EVENT";
 
 var receiveEvents = function receiveEvents(events, categoryId) {
   return {
@@ -586,10 +587,25 @@ var receiveMoreEvents = function receiveMoreEvents(events) {
   };
 };
 
+var receiveEvent = function receiveEvent(eventQ) {
+  return {
+    type: RECEIVE_EVENT,
+    eventQ: eventQ
+  };
+};
+
 var fetchEvents = exports.fetchEvents = function fetchEvents(currentCount) {
   return function (dispatch) {
     return EventApiUtil.fetchEvents().then(function (events) {
       return dispatch(receiveEvents(events));
+    });
+  };
+};
+
+var fetchEvent = exports.fetchEvent = function fetchEvent(id) {
+  return function (dispatch) {
+    return EventApiUtil.fetchEvent(id).then(function (eventQ) {
+      return dispatch(receiveEvent(eventQ));
     });
   };
 };
@@ -2570,6 +2586,13 @@ var fetchEvents = exports.fetchEvents = function fetchEvents() {
   return $.ajax({
     method: 'GET',
     url: 'api/events'
+  });
+};
+
+var fetchEvent = exports.fetchEvent = function fetchEvent(id) {
+  return $.ajax({
+    method: 'GET',
+    url: 'api/events/' + id
   });
 };
 
@@ -21690,6 +21713,9 @@ var eventsReducer = function eventsReducer() {
   switch (action.type) {
     case _event_actions.RECEIVE_EVENTS:
       newState = Object.assign({}, action.events);
+      return newState;
+    case _event_actions.RECEIVE_EVENT:
+      newState = Object.assign({}, action.eventQ);
       return newState;
     case _event_actions.RECEIVE_MORE_EVENTS:
       newState = (0, _lodash.merge)({}, state, action.events);
@@ -44857,14 +44883,22 @@ var _event_show_page2 = _interopRequireDefault(_event_show_page);
 
 var _reactRouterDom = __webpack_require__(6);
 
+var _event_actions = __webpack_require__(8);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state) {
-  return {};
+  return {
+    eventQ: state.entities.events
+  };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {};
+  return {
+    fetchEvent: function fetchEvent(id) {
+      return dispatch((0, _event_actions.fetchEvent)(id));
+    }
+  };
 };
 
 exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_event_show_page2.default));
@@ -44913,8 +44947,7 @@ var EventShowPage = function (_React$Component) {
   }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
-      // TODO: fetch tickets for event
-
+      this.props.fetchEvent(this.props.match.params.eventId);
     }
   }, {
     key: 'render',
@@ -44927,18 +44960,23 @@ var EventShowPage = function (_React$Component) {
       // let dates = new Date(date).toString().slice(4,10);
       // let time = new Date(date).toString().slice(19, 24);
       // console.log(day);
-
+      console.log(this.props);
       return _react2.default.createElement(
         'div',
-        { className: 'event-show-container' },
+        { className: 'event-show-page' },
+        _react2.default.createElement('div', { className: 'event-show-top' }),
         _react2.default.createElement(
           'div',
-          { className: 'event-show-scroll-container' },
-          _react2.default.createElement('div', { className: 'events-show-filter-block' }),
+          { className: 'event-show-container' },
           _react2.default.createElement(
             'div',
-            { className: 'event-show-tickets-container' },
-            _react2.default.createElement('div', { className: 'event-show-ticket-scrollable-container' })
+            { className: 'event-show-scroll-container' },
+            _react2.default.createElement('div', { className: 'events-show-filter-block' }),
+            _react2.default.createElement(
+              'div',
+              { className: 'event-show-tickets-container' },
+              _react2.default.createElement('div', { className: 'event-show-ticket-scrollable-container' })
+            )
           )
         )
       );
