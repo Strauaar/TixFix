@@ -1,0 +1,30 @@
+.event-show-container {
+  display:flex;
+  justify-content: center;
+  margin: 0 200px;
+  margin-top: 50px;
+}
+
+.event-show-scroll-container {
+  height: 700px;
+  width: 300px;
+  background-color: white;
+  border: 1px solid #E6E9EB;
+}
+
+.events-show-filter-block {
+  height: 200px;
+  width: 100%;
+}
+
+.event-show-tickets-container {
+  width:100%;
+  overflow: scroll;
+  height: 500px;
+}
+
+.event-show-ticket-scrollable-container {
+  height:7000px;
+  width: 100%;
+  background-color: white;
+}

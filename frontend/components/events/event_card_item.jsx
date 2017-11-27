@@ -33,10 +33,7 @@ class EventCard extends React.Component {
 
         <li className="event-card-block fade-in" >
           {this.renderCardHeader()}
-
           <EventCardItemDetails eventQ={this.props.event}/>
-
-
         </li>
       </div>
     )
