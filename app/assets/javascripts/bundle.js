@@ -43297,7 +43297,7 @@ var NavBar = function (_React$Component) {
           )
         ),
         _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _searchbar_container2.default }),
-        _react2.default.createElement(_location_date_filter_container2.default, null),
+        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _location_date_filter_container2.default }),
         _react2.default.createElement(_reactRouterDom.Route, { path: '/new', component: _sessions_modal_container2.default }),
         _react2.default.createElement(_route_util.AuthRoute, { path: '/session', component: _sessions_modal_container2.default })
       );
@@ -44938,33 +44938,72 @@ var EventShowPage = function (_React$Component) {
   function EventShowPage(props) {
     _classCallCheck(this, EventShowPage);
 
-    return _possibleConstructorReturn(this, (EventShowPage.__proto__ || Object.getPrototypeOf(EventShowPage)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (EventShowPage.__proto__ || Object.getPrototypeOf(EventShowPage)).call(this, props));
+
+    _this.renderDetailsHeader = _this.renderDetailsHeader.bind(_this);
+    return _this;
   }
 
   _createClass(EventShowPage, [{
-    key: 'componentWillMount',
-    value: function componentWillMount() {}
-  }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
       this.props.fetchEvent(this.props.match.params.eventId);
     }
   }, {
+    key: 'renderDetailsHeader',
+    value: function renderDetailsHeader() {
+      if (Object.keys(this.props.eventQ).length === 0) {
+        return null;
+      } else {
+        return _react2.default.createElement(
+          'div',
+          { className: 'card-detail-container event-show-detail' },
+          _react2.default.createElement(
+            'div',
+            { className: 'card-detail-date-block' },
+            _react2.default.createElement(
+              'span',
+              { className: 'card-detail-day' },
+              new Date(this.props.eventQ.date).toString().slice(0, 3)
+            ),
+            _react2.default.createElement(
+              'span',
+              { className: 'card-detail-date' },
+              new Date(this.props.eventQ.date).toString().slice(4, 10)
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'card-detail-event-block' },
+            _react2.default.createElement(
+              'p',
+              { className: 'card-detail-event-name' },
+              this.props.eventQ.name
+            ),
+            _react2.default.createElement(
+              'span',
+              { className: 'card-detail-date-venue' },
+              new Date(this.props.eventQ.date).toString().slice(19, 24),
+              ' - ',
+              this.props.eventQ.venue.name
+            )
+          )
+        );
+      }
+    }
+  }, {
     key: 'render',
     value: function render() {
-      // console.log(this.props);
-      // let { eevent } = this.props;
-      // let { date } = this.props.location.state;
-      // console.log(date);
-      // let day = new Date(date).toString().slice(0,3);
-      // let dates = new Date(date).toString().slice(4,10);
-      // let time = new Date(date).toString().slice(19, 24);
-      // console.log(day);
-      console.log(this.props);
+      console.log(this.props.eventQ);
+
       return _react2.default.createElement(
         'div',
         { className: 'event-show-page' },
-        _react2.default.createElement('div', { className: 'event-show-top' }),
+        _react2.default.createElement(
+          'div',
+          { className: 'event-show-top' },
+          this.renderDetailsHeader()
+        ),
         _react2.default.createElement(
           'div',
           { className: 'event-show-container' },
