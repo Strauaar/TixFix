@@ -44960,32 +44960,36 @@ var EventShowPage = function (_React$Component) {
           { className: 'card-detail-container event-show-detail' },
           _react2.default.createElement(
             'div',
-            { className: 'card-detail-date-block' },
+            { className: 'card-detail-date-block event-show-detail-date-block' },
             _react2.default.createElement(
               'span',
-              { className: 'card-detail-day' },
+              { className: 'card-detail-day event-show-day-text' },
               new Date(this.props.eventQ.date).toString().slice(0, 3)
             ),
             _react2.default.createElement(
               'span',
-              { className: 'card-detail-date' },
+              { className: 'card-detail-date event-show-date-text' },
               new Date(this.props.eventQ.date).toString().slice(4, 10)
             )
           ),
           _react2.default.createElement(
             'div',
-            { className: 'card-detail-event-block' },
+            { className: 'card-detail-event-block event-show-card-block' },
             _react2.default.createElement(
               'p',
-              { className: 'card-detail-event-name' },
+              { className: 'card-detail-event-name event-show-detail-name' },
               this.props.eventQ.name
             ),
             _react2.default.createElement(
               'span',
-              { className: 'card-detail-date-venue' },
+              { className: 'card-detail-date-venue event-show-detail-venue' },
               new Date(this.props.eventQ.date).toString().slice(19, 24),
-              ' - ',
-              this.props.eventQ.venue.name
+              ' at ',
+              this.props.eventQ.venue.name,
+              ', ',
+              this.props.eventQ.venue.city,
+              ', ',
+              this.props.eventQ.venue.state
             )
           )
         );

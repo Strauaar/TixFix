@@ -16,16 +16,16 @@ class EventShowPage extends React.Component {
       return null
     } else {
       return <div className="card-detail-container event-show-detail">
-        <div className="card-detail-date-block">
-          <span className="card-detail-day">{new Date(this.props.eventQ.date).toString().slice(0,3)}
+        <div className="card-detail-date-block event-show-detail-date-block">
+          <span className="card-detail-day event-show-day-text">{new Date(this.props.eventQ.date).toString().slice(0,3)}
           </span>
-          <span className="card-detail-date">
+          <span className="card-detail-date event-show-date-text">
             {new Date(this.props.eventQ.date).toString().slice(4,10)}
           </span>
         </div>
-        <div className="card-detail-event-block">
-          <p className="card-detail-event-name">{this.props.eventQ.name}</p>
-          <span className="card-detail-date-venue">{new Date(this.props.eventQ.date).toString().slice(19, 24)} - {this.props.eventQ.venue.name}</span>
+        <div className="card-detail-event-block event-show-card-block">
+          <p className="card-detail-event-name event-show-detail-name">{this.props.eventQ.name}</p>
+          <span className="card-detail-date-venue event-show-detail-venue">{new Date(this.props.eventQ.date).toString().slice(19, 24)} at {this.props.eventQ.venue.name}, {this.props.eventQ.venue.city}, {this.props.eventQ.venue.state}</span>
         </div>
       </div>
     }
