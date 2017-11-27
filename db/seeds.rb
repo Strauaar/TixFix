@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 concerts_cateogry = Category.create(name:"Concerts" )
 sports_category = Category.create(name:"Sports")
+theater_category = Category.create(name:"Theater and Comedy")
 
 electronic_subcategory = Subcategory.create(name: "Electronic", category_id: concerts_cateogry.id)
 rap_subcategory = Subcategory.create(name:"Rap and Hip Hop", category_id: concerts_cateogry.id)
@@ -19,7 +20,7 @@ billyg_venue = Venue.create(name:"Billy G Pavilly", location:"San Fran", city: "
 jayz_event = Event.create(
   name: "Jay Z",
   category_id: concerts_cateogry.id,
-  subcategory_id: rap_subcategory.id
+  subcategory_id: rap_subcategory.id,
   image_url: "jayz.jpg",
   performer_id: jayz_performer.id,
   venue_id: billyg_venue.id
@@ -28,12 +29,11 @@ jayz_event = Event.create(
 kaskade_event = Event.create(
   name: "Kaskade",
   category_id: concerts_cateogry.id,
-  subcategory_id: electronic_subcategory.id
+  subcategory_id: electronic_subcategory.id,
   image_url: "kaskade.jpg",
   performer_id: kaskade_performer.id,
   venue_id: billyg_venue.id
 )
-
 
 
 for i in 0..2
@@ -42,6 +42,7 @@ for i in 0..2
     venue_id: billyg_venue.id,
     performer_id: jayz_performer.id,
     category_id: concerts_cateogry.id,
+    subcategory_id: rap_subcategory.id,
     image_url: "jayz.jpg",
     date: "Dec 21, 2017",
     event_id: jayz_event.id
@@ -53,6 +54,7 @@ for i in 0..2
     venue_id: billyg_venue.id,
     performer_id: jayz_performer.id,
     category_id: concerts_cateogry.id,
+    subcategory_id: electronic_subcategory.id,
     image_url: "kaskade.jpg",
     date: "Dec 20, 2017",
     event_id: kaskade_event.id

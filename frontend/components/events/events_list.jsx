@@ -17,6 +17,8 @@ class EventsList extends React.Component {
       return "Concert Tickets"
     } else if (this.props.categoryId === 2) {
       return "Sport Tickets"
+    } else if (this.props.categoryId === 3) {
+      return "Theater Tickets"
     }
   }
 

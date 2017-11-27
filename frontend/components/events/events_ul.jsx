@@ -15,7 +15,7 @@ class EventsUl extends React.Component {
   }
 
   renderLoadMoreButton(childrenCount) {
-    if(childrenCount % 10 === 0) {
+    if(childrenCount % 10 === 0 && childrenCount !== 0) {
       return <div>
         <button onClick={() =>
             this.loadMoreEvents(childrenCount, this.props.categoryId)} className="load-more-btn">

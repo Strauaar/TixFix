@@ -38934,9 +38934,9 @@ var _reactRedux = __webpack_require__(5);
 
 var _reactRouterDom = __webpack_require__(6);
 
-var _app = __webpack_require__(128);
+var _app_container = __webpack_require__(154);
 
-var _app2 = _interopRequireDefault(_app);
+var _app_container2 = _interopRequireDefault(_app_container);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -38948,7 +38948,7 @@ var Root = function Root(_ref) {
     _react2.default.createElement(
       _reactRouterDom.HashRouter,
       null,
-      _react2.default.createElement(_app2.default, null)
+      _react2.default.createElement(_app_container2.default, null)
     )
   );
 };
@@ -43150,7 +43150,7 @@ var _event_show_page_container = __webpack_require__(149);
 
 var _event_show_page_container2 = _interopRequireDefault(_event_show_page_container);
 
-var _footer = __webpack_require__(152);
+var _footer = __webpack_require__(153);
 
 var _footer2 = _interopRequireDefault(_footer);
 
@@ -44502,6 +44502,8 @@ var EventsList = function (_React$Component) {
         return "Concert Tickets";
       } else if (this.props.categoryId === 2) {
         return "Sport Tickets";
+      } else if (this.props.categoryId === 3) {
+        return "Theater Tickets";
       }
     }
   }, {
@@ -44800,7 +44802,7 @@ var EventsUl = function (_React$Component) {
     value: function renderLoadMoreButton(childrenCount) {
       var _this2 = this;
 
-      if (childrenCount % 10 === 0) {
+      if (childrenCount % 10 === 0 && childrenCount !== 0) {
         return _react2.default.createElement(
           "div",
           null,
@@ -45052,6 +45054,10 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _ticket_item = __webpack_require__(152);
+
+var _ticket_item2 = _interopRequireDefault(_ticket_item);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -45083,6 +45089,13 @@ exports.default = ScrollTicketItem;
 
 /***/ }),
 /* 152 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/***/ }),
+/* 153 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -45279,6 +45292,35 @@ var Footer = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = Footer;
+
+/***/ }),
+/* 154 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = __webpack_require__(5);
+
+var _reactRouterDom = __webpack_require__(6);
+
+var _app = __webpack_require__(128);
+
+var _app2 = _interopRequireDefault(_app);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    categoryId: state.ui.categoryId
+  };
+};
+
+exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps)(_app2.default));
 
 /***/ })
 /******/ ]);

@@ -8,4 +8,5 @@ class Category < ApplicationRecord
     primary_key: :id,
     class_name: :Subcategory,
     foreign_key: :category_id
+    
 end

@@ -1,4 +1,5 @@
 import React from 'react';
+import TicketItem from './ticket_item';
 
 class ScrollTicketItem extends React.Component {
   constructor(props) {
