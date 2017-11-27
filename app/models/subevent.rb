@@ -1,0 +1,2 @@
+class Subevent < ApplicationRecord
+end

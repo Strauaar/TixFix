@@ -44915,20 +44915,19 @@ var EventShowPage = function (_React$Component) {
     key: 'componentDidMount',
     value: function componentDidMount() {
       // TODO: fetch tickets for event
-      console.log(this.props.location.state.date);
+
     }
   }, {
     key: 'render',
     value: function render() {
-      console.log(this.props);
-      var eevent = this.props.eevent;
-      var date = this.props.location.state.date;
-
-      console.log(date);
-      var day = new Date(date).toString().slice(0, 3);
-      var dates = new Date(date).toString().slice(4, 10);
-      var time = new Date(date).toString().slice(19, 24);
-      console.log(day);
+      // console.log(this.props);
+      // let { eevent } = this.props;
+      // let { date } = this.props.location.state;
+      // console.log(date);
+      // let day = new Date(date).toString().slice(0,3);
+      // let dates = new Date(date).toString().slice(4,10);
+      // let time = new Date(date).toString().slice(19, 24);
+      // console.log(day);
 
       return _react2.default.createElement(
         'div',

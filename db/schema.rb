@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171126215519) do
+ActiveRecord::Schema.define(version: 20171127171739) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,17 +23,13 @@ ActiveRecord::Schema.define(version: 20171126215519) do
 
   create_table "events", force: :cascade do |t|
     t.string "name", null: false
-    t.string "details"
-    t.integer "venue_id", null: false
     t.integer "category_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image_url"
-    t.datetime "dates", default: [], array: true
     t.integer "performer_id", null: false
     t.index ["category_id"], name: "index_events_on_category_id"
     t.index ["performer_id"], name: "index_events_on_performer_id"
-    t.index ["venue_id"], name: "index_events_on_venue_id"
   end
 
   create_table "performers", force: :cascade do |t|
@@ -42,6 +38,22 @@ ActiveRecord::Schema.define(version: 20171126215519) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_performers_on_category_id"
+  end
+
+  create_table "subevents", force: :cascade do |t|
+    t.integer "event_id", null: false
+    t.string "name"
+    t.integer "venue_id"
+    t.integer "category_id"
+    t.string "image_url"
+    t.datetime "date"
+    t.integer "performer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_subevents_on_category_id"
+    t.index ["event_id"], name: "index_subevents_on_event_id"
+    t.index ["performer_id"], name: "index_subevents_on_performer_id"
+    t.index ["venue_id"], name: "index_subevents_on_venue_id"
   end
 
   create_table "users", force: :cascade do |t|
