@@ -33,7 +33,7 @@ class EventShowPage extends React.Component {
 
 
   render() {
-    console.log(this.props.eventQ);
+    
 
     return (
       <div className="event-show-page">

@@ -30,7 +30,7 @@ class EventsList extends React.Component {
         </div>
         <EventsUlContainer>
           {
-            this.props.events.map(event => <EventCardItem id={event.id} event={event}/>)
+            this.props.events.map(event => <EventCardItem key={event.id} id={event.id} event={event}/>)
           }
         </EventsUlContainer>
       </div>

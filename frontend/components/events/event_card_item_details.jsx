@@ -2,14 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const EventCardItemDetails = ({ eventQ }) => {
-  console.log(eventQ);
+  
   return (
     <div>
       {
         eventQ.subevents.map(subevent =>(
-          <Link to={{
-            pathname: `/events/${subevent.id}`
-          }}>
+          <Link to={`/events/${subevent.id}`}>
             <div className="card-detail-container">
               <div className="card-detail-date-block">
                 <span className="card-detail-day">{new Date(subevent.date).toString().slice(0,3)}

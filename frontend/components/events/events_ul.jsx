@@ -33,7 +33,6 @@ class EventsUl extends React.Component {
     return result.map(EventCard => EventCard);
   }
   render() {
-    console.log(this.props);
     const childrenCount = React.Children.count(this.props.children);
     const children = React.Children.toArray(this.props.children);
 

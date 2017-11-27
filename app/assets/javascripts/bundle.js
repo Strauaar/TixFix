@@ -43126,6 +43126,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
@@ -43150,11 +43152,21 @@ var _event_show_page_container = __webpack_require__(149);
 
 var _event_show_page_container2 = _interopRequireDefault(_event_show_page_container);
 
+var _subcategory_list_container = __webpack_require__(156);
+
+var _subcategory_list_container2 = _interopRequireDefault(_subcategory_list_container);
+
 var _footer = __webpack_require__(153);
 
 var _footer2 = _interopRequireDefault(_footer);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var renderCategoryList = function renderCategoryList(categoryId) {
   return _react2.default.createElement(
@@ -43164,20 +43176,39 @@ var renderCategoryList = function renderCategoryList(categoryId) {
   );
 };
 
-var App = function App(_ref) {
-  var categoryId = _ref.categoryId;
-  return _react2.default.createElement(
-    'div',
-    null,
-    _react2.default.createElement('div', { className: 'nav-bar-background' }),
-    _react2.default.createElement(_navbar_container2.default, null),
-    _react2.default.createElement(_reactRouterDom.Route, { path: '/events/:eventId', component: _event_show_page_container2.default }),
-    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _category_card_list2.default }),
-    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _events_list_container2.default }),
-    renderCategoryList(categoryId),
-    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _footer2.default })
-  );
-};
+var App = function (_React$Component) {
+  _inherits(App, _React$Component);
+
+  function App() {
+    _classCallCheck(this, App);
+
+    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
+  }
+
+  _createClass(App, [{
+    key: 'render',
+    value: function render() {
+      console.log(this.props);
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement('div', { className: 'nav-bar-background' }),
+        _react2.default.createElement(_navbar_container2.default, null),
+        _react2.default.createElement(_reactRouterDom.Route, { path: '/events/:eventId', component: _event_show_page_container2.default }),
+        _react2.default.createElement(_reactRouterDom.Route, { path: '/', component: _category_card_list2.default }),
+        _react2.default.createElement(
+          _reactRouterDom.Switch,
+          null,
+          _react2.default.createElement(_reactRouterDom.Route, { path: '/', component: _events_list_container2.default })
+        ),
+        _react2.default.createElement(_reactRouterDom.Route, { path: '/category/:id', component: _subcategory_list_container2.default }),
+        _react2.default.createElement(_reactRouterDom.Route, { path: '/', component: _footer2.default })
+      );
+    }
+  }]);
+
+  return App;
+}(_react2.default.Component);
 
 exports.default = App;
 
@@ -43307,6 +43338,7 @@ var NavBar = function (_React$Component) {
           )
         ),
         _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _searchbar_container2.default }),
+        _react2.default.createElement(_reactRouterDom.Route, { path: '/category', component: _searchbar_container2.default }),
         _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _location_date_filter_container2.default }),
         _react2.default.createElement(_reactRouterDom.Route, { path: '/new', component: _sessions_modal_container2.default }),
         _react2.default.createElement(_route_util.AuthRoute, { path: '/session', component: _sessions_modal_container2.default })
@@ -44372,7 +44404,7 @@ var CategoryCard = function (_React$Component) {
   _createClass(CategoryCard, [{
     key: "buttonClass",
     value: function buttonClass() {
-      console.log(this.props.selected);
+
       if (this.props.selected) {
         return "category-card-container category-btn-selected";
       } else {
@@ -44383,9 +44415,10 @@ var CategoryCard = function (_React$Component) {
     key: "filter",
     value: function filter(id) {
       if (id === null) {
+        this.props.history.push("/");
         this.props.fetchEvents();
       } else {
-
+        this.props.history.push("/category/" + id);
         this.props.filterByCategory(id);
       }
     }
@@ -44538,7 +44571,7 @@ var EventsList = function (_React$Component) {
           _events_ul_container2.default,
           null,
           this.props.events.map(function (event) {
-            return _react2.default.createElement(_event_card_item2.default, { id: event.id, event: event });
+            return _react2.default.createElement(_event_card_item2.default, { key: event.id, id: event.id, event: event });
           })
         )
       );
@@ -44676,16 +44709,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var EventCardItemDetails = function EventCardItemDetails(_ref) {
   var eventQ = _ref.eventQ;
 
-  console.log(eventQ);
+
   return _react2.default.createElement(
     'div',
     null,
     eventQ.subevents.map(function (subevent) {
       return _react2.default.createElement(
         _reactRouterDom.Link,
-        { to: {
-            pathname: '/events/' + subevent.id
-          } },
+        { to: '/events/' + subevent.id },
         _react2.default.createElement(
           'div',
           { className: 'card-detail-container' },
@@ -44843,7 +44874,6 @@ var EventsUl = function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      console.log(this.props);
       var childrenCount = _react2.default.Children.count(this.props.children);
       var children = _react2.default.Children.toArray(this.props.children);
 
@@ -45013,7 +45043,6 @@ var EventShowPage = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      console.log(this.props.eventQ);
 
       return _react2.default.createElement(
         'div',
@@ -45334,6 +45363,87 @@ var mapStateToProps = function mapStateToProps(state) {
 };
 
 exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps)(_app2.default));
+
+/***/ }),
+/* 155 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var SubCategoryList = function (_React$Component) {
+  _inherits(SubCategoryList, _React$Component);
+
+  function SubCategoryList() {
+    _classCallCheck(this, SubCategoryList);
+
+    return _possibleConstructorReturn(this, (SubCategoryList.__proto__ || Object.getPrototypeOf(SubCategoryList)).call(this));
+  }
+
+  _createClass(SubCategoryList, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        'loooool'
+      );
+    }
+  }]);
+
+  return SubCategoryList;
+}(_react2.default.Component);
+
+exports.default = SubCategoryList;
+
+/***/ }),
+/* 156 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = __webpack_require__(5);
+
+var _reactRouterDom = __webpack_require__(6);
+
+var _subcategory_list = __webpack_require__(155);
+
+var _subcategory_list2 = _interopRequireDefault(_subcategory_list);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {};
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {};
+};
+
+exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_subcategory_list2.default));
 
 /***/ })
 /******/ ]);

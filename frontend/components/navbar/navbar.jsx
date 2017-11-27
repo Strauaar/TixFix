@@ -28,6 +28,7 @@ class NavBar extends React.Component {
           </div>
         </div>
         <Route exact path="/" component={SearchBarContainer}></Route>
+        <Route path="/category" component={SearchBarContainer}></Route>
         <Route exact path ="/" component={LocationDateFilterContainer}/>
         <Route path="/new" component={SessionsModalContainer}></Route>
         <AuthRoute path="/session" component={SessionsModalContainer}></AuthRoute>

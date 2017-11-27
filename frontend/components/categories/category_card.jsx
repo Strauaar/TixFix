@@ -7,7 +7,7 @@ class CategoryCard extends React.Component {
   }
 
   buttonClass(){
-    console.log(this.props.selected);
+
     if(this.props.selected) {
       return "category-card-container category-btn-selected"
     } else {
@@ -17,9 +17,10 @@ class CategoryCard extends React.Component {
 
   filter(id) {
     if(id === null) {
+      this.props.history.push("/")
       this.props.fetchEvents();
     } else {
-      
+      this.props.history.push(`/category/${id}`);
       this.props.filterByCategory(id);
     }
   }
