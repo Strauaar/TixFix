@@ -7,10 +7,11 @@ class EventShowPage extends React.Component {
 
 
   render() {
+    console.log(this.props);
     let { eevent } = this.props;
     return (
       <div>
-        Hi
+        HI
       </div>
     )
   }

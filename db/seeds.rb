@@ -5,14 +5,16 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
+concerts_cateogry = Category.create(name:"Concerts" )
+jayz_performer = Performer.create(name: "Jay Z", category_id: concerts_cateogry.id)
+billyg_venue = Venue.create(name:"Billy G Pavilly", location:"San Fran", city: "FranPanScisco", state:"GA")
 
 for i in 0..30
   Event.create(
     name: "Jay Z",
-    venue_id: 1,
-    performer_id: 1,
-    category_id: 2,
+    venue_id: billyg_venue.id,
+    performer_id: jayz_performer.id,
+    category_id: concerts_cateogry.id,
     image_url: "jayz.jpg",
     dates: ["Dec 20, 2017"]
   )

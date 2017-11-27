@@ -451,48 +451,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 /* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * 
- */
-
-function makeEmptyFunction(arg) {
-  return function () {
-    return arg;
-  };
-}
-
-/**
- * This function accepts and discards inputs; it has no side effects. This is
- * primarily useful idiomatically for overridable function endpoints which
- * always need to be callable, since JS lacks a null-call idiom ala Cocoa.
- */
-var emptyFunction = function emptyFunction() {};
-
-emptyFunction.thatReturns = makeEmptyFunction;
-emptyFunction.thatReturnsFalse = makeEmptyFunction(false);
-emptyFunction.thatReturnsTrue = makeEmptyFunction(true);
-emptyFunction.thatReturnsNull = makeEmptyFunction(null);
-emptyFunction.thatReturnsThis = function () {
-  return this;
-};
-emptyFunction.thatReturnsArgument = function (arg) {
-  return arg;
-};
-
-module.exports = emptyFunction;
-
-/***/ }),
-/* 7 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -549,6 +507,48 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ * 
+ */
+
+function makeEmptyFunction(arg) {
+  return function () {
+    return arg;
+  };
+}
+
+/**
+ * This function accepts and discards inputs; it has no side effects. This is
+ * primarily useful idiomatically for overridable function endpoints which
+ * always need to be callable, since JS lacks a null-call idiom ala Cocoa.
+ */
+var emptyFunction = function emptyFunction() {};
+
+emptyFunction.thatReturns = makeEmptyFunction;
+emptyFunction.thatReturnsFalse = makeEmptyFunction(false);
+emptyFunction.thatReturnsTrue = makeEmptyFunction(true);
+emptyFunction.thatReturnsNull = makeEmptyFunction(null);
+emptyFunction.thatReturnsThis = function () {
+  return this;
+};
+emptyFunction.thatReturnsArgument = function (arg) {
+  return arg;
+};
+
+module.exports = emptyFunction;
 
 /***/ }),
 /* 8 */
@@ -952,7 +952,7 @@ module.exports = emptyObject;
 
 
 
-var emptyFunction = __webpack_require__(6);
+var emptyFunction = __webpack_require__(7);
 
 /**
  * Similar to invariant but only logs a warning if the condition is not met.
@@ -1937,7 +1937,7 @@ module.exports = ExecutionEnvironment;
  * @typechecks
  */
 
-var emptyFunction = __webpack_require__(6);
+var emptyFunction = __webpack_require__(7);
 
 /**
  * Upstream version of event listener. Does not take into account specific
@@ -3710,7 +3710,7 @@ document.addEventListener("DOMContentLoaded", function () {
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-var m=__webpack_require__(9),n=__webpack_require__(13),p=__webpack_require__(6);
+var m=__webpack_require__(9),n=__webpack_require__(13),p=__webpack_require__(7);
 function q(a){for(var b=arguments.length-1,e="Minified React error #"+a+"; visit http://facebook.github.io/react/docs/error-decoder.html?invariant\x3d"+a,d=0;d<b;d++)e+="\x26args[]\x3d"+encodeURIComponent(arguments[d+1]);b=Error(e+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings.");b.name="Invariant Violation";b.framesToPop=1;throw b;}
 var r={isMounted:function(){return!1},enqueueForceUpdate:function(){},enqueueReplaceState:function(){},enqueueSetState:function(){}};function t(a,b,e){this.props=a;this.context=b;this.refs=n;this.updater=e||r}t.prototype.isReactComponent={};t.prototype.setState=function(a,b){"object"!==typeof a&&"function"!==typeof a&&null!=a?q("85"):void 0;this.updater.enqueueSetState(this,a,b,"setState")};t.prototype.forceUpdate=function(a){this.updater.enqueueForceUpdate(this,a,"forceUpdate")};
 function u(a,b,e){this.props=a;this.context=b;this.refs=n;this.updater=e||r}function v(){}v.prototype=t.prototype;var w=u.prototype=new v;w.constructor=u;m(w,t.prototype);w.isPureReactComponent=!0;function x(a,b,e){this.props=a;this.context=b;this.refs=n;this.updater=e||r}var y=x.prototype=new v;y.constructor=x;m(y,t.prototype);y.unstable_isAsyncReactComponent=!0;y.render=function(){return this.props.children};
@@ -3750,7 +3750,7 @@ var _assign = __webpack_require__(9);
 var invariant = __webpack_require__(10);
 var emptyObject = __webpack_require__(13);
 var warning = __webpack_require__(14);
-var emptyFunction = __webpack_require__(6);
+var emptyFunction = __webpack_require__(7);
 var checkPropTypes = __webpack_require__(19);
 
 // TODO: this is special because it gets imported during build.
@@ -5139,7 +5139,7 @@ if (process.env.NODE_ENV === 'production') {
 /*
  Modernizr 3.0.0pre (Custom Build) | MIT
 */
-var aa=__webpack_require__(0),m=__webpack_require__(30),A=__webpack_require__(9),B=__webpack_require__(6),ca=__webpack_require__(31),da=__webpack_require__(32),ea=__webpack_require__(33),ha=__webpack_require__(34),ia=__webpack_require__(35),C=__webpack_require__(13);
+var aa=__webpack_require__(0),m=__webpack_require__(30),A=__webpack_require__(9),B=__webpack_require__(7),ca=__webpack_require__(31),da=__webpack_require__(32),ea=__webpack_require__(33),ha=__webpack_require__(34),ia=__webpack_require__(35),C=__webpack_require__(13);
 function D(a){for(var b=arguments.length-1,c="Minified React error #"+a+"; visit http://facebook.github.io/react/docs/error-decoder.html?invariant\x3d"+a,d=0;d<b;d++)c+="\x26args[]\x3d"+encodeURIComponent(arguments[d+1]);b=Error(c+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings.");b.name="Invariant Violation";b.framesToPop=1;throw b;}aa?void 0:D("227");
 var la={children:!0,dangerouslySetInnerHTML:!0,defaultValue:!0,defaultChecked:!0,innerHTML:!0,suppressContentEditableWarning:!0,suppressHydrationWarning:!0,style:!0};function qa(a,b){return(a&b)===b}
 var ra={MUST_USE_PROPERTY:1,HAS_BOOLEAN_VALUE:4,HAS_NUMERIC_VALUE:8,HAS_POSITIVE_NUMERIC_VALUE:24,HAS_OVERLOADED_BOOLEAN_VALUE:32,HAS_STRING_BOOLEAN_VALUE:64,injectDOMPropertyConfig:function(a){var b=ra,c=a.Properties||{},d=a.DOMAttributeNamespaces||{},e=a.DOMAttributeNames||{};a=a.DOMMutationMethods||{};for(var f in c){sa.hasOwnProperty(f)?D("48",f):void 0;var g=f.toLowerCase(),k=c[f];g={attributeName:g,attributeNamespace:null,propertyName:f,mutationMethod:null,mustUseProperty:qa(k,b.MUST_USE_PROPERTY),
@@ -5438,7 +5438,7 @@ var invariant = __webpack_require__(10);
 var warning = __webpack_require__(14);
 var ExecutionEnvironment = __webpack_require__(30);
 var _assign = __webpack_require__(9);
-var emptyFunction$1 = __webpack_require__(6);
+var emptyFunction$1 = __webpack_require__(7);
 var EventListener = __webpack_require__(31);
 var getActiveElement = __webpack_require__(32);
 var shallowEqual = __webpack_require__(33);
@@ -38906,7 +38906,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = __webpack_require__(5);
 
-var _reactRouterDom = __webpack_require__(7);
+var _reactRouterDom = __webpack_require__(6);
 
 var _app = __webpack_require__(128);
 
@@ -39029,7 +39029,7 @@ function createProvider() {
 
 
 
-var emptyFunction = __webpack_require__(6);
+var emptyFunction = __webpack_require__(7);
 var invariant = __webpack_require__(10);
 var warning = __webpack_require__(14);
 var assign = __webpack_require__(9);
@@ -39579,7 +39579,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 
 
 
-var emptyFunction = __webpack_require__(6);
+var emptyFunction = __webpack_require__(7);
 var invariant = __webpack_require__(10);
 var ReactPropTypesSecret = __webpack_require__(20);
 
@@ -43106,7 +43106,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = __webpack_require__(5);
 
-var _reactRouterDom = __webpack_require__(7);
+var _reactRouterDom = __webpack_require__(6);
 
 var _navbar_container = __webpack_require__(129);
 
@@ -43164,7 +43164,7 @@ var _navbar2 = _interopRequireDefault(_navbar);
 
 var _session_actions = __webpack_require__(17);
 
-var _reactRouterDom = __webpack_require__(7);
+var _reactRouterDom = __webpack_require__(6);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -43201,7 +43201,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouterDom = __webpack_require__(7);
+var _reactRouterDom = __webpack_require__(6);
 
 var _navbar_misc_menu_items = __webpack_require__(131);
 
@@ -43361,7 +43361,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouterDom = __webpack_require__(7);
+var _reactRouterDom = __webpack_require__(6);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -43595,7 +43595,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouterDom = __webpack_require__(7);
+var _reactRouterDom = __webpack_require__(6);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -44021,7 +44021,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = __webpack_require__(5);
 
-var _reactRouterDom = __webpack_require__(7);
+var _reactRouterDom = __webpack_require__(6);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -44526,6 +44526,8 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRouterDom = __webpack_require__(6);
+
 var _event_card_item_details = __webpack_require__(146);
 
 var _event_card_item_details2 = _interopRequireDefault(_event_card_item_details);
@@ -44568,7 +44570,7 @@ var EventCard = function (_React$Component) {
             _react2.default.createElement(
               'p',
               { className: 'event-card-header-text in-image-text' },
-              this.props.event.name
+              this.props.event.performer.name
             )
           ),
           _react2.default.createElement('div', { className: 'event-card-image-layer' })
@@ -44626,6 +44628,8 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRouterDom = __webpack_require__(6);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var EventCardItemDetails = function EventCardItemDetails(_ref) {
@@ -44633,40 +44637,47 @@ var EventCardItemDetails = function EventCardItemDetails(_ref) {
 
 
   return _react2.default.createElement(
-    "div",
+    'div',
     null,
     eventQ.dates.map(function (date) {
       return _react2.default.createElement(
-        "div",
-        { className: "card-detail-container" },
+        _reactRouterDom.Link,
+        { to: {
+            pathname: '/events/' + eventQ.id,
+            state: { date: date }
+          } },
         _react2.default.createElement(
-          "div",
-          { className: "card-detail-date-block" },
+          'div',
+          { className: 'card-detail-container' },
           _react2.default.createElement(
-            "span",
-            { className: "card-detail-day" },
-            new Date(date).toString().slice(0, 3)
+            'div',
+            { className: 'card-detail-date-block' },
+            _react2.default.createElement(
+              'span',
+              { className: 'card-detail-day' },
+              new Date(date).toString().slice(0, 3)
+            ),
+            _react2.default.createElement(
+              'span',
+              { className: 'card-detail-date' },
+              new Date(date).toString().slice(4, 10)
+            )
           ),
           _react2.default.createElement(
-            "span",
-            { className: "card-detail-date" },
-            new Date(date).toString().slice(4, 10)
-          )
-        ),
-        _react2.default.createElement(
-          "div",
-          { className: "card-detail-event-block" },
-          _react2.default.createElement(
-            "p",
-            { className: "card-detail-event-name" },
-            eventQ.name
-          ),
-          _react2.default.createElement(
-            "span",
-            { className: "card-detail-date-venue" },
-            new Date(date).toString().slice(19, 24),
-            " - ",
-            eventQ.venue.name
+            'div',
+            { className: 'card-detail-event-block' },
+            _react2.default.createElement(
+              'p',
+              { className: 'card-detail-event-name' },
+              eventQ.name
+            ),
+            _react2.default.createElement(
+              'span',
+              { className: 'card-detail-date-venue' },
+              new Date(date).toString().slice(19, 24),
+              ' - ',
+              eventQ.venue.name
+            )
           )
         )
       );
@@ -44845,7 +44856,7 @@ var _event_show_page = __webpack_require__(150);
 
 var _event_show_page2 = _interopRequireDefault(_event_show_page);
 
-var _reactRouterDom = __webpack_require__(7);
+var _reactRouterDom = __webpack_require__(6);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -44896,12 +44907,13 @@ var EventShowPage = function (_React$Component) {
   _createClass(EventShowPage, [{
     key: 'render',
     value: function render() {
+      console.log(this.props);
       var eevent = this.props.eevent;
 
       return _react2.default.createElement(
         'div',
         null,
-        'Hi'
+        'HI'
       );
     }
   }]);
