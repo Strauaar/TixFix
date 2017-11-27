@@ -11,9 +11,16 @@ class Event < ApplicationRecord
     class_name: :Performer,
     foreign_key: :performer_id
 
+  belongs_to :venue,
+    primary_key: :id,
+    class_name: :Venue,
+    foreign_key: :venue_id
+
   has_many :subevents,
     primary_key: :id,
     class_name: :Subevent,
     foreign_key: :event_id
+
+
 
 end

@@ -14,14 +14,16 @@ jayz_event = Event.create(
   name: "Jay Z",
   category_id: concerts_cateogry.id,
   image_url: "jayz.jpg",
-  performer_id: jayz_performer.id
+  performer_id: jayz_performer.id,
+  venue_id: billyg_venue.id
 )
 
 kaskade_event = Event.create(
   name: "Kaskade",
   category_id: concerts_cateogry.id,
   image_url: "kaskade.jpg",
-  performer_id: kaskade_performer.id
+  performer_id: kaskade_performer.id,
+  venue_id: billyg_venue.id
 )
 
 

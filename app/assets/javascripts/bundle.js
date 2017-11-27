@@ -44635,16 +44635,15 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var EventCardItemDetails = function EventCardItemDetails(_ref) {
   var eventQ = _ref.eventQ;
 
-
+  console.log(eventQ);
   return _react2.default.createElement(
     'div',
     null,
-    eventQ.dates.map(function (date) {
+    eventQ.subevents.map(function (subevent) {
       return _react2.default.createElement(
         _reactRouterDom.Link,
         { to: {
-            pathname: '/events/' + eventQ.id,
-            state: { date: date }
+            pathname: '/events/' + subevent.id
           } },
         _react2.default.createElement(
           'div',
@@ -44655,12 +44654,12 @@ var EventCardItemDetails = function EventCardItemDetails(_ref) {
             _react2.default.createElement(
               'span',
               { className: 'card-detail-day' },
-              new Date(date).toString().slice(0, 3)
+              new Date(subevent.date).toString().slice(0, 3)
             ),
             _react2.default.createElement(
               'span',
               { className: 'card-detail-date' },
-              new Date(date).toString().slice(4, 10)
+              new Date(subevent.date).toString().slice(4, 10)
             )
           ),
           _react2.default.createElement(
@@ -44674,7 +44673,7 @@ var EventCardItemDetails = function EventCardItemDetails(_ref) {
             _react2.default.createElement(
               'span',
               { className: 'card-detail-date-venue' },
-              new Date(date).toString().slice(19, 24),
+              new Date(subevent.date).toString().slice(19, 24),
               ' - ',
               eventQ.venue.name
             )
