@@ -43156,7 +43156,16 @@ var _footer2 = _interopRequireDefault(_footer);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var App = function App() {
+var renderCategoryList = function renderCategoryList(categoryId) {
+  return _react2.default.createElement(
+    'div',
+    null,
+    'hi'
+  );
+};
+
+var App = function App(_ref) {
+  var categoryId = _ref.categoryId;
   return _react2.default.createElement(
     'div',
     null,
@@ -43165,6 +43174,7 @@ var App = function App() {
     _react2.default.createElement(_reactRouterDom.Route, { path: '/events/:eventId', component: _event_show_page_container2.default }),
     _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _category_card_list2.default }),
     _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _events_list_container2.default }),
+    renderCategoryList(categoryId),
     _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _footer2.default })
   );
 };
@@ -44295,6 +44305,8 @@ var _reactRedux = __webpack_require__(5);
 
 var _event_actions = __webpack_require__(8);
 
+var _reactRouterDom = __webpack_require__(6);
+
 var _category_card = __webpack_require__(142);
 
 var _category_card2 = _interopRequireDefault(_category_card);
@@ -44318,7 +44330,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   };
 };
 
-exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_category_card2.default);
+exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_category_card2.default));
 
 /***/ }),
 /* 142 */
@@ -44373,6 +44385,7 @@ var CategoryCard = function (_React$Component) {
       if (id === null) {
         this.props.fetchEvents();
       } else {
+
         this.props.filterByCategory(id);
       }
     }
