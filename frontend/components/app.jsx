@@ -20,7 +20,7 @@ const App = () => (
     <Route path="/events/:eventId" component={EventShowPageContainer} />
     <Route exact path="/"component={CategoryCardList}/>
     <Route exact path="/" component={EventsListContainer}/>
-    <CFooter></CFooter>
+    <Route exact path="/" component={CFooter}/>
   </div>
 );
 

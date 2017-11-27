@@ -2,10 +2,15 @@
   align-items: center;
   padding: 0 200px;
   justify-content: flex-start;
+  background-color: #F6F8F9;
+  border-bottom: 1px solid #ccc;
+  margin-top: 5px;
 }
 
 .event-show-detail-date-block {
   padding: 17px 26px;
+  border-right: 1px solid #ccc;
+  margin-bottom: 5px;
 }
 
 .event-show-day-text {

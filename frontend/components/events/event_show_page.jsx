@@ -43,13 +43,12 @@ class EventShowPage extends React.Component {
         <div className="event-show-container">
           <div className="event-show-scroll-container">
             <div className="events-show-filter-block">
-
+              <div>
+              </div>
             </div>
             <div className="event-show-tickets-container">
               <div className="event-show-ticket-scrollable-container">
-                {
 
-                }
               </div>
             </div>
           </div>

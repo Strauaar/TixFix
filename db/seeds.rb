@@ -6,13 +6,20 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 concerts_cateogry = Category.create(name:"Concerts" )
+sports_category = Category.create(name:"Sports")
+
+electronic_subcategory = Subcategory.create(name: "Electronic", category_id: concerts_cateogry.id)
+rap_subcategory = Subcategory.create(name:"Rap and Hip Hop", category_id: concerts_cateogry.id)
+
 jayz_performer = Performer.create(name: "Jay Z", category_id: concerts_cateogry.id)
 kaskade_performer = Performer.create(name:"Kaskade", category_id: concerts_cateogry.id)
+
 billyg_venue = Venue.create(name:"Billy G Pavilly", location:"San Fran", city: "FranPanScisco", state:"GA")
 
 jayz_event = Event.create(
   name: "Jay Z",
   category_id: concerts_cateogry.id,
+  subcategory_id: rap_subcategory.id
   image_url: "jayz.jpg",
   performer_id: jayz_performer.id,
   venue_id: billyg_venue.id
@@ -21,6 +28,7 @@ jayz_event = Event.create(
 kaskade_event = Event.create(
   name: "Kaskade",
   category_id: concerts_cateogry.id,
+  subcategory_id: electronic_subcategory.id
   image_url: "kaskade.jpg",
   performer_id: kaskade_performer.id,
   venue_id: billyg_venue.id

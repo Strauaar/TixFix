@@ -43165,7 +43165,7 @@ var App = function App() {
     _react2.default.createElement(_reactRouterDom.Route, { path: '/events/:eventId', component: _event_show_page_container2.default }),
     _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _category_card_list2.default }),
     _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _events_list_container2.default }),
-    _react2.default.createElement(_footer2.default, null)
+    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _footer2.default })
   );
 };
 
@@ -45014,7 +45014,11 @@ var EventShowPage = function (_React$Component) {
           _react2.default.createElement(
             'div',
             { className: 'event-show-scroll-container' },
-            _react2.default.createElement('div', { className: 'events-show-filter-block' }),
+            _react2.default.createElement(
+              'div',
+              { className: 'events-show-filter-block' },
+              _react2.default.createElement('div', null)
+            ),
             _react2.default.createElement(
               'div',
               { className: 'event-show-tickets-container' },
@@ -45068,11 +45072,7 @@ var ScrollTicketItem = function (_React$Component) {
   _createClass(ScrollTicketItem, [{
     key: 'render',
     value: function render() {
-      return _react2.default.createElement(
-        'div',
-        null,
-        'hi'
-      );
+      return _react2.default.createElement('div', null);
     }
   }]);
 
