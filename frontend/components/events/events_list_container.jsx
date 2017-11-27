@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { fetchEvents } from '../../actions/event_actions';
 import EventsList from './events_list';
+import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = state => ({
   events: Object.values(state.entities.events),
@@ -11,4 +12,4 @@ const mapDispatchToProps = dispatch => ({
   fetchEvents: () => dispatch(fetchEvents())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(EventsList)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(EventsList));

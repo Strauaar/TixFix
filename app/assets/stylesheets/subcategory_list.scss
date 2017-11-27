@@ -1,0 +1,27 @@
+.subcategory-list-container {
+  margin: 0 240px;
+  font-family: 'Roboto Condensed', sans-serif;
+  display: flex;
+  flex-direction: column;
+  color: #828282;
+  background-color: #F2F3F4;
+  margin-top: 40px;
+  max-height: 400px;
+  padding: 15px;
+}
+
+.subcategory-list-header {
+  margin-bottom: 25px;
+  font-size: 20px;
+}
+
+.subcategory-item {
+  margin-bottom: 10px;
+  max-width: 120px;
+  padding: 3px;
+}
+
+
+.subcategory-item:hover {
+  cursor: pointer;
+}

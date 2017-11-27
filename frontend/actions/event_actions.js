@@ -4,7 +4,7 @@ export const RECEIVE_EVENTS = "RECEIVE_EVENTS";
 export const RECEIVE_MORE_EVENTS ="RECEIVE_MORE_EVENTS";
 export const RECEIVE_EVENT = "RECEIVE_EVENT";
 
-const receiveEvents = (events, categoryId) => ({
+export const receiveEvents = (events, categoryId) => ({
   type: RECEIVE_EVENTS,
   events,
   categoryId

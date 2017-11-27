@@ -9,6 +9,7 @@ class EventsList extends React.Component {
   }
 
   componentDidMount() {
+    console.log(this.props);
     this.props.fetchEvents();
   }
 

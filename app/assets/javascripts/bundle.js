@@ -560,7 +560,7 @@ module.exports = emptyFunction;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.fetchMoreEventsByCategory = exports.fetchMoreEvents = exports.filterByCategory = exports.fetchEvent = exports.fetchEvents = exports.RECEIVE_EVENT = exports.RECEIVE_MORE_EVENTS = exports.RECEIVE_EVENTS = undefined;
+exports.fetchMoreEventsByCategory = exports.fetchMoreEvents = exports.filterByCategory = exports.fetchEvent = exports.fetchEvents = exports.receiveEvents = exports.RECEIVE_EVENT = exports.RECEIVE_MORE_EVENTS = exports.RECEIVE_EVENTS = undefined;
 
 var _event_util = __webpack_require__(41);
 
@@ -572,7 +572,7 @@ var RECEIVE_EVENTS = exports.RECEIVE_EVENTS = "RECEIVE_EVENTS";
 var RECEIVE_MORE_EVENTS = exports.RECEIVE_MORE_EVENTS = "RECEIVE_MORE_EVENTS";
 var RECEIVE_EVENT = exports.RECEIVE_EVENT = "RECEIVE_EVENT";
 
-var receiveEvents = function receiveEvents(events, categoryId) {
+var receiveEvents = exports.receiveEvents = function receiveEvents(events, categoryId) {
   return {
     type: RECEIVE_EVENTS,
     events: events,
@@ -3722,6 +3722,7 @@ document.addEventListener("DOMContentLoaded", function () {
   window.filterByCategory = _event_actions.filterByCategory;
   window.fetchMoreEvents = _event_actions.fetchMoreEvents;
   window.fetchSubCategoryList = _category_actions.fetchSubCategoryList;
+  window.fetchSubCategoryEvents = _category_actions.fetchSubCategoryEvents;
 
   var rootEl = document.getElementById("root");
   _reactDom2.default.render(_react2.default.createElement(_root2.default, { store: store }), rootEl);
@@ -43182,14 +43183,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var renderCategoryList = function renderCategoryList(categoryId) {
-  return _react2.default.createElement(
-    'div',
-    null,
-    'hi'
-  );
-};
-
 var App = function (_React$Component) {
   _inherits(App, _React$Component);
 
@@ -43213,7 +43206,8 @@ var App = function (_React$Component) {
         _react2.default.createElement(
           _reactRouterDom.Switch,
           null,
-          _react2.default.createElement(_reactRouterDom.Route, { path: '/', component: _events_list_container2.default })
+          _react2.default.createElement(_reactRouterDom.Route, { path: '/', component: _events_list_container2.default }),
+          _react2.default.createElement(_reactRouterDom.Route, { path: '/category/:id', component: _events_list_container2.default })
         ),
         _react2.default.createElement(_reactRouterDom.Route, { path: '/category/:id', component: _subcategory_list_container2.default }),
         _react2.default.createElement(_reactRouterDom.Route, { path: '/', component: _footer2.default })
@@ -44395,6 +44389,8 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRouterDom = __webpack_require__(6);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -44416,9 +44412,8 @@ var CategoryCard = function (_React$Component) {
   }
 
   _createClass(CategoryCard, [{
-    key: "buttonClass",
+    key: 'buttonClass',
     value: function buttonClass() {
-
       if (this.props.selected) {
         return "category-card-container category-btn-selected";
       } else {
@@ -44426,18 +44421,18 @@ var CategoryCard = function (_React$Component) {
       }
     }
   }, {
-    key: "filter",
+    key: 'filter',
     value: function filter(id) {
       if (id === null) {
         this.props.history.push("/");
         this.props.fetchEvents();
       } else {
-        this.props.history.push("/category/" + id);
+        this.props.history.push('/category/' + id);
         this.props.filterByCategory(id);
       }
     }
   }, {
-    key: "render",
+    key: 'render',
     value: function render() {
       var _this2 = this;
 
@@ -44448,13 +44443,13 @@ var CategoryCard = function (_React$Component) {
 
 
       return _react2.default.createElement(
-        "button",
+        'button',
         { onClick: function onClick() {
             return _this2.filter(id);
           }, className: this.buttonClass() },
         icon(),
         _react2.default.createElement(
-          "p",
+          'p',
           null,
           text
         )
@@ -44486,6 +44481,8 @@ var _events_list = __webpack_require__(144);
 
 var _events_list2 = _interopRequireDefault(_events_list);
 
+var _reactRouterDom = __webpack_require__(6);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state) {
@@ -44503,7 +44500,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   };
 };
 
-exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_events_list2.default);
+exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_events_list2.default));
 
 /***/ }),
 /* 144 */
@@ -44553,6 +44550,7 @@ var EventsList = function (_React$Component) {
   _createClass(EventsList, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
+      console.log(this.props);
       this.props.fetchEvents();
     }
   }, {
@@ -45395,6 +45393,8 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRouterDom = __webpack_require__(6);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -45409,16 +45409,61 @@ var SubCategoryList = function (_React$Component) {
   function SubCategoryList() {
     _classCallCheck(this, SubCategoryList);
 
-    return _possibleConstructorReturn(this, (SubCategoryList.__proto__ || Object.getPrototypeOf(SubCategoryList)).call(this));
+    var _this = _possibleConstructorReturn(this, (SubCategoryList.__proto__ || Object.getPrototypeOf(SubCategoryList)).call(this));
+
+    _this.renderHeader = _this.renderHeader.bind(_this);
+    return _this;
   }
 
   _createClass(SubCategoryList, [{
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(newProps) {
+      if (this.props.categoryId !== newProps.categoryId) {
+        this.props.fetchSubCategoryList(newProps.categoryId);
+      }
+    }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.props.fetchSubCategoryList(this.props.categoryId);
+    }
+  }, {
+    key: 'renderHeader',
+    value: function renderHeader() {
+      if (this.props.categoryId === 1) {
+        return "Concert Tickets";
+      } else if (this.props.categoryId === 2) {
+        return "Sport Tickets";
+      } else if (this.props.categoryId === 3) {
+        return "Theater Tickets";
+      }
+      // onClick={() => this.props.fetchSubCategoryEvents(subcategory.id)} 
+    }
+  }, {
     key: 'render',
     value: function render() {
+      if (!this.props.subcategory_list) {
+        return null;
+      }
       return _react2.default.createElement(
         'div',
-        null,
-        'loooool'
+        { className: 'subcategory-list-container' },
+        _react2.default.createElement(
+          'div',
+          { className: 'subcategory-list-header' },
+          this.renderHeader()
+        ),
+        this.props.subcategory_list.map(function (subcategory) {
+          return _react2.default.createElement(
+            'span',
+            { className: 'subcategory-item' },
+            _react2.default.createElement(
+              _reactRouterDom.Link,
+              { to: '/category/' + id },
+              subcategory.name
+            )
+          );
+        })
       );
     }
   }]);
@@ -45447,14 +45492,26 @@ var _subcategory_list = __webpack_require__(155);
 
 var _subcategory_list2 = _interopRequireDefault(_subcategory_list);
 
+var _category_actions = __webpack_require__(158);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state) {
-  return {};
+  return {
+    categoryId: state.ui.categoryId,
+    subcategory_list: state.ui.subcategory_list
+  };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {};
+  return {
+    fetchSubCategoryList: function fetchSubCategoryList(id) {
+      return dispatch((0, _category_actions.fetchSubCategoryList)(id));
+    },
+    fetchSubCategoryEvents: function fetchSubCategoryEvents(id) {
+      return dispatch((0, _category_actions.fetchSubCategoryEvents)(id));
+    }
+  };
 };
 
 exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_subcategory_list2.default));
@@ -45472,7 +45529,16 @@ Object.defineProperty(exports, "__esModule", {
 var fetchSubCategoryList = exports.fetchSubCategoryList = function fetchSubCategoryList(categoryId) {
   return $.ajax({
     method: 'GET',
-    url: 'api/subcategories/' + categoryId
+    url: 'api/subcategories/' + categoryId,
+    data: { type: 'list' }
+  });
+};
+
+var fetchSubCateoryEvents = exports.fetchSubCateoryEvents = function fetchSubCateoryEvents(subcategory_id) {
+  return $.ajax({
+    method: 'GET',
+    url: 'api/subcategories/' + subcategory_id,
+    data: { type: 'events' }
   });
 };
 
@@ -45486,11 +45552,13 @@ var fetchSubCategoryList = exports.fetchSubCategoryList = function fetchSubCateg
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.fetchSubCategoryList = exports.RECEIVE_CATEGORY_LIST = undefined;
+exports.fetchSubCategoryEvents = exports.fetchSubCategoryList = exports.RECEIVE_CATEGORY_LIST = undefined;
 
 var _category_util = __webpack_require__(157);
 
 var CategoryApiUtil = _interopRequireWildcard(_category_util);
+
+var _event_actions = __webpack_require__(8);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -45507,6 +45575,14 @@ var fetchSubCategoryList = exports.fetchSubCategoryList = function fetchSubCateg
   return function (dispatch) {
     return CategoryApiUtil.fetchSubCategoryList(id).then(function (subcategoryList) {
       return dispatch(receiveCategoryList(subcategoryList));
+    });
+  };
+};
+
+var fetchSubCategoryEvents = exports.fetchSubCategoryEvents = function fetchSubCategoryEvents(id) {
+  return function (dispatch) {
+    return CategoryApiUtil.fetchSubCateoryEvents(id).then(function (events) {
+      return dispatch((0, _event_actions.receiveEvents)(events));
     });
   };
 };

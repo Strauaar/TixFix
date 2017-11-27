@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class CategoryCard extends React.Component {
   constructor(props) {
@@ -7,7 +8,6 @@ class CategoryCard extends React.Component {
   }
 
   buttonClass(){
-
     if(this.props.selected) {
       return "category-card-container category-btn-selected"
     } else {

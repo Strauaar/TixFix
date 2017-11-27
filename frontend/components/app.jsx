@@ -12,12 +12,7 @@ import CategoryCardList from './categories/category_card_list';
 import EventsListContainer from './events/events_list_container';
 import EventShowPageContainer from './events/event_show_page_container';
 import SubCategoryListContainer from './categories/subcategory_list_container';
-
 import CFooter from './footer/footer';
-
-const renderCategoryList = (categoryId) => {
-  return <div>hi</div>
-}
 
 class App extends React.Component {
 
@@ -31,6 +26,7 @@ class App extends React.Component {
         <Route path="/"component={CategoryCardList}/>
         <Switch>
           <Route path="/" component={EventsListContainer}/>
+          <Route path="/category/:id" component={EventsListContainer}/>
         </Switch>
         <Route path="/category/:id" component={SubCategoryListContainer} />
         <Route path="/" component={CFooter}/>
