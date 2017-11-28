@@ -34,6 +34,10 @@ class Subevent < ApplicationRecord
     end
     # Subevent.where(:category_ids => #in cat_id, :date => dates )
     first_filter =Subevent.where(["date BETWEEN (?) AND (?)", start_date, end_date])
-    second_filter = first_filter.where(category_id: category_ids)
+    if category_ids != 0
+      return second_filter = first_filter.where(category_id: category_ids)
+    else
+      return first_filter
+    end
   end
 end
