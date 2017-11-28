@@ -20,4 +20,15 @@ class Subevent < ApplicationRecord
     primary_key: :id,
     class_name: :Event,
     foreign_key: :event_id
+
+  def self.filter_date(category_id, date_filter)
+    if date_filter == 'weekend'
+      dates = DateTime.now.end_of_week - 2..DateTime.now.end_of_week
+    elsif date_filter == 'today'
+      dates = DateTime.now.beginning_of_day..DateTime.now.end_of_day
+    elsif date_filter == 'month'
+      dates = DateTime.now..DateTime.now.end_of_month
+    end
+    Subevent.where(:subcategory_id => category_id, :date => dates )
+  end
 end

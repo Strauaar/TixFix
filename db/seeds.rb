@@ -18,6 +18,15 @@ kaskade_performer = Performer.create(name:"Kaskade", category_id: concerts_cateo
 
 billyg_venue = Venue.create(name:"Billy G Pavilly", location:"San Fran", city: "FranPanScisco", state:"GA")
 
+kaskade_event = Event.create(
+name: "Kaskade",
+category_id: concerts_cateogry.id,
+subcategory_id: electronic_subcategory.id,
+image_url: "kaskade.jpg",
+performer_id: kaskade_performer.id,
+venue_id: billyg_venue.id
+)
+
 jayz_event = Event.create(
   name: "Jay Z",
   category_id: concerts_cateogry.id,
@@ -27,7 +36,7 @@ jayz_event = Event.create(
   venue_id: billyg_venue.id
 )
 
-kaskade_event = Event.create(
+kaskade_event1 = Event.create(
   name: "Kaskade",
   category_id: concerts_cateogry.id,
   subcategory_id: electronic_subcategory.id,
@@ -36,12 +45,12 @@ kaskade_event = Event.create(
   venue_id: billyg_venue.id
 )
 
-kaskade_event1 = Event.create(
-  name: "Kaskade",
+jayz_event1 = Event.create(
+  name: "Jay Z",
   category_id: concerts_cateogry.id,
-  subcategory_id: electronic_subcategory.id,
-  image_url: "kaskade.jpg",
-  performer_id: kaskade_performer.id,
+  subcategory_id: rap_subcategory.id,
+  image_url: "jayz.jpg",
+  performer_id: jayz_performer.id,
   venue_id: billyg_venue.id
 )
 
@@ -81,5 +90,18 @@ for i in 0..1
     image_url: "kaskade.jpg",
     date: "Dec 20, 2017",
     event_id: kaskade_event1.id
+  )
+end
+
+for i in 0..3
+  Subevent.create(
+    name: "Jay Z",
+    venue_id: billyg_venue.id,
+    performer_id: jayz_performer.id,
+    category_id: concerts_cateogry.id,
+    subcategory_id: rap_subcategory.id,
+    image_url: "jayz.jpg",
+    date: DateTime.now,
+    event_id: jayz_event1.id
   )
 end

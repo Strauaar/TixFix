@@ -560,7 +560,7 @@ module.exports = emptyFunction;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.fetchMoreEventsByCategory = exports.fetchMoreEvents = exports.filterByCategory = exports.fetchEvent = exports.fetchEvents = exports.receiveEvents = exports.RECEIVE_EVENT = exports.RECEIVE_MORE_EVENTS = exports.RECEIVE_EVENTS = undefined;
+exports.filterByDate = exports.fetchMoreEventsByCategory = exports.fetchMoreEvents = exports.filterByCategory = exports.fetchEvent = exports.fetchEvents = exports.receiveEvents = exports.RECEIVE_EVENT = exports.RECEIVE_MORE_EVENTS = exports.RECEIVE_EVENTS = undefined;
 
 var _event_util = __webpack_require__(42);
 
@@ -632,7 +632,15 @@ var fetchMoreEventsByCategory = exports.fetchMoreEventsByCategory = function fet
       return dispatch(receiveMoreEvents(events));
     });
   };
-};;
+};
+
+var filterByDate = exports.filterByDate = function filterByDate(date, categoryObj) {
+  return function (dispatch) {
+    return EventApiUtil.filterByDate(date, categoryObj).then(function (events) {
+      return dispatch(receiveEvents(events));
+    });
+  };
+};
 
 /***/ }),
 /* 9 */
@@ -2662,6 +2670,26 @@ var fetchMoreEventsByCategory = exports.fetchMoreEventsByCategory = function fet
     url: 'api/categories/' + categoryId,
     data: { currentCount: currentCount }
   });
+};
+
+var filterByDate = exports.filterByDate = function filterByDate(categoryObj) {
+  if (categoryObj.type === "main") {
+    return $.ajax({
+      method: 'GET',
+      url: 'api/categories/' + categoryObj.id,
+      data: { filter_type: categoryObj.filter_type,
+        count: categoryObj.count
+      }
+    });
+  } else {
+    return $.ajax({
+      method: 'GET',
+      url: 'api/subcategories/' + categoryObj.id,
+      data: { filter_type: categoryObj.filter_type,
+        count: categoryObj.count
+      }
+    });
+  }
 };
 
 /***/ }),
@@ -20886,6 +20914,7 @@ document.addEventListener("DOMContentLoaded", function () {
   window.fetchMoreEvents = _event_actions.fetchMoreEvents;
   window.fetchSubCategoryList = _category_actions.fetchSubCategoryList;
   window.fetchSubCategoryEvents = _category_actions.fetchSubCategoryEvents;
+  window.filterByDate = _event_util.filterByDate;
 
   var rootEl = document.getElementById("root");
   _reactDom2.default.render(_react2.default.createElement(_root2.default, { store: store }), rootEl);
@@ -44997,6 +45026,8 @@ var EventsUl = function (_React$Component) {
     value: function loadMoreEvents(childrenCount, categoryId) {
       if (categoryId === undefined) {
         this.props.fetchMoreEvents(childrenCount);
+      } else if (this.props.categoryId != 1 || this.props.categoryId != 2 || this.props.categoryId != 3) {
+        // this.props.filterByDate()
       } else {
         this.props.fetchMoreEventsByCategory(childrenCount, this.props.categoryId);
       }

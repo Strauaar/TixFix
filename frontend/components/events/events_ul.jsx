@@ -8,9 +8,10 @@ class EventsUl extends React.Component {
   loadMoreEvents(childrenCount, categoryId) {
     if(categoryId === undefined) {
       this.props.fetchMoreEvents(childrenCount);
+    } else if(this.props.categoryId != 1 || this.props.categoryId != 2 || this.props.categoryId != 3) {
+      // this.props.filterByDate()
     } else {
       this.props.fetchMoreEventsByCategory(childrenCount, this.props.categoryId)
-
     }
   }
 
