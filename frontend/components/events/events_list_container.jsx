@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { fetchEvents } from '../../actions/event_actions';
+import { fetchEvents, filterByCategory } from '../../actions/event_actions';
 import EventsList from './events_list';
 import { withRouter } from 'react-router-dom';
 
@@ -9,7 +9,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchEvents: () => dispatch(fetchEvents())
+  fetchEvents: () => dispatch(fetchEvents()),
+  filterByCategory: (id) => dispatch(filterByCategory(id))
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(EventsList));

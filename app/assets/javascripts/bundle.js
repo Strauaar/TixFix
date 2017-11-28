@@ -43427,10 +43427,18 @@ var NavBar = function (_React$Component) {
   function NavBar(props) {
     _classCallCheck(this, NavBar);
 
-    return _possibleConstructorReturn(this, (NavBar.__proto__ || Object.getPrototypeOf(NavBar)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (NavBar.__proto__ || Object.getPrototypeOf(NavBar)).call(this, props));
+
+    _this.homeButton = _this.homeButton.bind(_this);
+    return _this;
   }
 
   _createClass(NavBar, [{
+    key: 'homeButton',
+    value: function homeButton() {
+      this.props.history.push("/");
+    }
+  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
@@ -43444,7 +43452,7 @@ var NavBar = function (_React$Component) {
             { className: 'navbar-left' },
             _react2.default.createElement(
               'span',
-              null,
+              { onClick: this.homeButton },
               'TF',
               _react2.default.createElement('span', { className: 'small-header' }),
               _react2.default.createElement('span', { className: 'small-header' })
@@ -44618,6 +44626,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     fetchEvents: function fetchEvents() {
       return dispatch((0, _event_actions.fetchEvents)());
+    },
+    filterByCategory: function filterByCategory(id) {
+      return dispatch((0, _event_actions.filterByCategory)(id));
     }
   };
 };
@@ -44673,6 +44684,13 @@ var EventsList = function (_React$Component) {
     key: 'componentDidMount',
     value: function componentDidMount() {
       this.props.fetchEvents();
+    }
+  }, {
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(newProps) {
+      // if(newProps.match.params.id !== this.props.match.params) {
+      //   this.props.filterByCategory(newProps.match.params.id)
+      // }
     }
   }, {
     key: 'renderHeader',
@@ -45354,6 +45372,9 @@ var SubCategoryList = function (_React$Component) {
   _createClass(SubCategoryList, [{
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(newProps) {
+      console.log("noe");
+      console.log(this.props);
+      console.log(newProps);
       if (this.props.categoryId !== newProps.categoryId) {
         this.props.fetchSubCategoryList(newProps.categoryId);
       }
@@ -45373,7 +45394,6 @@ var SubCategoryList = function (_React$Component) {
       } else if (this.props.categoryId === 3) {
         return "Theater Tickets";
       }
-      // onClick={() => this.props.fetchSubCategoryEvents(subcategory.id)}
     }
   }, {
     key: 'render',

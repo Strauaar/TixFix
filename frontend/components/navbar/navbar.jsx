@@ -11,6 +11,11 @@ import LocationDateFilterContainer from './location_date_filter_container';
 class NavBar extends React.Component {
   constructor(props) {
     super(props);
+    this.homeButton = this.homeButton.bind(this);
+  }
+
+  homeButton() {
+    this.props.history.push("/");
   }
 
   render() {
@@ -18,7 +23,7 @@ class NavBar extends React.Component {
       <div className="wholenav">
         <div className="navbar">
           <div className="navbar-left">
-            <span>TF<span className="small-header"></span><span className="small-header"></span></span>
+            <span onClick={this.homeButton}>TF<span className="small-header"></span><span className="small-header"></span></span>
             <div className="title-container">
             </div>
           </div>
@@ -36,7 +41,7 @@ class NavBar extends React.Component {
         <Switch>
           <Route exact path ="/" component={LocationDateFilterContainer}/>
           <Route path ="/category" component={LocationDateFilterContainer}/>
-      
+
         </Switch>
         <Route path="/new" component={SessionsModalContainer}></Route>
         <AuthRoute path="/session" component={SessionsModalContainer}></AuthRoute>

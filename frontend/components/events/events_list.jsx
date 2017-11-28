@@ -12,6 +12,12 @@ class EventsList extends React.Component {
     this.props.fetchEvents();
   }
 
+  componentWillReceiveProps(newProps) {
+    // if(newProps.match.params.id !== this.props.match.params) {
+    //   this.props.filterByCategory(newProps.match.params.id)
+    // }
+  }
+
   renderHeader() {
     if(this.props.categoryId === 1) {
       return "Concert Tickets"
