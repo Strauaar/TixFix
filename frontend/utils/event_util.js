@@ -34,3 +34,20 @@ export const fetchMoreEventsByCategory = (currentCount, categoryId) => (
     data: { currentCount }
   })
 );
+
+export const filterByDate = (date, categoryObj) => {
+  if(categoryObj.type === "main"){
+    return $.ajax({
+      method: 'GET',
+      url: `api/categories/${categoryObj.id}`
+      data: { date: categoryObj.date }
+    })
+  } else {
+    return $.ajax({
+      method: 'GET',
+      url: `api/subcategories/${categoryObj.id}`
+      date: { date: categoryObj.date }
+    })
+  }
+
+};
