@@ -16,7 +16,7 @@ class Api::CategoriesController < ApplicationController
       @subevents = Subevent.filter_date(id, params[:filter_type])
       render :filtered
     elsif params[:filter_type]
-      @subevents = Subevent.filter_date(0, params[:filter_type])
+      @subevents = Subevent.filter_date(-1, params[:filter_type])
       render :filtered
     else
       @events = Category.find(params[:id]).child_events.limit(10)

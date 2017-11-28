@@ -4,6 +4,7 @@ class LocationDateFilter extends React.Component{
   constructor(props) {
     super(props)
     this.filter = this.filter.bind(this);
+    this.state = {dateSelect: "Choose dates"}
   }
 
   componentWillReceiveProps(newProps) {
@@ -15,6 +16,7 @@ class LocationDateFilter extends React.Component{
   filter(type) {
     console.log("IN FILTER");
     console.log(this.props);
+    this.setState({dateSelect: type})
     this.props.filterByDate({id: this.props.categoryId, filter_type: type});
   }
 
@@ -32,14 +34,14 @@ class LocationDateFilter extends React.Component{
           </li>
           <li>
             <a href="#"><i className="fa fa-calendar" aria-hidden="true"></i>
-              Choose dates<i className="fa fa-angle-down" aria-hidden="true"></i>
+              {this.state.dateSelect}<i className="fa fa-angle-down" aria-hidden="true"></i>
             </a>
             <ul className="filter-dropdown">
               <li><button>Choose dates</button></li>
-              <li><button onClick={() => this.filter('today')}>Today</button></li>
-              <li><button>This weekend</button></li>
-              <li><button>This month</button></li>
-              <li><button>All dates</button></li>
+              <li><button onClick={() => this.filter('Today')}>Today</button></li>
+              <li><button onClick={() => this.filter('This weekend')}>This weekend</button></li>
+              <li><button onClick={() => this.filter('This month')}>This month</button></li>
+              <li><button onClick={() => this.filter('All dates')}>All dates</button></li>
             </ul>
           </li>
         </ul>

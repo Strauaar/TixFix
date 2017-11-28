@@ -44349,6 +44349,7 @@ var LocationDateFilter = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (LocationDateFilter.__proto__ || Object.getPrototypeOf(LocationDateFilter)).call(this, props));
 
     _this.filter = _this.filter.bind(_this);
+    _this.state = { dateSelect: "Choose dates" };
     return _this;
   }
 
@@ -44362,6 +44363,7 @@ var LocationDateFilter = function (_React$Component) {
     value: function filter(type) {
       console.log("IN FILTER");
       console.log(this.props);
+      this.setState({ dateSelect: type });
       this.props.filterByDate({ id: this.props.categoryId, filter_type: type });
     }
   }, {
@@ -44402,7 +44404,7 @@ var LocationDateFilter = function (_React$Component) {
               "a",
               { href: "#" },
               _react2.default.createElement("i", { className: "fa fa-calendar", "aria-hidden": "true" }),
-              "Choose dates",
+              this.state.dateSelect,
               _react2.default.createElement("i", { className: "fa fa-angle-down", "aria-hidden": "true" })
             ),
             _react2.default.createElement(
@@ -44423,7 +44425,7 @@ var LocationDateFilter = function (_React$Component) {
                 _react2.default.createElement(
                   "button",
                   { onClick: function onClick() {
-                      return _this2.filter('today');
+                      return _this2.filter('Today');
                     } },
                   "Today"
                 )
@@ -44433,7 +44435,9 @@ var LocationDateFilter = function (_React$Component) {
                 null,
                 _react2.default.createElement(
                   "button",
-                  null,
+                  { onClick: function onClick() {
+                      return _this2.filter('This weekend');
+                    } },
                   "This weekend"
                 )
               ),
@@ -44442,7 +44446,9 @@ var LocationDateFilter = function (_React$Component) {
                 null,
                 _react2.default.createElement(
                   "button",
-                  null,
+                  { onClick: function onClick() {
+                      return _this2.filter('This month');
+                    } },
                   "This month"
                 )
               ),
@@ -44451,7 +44457,9 @@ var LocationDateFilter = function (_React$Component) {
                 null,
                 _react2.default.createElement(
                   "button",
-                  null,
+                  { onClick: function onClick() {
+                      return _this2.filter('All dates');
+                    } },
                   "All dates"
                 )
               )
