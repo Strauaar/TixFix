@@ -18,10 +18,10 @@ class CategoryCard extends React.Component {
   filter(id) {
     if(id === null) {
       this.props.history.push("/")
-      this.props.fetchEvents();
+      this.props.fetchEvents(this.props.filter);
     } else {
       this.props.history.push(`/category/${id}`);
-      this.props.filterByCategory(id);
+      this.props.fetchEvents(this.props.filter);
     }
   }
 

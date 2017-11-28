@@ -3,7 +3,7 @@ import EventsUl from './events_ul';
 import { fetchMoreEvents, fetchMoreEventsByCategory } from '../../actions/event_actions';
 
 const mapStateToProps = state => ({
-  categoryId: state.ui.categoryId
+  categoryId: state.ui.filter.categoryId
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -4,7 +4,7 @@ class LocationDateFilter extends React.Component{
   constructor(props) {
     super(props)
     this.filter = this.filter.bind(this);
-    this.state = {dateSelect: "Choose dates"}
+    this.state = {dateSelect: "Choose dates", locationSelect: "San Francisco, CA"}
   }
 
   componentWillReceiveProps(newProps) {
@@ -18,6 +18,7 @@ class LocationDateFilter extends React.Component{
     console.log(this.props);
     this.setState({dateSelect: type})
     this.props.filterByDate({id: this.props.categoryId, filter_type: type});
+    
   }
 
   render() {
@@ -26,7 +27,7 @@ class LocationDateFilter extends React.Component{
         <ul className="navbar-date-location-filter-container">
           <li>
             <a href="#"><i className="fa fa-map-marker" aria-hidden="true"></i>
-              San Francisco, CA<i className="fa fa-angle-down" aria-hidden="true"></i>
+              {this.state.locationSelect}<i className="fa fa-angle-down" aria-hidden="true"></i>
             </a>
             <ul className="filter-dropdown">
               <li><input placeholder="Search by city"></input></li>

@@ -4,7 +4,7 @@ import SubCategoryList from './subcategory_list';
 import { fetchSubCategoryList, fetchSubCategoryEvents } from '../../actions/category_actions';
 
 const mapStateToProps = state => ({
-  categoryId: state.ui.categoryId,
+  categoryId: state.ui.filter.categoryId,
   subcategory_list: state.ui.subcategory_list
 });
 

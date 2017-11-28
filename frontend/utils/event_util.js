@@ -1,7 +1,8 @@
-export const fetchEvents = () => (
+export const fetchEvents = (filter) => (
   $.ajax({
     method: 'GET',
     url: 'api/events',
+    data: { filter }
   })
 );
 
@@ -12,35 +13,36 @@ export const fetchEvent = (id) => (
   })
 );
 
-export const fetchEventByCategory = (categoryId) => (
-  $.ajax({
-    method: 'GET',
-    url: `api/categories/${categoryId}`
-  })
-);
+// export const fetchEventByCategory = (categoryId) => (
+//   $.ajax({
+//     method: 'GET',
+//     url: `api/categories/${categoryId}`
+//   })
+// );
 
-export const fetchMoreEvents = (currentCount) => (
+export const fetchMoreEvents = (currentCount, filter) => (
   $.ajax({
     method: 'GET',
     url: 'api/events',
-    data: { currentCount }
+    data: { currentCount,
+            filter}
   })
 );
+//
+// export const fetchMoreEventsByCategory = (currentCount, categoryId) => (
+//   $.ajax({
+//     method: 'GET',
+//     url: `api/categories/${categoryId}`,
+//     data: { currentCount }
+//   })
+// );
 
-export const fetchMoreEventsByCategory = (currentCount, categoryId) => (
-  $.ajax({
-    method: 'GET',
-    url: `api/categories/${categoryId}`,
-    data: { currentCount }
-  })
-);
-
-export const filterByDate = (categoryObj) => (
-  $.ajax({
-    method: 'GET',
-    url: `api/categories/${categoryObj.id}`,
-    data: { filter_type: categoryObj.filter_type,
-            count: categoryObj.count
-          }
-  })
-);
+// export const filterByDate = (categoryObj) => (
+//   $.ajax({
+//     method: 'GET',
+//     url: `api/categories/${categoryObj.id}`,
+//     data: { filter_type: categoryObj.filter_type,
+//             count: categoryObj.count
+//           }
+//   })
+// );

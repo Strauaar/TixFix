@@ -9,7 +9,7 @@ class EventsList extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchEvents();
+    this.props.fetchEvents(this.props.filter);
   }
 
   componentWillReceiveProps(newProps) {
