@@ -44697,7 +44697,7 @@ var EventsList = function (_React$Component) {
   }, {
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(newProps) {
-      // if(newProps.match.params.id !== this.props.match.params) {
+      // if(newProps.match.params.id !== this.props.match.params.id) {
       //   this.props.filterByCategory(newProps.match.params.id)
       // }
     }
