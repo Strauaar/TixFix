@@ -35,22 +35,12 @@ export const fetchMoreEventsByCategory = (currentCount, categoryId) => (
   })
 );
 
-export const filterByDate = (categoryObj) => {
-  if(categoryObj.type === "main"){
-    return $.ajax({
-      method: 'GET',
-      url: `api/categories/${categoryObj.id}`,
-      data: { filter_type: categoryObj.filter_type,
-              count: categoryObj.count
-            }
-    })
-  } else {
-    return $.ajax({
-      method: 'GET',
-      url: `api/subcategories/${categoryObj.id}`,
-      data: { filter_type: categoryObj.filter_type,
-              count: categoryObj.count
-            }
-    })
-  }
-};
+export const filterByDate = (categoryObj) => (
+  $.ajax({
+    method: 'GET',
+    url: `api/categories/${categoryObj.id}`,
+    data: { filter_type: categoryObj.filter_type,
+            count: categoryObj.count
+          }
+  })
+);

@@ -1,7 +1,7 @@
 export const fetchSubCategoryList = (categoryId) => (
   $.ajax({
     method: 'GET',
-    url: `api/subcategories/${categoryId}`,
+    url: `api/categories/${categoryId}`,
     data: {type: 'list'}
   })
 );
@@ -9,7 +9,7 @@ export const fetchSubCategoryList = (categoryId) => (
 export const fetchSubCategoryEvents = (subcategory_id) => (
   $.ajax({
     method:'GET',
-    url:`api/subcategories/${subcategory_id}`,
+    url:`api/categories/${subcategory_id}`,
     data: {type: 'events'}
   })
 );

@@ -2673,23 +2673,13 @@ var fetchMoreEventsByCategory = exports.fetchMoreEventsByCategory = function fet
 };
 
 var filterByDate = exports.filterByDate = function filterByDate(categoryObj) {
-  if (categoryObj.type === "main") {
-    return $.ajax({
-      method: 'GET',
-      url: 'api/categories/' + categoryObj.id,
-      data: { filter_type: categoryObj.filter_type,
-        count: categoryObj.count
-      }
-    });
-  } else {
-    return $.ajax({
-      method: 'GET',
-      url: 'api/subcategories/' + categoryObj.id,
-      data: { filter_type: categoryObj.filter_type,
-        count: categoryObj.count
-      }
-    });
-  }
+  return $.ajax({
+    method: 'GET',
+    url: 'api/categories/' + categoryObj.id,
+    data: { filter_type: categoryObj.filter_type,
+      count: categoryObj.count
+    }
+  });
 };
 
 /***/ }),
@@ -19830,7 +19820,7 @@ Object.defineProperty(exports, "__esModule", {
 var fetchSubCategoryList = exports.fetchSubCategoryList = function fetchSubCategoryList(categoryId) {
   return $.ajax({
     method: 'GET',
-    url: 'api/subcategories/' + categoryId,
+    url: 'api/categories/' + categoryId,
     data: { type: 'list' }
   });
 };
@@ -19838,7 +19828,7 @@ var fetchSubCategoryList = exports.fetchSubCategoryList = function fetchSubCateg
 var fetchSubCategoryEvents = exports.fetchSubCategoryEvents = function fetchSubCategoryEvents(subcategory_id) {
   return $.ajax({
     method: 'GET',
-    url: 'api/subcategories/' + subcategory_id,
+    url: 'api/categories/' + subcategory_id,
     data: { type: 'events' }
   });
 };

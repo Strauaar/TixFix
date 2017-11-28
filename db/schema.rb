@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171128174513) do
+ActiveRecord::Schema.define(version: 20171128175252) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,7 +52,6 @@ ActiveRecord::Schema.define(version: 20171128174513) do
     t.integer "performer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "subcategory_id"
     t.index ["category_id"], name: "index_subevents_on_category_id"
     t.index ["event_id"], name: "index_subevents_on_event_id"
     t.index ["performer_id"], name: "index_subevents_on_performer_id"
