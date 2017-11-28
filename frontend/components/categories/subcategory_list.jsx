@@ -12,12 +12,13 @@ class SubCategoryList extends React.Component {
     console.log(this.props);
     console.log(newProps);
       if(this.props.categoryId !== newProps.categoryId) {
+        console.log("DISPATCHING");
         this.props.fetchSubCategoryList(newProps.categoryId);
       }
   }
 
   componentDidMount() {
-    this.props.fetchSubCategoryList(this.props.categoryId);
+    // this.props.fetchSubCategoryList(this.props.categoryId);
   }
 
   renderHeader() {

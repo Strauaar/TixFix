@@ -44333,11 +44333,13 @@ var _react2 = _interopRequireDefault(_react);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var LocationDateFilter = function LocationDateFilter(_ref) {
-  var filterByDate = _ref.filterByDate;
+  var filterByDate = _ref.filterByDate,
+      categoryId = _ref.categoryId;
 
 
   var filter = function filter(type) {
-    filterByDate({ type: "sub", id: 2, filter_type: type });
+    console.log(categoryId);
+    filterByDate({ id: categoryId, filter_type: type });
   };
 
   return _react2.default.createElement(
@@ -45428,13 +45430,14 @@ var SubCategoryList = function (_React$Component) {
       console.log(this.props);
       console.log(newProps);
       if (this.props.categoryId !== newProps.categoryId) {
+        console.log("DISPATCHING");
         this.props.fetchSubCategoryList(newProps.categoryId);
       }
     }
   }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
-      this.props.fetchSubCategoryList(this.props.categoryId);
+      // this.props.fetchSubCategoryList(this.props.categoryId);
     }
   }, {
     key: 'renderHeader',

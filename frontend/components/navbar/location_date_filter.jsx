@@ -3,6 +3,7 @@ import React from 'react';
 const LocationDateFilter = ({filterByDate, categoryId}) => {
 
   const filter = (type) => {
+    console.log(categoryId);
     filterByDate({id: categoryId, filter_type: type});
   }
 
