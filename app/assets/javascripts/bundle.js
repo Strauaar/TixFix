@@ -20889,7 +20889,7 @@ document.addEventListener("DOMContentLoaded", function () {
   window.loginUser = _session_actions.loginUser;
   window.logoutUser = _session_actions.logoutUser;
   window.createUser = _session_actions.createUser;
-  window.fetchEvents = _event_actions.fetchEvents;
+  window.fetchEvents = _event_util.fetchEvents;
   window.fetchEventByCategory = _event_util.fetchEventByCategory;
 
   window.fetchMoreEvents = _event_actions.fetchMoreEvents;

@@ -7,7 +7,7 @@ class Api::EventsController < ApplicationController
       @events = Event.filter(params[:filter]).limit(10).offset(@count.to_i)
     else
       @events = Event.filter(params[:filter]).limit(10)
-    else
+    end
     render :index
   end
 

@@ -21,8 +21,7 @@ class Event < ApplicationRecord
     class_name: :Subevent,
     foreign_key: :event_id
 
-  def filter_date(filter_date)
-    subevents = self.subevents
+  def self.filter_date(events, date_filter)
 
     if date_filter == 'This weekend'
       start_date = DateTime.now.end_of_week - 2
@@ -37,7 +36,7 @@ class Event < ApplicationRecord
       return self
     end
     result = [];
-    self.each do |event|
+    events.each do |event|
       if event.subevents.any?{|subevent| (start_date..end_date).cover?(subevent.date)}
         result << event
       end
@@ -45,23 +44,23 @@ class Event < ApplicationRecord
     self.where(id: result.map(&:id))
   end
 
-  def filter_location(location_filter)
-    events = self
+  def self.filter_location(events, location_filter)
     filter = '%' + location_filter.split("").join("%") + '%'
     venue_ids = Venue.where('location LIKE ?', filter).pluck(:id)
     events.where(venue_id: venue_ids)
   end
 
-  def self.filter(filter)
+  def self.filter(filters)
+    print filters
     events = Event.all
-    if filter.categoryId != 'undefined'
-      events = events.where(category_id: category_id)
+    if filters["categoryId"] != ""
+      events = events.where(category_id: filters["category_id"])
     end
-    if filter.date != 'undefined'
-      events = events.filter_date(filter.date)
+    if filters["date"] != ""
+      events = Event.filter_date(events, filters["date"])
     end
-    if filter.location != 'undefined'
-      events = events.filter_location(filter.location)
+    if filters["location"] != ""
+      events = Event.filter_location(events, filters["location"])
     end
     events
   end
