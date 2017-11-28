@@ -33,7 +33,7 @@ class Event < ApplicationRecord
       start_date = DateTime.now
       end_date = DateTime.now.end_of_month
     elsif date_filter == 'All dates'
-      return self
+      return events
     end
     result = [];
     events.each do |event|
