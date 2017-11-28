@@ -634,9 +634,9 @@ var fetchMoreEventsByCategory = exports.fetchMoreEventsByCategory = function fet
   };
 };
 
-var filterByDate = exports.filterByDate = function filterByDate(date, categoryObj) {
+var filterByDate = exports.filterByDate = function filterByDate(categoryObj) {
   return function (dispatch) {
-    return EventApiUtil.filterByDate(date, categoryObj).then(function (events) {
+    return EventApiUtil.filterByDate(categoryObj).then(function (events) {
       return dispatch(receiveEvents(events));
     });
   };
@@ -20914,7 +20914,7 @@ document.addEventListener("DOMContentLoaded", function () {
   window.fetchMoreEvents = _event_actions.fetchMoreEvents;
   window.fetchSubCategoryList = _category_actions.fetchSubCategoryList;
   window.fetchSubCategoryEvents = _category_actions.fetchSubCategoryEvents;
-  window.filterByDate = _event_util.filterByDate;
+  window.filterByDate = _event_actions.filterByDate;
 
   var rootEl = document.getElementById("root");
   _reactDom2.default.render(_react2.default.createElement(_root2.default, { store: store }), rootEl);
@@ -44300,17 +44300,30 @@ Object.defineProperty(exports, "__esModule", {
 
 var _reactRedux = __webpack_require__(4);
 
+var _reactRouterDom = __webpack_require__(2);
+
 var _location_date_filter = __webpack_require__(142);
 
 var _location_date_filter2 = _interopRequireDefault(_location_date_filter);
 
+var _event_actions = __webpack_require__(8);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    categoryId: state.ui.categoryId
+  };
+};
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {};
+  return {
+    filterByDate: function filterByDate(dateObj) {
+      return dispatch((0, _event_actions.filterByDate)(dateObj));
+    }
+  };
 };
 
-exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(_location_date_filter2.default);
+exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(null, mapDispatchToProps)(_location_date_filter2.default));
 
 /***/ }),
 /* 142 */
@@ -44329,7 +44342,14 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var LocationDateFilter = function LocationDateFilter() {
+var LocationDateFilter = function LocationDateFilter(_ref) {
+  var filterByDate = _ref.filterByDate;
+
+
+  var filter = function filter(type) {
+    filterByDate({ type: "sub", id: 2, filter_type: type });
+  };
+
   return _react2.default.createElement(
     "div",
     { className: "filter-block" },
@@ -44383,7 +44403,9 @@ var LocationDateFilter = function LocationDateFilter() {
             null,
             _react2.default.createElement(
               "button",
-              null,
+              { onClick: function onClick() {
+                  return filter('today');
+                } },
               "Today"
             )
           ),

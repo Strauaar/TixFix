@@ -1,6 +1,11 @@
 import React from 'react';
 
-const LocationDateFilter = () => {
+const LocationDateFilter = ({filterByDate}) => {
+
+  const filter = (type) => {
+    filterByDate({type: "sub", id: 2, filter_type: type});
+  }
+
   return (
     <div className="filter-block">
       <ul className="navbar-date-location-filter-container">
@@ -18,7 +23,7 @@ const LocationDateFilter = () => {
           </a>
           <ul className="filter-dropdown">
             <li><button>Choose dates</button></li>
-            <li><button>Today</button></li>
+            <li><button onClick={() => filter('today')}>Today</button></li>
             <li><button>This weekend</button></li>
             <li><button>This month</button></li>
             <li><button>All dates</button></li>

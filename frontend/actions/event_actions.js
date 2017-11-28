@@ -40,6 +40,6 @@ export const fetchMoreEventsByCategory = (currentCount, categoryId) => dispatch 
   EventApiUtil.fetchMoreEventsByCategory(currentCount, categoryId).then(events => dispatch(receiveMoreEvents(events)))
 );
 
-export const filterByDate = (date, categoryObj) => dispatch => (
-  EventApiUtil.filterByDate(date, categoryObj).then(events => dispatch(receiveEvents(events)))
+export const filterByDate = (categoryObj) => dispatch => (
+  EventApiUtil.filterByDate(categoryObj).then(events => dispatch(receiveEvents(events)))
 );
