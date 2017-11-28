@@ -44400,6 +44400,7 @@ var LocationDateFilter = function (_React$Component) {
 
     _this.filter = _this.filter.bind(_this);
     _this.changeLocation = _this.changeLocation.bind(_this);
+    _this.keyPress = _this.keyPress.bind(_this);
     _this.state = { dateSelect: "Choose dates", locationSelect: "San Francisco, CA" };
     return _this;
   }
@@ -44421,6 +44422,13 @@ var LocationDateFilter = function (_React$Component) {
     key: 'changeLocation',
     value: function changeLocation(e) {
       this.setState({ locationSelect: e.target.value });
+    }
+  }, {
+    key: 'keyPress',
+    value: function keyPress(e) {
+      if (e.keyCode == 13) {
+        this.props.fetchEvents((0, _lodash.merge)({}, this.props.filter, { location: this.state.locationSelect }));
+      }
     }
   }, {
     key: 'render',
@@ -44449,7 +44457,7 @@ var LocationDateFilter = function (_React$Component) {
               _react2.default.createElement(
                 'li',
                 null,
-                _react2.default.createElement('input', { placeholder: 'Search by city', onChange: this.changeLocation })
+                _react2.default.createElement('input', { placeholder: 'Search by city', onChange: this.changeLocation, onKeyDown: this.keyPress })
               )
             )
           ),

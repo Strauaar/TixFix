@@ -45,8 +45,8 @@ class Event < ApplicationRecord
   end
 
   def self.filter_location(events, location_filter)
-    filter = '%' + location_filter.split("").join("%") + '%'
-    venue_ids = Venue.where('location LIKE ?', filter).pluck(:id)
+    filter = '%' + location_filter.downcase.split("").join("%") + '%'
+    venue_ids = Venue.where('lower(location) LIKE ?', filter).pluck(:id)
     events.where(venue_id: venue_ids)
   end
 
