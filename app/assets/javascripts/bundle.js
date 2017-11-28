@@ -19835,7 +19835,7 @@ var fetchSubCategoryList = exports.fetchSubCategoryList = function fetchSubCateg
   });
 };
 
-var fetchSubCateoryEvents = exports.fetchSubCateoryEvents = function fetchSubCateoryEvents(subcategory_id) {
+var fetchSubCategoryEvents = exports.fetchSubCategoryEvents = function fetchSubCategoryEvents(subcategory_id) {
   return $.ajax({
     method: 'GET',
     url: 'api/subcategories/' + subcategory_id,

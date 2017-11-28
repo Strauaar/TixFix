@@ -6,7 +6,7 @@ export const fetchSubCategoryList = (categoryId) => (
   })
 );
 
-export const fetchSubCateoryEvents = (subcategory_id) => (
+export const fetchSubCategoryEvents = (subcategory_id) => (
   $.ajax({
     method:'GET',
     url:`api/subcategories/${subcategory_id}`,
