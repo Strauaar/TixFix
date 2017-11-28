@@ -21,9 +21,4 @@ class Event < ApplicationRecord
     class_name: :Subevent,
     foreign_key: :event_id
 
-  belongs_to :subcategory,
-    primary_key: :id,
-    class_name: :Subcategory,
-    foreign_key: :subcategory_id
-
 end

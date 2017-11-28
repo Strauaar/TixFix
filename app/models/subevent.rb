@@ -29,6 +29,6 @@ class Subevent < ApplicationRecord
     elsif date_filter == 'month'
       dates = DateTime.now..DateTime.now.end_of_month
     end
-    Subevent.where(:subcategory_id => category_id, :date => dates )
+    Subevent.where(:category_id => category_id, :date => dates )
   end
 end

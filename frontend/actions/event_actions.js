@@ -20,7 +20,7 @@ const receiveEvent = eventQ => ({
   eventQ
 })
 
-export const fetchEvents = (currentCount) => dispatch => (
+export const fetchEvents = () => dispatch => (
   EventApiUtil.fetchEvents().then(events => dispatch(receiveEvents(events)))
 );
 

@@ -515,48 +515,6 @@ module.exports = invariant;
 "use strict";
 
 
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * 
- */
-
-function makeEmptyFunction(arg) {
-  return function () {
-    return arg;
-  };
-}
-
-/**
- * This function accepts and discards inputs; it has no side effects. This is
- * primarily useful idiomatically for overridable function endpoints which
- * always need to be callable, since JS lacks a null-call idiom ala Cocoa.
- */
-var emptyFunction = function emptyFunction() {};
-
-emptyFunction.thatReturns = makeEmptyFunction;
-emptyFunction.thatReturnsFalse = makeEmptyFunction(false);
-emptyFunction.thatReturnsTrue = makeEmptyFunction(true);
-emptyFunction.thatReturnsNull = makeEmptyFunction(null);
-emptyFunction.thatReturnsThis = function () {
-  return this;
-};
-emptyFunction.thatReturnsArgument = function (arg) {
-  return arg;
-};
-
-module.exports = emptyFunction;
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -594,7 +552,7 @@ var receiveEvent = function receiveEvent(eventQ) {
   };
 };
 
-var fetchEvents = exports.fetchEvents = function fetchEvents(currentCount) {
+var fetchEvents = exports.fetchEvents = function fetchEvents() {
   return function (dispatch) {
     return EventApiUtil.fetchEvents().then(function (events) {
       return dispatch(receiveEvents(events));
@@ -641,6 +599,48 @@ var filterByDate = exports.filterByDate = function filterByDate(categoryObj) {
     });
   };
 };
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ * 
+ */
+
+function makeEmptyFunction(arg) {
+  return function () {
+    return arg;
+  };
+}
+
+/**
+ * This function accepts and discards inputs; it has no side effects. This is
+ * primarily useful idiomatically for overridable function endpoints which
+ * always need to be callable, since JS lacks a null-call idiom ala Cocoa.
+ */
+var emptyFunction = function emptyFunction() {};
+
+emptyFunction.thatReturns = makeEmptyFunction;
+emptyFunction.thatReturnsFalse = makeEmptyFunction(false);
+emptyFunction.thatReturnsTrue = makeEmptyFunction(true);
+emptyFunction.thatReturnsNull = makeEmptyFunction(null);
+emptyFunction.thatReturnsThis = function () {
+  return this;
+};
+emptyFunction.thatReturnsArgument = function (arg) {
+  return arg;
+};
+
+module.exports = emptyFunction;
 
 /***/ }),
 /* 9 */
@@ -976,7 +976,7 @@ module.exports = emptyObject;
 
 
 
-var emptyFunction = __webpack_require__(7);
+var emptyFunction = __webpack_require__(8);
 
 /**
  * Similar to invariant but only logs a warning if the condition is not met.
@@ -1174,7 +1174,7 @@ var _category_util = __webpack_require__(45);
 
 var CategoryApiUtil = _interopRequireWildcard(_category_util);
 
-var _event_actions = __webpack_require__(8);
+var _event_actions = __webpack_require__(7);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -1197,7 +1197,7 @@ var fetchSubCategoryList = exports.fetchSubCategoryList = function fetchSubCateg
 
 var fetchSubCategoryEvents = exports.fetchSubCategoryEvents = function fetchSubCategoryEvents(id) {
   return function (dispatch) {
-    return CategoryApiUtil.fetchSubCateoryEvents(id).then(function (events) {
+    return CategoryApiUtil.fetchSubCategoryEvents(id).then(function (events) {
       return dispatch((0, _event_actions.receiveEvents)(events));
     });
   };
@@ -2006,7 +2006,7 @@ module.exports = ExecutionEnvironment;
  * @typechecks
  */
 
-var emptyFunction = __webpack_require__(7);
+var emptyFunction = __webpack_require__(8);
 
 /**
  * Upstream version of event listener. Does not take into account specific
@@ -20871,7 +20871,7 @@ var _root = __webpack_require__(93);
 
 var _root2 = _interopRequireDefault(_root);
 
-var _event_actions = __webpack_require__(8);
+var _event_actions = __webpack_require__(7);
 
 var _event_util = __webpack_require__(42);
 
@@ -20923,7 +20923,7 @@ document.addEventListener("DOMContentLoaded", function () {
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-var m=__webpack_require__(9),n=__webpack_require__(13),p=__webpack_require__(7);
+var m=__webpack_require__(9),n=__webpack_require__(13),p=__webpack_require__(8);
 function q(a){for(var b=arguments.length-1,e="Minified React error #"+a+"; visit http://facebook.github.io/react/docs/error-decoder.html?invariant\x3d"+a,d=0;d<b;d++)e+="\x26args[]\x3d"+encodeURIComponent(arguments[d+1]);b=Error(e+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings.");b.name="Invariant Violation";b.framesToPop=1;throw b;}
 var r={isMounted:function(){return!1},enqueueForceUpdate:function(){},enqueueReplaceState:function(){},enqueueSetState:function(){}};function t(a,b,e){this.props=a;this.context=b;this.refs=n;this.updater=e||r}t.prototype.isReactComponent={};t.prototype.setState=function(a,b){"object"!==typeof a&&"function"!==typeof a&&null!=a?q("85"):void 0;this.updater.enqueueSetState(this,a,b,"setState")};t.prototype.forceUpdate=function(a){this.updater.enqueueForceUpdate(this,a,"forceUpdate")};
 function u(a,b,e){this.props=a;this.context=b;this.refs=n;this.updater=e||r}function v(){}v.prototype=t.prototype;var w=u.prototype=new v;w.constructor=u;m(w,t.prototype);w.isPureReactComponent=!0;function x(a,b,e){this.props=a;this.context=b;this.refs=n;this.updater=e||r}var y=x.prototype=new v;y.constructor=x;m(y,t.prototype);y.unstable_isAsyncReactComponent=!0;y.render=function(){return this.props.children};
@@ -20963,7 +20963,7 @@ var _assign = __webpack_require__(9);
 var invariant = __webpack_require__(10);
 var emptyObject = __webpack_require__(13);
 var warning = __webpack_require__(14);
-var emptyFunction = __webpack_require__(7);
+var emptyFunction = __webpack_require__(8);
 var checkPropTypes = __webpack_require__(20);
 
 // TODO: this is special because it gets imported during build.
@@ -22352,7 +22352,7 @@ if (process.env.NODE_ENV === 'production') {
 /*
  Modernizr 3.0.0pre (Custom Build) | MIT
 */
-var aa=__webpack_require__(0),m=__webpack_require__(31),A=__webpack_require__(9),B=__webpack_require__(7),ca=__webpack_require__(32),da=__webpack_require__(33),ea=__webpack_require__(34),ha=__webpack_require__(35),ia=__webpack_require__(36),C=__webpack_require__(13);
+var aa=__webpack_require__(0),m=__webpack_require__(31),A=__webpack_require__(9),B=__webpack_require__(8),ca=__webpack_require__(32),da=__webpack_require__(33),ea=__webpack_require__(34),ha=__webpack_require__(35),ia=__webpack_require__(36),C=__webpack_require__(13);
 function D(a){for(var b=arguments.length-1,c="Minified React error #"+a+"; visit http://facebook.github.io/react/docs/error-decoder.html?invariant\x3d"+a,d=0;d<b;d++)c+="\x26args[]\x3d"+encodeURIComponent(arguments[d+1]);b=Error(c+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings.");b.name="Invariant Violation";b.framesToPop=1;throw b;}aa?void 0:D("227");
 var la={children:!0,dangerouslySetInnerHTML:!0,defaultValue:!0,defaultChecked:!0,innerHTML:!0,suppressContentEditableWarning:!0,suppressHydrationWarning:!0,style:!0};function qa(a,b){return(a&b)===b}
 var ra={MUST_USE_PROPERTY:1,HAS_BOOLEAN_VALUE:4,HAS_NUMERIC_VALUE:8,HAS_POSITIVE_NUMERIC_VALUE:24,HAS_OVERLOADED_BOOLEAN_VALUE:32,HAS_STRING_BOOLEAN_VALUE:64,injectDOMPropertyConfig:function(a){var b=ra,c=a.Properties||{},d=a.DOMAttributeNamespaces||{},e=a.DOMAttributeNames||{};a=a.DOMMutationMethods||{};for(var f in c){sa.hasOwnProperty(f)?D("48",f):void 0;var g=f.toLowerCase(),k=c[f];g={attributeName:g,attributeNamespace:null,propertyName:f,mutationMethod:null,mustUseProperty:qa(k,b.MUST_USE_PROPERTY),
@@ -22651,7 +22651,7 @@ var invariant = __webpack_require__(10);
 var warning = __webpack_require__(14);
 var ExecutionEnvironment = __webpack_require__(31);
 var _assign = __webpack_require__(9);
-var emptyFunction$1 = __webpack_require__(7);
+var emptyFunction$1 = __webpack_require__(8);
 var EventListener = __webpack_require__(32);
 var getActiveElement = __webpack_require__(33);
 var shallowEqual = __webpack_require__(34);
@@ -38890,7 +38890,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _event_actions = __webpack_require__(8);
+var _event_actions = __webpack_require__(7);
 
 var _lodash = __webpack_require__(43);
 
@@ -38990,7 +38990,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _event_actions = __webpack_require__(8);
+var _event_actions = __webpack_require__(7);
 
 var _category_actions = __webpack_require__(18);
 
@@ -39160,7 +39160,7 @@ function createProvider() {
 
 
 
-var emptyFunction = __webpack_require__(7);
+var emptyFunction = __webpack_require__(8);
 var invariant = __webpack_require__(10);
 var warning = __webpack_require__(14);
 var assign = __webpack_require__(9);
@@ -39710,7 +39710,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 
 
 
-var emptyFunction = __webpack_require__(7);
+var emptyFunction = __webpack_require__(8);
 var invariant = __webpack_require__(10);
 var ReactPropTypesSecret = __webpack_require__(21);
 
@@ -44296,7 +44296,7 @@ var _location_date_filter = __webpack_require__(142);
 
 var _location_date_filter2 = _interopRequireDefault(_location_date_filter);
 
-var _event_actions = __webpack_require__(8);
+var _event_actions = __webpack_require__(7);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -44514,7 +44514,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _reactRedux = __webpack_require__(4);
 
-var _event_actions = __webpack_require__(8);
+var _event_actions = __webpack_require__(7);
 
 var _reactRouterDom = __webpack_require__(2);
 
@@ -44655,7 +44655,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _reactRedux = __webpack_require__(4);
 
-var _event_actions = __webpack_require__(8);
+var _event_actions = __webpack_require__(7);
 
 var _events_list = __webpack_require__(147);
 
@@ -44976,7 +44976,7 @@ var _events_ul = __webpack_require__(151);
 
 var _events_ul2 = _interopRequireDefault(_events_ul);
 
-var _event_actions = __webpack_require__(8);
+var _event_actions = __webpack_require__(7);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -45131,7 +45131,7 @@ var _event_show_page2 = _interopRequireDefault(_event_show_page);
 
 var _reactRouterDom = __webpack_require__(2);
 
-var _event_actions = __webpack_require__(8);
+var _event_actions = __webpack_require__(7);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

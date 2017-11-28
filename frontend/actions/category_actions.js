@@ -13,5 +13,5 @@ export const fetchSubCategoryList = (id) => dispatch => (
 );
 
 export const fetchSubCategoryEvents = (id) => dispatch => (
-  CategoryApiUtil.fetchSubCateoryEvents(id).then(events => dispatch(receiveEvents(events)))
+  CategoryApiUtil.fetchSubCategoryEvents(id).then(events => dispatch(receiveEvents(events)))
 );
