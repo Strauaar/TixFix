@@ -45481,7 +45481,10 @@ var SubCategoryPage = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (SubCategoryPage.__proto__ || Object.getPrototypeOf(SubCategoryPage)).call(this));
 
+    _this.state = { count: 20 };
     _this.eventCount = _this.eventCount.bind(_this);
+    _this.renderEvents = _this.renderEvents.bind(_this);
+    _this.renderButton = _this.renderButton.bind(_this);
     return _this;
   }
 
@@ -45497,7 +45500,68 @@ var SubCategoryPage = function (_React$Component) {
       this.props.events.forEach(function (eventQ) {
         count += eventQ.subevents.length;
       });
-      return "" + count;
+      return count;
+    }
+  }, {
+    key: "renderEvents",
+    value: function renderEvents() {
+      this.props.events.map(function (eventQ) {
+        return eventQ.subevents.map(function (subevent) {
+          return _react2.default.createElement(
+            "div",
+            { className: "card-detail-container subcategory-card-detail-container" },
+            _react2.default.createElement(
+              "div",
+              { className: "card-detail-date-block" },
+              _react2.default.createElement(
+                "span",
+                { className: "card-detail-day" },
+                new Date(subevent.date).toString().slice(0, 3)
+              ),
+              _react2.default.createElement(
+                "span",
+                { className: "card-detail-date" },
+                new Date(subevent.date).toString().slice(4, 10)
+              )
+            ),
+            _react2.default.createElement(
+              "div",
+              { className: "card-detail-event-block subcategory-event-detail-block" },
+              _react2.default.createElement(
+                "p",
+                { className: "card-detail-event-name" },
+                eventQ.name
+              ),
+              _react2.default.createElement(
+                "span",
+                { className: "card-detail-date-venue" },
+                new Date(subevent.date).toString().slice(19, 24),
+                "  at ",
+                eventQ.venue.name,
+                ", ",
+                eventQ.venue.city,
+                ", ",
+                eventQ.venue.state
+              )
+            )
+          );
+        });
+      });
+    }
+  }, {
+    key: "renderButton",
+    value: function renderButton() {
+      if (this.eventCount() > 10) {
+        return _react2.default.createElement(
+          "div",
+          { className: "subcategory-more-events-btn-container" },
+          _react2.default.createElement(
+            "button",
+            { className: "subcategory-more-events-btn" },
+            "See more events"
+          )
+        );
+      }
     }
   }, {
     key: "render",
@@ -45522,44 +45586,52 @@ var SubCategoryPage = function (_React$Component) {
               " Upcoming Events"
             )
           ),
-          this.props.events.map(function (eventQ) {
-            return eventQ.subevents.map(function (subevent) {
-              return _react2.default.createElement(
-                "div",
-                { className: "card-detail-container" },
-                _react2.default.createElement(
+          _react2.default.createElement(
+            "div",
+            { id: "sub" },
+            this.props.events.map(function (eventQ) {
+              return eventQ.subevents.map(function (subevent) {
+                return _react2.default.createElement(
                   "div",
-                  { className: "card-detail-date-block" },
+                  { className: "card-detail-container subcategory-card-detail-container" },
                   _react2.default.createElement(
-                    "span",
-                    { className: "card-detail-day" },
-                    new Date(subevent.date).toString().slice(0, 3)
+                    "div",
+                    { className: "card-detail-date-block" },
+                    _react2.default.createElement(
+                      "span",
+                      { className: "card-detail-day" },
+                      new Date(subevent.date).toString().slice(0, 3)
+                    ),
+                    _react2.default.createElement(
+                      "span",
+                      { className: "card-detail-date" },
+                      new Date(subevent.date).toString().slice(4, 10)
+                    )
                   ),
                   _react2.default.createElement(
-                    "span",
-                    { className: "card-detail-date" },
-                    new Date(subevent.date).toString().slice(4, 10)
+                    "div",
+                    { className: "card-detail-event-block subcategory-event-detail-block" },
+                    _react2.default.createElement(
+                      "p",
+                      { className: "card-detail-event-name" },
+                      eventQ.name
+                    ),
+                    _react2.default.createElement(
+                      "span",
+                      { className: "card-detail-date-venue" },
+                      new Date(subevent.date).toString().slice(19, 24),
+                      "  at ",
+                      eventQ.venue.name,
+                      ", ",
+                      eventQ.venue.city,
+                      ", ",
+                      eventQ.venue.state
+                    )
                   )
-                ),
-                _react2.default.createElement(
-                  "div",
-                  { className: "card-detail-event-block" },
-                  _react2.default.createElement(
-                    "p",
-                    { className: "card-detail-event-name" },
-                    eventQ.name
-                  ),
-                  _react2.default.createElement(
-                    "span",
-                    { className: "card-detail-date-venue" },
-                    new Date(subevent.date).toString().slice(19, 24),
-                    " - ",
-                    eventQ.venue.name
-                  )
-                )
-              );
-            });
-          })
+                );
+              });
+            })
+          )
         )
       );
     }
