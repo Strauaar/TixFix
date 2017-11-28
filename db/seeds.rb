@@ -13,8 +13,8 @@ theater_category = Category.create(name:"Theater and Comedy")
 electronic_subcategory = Category.create(name: "Electronic", parent_category_id: concerts_cateogry.id)
 rap_subcategory = Category.create(name:"Rap and Hip Hop", parent_category_id: concerts_cateogry.id)
 
-jayz_performer = Performer.create(name: "Jay Z", category_id: concerts_cateogry.id)
-kaskade_performer = Performer.create(name:"Kaskade", category_id: concerts_cateogry.id)
+jayz_performer = Performer.create(name: "Jay Z", category_id: rap_subcategory.id)
+kaskade_performer = Performer.create(name:"Kaskade", category_id: electronic_subcategory.id)
 
 billyg_venue = Venue.create(name:"Billy G Pavilly", location:"San Fran", city: "FranPanScisco", state:"GA")
 
