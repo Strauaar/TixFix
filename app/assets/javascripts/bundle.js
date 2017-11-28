@@ -44313,7 +44313,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   };
 };
 
-exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(null, mapDispatchToProps)(_location_date_filter2.default));
+exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_location_date_filter2.default));
 
 /***/ }),
 /* 142 */
@@ -44326,113 +44326,144 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var LocationDateFilter = function LocationDateFilter(_ref) {
-  var filterByDate = _ref.filterByDate,
-      categoryId = _ref.categoryId;
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-  var filter = function filter(type) {
-    console.log(categoryId);
-    filterByDate({ id: categoryId, filter_type: type });
-  };
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-  return _react2.default.createElement(
-    "div",
-    { className: "filter-block" },
-    _react2.default.createElement(
-      "ul",
-      { className: "navbar-date-location-filter-container" },
-      _react2.default.createElement(
-        "li",
-        null,
-        _react2.default.createElement(
-          "a",
-          { href: "#" },
-          _react2.default.createElement("i", { className: "fa fa-map-marker", "aria-hidden": "true" }),
-          "San Francisco, CA",
-          _react2.default.createElement("i", { className: "fa fa-angle-down", "aria-hidden": "true" })
-        ),
+var LocationDateFilter = function (_React$Component) {
+  _inherits(LocationDateFilter, _React$Component);
+
+  function LocationDateFilter(props) {
+    _classCallCheck(this, LocationDateFilter);
+
+    var _this = _possibleConstructorReturn(this, (LocationDateFilter.__proto__ || Object.getPrototypeOf(LocationDateFilter)).call(this, props));
+
+    _this.filter = _this.filter.bind(_this);
+    return _this;
+  }
+
+  _createClass(LocationDateFilter, [{
+    key: "componentWillReceiveProps",
+    value: function componentWillReceiveProps(newProps) {
+      if (this.props.categoryId !== newProps.categoryId) {}
+    }
+  }, {
+    key: "filter",
+    value: function filter(type) {
+      console.log("IN FILTER");
+      console.log(this.props);
+      this.props.filterByDate({ id: this.props.categoryId, filter_type: type });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      return _react2.default.createElement(
+        "div",
+        { className: "filter-block" },
         _react2.default.createElement(
           "ul",
-          { className: "filter-dropdown" },
+          { className: "navbar-date-location-filter-container" },
           _react2.default.createElement(
             "li",
             null,
-            _react2.default.createElement("input", { placeholder: "Search by city" })
+            _react2.default.createElement(
+              "a",
+              { href: "#" },
+              _react2.default.createElement("i", { className: "fa fa-map-marker", "aria-hidden": "true" }),
+              "San Francisco, CA",
+              _react2.default.createElement("i", { className: "fa fa-angle-down", "aria-hidden": "true" })
+            ),
+            _react2.default.createElement(
+              "ul",
+              { className: "filter-dropdown" },
+              _react2.default.createElement(
+                "li",
+                null,
+                _react2.default.createElement("input", { placeholder: "Search by city" })
+              )
+            )
+          ),
+          _react2.default.createElement(
+            "li",
+            null,
+            _react2.default.createElement(
+              "a",
+              { href: "#" },
+              _react2.default.createElement("i", { className: "fa fa-calendar", "aria-hidden": "true" }),
+              "Choose dates",
+              _react2.default.createElement("i", { className: "fa fa-angle-down", "aria-hidden": "true" })
+            ),
+            _react2.default.createElement(
+              "ul",
+              { className: "filter-dropdown" },
+              _react2.default.createElement(
+                "li",
+                null,
+                _react2.default.createElement(
+                  "button",
+                  null,
+                  "Choose dates"
+                )
+              ),
+              _react2.default.createElement(
+                "li",
+                null,
+                _react2.default.createElement(
+                  "button",
+                  { onClick: function onClick() {
+                      return _this2.filter('today');
+                    } },
+                  "Today"
+                )
+              ),
+              _react2.default.createElement(
+                "li",
+                null,
+                _react2.default.createElement(
+                  "button",
+                  null,
+                  "This weekend"
+                )
+              ),
+              _react2.default.createElement(
+                "li",
+                null,
+                _react2.default.createElement(
+                  "button",
+                  null,
+                  "This month"
+                )
+              ),
+              _react2.default.createElement(
+                "li",
+                null,
+                _react2.default.createElement(
+                  "button",
+                  null,
+                  "All dates"
+                )
+              )
+            )
           )
         )
-      ),
-      _react2.default.createElement(
-        "li",
-        null,
-        _react2.default.createElement(
-          "a",
-          { href: "#" },
-          _react2.default.createElement("i", { className: "fa fa-calendar", "aria-hidden": "true" }),
-          "Choose dates",
-          _react2.default.createElement("i", { className: "fa fa-angle-down", "aria-hidden": "true" })
-        ),
-        _react2.default.createElement(
-          "ul",
-          { className: "filter-dropdown" },
-          _react2.default.createElement(
-            "li",
-            null,
-            _react2.default.createElement(
-              "button",
-              null,
-              "Choose dates"
-            )
-          ),
-          _react2.default.createElement(
-            "li",
-            null,
-            _react2.default.createElement(
-              "button",
-              { onClick: function onClick() {
-                  return filter('today');
-                } },
-              "Today"
-            )
-          ),
-          _react2.default.createElement(
-            "li",
-            null,
-            _react2.default.createElement(
-              "button",
-              null,
-              "This weekend"
-            )
-          ),
-          _react2.default.createElement(
-            "li",
-            null,
-            _react2.default.createElement(
-              "button",
-              null,
-              "This month"
-            )
-          ),
-          _react2.default.createElement(
-            "li",
-            null,
-            _react2.default.createElement(
-              "button",
-              null,
-              "All dates"
-            )
-          )
-        )
-      )
-    )
-  );
-};
+      );
+    }
+  }]);
+
+  return LocationDateFilter;
+}(_react2.default.Component);
 
 exports.default = LocationDateFilter;
 
