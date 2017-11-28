@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { merge } from 'lodash';
 
 class CategoryCard extends React.Component {
   constructor(props) {
@@ -21,7 +22,7 @@ class CategoryCard extends React.Component {
       this.props.fetchEvents(this.props.filter);
     } else {
       this.props.history.push(`/category/${id}`);
-      this.props.fetchEvents(this.props.filter);
+      this.props.fetchEvents(merge({}, this.props.filter, { categoryId: id }));
     }
   }
 

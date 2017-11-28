@@ -12,7 +12,7 @@ const filterReducer = (state = initialState, action ) => {
   let newState = {};
   switch(action.type) {
     case RECEIVE_EVENTS:
-      newState = merge({}, state, { categoryId: action.categoryId });
+      newState = merge({}, state, action.filter);
       return newState;
     default:
     return state;

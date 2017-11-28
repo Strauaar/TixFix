@@ -7,12 +7,13 @@ export const RECEIVE_EVENT = "RECEIVE_EVENT";
 export const receiveEvents = (events, filter) => ({
   type: RECEIVE_EVENTS,
   events,
-  categoryId: filter.categoryId
+  filter
 });
 
-const receiveMoreEvents = events => ({
+const receiveMoreEvents = (events, filter) => ({
   type: RECEIVE_MORE_EVENTS,
-  events
+  events,
+  filter
 });
 
 const receiveEvent = eventQ => ({

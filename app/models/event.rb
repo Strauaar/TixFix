@@ -54,7 +54,8 @@ class Event < ApplicationRecord
     print filters
     events = Event.all
     if filters["categoryId"] != ""
-      events = events.where(category_id: filters["category_id"])
+      child_cat_ids = Category.find(filters["categoryId"]).subcategories.pluck(:id)
+      events = events.where(category_id: child_cat_ids)
     end
     if filters["date"] != ""
       events = Event.filter_date(events, filters["date"])

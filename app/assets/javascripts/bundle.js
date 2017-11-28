@@ -534,14 +534,15 @@ var receiveEvents = exports.receiveEvents = function receiveEvents(events, filte
   return {
     type: RECEIVE_EVENTS,
     events: events,
-    categoryId: filter.categoryId
+    filter: filter
   };
 };
 
-var receiveMoreEvents = function receiveMoreEvents(events) {
+var receiveMoreEvents = function receiveMoreEvents(events, filter) {
   return {
     type: RECEIVE_MORE_EVENTS,
-    events: events
+    events: events,
+    filter: filter
   };
 };
 
@@ -39057,7 +39058,7 @@ var filterReducer = function filterReducer() {
   var newState = {};
   switch (action.type) {
     case _event_actions.RECEIVE_EVENTS:
-      newState = (0, _lodash.merge)({}, state, { categoryId: action.categoryId });
+      newState = (0, _lodash.merge)({}, state, action.filter);
       return newState;
     default:
       return state;
@@ -44647,6 +44648,8 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = __webpack_require__(2);
 
+var _lodash = __webpack_require__(43);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -44684,7 +44687,7 @@ var CategoryCard = function (_React$Component) {
         this.props.fetchEvents(this.props.filter);
       } else {
         this.props.history.push('/category/' + id);
-        this.props.fetchEvents(this.props.filter);
+        this.props.fetchEvents((0, _lodash.merge)({}, this.props.filter, { categoryId: id }));
       }
     }
   }, {
