@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import NavBarMiscHelp from './navbar_misc_menu_items';
 import UserMenuItems from './navbar_user_menu_items';
 import SessionsModalContainer from '../session/sessions_modal_container';
@@ -27,9 +27,18 @@ class NavBar extends React.Component {
             <UserMenuItems currentUser={this.props.currentUser} logout={this.props.logout}/>
           </div>
         </div>
-        <Route exact path="/" component={SearchBarContainer}></Route>
-        <Route path="/category" component={SearchBarContainer}></Route>
-        <Route exact path ="/" component={LocationDateFilterContainer}/>
+
+        <Switch>
+          <Route exact path="/" component={SearchBarContainer}></Route>
+          <Route path="/category" component={SearchBarContainer}></Route>
+          <Route path="/subcategory" component={SearchBarContainer}></Route>
+
+        </Switch>
+        <Switch>
+          <Route exact path ="/" component={LocationDateFilterContainer}/>
+          <Route path ="/category" component={LocationDateFilterContainer}/>
+          <Route path ="/subcategory" component={LocationDateFilterContainer}/>
+        </Switch>
         <Route path="/new" component={SessionsModalContainer}></Route>
         <AuthRoute path="/session" component={SessionsModalContainer}></AuthRoute>
       </div>

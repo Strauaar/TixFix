@@ -13,4 +13,4 @@ const mapDispatchToProps = dispatch => ({
   fetchSubCategoryEvents: (id) => dispatch(fetchSubCategoryEvents(id))
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SubCategoryList));
+export default withRouter(connect(mapStateToProps,mapDispatchToProps)(SubCategoryList));

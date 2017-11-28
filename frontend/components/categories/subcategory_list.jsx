@@ -9,12 +9,12 @@ class SubCategoryList extends React.Component {
 
   componentWillReceiveProps(newProps) {
     if(this.props.categoryId !== newProps.categoryId) {
-      this.props.fetchSubCategoryList(newProps.categoryId)
+      this.props.fetchSubCategoryList(newProps.categoryId);
     }
   }
 
   componentDidMount() {
-    this.props.fetchSubCategoryList(this.props.categoryId)
+    this.props.fetchSubCategoryList(this.props.categoryId);
   }
 
   renderHeader() {
@@ -25,7 +25,7 @@ class SubCategoryList extends React.Component {
     } else if (this.props.categoryId === 3) {
       return "Theater Tickets"
     }
-    // onClick={() => this.props.fetchSubCategoryEvents(subcategory.id)} 
+    // onClick={() => this.props.fetchSubCategoryEvents(subcategory.id)}
   }
 
   render() {
@@ -37,7 +37,7 @@ class SubCategoryList extends React.Component {
         <div className="subcategory-list-header">{this.renderHeader()}</div>
         {
           this.props.subcategory_list.map( subcategory => <span className="subcategory-item">
-            <Link to={`/category/${id}`}>{subcategory.name}</Link>
+            <Link to={`/subcategory/${subcategory.id}`} params={{subcategoryId: subcategory.id}}>{subcategory.name}</Link>
           </span>)
         }
       </div>

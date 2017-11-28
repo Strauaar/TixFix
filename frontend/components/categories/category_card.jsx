@@ -14,7 +14,7 @@ class CategoryCard extends React.Component {
       return "category-card-container"
     }
   }
-
+  
   filter(id) {
     if(id === null) {
       this.props.history.push("/")

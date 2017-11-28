@@ -35,6 +35,15 @@ kaskade_event = Event.create(
   venue_id: billyg_venue.id
 )
 
+kaskade_event1 = Event.create(
+  name: "Kaskade",
+  category_id: concerts_cateogry.id,
+  subcategory_id: electronic_subcategory.id,
+  image_url: "kaskade.jpg",
+  performer_id: kaskade_performer.id,
+  venue_id: billyg_venue.id
+)
+
 
 for i in 0..2
   Subevent.create(
@@ -58,5 +67,18 @@ for i in 0..2
     image_url: "kaskade.jpg",
     date: "Dec 20, 2017",
     event_id: kaskade_event.id
+  )
+end
+
+for i in 0..1
+  Subevent.create(
+    name: "Kaskade",
+    venue_id: billyg_venue.id,
+    performer_id: kaskade_performer.id,
+    category_id: concerts_cateogry.id,
+    subcategory_id: electronic_subcategory.id,
+    image_url: "kaskade.jpg",
+    date: "Dec 20, 2017",
+    event_id: kaskade_event1.id
   )
 end
