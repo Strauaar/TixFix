@@ -1,4 +1,5 @@
 import React from 'react';
+import { merge } from 'lodash';
 
 class LocationDateFilter extends React.Component{
   constructor(props) {
@@ -17,8 +18,7 @@ class LocationDateFilter extends React.Component{
     console.log("IN FILTER");
     console.log(this.props);
     this.setState({dateSelect: type})
-    this.props.filterByDate({id: this.props.categoryId, filter_type: type});
-    
+    this.props.fetchEvents(merge({}, this.props.filter, {date: type}));
   }
 
   render() {

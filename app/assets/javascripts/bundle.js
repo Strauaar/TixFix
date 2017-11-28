@@ -44349,13 +44349,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    categoryId: state.ui.filter.categoryId
+    categoryId: state.ui.filter.categoryId,
+    filter: state.ui.filter
   };
 };
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    filterByDate: function filterByDate(dateObj) {
-      return dispatch((0, _event_actions.filterByDate)(dateObj));
+    fetchEvents: function fetchEvents(filter) {
+      return dispatch((0, _event_actions.fetchEvents)(filter));
     }
   };
 };
@@ -44379,6 +44380,8 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _lodash = __webpack_require__(43);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -44401,113 +44404,113 @@ var LocationDateFilter = function (_React$Component) {
   }
 
   _createClass(LocationDateFilter, [{
-    key: "componentWillReceiveProps",
+    key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(newProps) {
       if (this.props.categoryId !== newProps.categoryId) {}
     }
   }, {
-    key: "filter",
+    key: 'filter',
     value: function filter(type) {
       console.log("IN FILTER");
       console.log(this.props);
       this.setState({ dateSelect: type });
-      this.props.filterByDate({ id: this.props.categoryId, filter_type: type });
+      this.props.fetchEvents((0, _lodash.merge)({}, this.props.filter, { date: type }));
     }
   }, {
-    key: "render",
+    key: 'render',
     value: function render() {
       var _this2 = this;
 
       return _react2.default.createElement(
-        "div",
-        { className: "filter-block" },
+        'div',
+        { className: 'filter-block' },
         _react2.default.createElement(
-          "ul",
-          { className: "navbar-date-location-filter-container" },
+          'ul',
+          { className: 'navbar-date-location-filter-container' },
           _react2.default.createElement(
-            "li",
+            'li',
             null,
             _react2.default.createElement(
-              "a",
-              { href: "#" },
-              _react2.default.createElement("i", { className: "fa fa-map-marker", "aria-hidden": "true" }),
+              'a',
+              { href: '#' },
+              _react2.default.createElement('i', { className: 'fa fa-map-marker', 'aria-hidden': 'true' }),
               this.state.locationSelect,
-              _react2.default.createElement("i", { className: "fa fa-angle-down", "aria-hidden": "true" })
+              _react2.default.createElement('i', { className: 'fa fa-angle-down', 'aria-hidden': 'true' })
             ),
             _react2.default.createElement(
-              "ul",
-              { className: "filter-dropdown" },
+              'ul',
+              { className: 'filter-dropdown' },
               _react2.default.createElement(
-                "li",
+                'li',
                 null,
-                _react2.default.createElement("input", { placeholder: "Search by city" })
+                _react2.default.createElement('input', { placeholder: 'Search by city' })
               )
             )
           ),
           _react2.default.createElement(
-            "li",
+            'li',
             null,
             _react2.default.createElement(
-              "a",
-              { href: "#" },
-              _react2.default.createElement("i", { className: "fa fa-calendar", "aria-hidden": "true" }),
+              'a',
+              { href: '#' },
+              _react2.default.createElement('i', { className: 'fa fa-calendar', 'aria-hidden': 'true' }),
               this.state.dateSelect,
-              _react2.default.createElement("i", { className: "fa fa-angle-down", "aria-hidden": "true" })
+              _react2.default.createElement('i', { className: 'fa fa-angle-down', 'aria-hidden': 'true' })
             ),
             _react2.default.createElement(
-              "ul",
-              { className: "filter-dropdown" },
+              'ul',
+              { className: 'filter-dropdown' },
               _react2.default.createElement(
-                "li",
+                'li',
                 null,
                 _react2.default.createElement(
-                  "button",
+                  'button',
                   null,
-                  "Choose dates"
+                  'Choose dates'
                 )
               ),
               _react2.default.createElement(
-                "li",
+                'li',
                 null,
                 _react2.default.createElement(
-                  "button",
+                  'button',
                   { onClick: function onClick() {
                       return _this2.filter('Today');
                     } },
-                  "Today"
+                  'Today'
                 )
               ),
               _react2.default.createElement(
-                "li",
+                'li',
                 null,
                 _react2.default.createElement(
-                  "button",
+                  'button',
                   { onClick: function onClick() {
                       return _this2.filter('This weekend');
                     } },
-                  "This weekend"
+                  'This weekend'
                 )
               ),
               _react2.default.createElement(
-                "li",
+                'li',
                 null,
                 _react2.default.createElement(
-                  "button",
+                  'button',
                   { onClick: function onClick() {
                       return _this2.filter('This month');
                     } },
-                  "This month"
+                  'This month'
                 )
               ),
               _react2.default.createElement(
-                "li",
+                'li',
                 null,
                 _react2.default.createElement(
-                  "button",
+                  'button',
                   { onClick: function onClick() {
                       return _this2.filter('All dates');
                     } },
-                  "All dates"
+                  'All dates'
                 )
               )
             )
