@@ -44399,6 +44399,7 @@ var LocationDateFilter = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (LocationDateFilter.__proto__ || Object.getPrototypeOf(LocationDateFilter)).call(this, props));
 
     _this.filter = _this.filter.bind(_this);
+    _this.changeLocation = _this.changeLocation.bind(_this);
     _this.state = { dateSelect: "Choose dates", locationSelect: "San Francisco, CA" };
     return _this;
   }
@@ -44415,6 +44416,11 @@ var LocationDateFilter = function (_React$Component) {
       console.log(this.props);
       this.setState({ dateSelect: type });
       this.props.fetchEvents((0, _lodash.merge)({}, this.props.filter, { date: type }));
+    }
+  }, {
+    key: 'changeLocation',
+    value: function changeLocation(e) {
+      this.setState({ locationSelect: e.target.value });
     }
   }, {
     key: 'render',
@@ -44443,7 +44449,7 @@ var LocationDateFilter = function (_React$Component) {
               _react2.default.createElement(
                 'li',
                 null,
-                _react2.default.createElement('input', { placeholder: 'Search by city' })
+                _react2.default.createElement('input', { placeholder: 'Search by city', onChange: this.changeLocation })
               )
             )
           ),
@@ -44687,7 +44693,7 @@ var CategoryCard = function (_React$Component) {
     value: function filter(id) {
       if (id === null) {
         this.props.history.push("/");
-        this.props.fetchEvents(this.props.filter);
+        this.props.fetchEvents((0, _lodash.merge)({}, this.props.filter, { categoryId: id }));
       } else {
         this.props.history.push('/category/' + id);
         this.props.fetchEvents((0, _lodash.merge)({}, this.props.filter, { categoryId: id }));

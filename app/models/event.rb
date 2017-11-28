@@ -51,7 +51,6 @@ class Event < ApplicationRecord
   end
 
   def self.filter(filters)
-    print filters
     events = Event.all
     if filters["categoryId"] != ""
       child_cat_ids = Category.find(filters["categoryId"]).subcategories.pluck(:id)

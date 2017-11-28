@@ -5,6 +5,7 @@ class LocationDateFilter extends React.Component{
   constructor(props) {
     super(props)
     this.filter = this.filter.bind(this);
+    this.changeLocation = this.changeLocation.bind(this);
     this.state = {dateSelect: "Choose dates", locationSelect: "San Francisco, CA"}
   }
 
@@ -21,6 +22,10 @@ class LocationDateFilter extends React.Component{
     this.props.fetchEvents(merge({}, this.props.filter, {date: type}));
   }
 
+  changeLocation(e) {
+    this.setState({locationSelect: e.target.value});
+  }
+
   render() {
     return (
       <div className="filter-block">
@@ -30,7 +35,7 @@ class LocationDateFilter extends React.Component{
               {this.state.locationSelect}<i className="fa fa-angle-down" aria-hidden="true"></i>
             </a>
             <ul className="filter-dropdown">
-              <li><input placeholder="Search by city"></input></li>
+              <li><input placeholder="Search by city" onChange={this.changeLocation}></input></li>
             </ul>
           </li>
           <li>
