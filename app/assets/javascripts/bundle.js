@@ -43309,7 +43309,12 @@ var App = function (_React$Component) {
         _react2.default.createElement('div', { className: 'nav-bar-background' }),
         _react2.default.createElement(_navbar_container2.default, null),
         _react2.default.createElement(_reactRouterDom.Route, { path: '/events/:eventId', component: _event_show_page_container2.default }),
-        _react2.default.createElement(_reactRouterDom.Route, { path: '/', component: _category_card_list2.default }),
+        _react2.default.createElement(
+          _reactRouterDom.Switch,
+          null,
+          _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _category_card_list2.default }),
+          _react2.default.createElement(_reactRouterDom.Route, { path: '/category', component: _category_card_list2.default })
+        ),
         _react2.default.createElement(
           _reactRouterDom.Switch,
           null,
@@ -43457,15 +43462,13 @@ var NavBar = function (_React$Component) {
           _reactRouterDom.Switch,
           null,
           _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _searchbar_container2.default }),
-          _react2.default.createElement(_reactRouterDom.Route, { path: '/category', component: _searchbar_container2.default }),
-          _react2.default.createElement(_reactRouterDom.Route, { path: '/subcategory', component: _searchbar_container2.default })
+          _react2.default.createElement(_reactRouterDom.Route, { path: '/category', component: _searchbar_container2.default })
         ),
         _react2.default.createElement(
           _reactRouterDom.Switch,
           null,
           _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _location_date_filter_container2.default }),
-          _react2.default.createElement(_reactRouterDom.Route, { path: '/category', component: _location_date_filter_container2.default }),
-          _react2.default.createElement(_reactRouterDom.Route, { path: '/subcategory', component: _location_date_filter_container2.default })
+          _react2.default.createElement(_reactRouterDom.Route, { path: '/category', component: _location_date_filter_container2.default })
         ),
         _react2.default.createElement(_reactRouterDom.Route, { path: '/new', component: _sessions_modal_container2.default }),
         _react2.default.createElement(_route_util.AuthRoute, { path: '/session', component: _sessions_modal_container2.default })
@@ -45476,7 +45479,10 @@ var SubCategoryPage = function (_React$Component) {
   function SubCategoryPage() {
     _classCallCheck(this, SubCategoryPage);
 
-    return _possibleConstructorReturn(this, (SubCategoryPage.__proto__ || Object.getPrototypeOf(SubCategoryPage)).call(this));
+    var _this = _possibleConstructorReturn(this, (SubCategoryPage.__proto__ || Object.getPrototypeOf(SubCategoryPage)).call(this));
+
+    _this.eventCount = _this.eventCount.bind(_this);
+    return _this;
   }
 
   _createClass(SubCategoryPage, [{
@@ -45485,49 +45491,76 @@ var SubCategoryPage = function (_React$Component) {
       this.props.fetchSubCategoryEvents(this.props.match.params.id);
     }
   }, {
+    key: "eventCount",
+    value: function eventCount() {
+      var count = 0;
+      this.props.events.forEach(function (eventQ) {
+        count += eventQ.subevents.length;
+      });
+      return "" + count;
+    }
+  }, {
     key: "render",
     value: function render() {
       return _react2.default.createElement(
         "div",
-        null,
-        this.props.events.forEach(function (eventQ) {
-          return eventQ.subevents.map(function (subevent) {
-            return _react2.default.createElement(
-              "div",
-              { className: "card-detail-container" },
+        { className: "subcategory-event-list-container" },
+        _react2.default.createElement(
+          "div",
+          { className: "subcategory-event-list" },
+          _react2.default.createElement(
+            "div",
+            { className: "event-count-container" },
+            _react2.default.createElement(
+              "p",
+              { className: "count-text" },
               _react2.default.createElement(
-                "div",
-                { className: "card-detail-date-block" },
-                _react2.default.createElement(
-                  "span",
-                  { className: "card-detail-day" },
-                  new Date(subevent.date).toString().slice(0, 3)
-                ),
-                _react2.default.createElement(
-                  "span",
-                  { className: "card-detail-date" },
-                  new Date(subevent.date).toString().slice(4, 10)
-                )
+                "strong",
+                null,
+                this.eventCount()
               ),
-              _react2.default.createElement(
+              " Upcoming Events"
+            )
+          ),
+          this.props.events.map(function (eventQ) {
+            return eventQ.subevents.map(function (subevent) {
+              return _react2.default.createElement(
                 "div",
-                { className: "card-detail-event-block" },
+                { className: "card-detail-container" },
                 _react2.default.createElement(
-                  "p",
-                  { className: "card-detail-event-name" },
-                  eventQ.name
+                  "div",
+                  { className: "card-detail-date-block" },
+                  _react2.default.createElement(
+                    "span",
+                    { className: "card-detail-day" },
+                    new Date(subevent.date).toString().slice(0, 3)
+                  ),
+                  _react2.default.createElement(
+                    "span",
+                    { className: "card-detail-date" },
+                    new Date(subevent.date).toString().slice(4, 10)
+                  )
                 ),
                 _react2.default.createElement(
-                  "span",
-                  { className: "card-detail-date-venue" },
-                  new Date(subevent.date).toString().slice(19, 24),
-                  " - ",
-                  eventQ.venue.name
+                  "div",
+                  { className: "card-detail-event-block" },
+                  _react2.default.createElement(
+                    "p",
+                    { className: "card-detail-event-name" },
+                    eventQ.name
+                  ),
+                  _react2.default.createElement(
+                    "span",
+                    { className: "card-detail-date-venue" },
+                    new Date(subevent.date).toString().slice(19, 24),
+                    " - ",
+                    eventQ.venue.name
+                  )
                 )
-              )
-            );
-          });
-        })
+              );
+            });
+          })
+        )
       );
     }
   }]);

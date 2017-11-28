@@ -25,3 +25,23 @@
 .subcategory-item:hover {
   cursor: pointer;
 }
+
+.subcategory-event-list-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 60px;
+}
+
+.subcategory-event-list {
+  background-color: white;
+  width: 700px;
+  border: 1px solid #E6E9EB;
+  border-bottom: none;
+}
+
+.event-count-container {
+  border-bottom: 1px solid #E6E9EB;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 20px;
+  padding: 8px 15px;
+}

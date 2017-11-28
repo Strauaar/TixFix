@@ -29,7 +29,11 @@ class App extends React.Component {
         <div className="nav-bar-background"></div>
         <NavBarContainer></NavBarContainer>
         <Route path="/events/:eventId" component={EventShowPageContainer} />
-        <Route path="/"component={CategoryCardList}/>
+
+        <Switch>
+          <Route exact path="/"component={CategoryCardList}/>
+          <Route path="/category"component={CategoryCardList}/>
+        </Switch>
 
         <Switch>
           <Route exact path="/" component={EventsListContainer}/>

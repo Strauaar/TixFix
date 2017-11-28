@@ -31,13 +31,12 @@ class NavBar extends React.Component {
         <Switch>
           <Route exact path="/" component={SearchBarContainer}></Route>
           <Route path="/category" component={SearchBarContainer}></Route>
-          <Route path="/subcategory" component={SearchBarContainer}></Route>
 
         </Switch>
         <Switch>
           <Route exact path ="/" component={LocationDateFilterContainer}/>
           <Route path ="/category" component={LocationDateFilterContainer}/>
-          <Route path ="/subcategory" component={LocationDateFilterContainer}/>
+      
         </Switch>
         <Route path="/new" component={SessionsModalContainer}></Route>
         <AuthRoute path="/session" component={SessionsModalContainer}></AuthRoute>
