@@ -1,4 +1,4 @@
-@results.each do |subevent|
+@subevents.each do |subevent|
   json.set! subevent.event.id do
     json.extract! subevent.event, :id, :name
     json.category subevent.event.category

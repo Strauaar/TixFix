@@ -1,9 +1,9 @@
 import React from 'react';
 
-const LocationDateFilter = ({filterByDate}) => {
+const LocationDateFilter = ({filterByDate, categoryId}) => {
 
   const filter = (type) => {
-    filterByDate({type: "sub", id: 2, filter_type: type});
+    filterByDate({id: categoryId, filter_type: type});
   }
 
   return (
