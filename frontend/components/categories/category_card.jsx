@@ -14,7 +14,7 @@ class CategoryCard extends React.Component {
       return "category-card-container"
     }
   }
-  
+
   filter(id) {
     if(id === null) {
       this.props.history.push("/")
@@ -25,11 +25,19 @@ class CategoryCard extends React.Component {
     }
   }
 
+  disable() {
+    if(this.props.selected) {
+      return "disabled"
+    } else {
+      return ""
+    }
+  }
+
   render() {
     let { icon, text, id } = this.props;
 
     return(
-      <button onClick={() => this.filter(id)} className={this.buttonClass()}>
+      <button disabled={this.disable.apply(this)} onClick={() => this.filter(id)} className={this.buttonClass()}>
         {icon()}
         <p>{text}</p>
       </button>

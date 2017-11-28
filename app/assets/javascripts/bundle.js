@@ -44562,6 +44562,15 @@ var CategoryCard = function (_React$Component) {
       }
     }
   }, {
+    key: 'disable',
+    value: function disable() {
+      if (this.props.selected) {
+        return "disabled";
+      } else {
+        return "";
+      }
+    }
+  }, {
     key: 'render',
     value: function render() {
       var _this2 = this;
@@ -44574,7 +44583,7 @@ var CategoryCard = function (_React$Component) {
 
       return _react2.default.createElement(
         'button',
-        { onClick: function onClick() {
+        { disabled: this.disable.apply(this), onClick: function onClick() {
             return _this2.filter(id);
           }, className: this.buttonClass() },
         icon(),
