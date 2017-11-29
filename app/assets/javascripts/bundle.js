@@ -5040,7 +5040,7 @@ module.exports = invariant;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.fetchMoreEvents = exports.fetchEvents = exports.fetchEvent = exports.receiveEvents = exports.RECEIVE_EVENT = exports.RECEIVE_MORE_EVENTS = exports.RECEIVE_EVENTS = undefined;
+exports.fetchMoreEvents = exports.fetchEvents = exports.fetchEvent = exports.clearEvents = exports.receiveEvents = exports.CLEAR_EVENTS = exports.RECEIVE_EVENT = exports.RECEIVE_MORE_EVENTS = exports.RECEIVE_EVENTS = undefined;
 
 var _event_util = __webpack_require__(46);
 
@@ -5051,6 +5051,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 var RECEIVE_EVENTS = exports.RECEIVE_EVENTS = "RECEIVE_EVENTS";
 var RECEIVE_MORE_EVENTS = exports.RECEIVE_MORE_EVENTS = "RECEIVE_MORE_EVENTS";
 var RECEIVE_EVENT = exports.RECEIVE_EVENT = "RECEIVE_EVENT";
+var CLEAR_EVENTS = exports.CLEAR_EVENTS = "CLEAR_EVENTS";
 
 var receiveEvents = exports.receiveEvents = function receiveEvents(events, filter) {
   return {
@@ -5072,6 +5073,12 @@ var receiveEvent = function receiveEvent(eventQ) {
   return {
     type: RECEIVE_EVENT,
     eventQ: eventQ
+  };
+};
+
+var clearEvents = exports.clearEvents = function clearEvents() {
+  return {
+    type: CLEAR_EVENTS
   };
 };
 
@@ -55107,6 +55114,8 @@ var eventsReducer = function eventsReducer() {
     case _event_actions.RECEIVE_MORE_EVENTS:
       newState = (0, _lodash.merge)({}, state, action.events);
       return newState;
+    case _event_actions.CLEAR_EVENTS:
+      return {};
     default:
       return state;
   }
@@ -62845,197 +62854,13 @@ exports.default = EventCheckoutPage;
 
 /***/ }),
 /* 291 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _reactRedux = __webpack_require__(4);
-
-var _reactRouterDom = __webpack_require__(2);
-
-var _tickets_sell_splash_page = __webpack_require__(292);
-
-var _tickets_sell_splash_page2 = _interopRequireDefault(_tickets_sell_splash_page);
-
-var _event_actions = __webpack_require__(8);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var mapStateToProps = function mapStateToProps(state) {
-  return {
-    events: Object.values(state.entities.events)
-  };
-};
-
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    fetchEvents: function fetchEvents(filter) {
-      return dispatch((0, _event_actions.fetchEvents)(filter));
-    }
-  };
-};
-
-exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_tickets_sell_splash_page2.default));
+throw new Error("Module build failed: SyntaxError: Unexpected token, expected , (12:2)\n\n\u001b[0m \u001b[90m 10 | \u001b[39m\u001b[36mconst\u001b[39m mapDispatchToProps \u001b[33m=\u001b[39m dispatch \u001b[33m=>\u001b[39m ({\n \u001b[90m 11 | \u001b[39m  fetchEvents\u001b[33m:\u001b[39m (filter) \u001b[33m=>\u001b[39m dispatch(fetchEvents(filter))\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 | \u001b[39m  clearEvents\u001b[33m:\u001b[39m () \u001b[33m=>\u001b[39m dispatch(clearEvents())\n \u001b[90m    | \u001b[39m  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 | \u001b[39m})\u001b[33m;\u001b[39m\n \u001b[90m 14 | \u001b[39m\n \u001b[90m 15 | \u001b[39m\u001b[0m\n");
 
 /***/ }),
-/* 292 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _moment = __webpack_require__(0);
-
-var _moment2 = _interopRequireDefault(_moment);
-
-var _reactRouterDom = __webpack_require__(2);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var TicketPage = function (_React$Component) {
-  _inherits(TicketPage, _React$Component);
-
-  function TicketPage(props) {
-    _classCallCheck(this, TicketPage);
-
-    var _this = _possibleConstructorReturn(this, (TicketPage.__proto__ || Object.getPrototypeOf(TicketPage)).call(this, props));
-
-    _this.state = { input: "" };
-    _this.handleInput = _this.handleInput.bind(_this);
-    _this.keyPress = _this.keyPress.bind(_this);
-    _this.renderSearchList = _this.renderSearchList.bind(_this);
-    return _this;
-  }
-
-  _createClass(TicketPage, [{
-    key: 'handleInput',
-    value: function handleInput(e) {
-      this.setState({ input: e.target.value });
-    }
-  }, {
-    key: 'keyPress',
-    value: function keyPress(e) {
-      if (e.keyCode == 13) {
-        this.props.fetchEvents({ name: this.state.input });
-      }
-    }
-  }, {
-    key: 'renderSearchList',
-    value: function renderSearchList() {
-      if (this.state.input.length >= 1) {
-        var result = [];
-        for (var i = 0; i < this.props.events.length; i++) {
-          var month = (0, _moment2.default)(this.props.events[i].date).format('MMM');
-          var day = (0, _moment2.default)(this.props.events[i].date).format('DD');
-          var dayString = (0, _moment2.default)(this.props.events[i].date).format('ddd');
-          var time = (0, _moment2.default)(this.props.events[i].date).format('h:MMa');
-          result.push(_react2.default.createElement(
-            'li',
-            { className: 'search-event-item' },
-            _react2.default.createElement(
-              _reactRouterDom.Link,
-              { to: 'events/' + this.props.events[i].id + '/tickets/sell' },
-              _react2.default.createElement(
-                'div',
-                { className: 'search-list-item-container' },
-                _react2.default.createElement(
-                  'span',
-                  { className: 'search-event-name' },
-                  this.props.events[i].name
-                ),
-                _react2.default.createElement(
-                  'div',
-                  null,
-                  _react2.default.createElement(
-                    'span',
-                    { className: 'search-event-date' },
-                    time,
-                    ' ',
-                    dayString,
-                    ' ',
-                    month,
-                    ', ',
-                    day
-                  )
-                )
-              )
-            )
-          ));
-        }
-        return result.map(function (li) {
-          return li;
-        });
-      }
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-          'div',
-          { className: 'sell-ticket-page-header' },
-          _react2.default.createElement(
-            'div',
-            { className: 'searchbar-top-block' },
-            _react2.default.createElement(
-              'span',
-              { className: 'sell-ticket-header-text' },
-              'What are you selling?'
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'searchbar-container sell-page-search' },
-              _react2.default.createElement('input', { onKeyDown: this.keyPress, onChange: this.handleInput, className: 'searchbar', placeholder: 'Search for events...' }),
-              _react2.default.createElement(
-                'span',
-                { className: 'icon-container' },
-                _react2.default.createElement('i', { className: 'fa fa-search search-icon fa-2x', 'aria-hidden': 'true' })
-              )
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'searchbar-list-container' },
-              _react2.default.createElement(
-                'ul',
-                { className: 'searchbar-ul' },
-                this.renderSearchList()
-              )
-            )
-          )
-        )
-      );
-    }
-  }]);
-
-  return TicketPage;
-}(_react2.default.Component);
-
-exports.default = TicketPage;
-
-/***/ }),
+/* 292 */,
 /* 293 */
 /***/ (function(module, exports, __webpack_require__) {
 

@@ -3,6 +3,7 @@ import * as EventApiUtil  from '../utils/event_util';
 export const RECEIVE_EVENTS = "RECEIVE_EVENTS";
 export const RECEIVE_MORE_EVENTS ="RECEIVE_MORE_EVENTS";
 export const RECEIVE_EVENT = "RECEIVE_EVENT";
+export const CLEAR_EVENTS = "CLEAR_EVENTS"
 
 export const receiveEvents = (events, filter) => ({
   type: RECEIVE_EVENTS,
@@ -19,6 +20,10 @@ const receiveMoreEvents = (events, filter) => ({
 const receiveEvent = eventQ => ({
   type: RECEIVE_EVENT,
   eventQ
+});
+
+export const clearEvents = () => ({
+  type: CLEAR_EVENTS
 })
 
 export const fetchEvent = (id) => dispatch => (

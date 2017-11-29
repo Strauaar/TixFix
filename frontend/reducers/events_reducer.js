@@ -1,7 +1,8 @@
 import { RECEIVE_EVENTS,
          FILTER_BY_CATEGORY,
          RECEIVE_MORE_EVENTS,
-         RECEIVE_EVENT } from '../actions/event_actions';
+         RECEIVE_EVENT,
+         CLEAR_EVENTS } from '../actions/event_actions';
 import { merge } from 'lodash';
 
 const eventsReducer = (state = {}, action) => {
@@ -17,6 +18,8 @@ const eventsReducer = (state = {}, action) => {
     case RECEIVE_MORE_EVENTS:
       newState = merge({}, state, action.events);
       return newState;
+    case CLEAR_EVENTS:
+      return {};
     default:
       return state;
   }
