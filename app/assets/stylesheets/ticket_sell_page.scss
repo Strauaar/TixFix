@@ -24,4 +24,50 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+  position: relative;
+}
+
+.searchbar-list-container {
+  position: relative;
+  width: 100%;
+}
+
+.searchbar-ul {
+  list-style: none;
+  position: absolute;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  top: -3px;
+
+}
+
+.searchbar-ul li{
+  color: black;
+  font-family: 'Roboto Condensed';
+  background-color: white;
+  padding: 22px 15px;
+  border-bottom: 1px solid #ccc;
+}
+
+.searchbar-ul li:first-child {
+  border-top: 1px solid #ccc;
+}
+
+.search-event-name {
+  font-size: 20px;
+  margin-bottom: 5px;
+  color: #87909A;
+}
+
+.search-event-date {
+  font-size: 14px;
+  color: #5C6570;
+}
+
+
+.search-list-item-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }

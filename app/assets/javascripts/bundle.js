@@ -62860,6 +62860,10 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _moment = __webpack_require__(0);
+
+var _moment2 = _interopRequireDefault(_moment);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -62884,27 +62888,54 @@ var TicketPage = function (_React$Component) {
   }
 
   _createClass(TicketPage, [{
-    key: "handleInput",
+    key: 'handleInput',
     value: function handleInput(e) {
       this.setState({ input: e.target.value });
     }
   }, {
-    key: "keyPress",
+    key: 'keyPress',
     value: function keyPress(e) {
       if (e.keyCode == 13) {
         this.props.fetchEvents({ name: this.state.input });
       }
     }
   }, {
-    key: "renderSearchList",
+    key: 'renderSearchList',
     value: function renderSearchList() {
-      if (this.state.input.length > 1) {
+      if (this.state.input.length >= 1) {
         var result = [];
         for (var i = 0; i < this.props.events.length; i++) {
+          var month = (0, _moment2.default)(this.props.events[i].date).format('MMM');
+          var day = (0, _moment2.default)(this.props.events[i].date).format('DD');
+          var dayString = (0, _moment2.default)(this.props.events[i].date).format('ddd');
+          var time = (0, _moment2.default)(this.props.events[i].date).format('h:MMa');
           result.push(_react2.default.createElement(
-            "li",
+            'li',
             null,
-            this.props.events[i].name
+            _react2.default.createElement(
+              'div',
+              { className: 'search-list-item-container' },
+              _react2.default.createElement(
+                'span',
+                { className: 'search-event-name' },
+                this.props.events[i].name
+              ),
+              _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(
+                  'span',
+                  { className: 'search-event-date' },
+                  time,
+                  ' ',
+                  dayString,
+                  ' ',
+                  month,
+                  ', ',
+                  day
+                )
+              )
+            )
           ));
         }
         return result.map(function (li) {
@@ -62913,38 +62944,38 @@ var TicketPage = function (_React$Component) {
       }
     }
   }, {
-    key: "render",
+    key: 'render',
     value: function render() {
       return _react2.default.createElement(
-        "div",
+        'div',
         null,
         _react2.default.createElement(
-          "div",
-          { className: "sell-ticket-page-header" },
+          'div',
+          { className: 'sell-ticket-page-header' },
           _react2.default.createElement(
-            "div",
-            { className: "searchbar-top-block" },
+            'div',
+            { className: 'searchbar-top-block' },
             _react2.default.createElement(
-              "span",
-              { className: "sell-ticket-header-text" },
-              "What are you selling?"
+              'span',
+              { className: 'sell-ticket-header-text' },
+              'What are you selling?'
             ),
             _react2.default.createElement(
-              "div",
-              { className: "searchbar-container sell-page-search" },
-              _react2.default.createElement("input", { onKeyDown: this.keyPress, onChange: this.handleInput, className: "searchbar", placeholder: "Search for events..." }),
+              'div',
+              { className: 'searchbar-container sell-page-search' },
+              _react2.default.createElement('input', { onKeyDown: this.keyPress, onChange: this.handleInput, className: 'searchbar', placeholder: 'Search for events...' }),
               _react2.default.createElement(
-                "span",
-                { className: "icon-container" },
-                _react2.default.createElement("i", { className: "fa fa-search search-icon fa-2x", "aria-hidden": "true" })
+                'span',
+                { className: 'icon-container' },
+                _react2.default.createElement('i', { className: 'fa fa-search search-icon fa-2x', 'aria-hidden': 'true' })
               )
             ),
             _react2.default.createElement(
-              "div",
-              null,
+              'div',
+              { className: 'searchbar-list-container' },
               _react2.default.createElement(
-                "ul",
-                null,
+                'ul',
+                { className: 'searchbar-ul' },
                 this.renderSearchList()
               )
             )

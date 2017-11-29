@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 
 class TicketPage extends React.Component {
   constructor(props){
@@ -20,10 +21,14 @@ class TicketPage extends React.Component {
   }
 
   renderSearchList(){
-    if(this.state.input.length > 1) {
+    if(this.state.input.length >= 1) {
       let result = [];
       for(let i = 0; i < this.props.events.length; i++) {
-        result.push(<li>{this.props.events[i].name}</li>)
+        const month = moment(this.props.events[i].date).format('MMM');
+        const day = moment(this.props.events[i].date).format('DD');
+        const dayString = moment(this.props.events[i].date).format('ddd');
+        const time = moment(this.props.events[i].date).format('h:MMa');
+        result.push(<li><div className="search-list-item-container"><span className="search-event-name">{this.props.events[i].name}</span><div><span className="search-event-date">{time} {dayString} {month}, {day}</span></div></div></li>)
       }
       return result.map(li => li);
     }
@@ -40,8 +45,8 @@ class TicketPage extends React.Component {
                 </input>
                 <span className="icon-container"><i className="fa fa-search search-icon fa-2x" aria-hidden="true"></i></span>
               </div>
-              <div>
-                <ul>
+              <div className="searchbar-list-container">
+                <ul className="searchbar-ul">
                   {
                     this.renderSearchList()
                   }
