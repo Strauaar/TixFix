@@ -59568,6 +59568,10 @@ var _subcategory_page_container = __webpack_require__(287);
 
 var _subcategory_page_container2 = _interopRequireDefault(_subcategory_page_container);
 
+var _event_checkout_page = __webpack_require__(291);
+
+var _event_checkout_page2 = _interopRequireDefault(_event_checkout_page);
+
 var _tickets_sell_splash_page = __webpack_require__(289);
 
 var _tickets_sell_splash_page2 = _interopRequireDefault(_tickets_sell_splash_page);
@@ -59617,6 +59621,7 @@ var App = function (_React$Component) {
           _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _events_list_container2.default }),
           _react2.default.createElement(_reactRouterDom.Route, { path: '/category/:id', component: _events_list_container2.default }),
           _react2.default.createElement(_reactRouterDom.Route, { path: '/events/:id', component: _event_show_page_container2.default }),
+          _react2.default.createElement(_reactRouterDom.Route, { path: '/events/:eventId/tickets/:ticketId', component: _event_checkout_page2.default }),
           _react2.default.createElement(_reactRouterDom.Route, { path: '/subcategory/:id', component: _subcategory_page_container2.default }),
           _react2.default.createElement(_reactRouterDom.Route, { path: '/tickets/sell', component: _tickets_sell_splash_page2.default })
         ),
@@ -62771,6 +62776,56 @@ var Footer = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = Footer;
+
+/***/ }),
+/* 291 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var EventCheckoutPage = function (_React$Component) {
+  _inherits(EventCheckoutPage, _React$Component);
+
+  function EventCheckoutPage(props) {
+    _classCallCheck(this, EventCheckoutPage);
+
+    return _possibleConstructorReturn(this, (EventCheckoutPage.__proto__ || Object.getPrototypeOf(EventCheckoutPage)).call(this, props));
+  }
+
+  _createClass(EventCheckoutPage, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        ' EVENT CHECKOUT PAGE'
+      );
+    }
+  }]);
+
+  return EventCheckoutPage;
+}(_react2.default.Component);
+
+exports.default = EventCheckoutPage;
 
 /***/ })
 /******/ ]);
