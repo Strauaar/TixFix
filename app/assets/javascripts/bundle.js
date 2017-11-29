@@ -60293,7 +60293,7 @@ var LocationDateFilter = function (_React$Component) {
     _this.keyPress = _this.keyPress.bind(_this);
     _this.renderDateSelect = _this.renderDateSelect.bind(_this);
     _this.handleClick = _this.handleClick.bind(_this);
-    _this.state = { dateSelect: "Choose dates", locationSelect: "San Francisco, CA", dateClicked: false, locationClicked: false };
+    _this.state = { dateSelect: "Choose dates", locationSelect: "Select location", dateClicked: false, locationClicked: false };
     return _this;
   }
 
@@ -60320,8 +60320,13 @@ var LocationDateFilter = function (_React$Component) {
     value: function filter(type) {
       console.log("IN FILTER");
       console.log(this.props);
-      this.setState({ dateSelect: type });
-      this.props.fetchEvents((0, _lodash.merge)({}, this.props.filter, { date: type }));
+      if (type === 'none') {
+        this.setState({ locationClicked: false, dateClicked: false, locationSelect: "Select location" });
+        this.props.fetchEvents({ categoryId: null, date: null, location: null });
+      } else {
+        this.setState({ dateSelect: type });
+        this.props.fetchEvents((0, _lodash.merge)({}, this.props.filter, { date: type }));
+      }
     }
   }, {
     key: 'changeLocation',
@@ -60357,6 +60362,8 @@ var LocationDateFilter = function (_React$Component) {
   }, {
     key: 'renderLocationSelect',
     value: function renderLocationSelect() {
+      var _this3 = this;
+
       if (this.state.locationClicked) {
         return _react2.default.createElement(
           'ul',
@@ -60365,6 +60372,17 @@ var LocationDateFilter = function (_React$Component) {
             'li',
             { onClick: this.handlePropagation.bind(this) },
             _react2.default.createElement('input', { className: 'city-search', onClick: this.handlePropagation.bind(this), placeholder: 'Search by city', onChange: this.changeLocation, onKeyDown: this.keyPress })
+          ),
+          _react2.default.createElement(
+            'li',
+            null,
+            _react2.default.createElement(
+              'button',
+              { className: 'city-search', onClick: function onClick() {
+                  return _this3.filter('none');
+                } },
+              'Clear Search'
+            )
           )
         );
       }
@@ -60372,7 +60390,7 @@ var LocationDateFilter = function (_React$Component) {
   }, {
     key: 'renderDateSelect',
     value: function renderDateSelect() {
-      var _this3 = this;
+      var _this4 = this;
 
       if (this.state.dateClicked) {
         return _react2.default.createElement(
@@ -60393,7 +60411,7 @@ var LocationDateFilter = function (_React$Component) {
             _react2.default.createElement(
               'button',
               { className: 'date-select', onClick: function onClick() {
-                  return _this3.filter('Today');
+                  return _this4.filter('Today');
                 } },
               'Today'
             )
@@ -60404,7 +60422,7 @@ var LocationDateFilter = function (_React$Component) {
             _react2.default.createElement(
               'button',
               { className: 'date-select', onClick: function onClick() {
-                  return _this3.filter('This weekend');
+                  return _this4.filter('This weekend');
                 } },
               'This weekend'
             )
@@ -60415,7 +60433,7 @@ var LocationDateFilter = function (_React$Component) {
             _react2.default.createElement(
               'button',
               { className: 'date-select', onClick: function onClick() {
-                  return _this3.filter('This month');
+                  return _this4.filter('This month');
                 } },
               'This month'
             )
@@ -60426,7 +60444,7 @@ var LocationDateFilter = function (_React$Component) {
             _react2.default.createElement(
               'button',
               { className: 'date-select', onClick: function onClick() {
-                  return _this3.filter('All dates');
+                  return _this4.filter('All dates');
                 } },
               'All dates'
             )
@@ -60437,7 +60455,7 @@ var LocationDateFilter = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _this4 = this;
+      var _this5 = this;
 
       return _react2.default.createElement(
         'div',
@@ -60448,7 +60466,7 @@ var LocationDateFilter = function (_React$Component) {
           _react2.default.createElement(
             'li',
             { onClick: function onClick() {
-                return _this4.handleClick('location');
+                return _this5.handleClick('location');
               } },
             _react2.default.createElement(
               'a',
@@ -60462,7 +60480,7 @@ var LocationDateFilter = function (_React$Component) {
           _react2.default.createElement(
             'li',
             { onClick: function onClick() {
-                return _this4.handleClick('date');
+                return _this5.handleClick('date');
               } },
             _react2.default.createElement(
               'a',

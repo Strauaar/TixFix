@@ -9,7 +9,7 @@ class LocationDateFilter extends React.Component{
     this.keyPress = this.keyPress.bind(this);
     this.renderDateSelect = this.renderDateSelect.bind(this);
     this.handleClick = this.handleClick.bind(this);
-    this.state = {dateSelect: "Choose dates", locationSelect: "San Francisco, CA", dateClicked: false, locationClicked: false}
+    this.state = {dateSelect: "Choose dates", locationSelect: "Select location", dateClicked: false, locationClicked: false}
   }
 
   componentWillReceiveProps(newProps) {
@@ -32,8 +32,13 @@ class LocationDateFilter extends React.Component{
   filter(type) {
     console.log("IN FILTER");
     console.log(this.props);
-    this.setState({dateSelect: type})
-    this.props.fetchEvents(merge({}, this.props.filter, {date: type}));
+    if(type === 'none'){
+      this.setState({locationClicked: false, dateClicked: false,locationSelect: "Select location"})
+      this.props.fetchEvents({categoryId: null, date: null, location: null})
+    } else {
+      this.setState({dateSelect: type})
+      this.props.fetchEvents(merge({}, this.props.filter, {date: type}));
+    }
   }
 
   changeLocation(e) {
@@ -68,6 +73,7 @@ class LocationDateFilter extends React.Component{
     if(this.state.locationClicked){
       return <ul className="filter-dropdown" onClick={this.handlePropagation.bind(this)}>
         <li onClick={this.handlePropagation.bind(this)}><input className="city-search" onClick={this.handlePropagation.bind(this)} placeholder="Search by city" onChange={this.changeLocation} onKeyDown={this.keyPress}></input></li>
+        <li><button className="city-search" onClick={() => this.filter('none')}>Clear Search</button></li>
       </ul>
     }
   }
