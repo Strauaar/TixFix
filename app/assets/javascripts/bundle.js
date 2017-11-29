@@ -62958,7 +62958,7 @@ var TicketPage = function (_React$Component) {
   }, {
     key: 'renderSearchList',
     value: function renderSearchList() {
-      if (this.state.input.length >= 1) {
+      if (this.state.input.length > 0) {
         var result = [];
         for (var i = 0; i < this.props.events.length; i++) {
           var month = (0, _moment2.default)(this.props.events[i].date).format('MMM');
@@ -63023,7 +63023,7 @@ var TicketPage = function (_React$Component) {
             _react2.default.createElement(
               'div',
               { className: 'searchbar-container sell-page-search' },
-              _react2.default.createElement('input', { onKeyDown: this.keyPress, onChange: this.handleInput, className: 'searchbar', placeholder: 'Search for events...' }),
+              _react2.default.createElement('input', { onKeyUp: this.keyPress, onChange: this.handleInput, className: 'searchbar', placeholder: 'Search for events...' }),
               _react2.default.createElement(
                 'span',
                 { className: 'icon-container' },

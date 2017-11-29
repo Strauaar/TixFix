@@ -24,7 +24,7 @@ class TicketPage extends React.Component {
   }
 
   renderSearchList(){
-    if(this.state.input.length >= 1) {
+    if(this.state.input.length > 0) {
       let result = [];
       for(let i = 0; i < this.props.events.length; i++) {
         const month = moment(this.props.events[i].date).format('MMM');
@@ -44,7 +44,7 @@ class TicketPage extends React.Component {
           <div className="searchbar-top-block">
             <span className="sell-ticket-header-text">What are you selling?</span>
               <div className="searchbar-container sell-page-search">
-                <input onKeyDown={this.keyPress} onChange={this.handleInput} className="searchbar" placeholder="Search for events...">
+                <input onKeyUp={this.keyPress} onChange={this.handleInput} className="searchbar" placeholder="Search for events...">
                 </input>
                 <span className="icon-container"><i className="fa fa-search search-icon fa-2x" aria-hidden="true"></i></span>
               </div>
