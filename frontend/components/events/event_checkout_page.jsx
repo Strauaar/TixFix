@@ -5,7 +5,11 @@ class EventCheckoutPage extends React.Component {
     super(props)
   }
 
+  componentDidMount() {
+    console.log("ASDSADSAD");
+  }
   render() {
+
     return (
       <div className="event-ticket-checkout-container">
         <div className="event-ticket-checkout-details">

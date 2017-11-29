@@ -10,17 +10,12 @@ class EventsList extends React.Component {
   }
 
   componentDidMount() {
-    if(this.props.match.pathname="/") {
-      console.log("IS ROOT");
+    if(this.props.match.pathname="/")
     }
     this.props.fetchEvents(this.props.filter);
   }
 
   componentWillReceiveProps(newProps) {
-    console.log("NEW PROP")
-    console.log(newProps.match);
-    console.log("old");
-    console.log(this.props.match)
     if(newProps.match.params.id !== this.props.match.params.id) {
       if(newProps.match.url === "/") {
         this.props.fetchEvents({categoryId: null, location: null, date: null})

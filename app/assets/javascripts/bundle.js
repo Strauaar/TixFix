@@ -59552,9 +59552,17 @@ var _category_card_list = __webpack_require__(270);
 
 var _category_card_list2 = _interopRequireDefault(_category_card_list);
 
+var _location_date_filter_container = __webpack_require__(268);
+
+var _location_date_filter_container2 = _interopRequireDefault(_location_date_filter_container);
+
 var _events_list_container = __webpack_require__(273);
 
 var _events_list_container2 = _interopRequireDefault(_events_list_container);
+
+var _searchbar_container = __webpack_require__(265);
+
+var _searchbar_container2 = _interopRequireDefault(_searchbar_container);
 
 var _event_show_page_container = __webpack_require__(281);
 
@@ -59609,6 +59617,18 @@ var App = function (_React$Component) {
         null,
         _react2.default.createElement('div', { className: 'nav-bar-background' }),
         _react2.default.createElement(_navbar_container2.default, null),
+        _react2.default.createElement(
+          _reactRouterDom.Switch,
+          null,
+          _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _searchbar_container2.default }),
+          _react2.default.createElement(_reactRouterDom.Route, { path: '/category', component: _searchbar_container2.default })
+        ),
+        _react2.default.createElement(
+          _reactRouterDom.Switch,
+          null,
+          _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _location_date_filter_container2.default }),
+          _react2.default.createElement(_reactRouterDom.Route, { path: '/category', component: _location_date_filter_container2.default })
+        ),
         _react2.default.createElement(
           _reactRouterDom.Switch,
           null,
@@ -59775,18 +59795,6 @@ var NavBar = function (_React$Component) {
             _react2.default.createElement(_navbar_misc_menu_items2.default, null),
             _react2.default.createElement(_navbar_user_menu_items2.default, { currentUser: this.props.currentUser, logout: this.props.logout })
           )
-        ),
-        _react2.default.createElement(
-          _reactRouterDom.Switch,
-          null,
-          _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _searchbar_container2.default }),
-          _react2.default.createElement(_reactRouterDom.Route, { path: '/category', component: _searchbar_container2.default })
-        ),
-        _react2.default.createElement(
-          _reactRouterDom.Switch,
-          null,
-          _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _location_date_filter_container2.default }),
-          _react2.default.createElement(_reactRouterDom.Route, { path: '/category', component: _location_date_filter_container2.default })
         ),
         _react2.default.createElement(_reactRouterDom.Route, { path: '/new', component: _sessions_modal_container2.default }),
         _react2.default.createElement(_route_util.AuthRoute, { path: '/session', component: _sessions_modal_container2.default })
@@ -60600,9 +60608,7 @@ var LocationDateFilter = function (_React$Component) {
 
   _createClass(LocationDateFilter, [{
     key: 'componentWillReceiveProps',
-    value: function componentWillReceiveProps(newProps) {
-      if (this.props.categoryId !== newProps.categoryId) {}
-    }
+    value: function componentWillReceiveProps(newProps) {}
   }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
@@ -60610,7 +60616,6 @@ var LocationDateFilter = function (_React$Component) {
 
       $("body").on.bind(this);
       $("body").on('click', function (e) {
-        // console.log($(e.target).context.className);
         if ($(e.target).context.className === "city-search") {} else if ($(e.target).context.className === "date-select") {} else {
           _this2.setState({ dateClicked: false, locationClicked: false });
         }
@@ -60622,7 +60627,6 @@ var LocationDateFilter = function (_React$Component) {
       var _this3 = this;
 
       $("body").off('click', function (e) {
-        // console.log($(e.target).context.className);
         if ($(e.target).context.className === "city-search") {} else if ($(e.target).context.className === "date-select") {} else {
           _this3.setState({ dateClicked: false, locationClicked: false });
         }
@@ -60631,8 +60635,6 @@ var LocationDateFilter = function (_React$Component) {
   }, {
     key: 'filter',
     value: function filter(type) {
-      console.log("IN FILTER");
-      console.log(this.props);
       if (type === 'none') {
         this.setState({ locationClicked: false, dateClicked: false, locationSelect: "Select location" });
         this.props.fetchEvents({ categoryId: null, date: null, location: null });
@@ -60669,7 +60671,6 @@ var LocationDateFilter = function (_React$Component) {
   }, {
     key: 'handlePropagation',
     value: function handlePropagation(e) {
-      console.log("HANDLING");
       e.stopPropagation();
     }
   }, {
@@ -61065,379 +61066,15 @@ exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapSt
 
 /***/ }),
 /* 274 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _lodash = __webpack_require__(10);
-
-var _event_card_item_container = __webpack_require__(275);
-
-var _event_card_item_container2 = _interopRequireDefault(_event_card_item_container);
-
-var _events_ul_container = __webpack_require__(279);
-
-var _events_ul_container2 = _interopRequireDefault(_events_ul_container);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var EventsList = function (_React$Component) {
-  _inherits(EventsList, _React$Component);
-
-  function EventsList(props) {
-    _classCallCheck(this, EventsList);
-
-    var _this = _possibleConstructorReturn(this, (EventsList.__proto__ || Object.getPrototypeOf(EventsList)).call(this, props));
-
-    _this.renderHeader = _this.renderHeader.bind(_this);
-    return _this;
-  }
-
-  _createClass(EventsList, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      if (this.props.match.pathname = "/") {
-        console.log("IS ROOT");
-      }
-      this.props.fetchEvents(this.props.filter);
-    }
-  }, {
-    key: 'componentWillReceiveProps',
-    value: function componentWillReceiveProps(newProps) {
-      console.log("NEW PROP");
-      console.log(newProps.match);
-      console.log("old");
-      console.log(this.props.match);
-      if (newProps.match.params.id !== this.props.match.params.id) {
-        if (newProps.match.url === "/") {
-          this.props.fetchEvents({ categoryId: null, location: null, date: null });
-        } else {
-          // this.props.fetchEvents(merge({}, newProps.filter, { categoryId: newProps.match.params.id}))
-        }
-      }
-    }
-  }, {
-    key: 'renderHeader',
-    value: function renderHeader() {
-      if (this.props.categoryId === 1) {
-        return "Concert Tickets";
-      } else if (this.props.categoryId === 2) {
-        return "Sport Tickets";
-      } else if (this.props.categoryId === 3) {
-        return "Theater Tickets";
-      }
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        'div',
-        { className: 'events-list-container' },
-        _react2.default.createElement(
-          'div',
-          { className: 'events-list-header-container' },
-          _react2.default.createElement(
-            'p',
-            { className: 'events-list-header fade-in' },
-            this.renderHeader()
-          )
-        ),
-        _react2.default.createElement(
-          _events_ul_container2.default,
-          null,
-          this.props.events.map(function (event) {
-            return _react2.default.createElement(_event_card_item_container2.default, { key: event.id, id: event.id, event: event });
-          })
-        )
-      );
-    }
-  }]);
-
-  return EventsList;
-}(_react2.default.Component);
-
-exports.default = EventsList;
+throw new Error("Module build failed: SyntaxError: Unexpected token (14:4)\n\n\u001b[0m \u001b[90m 12 | \u001b[39m  componentDidMount() {\n \u001b[90m 13 | \u001b[39m    \u001b[36mif\u001b[39m(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mprops\u001b[33m.\u001b[39mmatch\u001b[33m.\u001b[39mpathname\u001b[33m=\u001b[39m\u001b[32m\"/\"\u001b[39m)\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 14 | \u001b[39m    }\n \u001b[90m    | \u001b[39m    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 15 | \u001b[39m    \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mprops\u001b[33m.\u001b[39mfetchEvents(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mprops\u001b[33m.\u001b[39mfilter)\u001b[33m;\u001b[39m\n \u001b[90m 16 | \u001b[39m  }\n \u001b[90m 17 | \u001b[39m\u001b[0m\n");
 
 /***/ }),
-/* 275 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _reactRedux = __webpack_require__(5);
-
-var _reactRouterDom = __webpack_require__(2);
-
-var _event_card_item = __webpack_require__(276);
-
-var _event_card_item2 = _interopRequireDefault(_event_card_item);
-
-var _like_actions = __webpack_require__(26);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var mapStateToProps = function mapStateToProps(state) {
-  return {
-    liked_performers_ids: state.entities.liked_performers_ids,
-    current_user: state.session.currentUser
-  };
-};
-
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    createPerformerLike: function createPerformerLike(user_id, performer_id) {
-      return dispatch((0, _like_actions.createPerformerLike)(user_id, performer_id));
-    },
-    deletePerformerLike: function deletePerformerLike(user_id, performer_id) {
-      return dispatch((0, _like_actions.deletePerformerLike)(user_id, performer_id));
-    }
-  };
-};
-
-exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_event_card_item2.default));
-
-/***/ }),
-/* 276 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRouterDom = __webpack_require__(2);
-
-var _event_card_item_details = __webpack_require__(277);
-
-var _event_card_item_details2 = _interopRequireDefault(_event_card_item_details);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var EventCard = function (_React$Component) {
-  _inherits(EventCard, _React$Component);
-
-  function EventCard(props) {
-    _classCallCheck(this, EventCard);
-
-    var _this = _possibleConstructorReturn(this, (EventCard.__proto__ || Object.getPrototypeOf(EventCard)).call(this, props));
-
-    _this.renderCardHeader = _this.renderCardHeader.bind(_this);
-    _this.renderHeart = _this.renderHeart.bind(_this);
-    _this.handleLikeClick = _this.handleLikeClick.bind(_this);
-    return _this;
-  }
-
-  _createClass(EventCard, [{
-    key: 'handleLikeClick',
-    value: function handleLikeClick(type) {
-      if (this.props.current_user === null) {
-        this.props.history.push("/session");
-      } else if (type === 'unlike') {
-        this.props.deletePerformerLike(this.props.current_user.id, this.props.event.performer.id);
-      } else if (type === 'like') {
-        this.props.createPerformerLike(this.props.current_user.id, this.props.event.performer.id);
-      }
-    }
-  }, {
-    key: 'renderHeart',
-    value: function renderHeart() {
-      var _this2 = this;
-
-      console.log(this.props);
-      if (this.props.liked_performers_ids.includes(this.props.event.performer.id)) {
-        console.log("LIKE");
-        return _react2.default.createElement(
-          'div',
-          { className: 'header-icon-box', onClick: function onClick() {
-              return _this2.handleLikeClick('unlike');
-            } },
-          _react2.default.createElement('i', { className: 'fa fa-heart fa-2x header-icon in-image-icon liked-icon', 'aria-hidden': 'true' })
-        );
-      } else {
-        return _react2.default.createElement(
-          'div',
-          { className: 'header-icon-box', onClick: function onClick() {
-              return _this2.handleLikeClick('like');
-            } },
-          _react2.default.createElement('i', { className: 'fa fa-heart fa-2x header-icon in-image-icon', 'aria-hidden': 'true' })
-        );
-      }
-    }
-  }, {
-    key: 'renderCardHeader',
-    value: function renderCardHeader() {
-      if (this.props.event.image_url) {
-        var heart = this.renderHeart();
-        return _react2.default.createElement(
-          'div',
-          { className: 'event-card-image fade-in', style: { backgroundImage: 'url(' + this.props.event.image_url + ')' } },
-          _react2.default.createElement(
-            'div',
-            { className: 'event-card-header-block in-image' },
-            heart,
-            _react2.default.createElement(
-              'p',
-              { className: 'event-card-header-text in-image-text' },
-              this.props.event.performer.name
-            )
-          ),
-          _react2.default.createElement('div', { className: 'event-card-image-layer' })
-        );
-      } else {
-        return _react2.default.createElement(
-          'div',
-          { className: 'event-card-header' },
-          _react2.default.createElement(
-            'div',
-            { className: 'event-card-header-block' },
-            _react2.default.createElement('i', { className: 'fa fa-heart-o fa-2x header-icon', 'aria-hidden': 'true' }),
-            _react2.default.createElement(
-              'p',
-              { className: 'event-card-header-text' },
-              this.props.event.name
-            )
-          )
-        );
-      }
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        'div',
-        { className: 'top-event-card-block fade-in' },
-        _react2.default.createElement(
-          'li',
-          { className: 'event-card-block fade-in' },
-          this.renderCardHeader(),
-          _react2.default.createElement(_event_card_item_details2.default, { eventQ: this.props.event })
-        )
-      );
-    }
-  }]);
-
-  return EventCard;
-}(_react2.default.Component);
-
-exports.default = EventCard;
-
-/***/ }),
-/* 277 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _moment = __webpack_require__(0);
-
-var _moment2 = _interopRequireDefault(_moment);
-
-var _reactRouterDom = __webpack_require__(2);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var EventCardItemDetails = function EventCardItemDetails(_ref) {
-  var eventQ = _ref.eventQ;
-
-  return _react2.default.createElement(
-    'div',
-    null,
-    eventQ.subevents.map(function (subevent) {
-      var month = (0, _moment2.default)(subevent.date).format('MMM');
-      var day = (0, _moment2.default)(subevent.date).format('DD');
-      var dayString = (0, _moment2.default)(subevent.date).format('ddd');
-      var time = (0, _moment2.default)(subevent.date).format('h:MMa');
-      return _react2.default.createElement(
-        _reactRouterDom.Link,
-        { to: '/events/' + subevent.id },
-        _react2.default.createElement(
-          'div',
-          { className: 'card-detail-container' },
-          _react2.default.createElement(
-            'div',
-            { className: 'card-detail-date-block' },
-            _react2.default.createElement(
-              'span',
-              { className: 'card-detail-day' },
-              dayString
-            ),
-            _react2.default.createElement(
-              'span',
-              { className: 'card-detail-date' },
-              month,
-              ' ',
-              day
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'card-detail-event-block' },
-            _react2.default.createElement(
-              'p',
-              { className: 'card-detail-event-name' },
-              eventQ.name
-            ),
-            _react2.default.createElement(
-              'span',
-              { className: 'card-detail-date-venue' },
-              time,
-              ' - ',
-              eventQ.venue.name
-            )
-          )
-        )
-      );
-    })
-  );
-};
-
-exports.default = EventCardItemDetails;
-
-/***/ }),
+/* 275 */,
+/* 276 */,
+/* 277 */,
 /* 278 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -61696,157 +61333,8 @@ module.exports = webpackContext;
 webpackContext.id = 278;
 
 /***/ }),
-/* 279 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _reactRedux = __webpack_require__(5);
-
-var _events_ul = __webpack_require__(280);
-
-var _events_ul2 = _interopRequireDefault(_events_ul);
-
-var _event_actions = __webpack_require__(8);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var mapStateToProps = function mapStateToProps(state) {
-  return {
-    categoryId: state.ui.filter.categoryId,
-    filter: state.ui.filter
-  };
-};
-
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    fetchMoreEvents: function fetchMoreEvents(currentCount) {
-      return dispatch((0, _event_actions.fetchMoreEvents)(currentCount));
-    }
-  };
-};
-
-exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_events_ul2.default);
-
-/***/ }),
-/* 280 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _lodash = __webpack_require__(10);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var EventsUl = function (_React$Component) {
-  _inherits(EventsUl, _React$Component);
-
-  function EventsUl(props) {
-    _classCallCheck(this, EventsUl);
-
-    return _possibleConstructorReturn(this, (EventsUl.__proto__ || Object.getPrototypeOf(EventsUl)).call(this, props));
-  }
-
-  _createClass(EventsUl, [{
-    key: 'loadMoreEvents',
-    value: function loadMoreEvents(childrenCount, categoryId) {
-      if (categoryId === undefined) {
-        this.props.fetchMoreEvents(childrenCount, (0, _lodash.merge)({}, this.props.filter, { categoryId: null }));
-      } else {
-        this.props.fetchMoreEvents(childrenCount, (0, _lodash.merge)({}, this.props.filter, { categoryId: categoryId }));
-      }
-    }
-  }, {
-    key: 'renderLoadMoreButton',
-    value: function renderLoadMoreButton(childrenCount) {
-      var _this2 = this;
-
-      if (childrenCount % 10 === 0 && childrenCount !== 0) {
-        return _react2.default.createElement(
-          'div',
-          null,
-          _react2.default.createElement(
-            'button',
-            { onClick: function onClick() {
-                return _this2.loadMoreEvents(childrenCount, _this2.props.categoryId);
-              }, className: 'load-more-btn' },
-            'Load More'
-          )
-        );
-      }
-    }
-  }, {
-    key: 'renderEventCards',
-    value: function renderEventCards(children, start_index) {
-      var result = [];
-      for (var i = start_index; i < children.length; i += 3) {
-        result.push(children[i]);
-      }
-      return result.map(function (EventCard) {
-        return EventCard;
-      });
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var childrenCount = _react2.default.Children.count(this.props.children);
-      var children = _react2.default.Children.toArray(this.props.children);
-
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-          'div',
-          { className: 'event-list' },
-          _react2.default.createElement(
-            'div',
-            { className: 'col' },
-            this.renderEventCards(children, 0)
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'col' },
-            this.renderEventCards(children, 1)
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'col' },
-            this.renderEventCards(children, 2)
-          )
-        ),
-        this.renderLoadMoreButton(childrenCount)
-      );
-    }
-  }]);
-
-  return EventsUl;
-}(_react2.default.Component);
-
-exports.default = EventsUl;
-
-/***/ }),
+/* 279 */,
+/* 280 */,
 /* 281 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -61948,8 +61436,6 @@ var EventShowPage = function (_React$Component) {
   }, {
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(newProps) {
-      console.log(this.props);
-      console.log(newProps);
       if (Object.values(this.props.eventQ).length !== Object.values(newProps.eventQ).length) {
         this.props.fetchEvent(newProps.match.params.id);
       }
@@ -62009,8 +61495,6 @@ var EventShowPage = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      console.log("TICKETS");
-      console.log(this.props.tickets);
       return _react2.default.createElement(
         'div',
         { className: 'event-show-page' },
@@ -62103,8 +61587,6 @@ var ScrollTicketItem = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      console.log("TICKET");
-      console.log(this.props.ticket);
       return _react2.default.createElement(
         _reactRouterDom.Link,
         { to: '/events/' + this.props.ticket.event_id + '/ticket/' + this.props.ticket.id },
@@ -62268,11 +61750,7 @@ var SubCategoryList = function (_React$Component) {
   _createClass(SubCategoryList, [{
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(newProps) {
-      console.log("noe");
-      console.log(this.props);
-      console.log(newProps);
       if (this.props.categoryId !== newProps.categoryId) {
-        console.log("DISPATCHING");
         this.props.fetchSubCategoryList(newProps.categoryId);
       }
     }
@@ -62563,8 +62041,14 @@ var EventCheckoutPage = function (_React$Component) {
   }
 
   _createClass(EventCheckoutPage, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      console.log("ASDSADSAD");
+    }
+  }, {
     key: "render",
     value: function render() {
+
       return _react2.default.createElement(
         "div",
         { className: "event-ticket-checkout-container" },

@@ -8,12 +8,8 @@ class SubCategoryList extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    console.log("noe");
-    console.log(this.props);
-    console.log(newProps);
       if(this.props.categoryId !== newProps.categoryId) {
-        console.log("DISPATCHING");
-        this.props.fetchSubCategoryList(newProps.categoryId);
+              this.props.fetchSubCategoryList(newProps.categoryId);
       }
   }
 

@@ -20,10 +20,8 @@ class EventCard extends React.Component {
     }
   }
 
-  renderHeart() {
-    console.log(this.props);
+  renderHeart()
     if(this.props.liked_performers_ids.includes(this.props.event.performer.id)){
-      console.log("LIKE");
       return <div className="header-icon-box" onClick={()=> this.handleLikeClick('unlike')}><i className="fa fa-heart fa-2x header-icon in-image-icon liked-icon" aria-hidden="true"></i></div>
     } else {
       return <div className="header-icon-box" onClick={() => this.handleLikeClick('like')}><i className="fa fa-heart fa-2x header-icon in-image-icon" aria-hidden="true"></i></div>

@@ -17,8 +17,6 @@ class EventShowPage extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    console.log(this.props);
-    console.log(newProps);
     if(Object.values(this.props.eventQ).length !== Object.values(newProps.eventQ).length){
       this.props.fetchEvent(newProps.match.params.id)
     }
@@ -50,8 +48,6 @@ class EventShowPage extends React.Component {
 
 
   render() {
-    console.log("TICKETS");
-    console.log(this.props.tickets);
     return (
       <div className="event-show-page">
         <div className="event-show-top">

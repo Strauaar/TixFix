@@ -9,7 +9,9 @@ import {
 } from 'react-router-dom';
 import NavBarContainer from './navbar/navbar_container';
 import CategoryCardList from './categories/category_card_list';
+import LocationDateFilterContainer from './navbar/location_date_filter_container';
 import EventsListContainer from './events/events_list_container';
+import SearchBarContainer from './navbar/searchbar_container';
 import EventShowPageContainer from './events/event_show_page_container';
 import SubCategoryListContainer from './categories/subcategory_list_container';
 import SubCategoryPageContainer from './categories/subcategory_page_container';
@@ -30,6 +32,14 @@ class App extends React.Component {
       <div>
         <div className="nav-bar-background"></div>
         <NavBarContainer></NavBarContainer>
+        <Switch>
+          <Route exact path="/" component={SearchBarContainer}></Route>
+          <Route path="/category" component={SearchBarContainer}></Route>
+        </Switch>
+        <Switch>
+          <Route exact path ="/" component={LocationDateFilterContainer}/>
+          <Route path ="/category" component={LocationDateFilterContainer}/>
+        </Switch>
 
         <Switch>
           <Route exact path="/"component={CategoryCardList}/>

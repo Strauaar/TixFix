@@ -13,14 +13,12 @@ class LocationDateFilter extends React.Component{
   }
 
   componentWillReceiveProps(newProps) {
-    if(this.props.categoryId !== newProps.categoryId){
-    }
+
   }
 
   componentDidMount(){
     $("body").on.bind(this);
     $("body").on('click', (e) => {
-      // console.log($(e.target).context.className);
       if ($(e.target).context.className === "city-search"){
       } else if($(e.target).context.className === "date-select") {
       } else {
@@ -31,7 +29,6 @@ class LocationDateFilter extends React.Component{
 
   componentWillUnmount() {
     $("body").off('click', (e) => {
-      // console.log($(e.target).context.className);
       if ($(e.target).context.className === "city-search"){
       } else if($(e.target).context.className === "date-select") {
       } else {
@@ -41,8 +38,6 @@ class LocationDateFilter extends React.Component{
   }
 
   filter(type) {
-    console.log("IN FILTER");
-    console.log(this.props);
     if(type === 'none'){
       this.setState({locationClicked: false, dateClicked: false,locationSelect: "Select location"})
       this.props.fetchEvents({categoryId: null, date: null, location: null})
@@ -76,7 +71,6 @@ class LocationDateFilter extends React.Component{
   }
 
   handlePropagation(e) {
-    console.log("HANDLING");
     e.stopPropagation();
   }
 
