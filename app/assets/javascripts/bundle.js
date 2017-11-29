@@ -59639,7 +59639,30 @@ var UserMenuItems = function UserMenuItems(_ref) {
         'My tickets',
         _react2.default.createElement('i', { className: 'fa fa-angle-down', 'aria-hidden': 'true' })
       ),
-      _react2.default.createElement('ul', { className: 'menu-dropdown' })
+      _react2.default.createElement(
+        'ul',
+        { className: 'menu-dropdown' },
+        _react2.default.createElement(
+          'li',
+          null,
+          'Orders'
+        ),
+        _react2.default.createElement(
+          'li',
+          null,
+          'Listings'
+        ),
+        _react2.default.createElement(
+          'li',
+          null,
+          'Sales'
+        ),
+        _react2.default.createElement(
+          'li',
+          null,
+          'Payments'
+        )
+      )
     ),
     _react2.default.createElement(
       'li',
@@ -60268,7 +60291,9 @@ var LocationDateFilter = function (_React$Component) {
     _this.filter = _this.filter.bind(_this);
     _this.changeLocation = _this.changeLocation.bind(_this);
     _this.keyPress = _this.keyPress.bind(_this);
-    _this.state = { dateSelect: "Choose dates", locationSelect: "San Francisco, CA" };
+    _this.renderDateSelect = _this.renderDateSelect.bind(_this);
+    _this.handleClick = _this.handleClick.bind(_this);
+    _this.state = { dateSelect: "Choose dates", locationSelect: "San Francisco, CA", dateClicked: false, locationClicked: false };
     return _this;
   }
 
@@ -60276,6 +60301,19 @@ var LocationDateFilter = function (_React$Component) {
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(newProps) {
       if (this.props.categoryId !== newProps.categoryId) {}
+    }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      $("body").on.bind(this);
+      $("body").on('click', function (e) {
+        // console.log($(e.target).context.className);
+        if ($(e.target).context.className === "city-search") {} else if ($(e.target).context.className === "date-select") {} else {
+          _this2.setState({ dateClicked: false, locationClicked: false });
+        }
+      });
     }
   }, {
     key: 'filter',
@@ -60294,13 +60332,112 @@ var LocationDateFilter = function (_React$Component) {
     key: 'keyPress',
     value: function keyPress(e) {
       if (e.keyCode == 13) {
+        this.setState({ dateClicked: false, locationClicked: false });
         this.props.fetchEvents((0, _lodash.merge)({}, this.props.filter, { location: this.state.locationSelect }));
+      }
+    }
+  }, {
+    key: 'handleClick',
+    value: function handleClick(type) {
+      if (type === 'date') {
+        var newDateState = this.state.dateClicked === true ? false : true;
+        this.setState({ dateClicked: newDateState });
+      }
+      if (type === 'location') {
+        var newLocationState = this.state.locationClicked === true ? false : true;
+        this.setState({ locationClicked: newLocationState });
+      }
+    }
+  }, {
+    key: 'handlePropagation',
+    value: function handlePropagation(e) {
+      console.log("HANDLING");
+      e.stopPropagation();
+    }
+  }, {
+    key: 'renderLocationSelect',
+    value: function renderLocationSelect() {
+      if (this.state.locationClicked) {
+        return _react2.default.createElement(
+          'ul',
+          { className: 'filter-dropdown', onClick: this.handlePropagation.bind(this) },
+          _react2.default.createElement(
+            'li',
+            { onClick: this.handlePropagation.bind(this) },
+            _react2.default.createElement('input', { className: 'city-search', onClick: this.handlePropagation.bind(this), placeholder: 'Search by city', onChange: this.changeLocation, onKeyDown: this.keyPress })
+          )
+        );
+      }
+    }
+  }, {
+    key: 'renderDateSelect',
+    value: function renderDateSelect() {
+      var _this3 = this;
+
+      if (this.state.dateClicked) {
+        return _react2.default.createElement(
+          'ul',
+          { className: 'filter-dropdown' },
+          _react2.default.createElement(
+            'li',
+            null,
+            _react2.default.createElement(
+              'button',
+              { className: 'date-select' },
+              'Choose dates'
+            )
+          ),
+          _react2.default.createElement(
+            'li',
+            null,
+            _react2.default.createElement(
+              'button',
+              { className: 'date-select', onClick: function onClick() {
+                  return _this3.filter('Today');
+                } },
+              'Today'
+            )
+          ),
+          _react2.default.createElement(
+            'li',
+            null,
+            _react2.default.createElement(
+              'button',
+              { className: 'date-select', onClick: function onClick() {
+                  return _this3.filter('This weekend');
+                } },
+              'This weekend'
+            )
+          ),
+          _react2.default.createElement(
+            'li',
+            null,
+            _react2.default.createElement(
+              'button',
+              { className: 'date-select', onClick: function onClick() {
+                  return _this3.filter('This month');
+                } },
+              'This month'
+            )
+          ),
+          _react2.default.createElement(
+            'li',
+            null,
+            _react2.default.createElement(
+              'button',
+              { className: 'date-select', onClick: function onClick() {
+                  return _this3.filter('All dates');
+                } },
+              'All dates'
+            )
+          )
+        );
       }
     }
   }, {
     key: 'render',
     value: function render() {
-      var _this2 = this;
+      var _this4 = this;
 
       return _react2.default.createElement(
         'div',
@@ -60310,7 +60447,9 @@ var LocationDateFilter = function (_React$Component) {
           { className: 'navbar-date-location-filter-container' },
           _react2.default.createElement(
             'li',
-            null,
+            { onClick: function onClick() {
+                return _this4.handleClick('location');
+              } },
             _react2.default.createElement(
               'a',
               { href: '#' },
@@ -60318,19 +60457,13 @@ var LocationDateFilter = function (_React$Component) {
               this.state.locationSelect,
               _react2.default.createElement('i', { className: 'fa fa-angle-down', 'aria-hidden': 'true' })
             ),
-            _react2.default.createElement(
-              'ul',
-              { className: 'filter-dropdown' },
-              _react2.default.createElement(
-                'li',
-                null,
-                _react2.default.createElement('input', { placeholder: 'Search by city', onChange: this.changeLocation, onKeyDown: this.keyPress })
-              )
-            )
+            this.renderLocationSelect()
           ),
           _react2.default.createElement(
             'li',
-            null,
+            { onClick: function onClick() {
+                return _this4.handleClick('date');
+              } },
             _react2.default.createElement(
               'a',
               { href: '#' },
@@ -60338,63 +60471,7 @@ var LocationDateFilter = function (_React$Component) {
               this.state.dateSelect,
               _react2.default.createElement('i', { className: 'fa fa-angle-down', 'aria-hidden': 'true' })
             ),
-            _react2.default.createElement(
-              'ul',
-              { className: 'filter-dropdown' },
-              _react2.default.createElement(
-                'li',
-                null,
-                _react2.default.createElement(
-                  'button',
-                  null,
-                  'Choose dates'
-                )
-              ),
-              _react2.default.createElement(
-                'li',
-                null,
-                _react2.default.createElement(
-                  'button',
-                  { onClick: function onClick() {
-                      return _this2.filter('Today');
-                    } },
-                  'Today'
-                )
-              ),
-              _react2.default.createElement(
-                'li',
-                null,
-                _react2.default.createElement(
-                  'button',
-                  { onClick: function onClick() {
-                      return _this2.filter('This weekend');
-                    } },
-                  'This weekend'
-                )
-              ),
-              _react2.default.createElement(
-                'li',
-                null,
-                _react2.default.createElement(
-                  'button',
-                  { onClick: function onClick() {
-                      return _this2.filter('This month');
-                    } },
-                  'This month'
-                )
-              ),
-              _react2.default.createElement(
-                'li',
-                null,
-                _react2.default.createElement(
-                  'button',
-                  { onClick: function onClick() {
-                      return _this2.filter('All dates');
-                    } },
-                  'All dates'
-                )
-              )
-            )
+            this.renderDateSelect()
           )
         )
       );

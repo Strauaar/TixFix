@@ -202,6 +202,10 @@ li:hover .menu-dropdown {
   /*float:right;*/
 }
 
+/*.navbar-date-location-filter-container ul{
+  top: 30px;
+}*/
+
 .navbar-date-location-filter-container a {
   color: #2F343B;
   text-decoration: none;
@@ -229,7 +233,6 @@ li:hover .menu-dropdown {
 
 
 .filter-dropdown {
-  display: none;
   position: absolute;
   top: -20px;
   min-width: 110px;
@@ -277,11 +280,10 @@ li:hover .menu-dropdown {
   color: white;
 }*/
 
-li:hover .filter-dropdown {
+.filter-dropdown {
   display: block;
   border-top: 4px solid #D94185;
   box-shadow: 0 0 8px 0 rgba(0,0,0,0.1);
-
 }
 
 .filter-dropdown button {

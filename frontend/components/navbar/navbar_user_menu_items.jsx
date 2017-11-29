@@ -38,7 +38,10 @@ const UserMenuItems = ({currentUser, logout}) => {
         My tickets<i className="fa fa-angle-down" aria-hidden="true"></i>
         </a>
         <ul className="menu-dropdown">
-
+          <li>Orders</li>
+          <li>Listings</li>
+          <li>Sales</li>
+          <li>Payments</li>
         </ul>
       </li>
 
