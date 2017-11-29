@@ -30,6 +30,8 @@
 .searchbar-list-container {
   position: relative;
   width: 100%;
+  text-decoration: none;
+
 }
 
 .searchbar-ul {
@@ -48,6 +50,11 @@
   background-color: white;
   padding: 22px 15px;
   border-bottom: 1px solid #ccc;
+}
+
+.search-event-item a{
+  text-decoration: none;
+
 }
 
 .searchbar-ul li:first-child {

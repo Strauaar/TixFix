@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
 
 class TicketPage extends React.Component {
   constructor(props){
@@ -28,7 +29,7 @@ class TicketPage extends React.Component {
         const day = moment(this.props.events[i].date).format('DD');
         const dayString = moment(this.props.events[i].date).format('ddd');
         const time = moment(this.props.events[i].date).format('h:MMa');
-        result.push(<li><div className="search-list-item-container"><span className="search-event-name">{this.props.events[i].name}</span><div><span className="search-event-date">{time} {dayString} {month}, {day}</span></div></div></li>)
+        result.push(<li className="search-event-item"><Link to={`events/${this.props.events[i].id}/tickets/sell`}><div className="search-list-item-container"><span className="search-event-name">{this.props.events[i].name}</span><div><span className="search-event-date">{time} {dayString} {month}, {day}</span></div></div></Link></li>)
       }
       return result.map(li => li);
     }
