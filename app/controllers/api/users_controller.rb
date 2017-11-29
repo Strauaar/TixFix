@@ -15,6 +15,16 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def tickets_selling
+    @tickets = User.find(params[:id]).selling_tickets
+    render :tickets_selling
+  end
+
+  def tickets_buying
+    @tickets = User.find(params[:id]).bought_tickets
+    render :tickets_buying
+  end
+
   def user_params
     params.permit(:first_name, :last_name, :email, :password)
   end

@@ -32,6 +32,8 @@ document.addEventListener("DOMContentLoaded", () => {
   window.fetchPerformerLikes = fetchPerformerLikes;
   window.createPerformerLike = createPerformerLike;
   window.fetchEventTickets = TicketApiUtil.fetchEventTickets;
+  window.fetchSellingTickets = TicketApiUtil.fetchSellingTickets;
+  window.fetchBuyingTickets = TicketApiUtil.fetchBuyingTickets;
 
   const rootEl = document.getElementById("root");
   ReactDOM.render(<Root store={store} />, rootEl);
