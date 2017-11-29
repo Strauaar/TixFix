@@ -29,6 +29,17 @@ class LocationDateFilter extends React.Component{
     });
   }
 
+  componentWillUnmount() {
+    $("body").off('click', (e) => {
+      // console.log($(e.target).context.className);
+      if ($(e.target).context.className === "city-search"){
+      } else if($(e.target).context.className === "date-select") {
+      } else {
+        this.setState({dateClicked: false, locationClicked: false})
+      }
+    });
+  }
+
   filter(type) {
     console.log("IN FILTER");
     console.log(this.props);

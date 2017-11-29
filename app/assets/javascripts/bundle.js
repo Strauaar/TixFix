@@ -60605,6 +60605,18 @@ var LocationDateFilter = function (_React$Component) {
       });
     }
   }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      var _this3 = this;
+
+      $("body").off('click', function (e) {
+        // console.log($(e.target).context.className);
+        if ($(e.target).context.className === "city-search") {} else if ($(e.target).context.className === "date-select") {} else {
+          _this3.setState({ dateClicked: false, locationClicked: false });
+        }
+      });
+    }
+  }, {
     key: 'filter',
     value: function filter(type) {
       console.log("IN FILTER");
@@ -60651,7 +60663,7 @@ var LocationDateFilter = function (_React$Component) {
   }, {
     key: 'renderLocationSelect',
     value: function renderLocationSelect() {
-      var _this3 = this;
+      var _this4 = this;
 
       if (this.state.locationClicked) {
         return _react2.default.createElement(
@@ -60668,7 +60680,7 @@ var LocationDateFilter = function (_React$Component) {
             _react2.default.createElement(
               'button',
               { className: 'city-search', onClick: function onClick() {
-                  return _this3.filter('none');
+                  return _this4.filter('none');
                 } },
               'Clear Search'
             )
@@ -60679,7 +60691,7 @@ var LocationDateFilter = function (_React$Component) {
   }, {
     key: 'renderDateSelect',
     value: function renderDateSelect() {
-      var _this4 = this;
+      var _this5 = this;
 
       if (this.state.dateClicked) {
         return _react2.default.createElement(
@@ -60700,7 +60712,7 @@ var LocationDateFilter = function (_React$Component) {
             _react2.default.createElement(
               'button',
               { className: 'date-select', onClick: function onClick() {
-                  return _this4.filter('Today');
+                  return _this5.filter('Today');
                 } },
               'Today'
             )
@@ -60711,7 +60723,7 @@ var LocationDateFilter = function (_React$Component) {
             _react2.default.createElement(
               'button',
               { className: 'date-select', onClick: function onClick() {
-                  return _this4.filter('This weekend');
+                  return _this5.filter('This weekend');
                 } },
               'This weekend'
             )
@@ -60722,7 +60734,7 @@ var LocationDateFilter = function (_React$Component) {
             _react2.default.createElement(
               'button',
               { className: 'date-select', onClick: function onClick() {
-                  return _this4.filter('This month');
+                  return _this5.filter('This month');
                 } },
               'This month'
             )
@@ -60733,7 +60745,7 @@ var LocationDateFilter = function (_React$Component) {
             _react2.default.createElement(
               'button',
               { className: 'date-select', onClick: function onClick() {
-                  return _this4.filter('All dates');
+                  return _this5.filter('All dates');
                 } },
               'All dates'
             )
@@ -60744,7 +60756,7 @@ var LocationDateFilter = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _this5 = this;
+      var _this6 = this;
 
       return _react2.default.createElement(
         'div',
@@ -60755,7 +60767,7 @@ var LocationDateFilter = function (_React$Component) {
           _react2.default.createElement(
             'li',
             { onClick: function onClick() {
-                return _this5.handleClick('location');
+                return _this6.handleClick('location');
               } },
             _react2.default.createElement(
               'a',
@@ -60769,7 +60781,7 @@ var LocationDateFilter = function (_React$Component) {
           _react2.default.createElement(
             'li',
             { onClick: function onClick() {
-                return _this5.handleClick('date');
+                return _this6.handleClick('date');
               } },
             _react2.default.createElement(
               'a',
@@ -61694,7 +61706,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    categoryId: state.ui.filter.categoryId
+    categoryId: state.ui.filter.categoryId,
+    filter: state.ui.filter
   };
 };
 
@@ -61702,9 +61715,6 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     fetchMoreEvents: function fetchMoreEvents(currentCount) {
       return dispatch((0, _event_actions.fetchMoreEvents)(currentCount));
-    },
-    fetchMoreEventsByCategory: function fetchMoreEventsByCategory(currentCount, categoryId) {
-      return dispatch((0, _event_actions.fetchMoreEventsByCategory)(currentCount, categoryId));
     }
   };
 };
@@ -61728,6 +61738,8 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _lodash = __webpack_require__(10);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -61746,37 +61758,35 @@ var EventsUl = function (_React$Component) {
   }
 
   _createClass(EventsUl, [{
-    key: "loadMoreEvents",
+    key: 'loadMoreEvents',
     value: function loadMoreEvents(childrenCount, categoryId) {
       if (categoryId === undefined) {
-        this.props.fetchMoreEvents(childrenCount);
-      } else if (this.props.categoryId != 1 || this.props.categoryId != 2 || this.props.categoryId != 3) {
-        // this.props.filterByDate()
+        this.props.fetchMoreEvents(childrenCount, (0, _lodash.merge)({}, this.props.filter, { categoryId: null }));
       } else {
-        this.props.fetchMoreEventsByCategory(childrenCount, this.props.categoryId);
+        this.props.fetchMoreEvents(childrenCount, (0, _lodash.merge)({}, this.props.filter, { categoryId: categoryId }));
       }
     }
   }, {
-    key: "renderLoadMoreButton",
+    key: 'renderLoadMoreButton',
     value: function renderLoadMoreButton(childrenCount) {
       var _this2 = this;
 
       if (childrenCount % 10 === 0 && childrenCount !== 0) {
         return _react2.default.createElement(
-          "div",
+          'div',
           null,
           _react2.default.createElement(
-            "button",
+            'button',
             { onClick: function onClick() {
                 return _this2.loadMoreEvents(childrenCount, _this2.props.categoryId);
-              }, className: "load-more-btn" },
-            "Load More"
+              }, className: 'load-more-btn' },
+            'Load More'
           )
         );
       }
     }
   }, {
-    key: "renderEventCards",
+    key: 'renderEventCards',
     value: function renderEventCards(children, start_index) {
       var result = [];
       for (var i = start_index; i < children.length; i += 3) {
@@ -61787,30 +61797,30 @@ var EventsUl = function (_React$Component) {
       });
     }
   }, {
-    key: "render",
+    key: 'render',
     value: function render() {
       var childrenCount = _react2.default.Children.count(this.props.children);
       var children = _react2.default.Children.toArray(this.props.children);
 
       return _react2.default.createElement(
-        "div",
+        'div',
         null,
         _react2.default.createElement(
-          "div",
-          { className: "event-list" },
+          'div',
+          { className: 'event-list' },
           _react2.default.createElement(
-            "div",
-            { className: "col" },
+            'div',
+            { className: 'col' },
             this.renderEventCards(children, 0)
           ),
           _react2.default.createElement(
-            "div",
-            { className: "col" },
+            'div',
+            { className: 'col' },
             this.renderEventCards(children, 1)
           ),
           _react2.default.createElement(
-            "div",
-            { className: "col" },
+            'div',
+            { className: 'col' },
             this.renderEventCards(children, 2)
           )
         ),
@@ -61845,11 +61855,14 @@ var _reactRouterDom = __webpack_require__(3);
 
 var _event_actions = __webpack_require__(8);
 
+var _ticket_actions = __webpack_require__(214);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    eventQ: state.entities.events
+    eventQ: state.entities.events,
+    tickets: state.entities.tickets
   };
 };
 
@@ -61857,6 +61870,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     fetchEvent: function fetchEvent(id) {
       return dispatch((0, _event_actions.fetchEvent)(id));
+    },
+    fetchEventTickets: function fetchEventTickets(id) {
+      return dispatch((0, _ticket_actions.fetchEventTickets)(id));
     }
   };
 };
@@ -61912,6 +61928,7 @@ var EventShowPage = function (_React$Component) {
     key: 'componentDidMount',
     value: function componentDidMount() {
       this.props.fetchEvent(this.props.match.params.id);
+      this.props.fetchEventTickets(this.props.match.params.id);
     }
   }, {
     key: 'componentWillReceiveProps',
