@@ -13,7 +13,7 @@ export const fetchPerformerLikes = (user_id) => (
   $.ajax({
     method: 'GET',
     url: '/api/performer_likes',
-    data { user_id }
+    data: { user_id }
   })
 );
 

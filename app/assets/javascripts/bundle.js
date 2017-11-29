@@ -36798,6 +36798,8 @@ var _root2 = _interopRequireDefault(_root);
 
 var _event_actions = __webpack_require__(8);
 
+var _like_actions = __webpack_require__(285);
+
 var _event_util = __webpack_require__(44);
 
 var _session_util = __webpack_require__(45);
@@ -36829,6 +36831,7 @@ document.addEventListener("DOMContentLoaded", function () {
   window.fetchMoreEvents = _event_actions.fetchMoreEvents;
   window.fetchSubCategoryList = _category_actions.fetchSubCategoryList;
   window.fetchSubCategoryEvents = _category_actions.fetchSubCategoryEvents;
+  window.fetchPerformerLikes = _like_actions.fetchPerformerLikes;
 
   var rootEl = document.getElementById("root");
   _reactDom2.default.render(_react2.default.createElement(_root2.default, { store: store }), rootEl);
@@ -62264,18 +62267,139 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _like_actions = __webpack_require__(285);
+
 var likedPerformersReducer = function likedPerformersReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
   var action = arguments[1];
 
   Object.freeze(state);
+  var newState = void 0;
   switch (action.type) {
+    case _like_actions.RECEIVE_ALL_PERFORMER_LIKES:
+      return action.list;
+    case _like_actions.REMOVE_LIKE:
+      newState = Array.from(state);
+      var index = newState.indexOf(action.id);
+      newState.splice(index, 1);
+      return newState;
+    case _like_actions.RECEIVE_LIKE:
+      newState = Array.from(state);
+      newState.push(action.id);
+      return newState;
     default:
       return state;
   }
 };
 
 exports.default = likedPerformersReducer;
+
+/***/ }),
+/* 285 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.deletePerformerLike = exports.createPerformerLike = exports.fetchPerformerLikes = exports.REMOVE_LIKE = exports.RECEIVE_ALL_PERFORMER_LIKES = exports.RECEIVE_LIKE = undefined;
+
+var _like_util = __webpack_require__(286);
+
+var LikeApiUtil = _interopRequireWildcard(_like_util);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+var RECEIVE_LIKE = exports.RECEIVE_LIKE = "RECEIVE _LIKE";
+var RECEIVE_ALL_PERFORMER_LIKES = exports.RECEIVE_ALL_PERFORMER_LIKES = "RECEIVE_ALL_PERFORMER_LIKES";
+var REMOVE_LIKE = exports.REMOVE_LIKE = "REMOVE_LIKE";
+
+var receiveAllPerformerLikes = function receiveAllPerformerLikes(performer_id_list) {
+  return {
+    type: RECEIVE_ALL_PERFORMER_LIKES,
+    list: performer_id_list
+  };
+};
+
+var receiveLike = function receiveLike(liked_performer_id) {
+  return {
+    type: RECEIVE_LIKE,
+    id: liked_performer_id
+  };
+};
+
+var removeLike = function removeLike(unliked_performer_id) {
+  return {
+    type: REMOVE_LIKE,
+    id: unliked_performer_id
+  };
+};
+
+var fetchPerformerLikes = exports.fetchPerformerLikes = function fetchPerformerLikes(user_id) {
+  return function (dispatch) {
+    return LikeApiUtil.fetchPerformerLikes(user_id).then(function (performer_id_list) {
+      return dispatch(receiveAllPerformerLikes(performer_id_list));
+    });
+  };
+};
+
+var createPerformerLike = exports.createPerformerLike = function createPerformerLike(user_id, performer_id) {
+  return function (dispatch) {
+    return LikeApiUtil.createPerformerLike(user_id, performer_id).then(function (liked_performer_id) {
+      return dispatch(receiveLike(liked_performer_id));
+    });
+  };
+};
+
+var deletePerformerLike = exports.deletePerformerLike = function deletePerformerLike(user_id, performer_id) {
+  return function (dispatch) {
+    return LikeApiUtil.deletePerformerLike(user_id, performer_id).then(function (unliked_performer_id) {
+      return dispatch(removeLike(unliked_performer_id));
+    });
+  };
+};
+
+/***/ }),
+/* 286 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var createPerformerLike = exports.createPerformerLike = function createPerformerLike(user_id, performer_id) {
+  return $.ajax({
+    method: 'POST',
+    url: '/api/performer_likes',
+    data: {
+      performer_id: performer_id,
+      user_id: user_id
+    }
+  });
+};
+
+var fetchPerformerLikes = exports.fetchPerformerLikes = function fetchPerformerLikes(user_id) {
+  return $.ajax({
+    method: 'GET',
+    url: '/api/performer_likes',
+    data: { user_id: user_id }
+  });
+};
+
+var deletePerformerLike = exports.deletePerformerLike = function deletePerformerLike(user_id, performer_id) {
+  return $.ajax({
+    method: 'DELETE',
+    url: '/api/performer_likes',
+    data: {
+      performer_id: performer_id,
+      user_id: user_id
+    }
+  });
+};
 
 /***/ })
 /******/ ]);
