@@ -5,6 +5,15 @@ class User < ApplicationRecord
 
   before_validation :ensure_session_token
 
+  has_many :user_likes,
+    primary_key: :id,
+    class_name: :PerformerLike,
+    foreign_key: :user_id
+
+  has_many :performers_liked,
+    through: :user_likes,
+    source: :performer
+
   attr_reader :password
 
   def password=(password)
