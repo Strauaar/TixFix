@@ -7,16 +7,26 @@ class EventCard extends React.Component {
     super(props)
     this.renderCardHeader = this.renderCardHeader.bind(this);
     this.renderHeart = this.renderHeart.bind(this);
+    this.handleLikeClick = this.handleLikeClick.bind(this);
+  }
+
+  handleLikeClick(type) {
+    if(this.props.current_user === null) {
+      this.props.history.push("/session")
+    } else if (type === 'unlike') {
+      this.props.deletePerformerLike(this.props.current_user.id, this.props.event.performer.id)
+    } else if (type === 'like') {
+      this.props.createPerformerLike(this.props.current_user.id, this.props.event.performer.id)
+    }
   }
 
   renderHeart() {
     console.log(this.props);
     if(this.props.liked_performers_ids.includes(this.props.event.performer.id)){
       console.log("LIKE");
-      return <div className="header-icon-box"><i className="fa fa-heart fa-2x header-icon in-image-icon liked-icon" aria-hidden="true"></i></div>
+      return <div className="header-icon-box" onClick={()=> this.handleLikeClick('unlike')}><i className="fa fa-heart fa-2x header-icon in-image-icon liked-icon" aria-hidden="true"></i></div>
     } else {
-
-      return <div className="header-icon-box"><i className="fa fa-heart fa-2x header-icon in-image-icon" aria-hidden="true"></i></div>
+      return <div className="header-icon-box" onClick={() => this.handleLikeClick('like')}><i className="fa fa-heart fa-2x header-icon in-image-icon" aria-hidden="true"></i></div>
     }
   }
 

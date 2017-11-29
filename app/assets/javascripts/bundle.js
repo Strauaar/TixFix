@@ -60912,25 +60912,42 @@ var EventCard = function (_React$Component) {
 
     _this.renderCardHeader = _this.renderCardHeader.bind(_this);
     _this.renderHeart = _this.renderHeart.bind(_this);
+    _this.handleLikeClick = _this.handleLikeClick.bind(_this);
     return _this;
   }
 
   _createClass(EventCard, [{
+    key: 'handleLikeClick',
+    value: function handleLikeClick(type) {
+      if (this.props.current_user === null) {
+        this.props.history.push("/session");
+      } else if (type === 'unlike') {
+        this.props.deletePerformerLike(this.props.current_user.id, this.props.event.performer.id);
+      } else if (type === 'like') {
+        this.props.createPerformerLike(this.props.current_user.id, this.props.event.performer.id);
+      }
+    }
+  }, {
     key: 'renderHeart',
     value: function renderHeart() {
+      var _this2 = this;
+
       console.log(this.props);
       if (this.props.liked_performers_ids.includes(this.props.event.performer.id)) {
         console.log("LIKE");
         return _react2.default.createElement(
           'div',
-          { className: 'header-icon-box' },
+          { className: 'header-icon-box', onClick: function onClick() {
+              return _this2.handleLikeClick('unlike');
+            } },
           _react2.default.createElement('i', { className: 'fa fa-heart fa-2x header-icon in-image-icon liked-icon', 'aria-hidden': 'true' })
         );
       } else {
-
         return _react2.default.createElement(
           'div',
-          { className: 'header-icon-box' },
+          { className: 'header-icon-box', onClick: function onClick() {
+              return _this2.handleLikeClick('like');
+            } },
           _react2.default.createElement('i', { className: 'fa fa-heart fa-2x header-icon in-image-icon', 'aria-hidden': 'true' })
         );
       }
@@ -62445,7 +62462,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    liked_performers_ids: state.entities.liked_performers_ids
+    liked_performers_ids: state.entities.liked_performers_ids,
+    current_user: state.session.currentUser
   };
 };
 
