@@ -38,8 +38,8 @@ class App extends React.Component {
         <Switch>
           <Route exact path="/" component={EventsListContainer}/>
           <Route path="/category/:id" component={EventsListContainer}/>
-          <Route path="/events/:id" component={EventShowPageContainer} />
-          <Route path="/events/:eventId/tickets/:ticketId" component={EventCheckoutPage} />
+          <Route path="/events/:eventId/ticket/:ticketId" component={EventCheckoutPage} />
+          <Route exact path="/events/:id" component={EventShowPageContainer} />
           <Route path="/subcategory/:id" component={SubCategoryPageContainer} />
           <Route path="/tickets/sell" component={TicketSellSplashPage} />
         </Switch>
