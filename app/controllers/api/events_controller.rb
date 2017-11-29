@@ -1,6 +1,5 @@
 class Api::EventsController < ApplicationController
   def index
-
     @count = params[:currentCount]
 
     if @count

@@ -9,11 +9,19 @@ class EventShowPage extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchEvent(this.props.match.params.id)
+    this.props.fetchEvent(this.props.match.params.id);
+  }
+
+  componentWillReceiveProps(newProps) {
+    console.log(this.props);
+    console.log(newProps);
+    if(Object.values(this.props.eventQ).length !== Object.values(newProps.eventQ).length){
+      this.props.fetchEvent(newProps.match.params.id)
+    }
   }
 
   renderDetailsHeader() {
-    if (Object.keys(this.props.eventQ).length === 0) {
+    if (!this.props.eventQ) {
       return null
     } else {
       const month = moment(this.props.eventQ.date).format('MMM');
@@ -30,7 +38,7 @@ class EventShowPage extends React.Component {
         </div>
         <div className="card-detail-event-block event-show-card-block">
           <p className="card-detail-event-name event-show-detail-name">{this.props.eventQ.name}</p>
-          <span className="card-detail-date-venue event-show-detail-venue">{time} at {this.props.eventQ.venue.name}, {this.props.eventQ.venue.city}, {this.props.eventQ.venue.state}</span>
+          <span className="card-detail-date-venue event-show-detail-venue">{time} at {this.props.eventQ.venue}, {this.props.eventQ.city}, {this.props.eventQ.state}</span>
         </div>
       </div>
     }

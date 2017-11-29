@@ -60784,7 +60784,7 @@ var EventsList = function (_React$Component) {
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(newProps) {
       // if(newProps.match.params.id !== this.props.match.params.id) {
-      //   this.props.filterByCategory(newProps.match.params.id)
+      //   this.props.fetchEvents(newProps.filter)
       // }
     }
   }, {
@@ -61514,9 +61514,18 @@ var EventShowPage = function (_React$Component) {
       this.props.fetchEvent(this.props.match.params.id);
     }
   }, {
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(newProps) {
+      console.log(this.props);
+      console.log(newProps);
+      if (Object.values(this.props.eventQ).length !== Object.values(newProps.eventQ).length) {
+        this.props.fetchEvent(newProps.match.params.id);
+      }
+    }
+  }, {
     key: 'renderDetailsHeader',
     value: function renderDetailsHeader() {
-      if (Object.keys(this.props.eventQ).length === 0) {
+      if (!this.props.eventQ) {
         return null;
       } else {
         var month = (0, _moment2.default)(this.props.eventQ.date).format('MMM');
@@ -61555,11 +61564,11 @@ var EventShowPage = function (_React$Component) {
               { className: 'card-detail-date-venue event-show-detail-venue' },
               time,
               ' at ',
-              this.props.eventQ.venue.name,
+              this.props.eventQ.venue,
               ', ',
-              this.props.eventQ.venue.city,
+              this.props.eventQ.city,
               ', ',
-              this.props.eventQ.venue.state
+              this.props.eventQ.state
             )
           )
         );

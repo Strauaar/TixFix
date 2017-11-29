@@ -14,7 +14,7 @@ class EventsList extends React.Component {
 
   componentWillReceiveProps(newProps) {
     // if(newProps.match.params.id !== this.props.match.params.id) {
-    //   this.props.filterByCategory(newProps.match.params.id)
+    //   this.props.fetchEvents(newProps.filter)
     // }
   }
 
