@@ -1,5 +1,5 @@
 class Ticket < ApplicationRecord
-  validates :seller_id, :event_id, :price, presence: true
+  validates :seller_id, :event_id, :price, :type_of, :row, presence: true
 
   belongs_to :buyer,
     primary_key: :id,
@@ -16,5 +16,5 @@ class Ticket < ApplicationRecord
     primary_key: :id,
     class_name: :Subevent,
     foreign_key: :event_id
-    
+
 end

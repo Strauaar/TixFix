@@ -10,6 +10,8 @@
   width: 350px;
   background-color: white;
   border: 1px solid #E6E9EB;
+  overflow:hidden;
+
 }
 
 .events-show-filter-block {
@@ -20,12 +22,16 @@
 .event-show-tickets-container {
   width:100%;
   overflow-y: scroll;
-  overflow-x: overflow;
+  overflow-x: hidden;
   height: 600px;
+  padding-right: 17px;
 }
 
 .event-show-ticket-scrollable-container {
   height:7000px;
-  width: 100%;
+  width: 105%;
   background-color: white;
+  border-top: 1px solid grey;
+  overflow-x: hidden;
+
 }

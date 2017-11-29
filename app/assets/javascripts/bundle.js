@@ -62098,7 +62098,7 @@ var ScrollTicketItem = function (_React$Component) {
               _react2.default.createElement(
                 'span',
                 null,
-                'General Admission'
+                this.props.ticket.type_of
               )
             ),
             _react2.default.createElement(
@@ -62122,7 +62122,7 @@ var ScrollTicketItem = function (_React$Component) {
             _react2.default.createElement(
               'span',
               null,
-              'GA'
+              this.props.ticket.row
             )
           ),
           _react2.default.createElement(
@@ -62131,7 +62131,8 @@ var ScrollTicketItem = function (_React$Component) {
             _react2.default.createElement(
               'span',
               null,
-              '$120'
+              '$',
+              this.props.ticket.price
             ),
             _react2.default.createElement(
               'span',

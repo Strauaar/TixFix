@@ -1,6 +1,6 @@
 @tickets.each do |ticket|
   json.set! ticket.id do
-    json.extract! ticket, :id, :buyer_id, :seller_id, :event_id
+    json.extract! ticket, :id, :buyer_id, :seller_id, :event_id, :type_of, :row, :price
     json.seller do
       json.id ticket.seller.id
       json.first_name ticket.seller.first_name

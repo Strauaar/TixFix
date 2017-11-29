@@ -14,7 +14,7 @@ class ScrollTicketItem extends React.Component {
         <div className="ticket-item">
           <div className="ticket-item-left-block">
             <div className="ticket-type">
-              <span>General Admission</span>
+              <span>{this.props.ticket.type_of}</span>
             </div>
             <div className="ticket-count-and-shipping">
               <span>1 ticket</span>
@@ -22,10 +22,10 @@ class ScrollTicketItem extends React.Component {
             </div>
           </div>
           <div className="ticket-item-seat-block">
-            <span>GA</span>
+            <span>{this.props.ticket.row}</span>
           </div>
           <div className="ticket-item-price-block">
-            <span>$120</span>
+            <span>${this.props.ticket.price}</span>
             <span>/ea</span>
           </div>
         </div>
