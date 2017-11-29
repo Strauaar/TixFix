@@ -16,7 +16,7 @@ import EventShowPageContainer from './events/event_show_page_container';
 import SubCategoryListContainer from './categories/subcategory_list_container';
 import SubCategoryPageContainer from './categories/subcategory_page_container';
 import EventCheckoutPageContainer from './events/event_checkout_page_container';
-import TicketSellSplashPage from './tickets/tickets_sell_splash_page';
+import TicketSellSplashPageContainer from './tickets/tickets_sell_splash_page_container';
 import CFooter from './footer/footer';
 
 
@@ -51,7 +51,7 @@ class App extends React.Component {
           <Route path="/events/:eventId/ticket/:ticketId" component={EventCheckoutPageContainer} />
           <Route exact path="/events/:id" component={EventShowPageContainer} />
           <Route path="/subcategory/:id" component={SubCategoryPageContainer} />
-          <Route path="/tickets/sell" component={TicketSellSplashPage} />
+          <Route path="/tickets/sell" component={TicketSellSplashPageContainer} />
         </Switch>
 
         <Route path="/category/:id" component={SubCategoryListContainer} />

@@ -3,7 +3,7 @@ import React from 'react';
 class TicketPage extends React.Component {
   constructor(props){
     super(props)
-    this.state = {input: ""}
+    this.state = {input: null}
     this.handleInput = this.handleInput.bind(this);
     this.keyPress = this.keyPress.bind(this);
   }

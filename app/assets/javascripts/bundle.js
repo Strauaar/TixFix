@@ -59674,9 +59674,9 @@ var _event_checkout_page_container = __webpack_require__(289);
 
 var _event_checkout_page_container2 = _interopRequireDefault(_event_checkout_page_container);
 
-var _tickets_sell_splash_page = __webpack_require__(291);
+var _tickets_sell_splash_page_container = __webpack_require__(293);
 
-var _tickets_sell_splash_page2 = _interopRequireDefault(_tickets_sell_splash_page);
+var _tickets_sell_splash_page_container2 = _interopRequireDefault(_tickets_sell_splash_page_container);
 
 var _footer = __webpack_require__(292);
 
@@ -59737,7 +59737,7 @@ var App = function (_React$Component) {
           _react2.default.createElement(_reactRouterDom.Route, { path: '/events/:eventId/ticket/:ticketId', component: _event_checkout_page_container2.default }),
           _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/events/:id', component: _event_show_page_container2.default }),
           _react2.default.createElement(_reactRouterDom.Route, { path: '/subcategory/:id', component: _subcategory_page_container2.default }),
-          _react2.default.createElement(_reactRouterDom.Route, { path: '/tickets/sell', component: _tickets_sell_splash_page2.default })
+          _react2.default.createElement(_reactRouterDom.Route, { path: '/tickets/sell', component: _tickets_sell_splash_page_container2.default })
         ),
         _react2.default.createElement(_reactRouterDom.Route, { path: '/category/:id', component: _subcategory_list_container2.default }),
         _react2.default.createElement(
@@ -62877,7 +62877,7 @@ var TicketPage = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (TicketPage.__proto__ || Object.getPrototypeOf(TicketPage)).call(this, props));
 
-    _this.state = { input: "" };
+    _this.state = { input: null };
     _this.handleInput = _this.handleInput.bind(_this);
     _this.keyPress = _this.keyPress.bind(_this);
     return _this;
@@ -63131,6 +63131,43 @@ var Footer = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = Footer;
+
+/***/ }),
+/* 293 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = __webpack_require__(4);
+
+var _reactRouterDom = __webpack_require__(2);
+
+var _tickets_sell_splash_page = __webpack_require__(291);
+
+var _tickets_sell_splash_page2 = _interopRequireDefault(_tickets_sell_splash_page);
+
+var _event_actions = __webpack_require__(8);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {};
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    fetchEvents: function fetchEvents(filter) {
+      return dispatch((0, _event_actions.fetchEvents)(filter));
+    }
+  };
+};
+
+exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_tickets_sell_splash_page2.default));
 
 /***/ })
 /******/ ]);
