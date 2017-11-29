@@ -25,6 +25,6 @@ export const fetchEventTickets = event_id => dispatch => (
   TicketApiUtil.fetchEventTickets(event_id).then(ticket_list => dispatch(receiveTickets(ticket_list)))
 );
 
-export const fetchEventTicket = event_id => dispatch => (
-  TicketApiUtil.fetchEventTicket(event_id).then(ticket => dispatch(receiveTicket(ticket)))
-)
+export const fetchEventTicket = ticket_id => dispatch => (
+  TicketApiUtil.fetchEventTicket(ticket_id).then(ticket => dispatch(receiveTicket(ticket)))
+);

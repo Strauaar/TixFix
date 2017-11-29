@@ -5,7 +5,8 @@ import { fetchEventTicket } from '../../actions/ticket_actions';
 import EventCheckoutPage from './event_checkout_page';
 
 const mapStateToProps = state => ({
-
+  ticket: state.entities.tickets,
+  eventQ: state.entities.events
 });
 
 const mapDispatchToProps = dispatch => ({

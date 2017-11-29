@@ -4,6 +4,7 @@ class Api::TicketsController < ApplicationController
   end
 
   def show
-    
+    @ticket = Ticket.find(params[:id])
+    render :show
   end
 end

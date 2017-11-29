@@ -23214,9 +23214,9 @@ var fetchEventTickets = exports.fetchEventTickets = function fetchEventTickets(e
   };
 };
 
-var fetchEventTicket = exports.fetchEventTicket = function fetchEventTicket(event_id) {
+var fetchEventTicket = exports.fetchEventTicket = function fetchEventTicket(ticket_id) {
   return function (dispatch) {
-    return TicketApiUtil.fetchEventTicket(event_id).then(function (ticket) {
+    return TicketApiUtil.fetchEventTicket(ticket_id).then(function (ticket) {
       return dispatch(receiveTicket(ticket));
     });
   };
@@ -24486,10 +24486,10 @@ var fetchBuyingTickets = exports.fetchBuyingTickets = function fetchBuyingTicket
   });
 };
 
-var fetchEventTicket = exports.fetchEventTicket = function fetchEventTicket(event_id) {
+var fetchEventTicket = exports.fetchEventTicket = function fetchEventTicket(ticket_id) {
   return $.ajax({
     method: 'GET',
-    url: 'api/events/' + event_id
+    url: 'api/tickets/' + ticket_id
   });
 };
 
@@ -62551,6 +62551,10 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _moment = __webpack_require__(0);
+
+var _moment2 = _interopRequireDefault(_moment);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -62569,136 +62573,141 @@ var EventCheckoutPage = function (_React$Component) {
   }
 
   _createClass(EventCheckoutPage, [{
-    key: "componentDidMount",
+    key: 'componentDidMount',
     value: function componentDidMount() {
       this.props.fetchEvent(this.props.match.params.eventId);
       this.props.fetchEventTicket(this.props.match.params.ticketId);
     }
   }, {
-    key: "render",
+    key: 'render',
     value: function render() {
+      var _props = this.props,
+          eventQ = _props.eventQ,
+          ticket = _props.ticket;
 
       return _react2.default.createElement(
-        "div",
-        { className: "event-ticket-checkout-container" },
+        'div',
+        { className: 'event-ticket-checkout-container' },
         _react2.default.createElement(
-          "div",
-          { className: "event-ticket-checkout-details" },
-          _react2.default.createElement("div", { className: "event-detail-header" }),
+          'div',
+          { className: 'event-ticket-checkout-details' },
+          _react2.default.createElement('div', { className: 'event-detail-header' }),
           _react2.default.createElement(
-            "div",
-            { className: "selected-seats-container" },
+            'div',
+            { className: 'selected-seats-container' },
             _react2.default.createElement(
-              "p",
+              'p',
               null,
-              "SELECTED SEATS"
+              'SELECTED SEATS'
             ),
             _react2.default.createElement(
-              "div",
-              { className: "seats-sub-container" },
+              'div',
+              { className: 'seats-sub-container' },
               _react2.default.createElement(
-                "div",
-                { className: "section-detail detail-section" },
+                'div',
+                { className: 'section-detail detail-section' },
                 _react2.default.createElement(
-                  "span",
-                  { className: "ticket-detail-subheader" },
-                  "SECTION"
+                  'span',
+                  { className: 'ticket-detail-subheader' },
+                  'SECTION'
                 ),
                 _react2.default.createElement(
-                  "span",
+                  'span',
                   null,
-                  "General Admission"
+                  ticket.type_of
                 ),
                 _react2.default.createElement(
-                  "span",
+                  'span',
                   null,
-                  "Seat printed on ticket"
+                  'Seat printed on ticket'
                 )
               ),
               _react2.default.createElement(
-                "div",
-                { className: "row-detail detail-section" },
+                'div',
+                { className: 'row-detail detail-section' },
                 _react2.default.createElement(
-                  "span",
-                  { className: "ticket-detail-subheader" },
-                  "ROW"
+                  'span',
+                  { className: 'ticket-detail-subheader' },
+                  'ROW'
                 ),
                 _react2.default.createElement(
-                  "span",
+                  'span',
                   null,
-                  "GA"
+                  ticket.row
                 )
               ),
               _react2.default.createElement(
-                "div",
-                { className: "seat-detail detail-section" },
+                'div',
+                { className: 'seat-detail detail-section' },
                 _react2.default.createElement(
-                  "span",
-                  { className: "ticket-detail-subheader" },
-                  "SEATS"
+                  'span',
+                  { className: 'ticket-detail-subheader' },
+                  'SEATS'
                 ),
                 _react2.default.createElement(
-                  "span",
+                  'span',
                   null,
-                  "-"
+                  '-'
                 )
               )
             )
           ),
           _react2.default.createElement(
-            "div",
-            { className: "delivery-method-container detail-section" },
+            'div',
+            { className: 'delivery-method-container detail-section' },
             _react2.default.createElement(
-              "span",
-              { className: "ticket-detail-subheader" },
-              "DELIVERY"
+              'span',
+              { className: 'ticket-detail-subheader' },
+              'DELIVERY'
             ),
             _react2.default.createElement(
-              "span",
+              'span',
               null,
-              "UPS"
+              'UPS'
             ),
             _react2.default.createElement(
-              "span",
+              'span',
               null,
-              "Delivery by: ",
+              'Delivery by: ',
               _react2.default.createElement(
-                "strong",
+                'strong',
                 null,
-                "Thu, Dec 28, 2017"
+                'Thu, Dec 28, 2017'
               )
             )
           ),
           _react2.default.createElement(
-            "div",
-            { className: "ticket-details-container" },
+            'div',
+            { className: 'ticket-details-container' },
             _react2.default.createElement(
-              "div",
-              { className: "ticket-price-block detail-section" },
+              'div',
+              { className: 'ticket-price-block detail-section' },
               _react2.default.createElement(
-                "span",
-                { className: "ticket-detail-subheader" },
-                "TICKET PRICE"
+                'span',
+                { className: 'ticket-detail-subheader' },
+                'TICKET PRICE'
               ),
               _react2.default.createElement(
-                "span",
+                'span',
                 null,
-                "$77.00 ",
+                '$',
+                ticket.price,
+                '.00 ',
                 _react2.default.createElement(
-                  "span",
-                  { className: "each" },
-                  "/ea"
+                  'span',
+                  { className: 'each' },
+                  '/ea'
                 )
               )
             )
           ),
           _react2.default.createElement(
-            "div",
-            { className: "ticket-checkout-button-container" },
+            'div',
+            { className: 'ticket-checkout-button-container' },
             _react2.default.createElement(
-              "button",
+              'button',
               null,
-              "Go to checkout"
+              'Go to checkout'
             )
           )
         )
@@ -62986,7 +62995,10 @@ var _event_checkout_page2 = _interopRequireDefault(_event_checkout_page);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state) {
-  return {};
+  return {
+    ticket: state.entities.tickets,
+    eventQ: state.entities.events
+  };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {

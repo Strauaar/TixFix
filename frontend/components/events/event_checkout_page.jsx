@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 
 class EventCheckoutPage extends React.Component {
   constructor(props){
@@ -10,7 +11,7 @@ class EventCheckoutPage extends React.Component {
     this.props.fetchEventTicket(this.props.match.params.ticketId);
   }
   render() {
-
+    let { eventQ, ticket } = this.props;
     return (
       <div className="event-ticket-checkout-container">
         <div className="event-ticket-checkout-details">
@@ -22,12 +23,12 @@ class EventCheckoutPage extends React.Component {
             <div className="seats-sub-container">
               <div className="section-detail detail-section">
                 <span className="ticket-detail-subheader">SECTION</span>
-                <span>General Admission</span>
+                <span>{ticket.type_of}</span>
                 <span>Seat printed on ticket</span>
               </div>
               <div className="row-detail detail-section">
                 <span className="ticket-detail-subheader">ROW</span>
-                <span>GA</span>
+                <span>{ticket.row}</span>
               </div>
               <div className="seat-detail detail-section">
                 <span className="ticket-detail-subheader">SEATS</span>
@@ -43,7 +44,7 @@ class EventCheckoutPage extends React.Component {
           <div className="ticket-details-container">
             <div className="ticket-price-block detail-section">
               <span className="ticket-detail-subheader">TICKET PRICE</span>
-              <span>$77.00 <span className="each">/ea</span></span>
+              <span>${ticket.price}.00 <span className="each">/ea</span></span>
             </div>
 
           </div>
