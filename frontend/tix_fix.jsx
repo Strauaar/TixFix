@@ -6,6 +6,7 @@ import {  fetchMoreEvents } from './actions/event_actions';
 import { fetchPerformerLikes, createPerformerLike, deletePerformerLike } from './actions/like_actions';
 import { fetchEventByCategory, fetchEvents } from './utils/event_util';
 import * as SessionApiUtil from './utils/session_util';
+import * as TicketApiUtil from './utils/ticket_util';
 import { RECEIVE_CURRENT_USER,
          LOGOUT_CURRENT_USER,
          loginUser,
@@ -30,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.fetchSubCategoryEvents = fetchSubCategoryEvents;
   window.fetchPerformerLikes = fetchPerformerLikes;
   window.createPerformerLike = createPerformerLike;
-
+  window.fetchEventTickets = TicketApiUtil.fetchEventTickets;
 
   const rootEl = document.getElementById("root");
   ReactDOM.render(<Root store={store} />, rootEl);

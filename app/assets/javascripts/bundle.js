@@ -36873,6 +36873,10 @@ var _session_util = __webpack_require__(46);
 
 var SessionApiUtil = _interopRequireWildcard(_session_util);
 
+var _ticket_util = __webpack_require__(288);
+
+var TicketApiUtil = _interopRequireWildcard(_ticket_util);
+
 var _session_actions = __webpack_require__(14);
 
 var _category_util = __webpack_require__(47);
@@ -36900,6 +36904,7 @@ document.addEventListener("DOMContentLoaded", function () {
   window.fetchSubCategoryEvents = _category_actions.fetchSubCategoryEvents;
   window.fetchPerformerLikes = _like_actions.fetchPerformerLikes;
   window.createPerformerLike = _like_actions.createPerformerLike;
+  window.fetchEventTickets = TicketApiUtil.fetchEventTickets;
 
   var rootEl = document.getElementById("root");
   _reactDom2.default.render(_react2.default.createElement(_root2.default, { store: store }), rootEl);
@@ -62536,6 +62541,37 @@ var TicketPage = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = TicketPage;
+
+/***/ }),
+/* 288 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var fetchEventTickets = exports.fetchEventTickets = function fetchEventTickets(event_id) {
+  return $.ajax({
+    method: 'GET',
+    url: 'api/events/' + event_id + '/tickets'
+  });
+};
+
+var fetchSellingTickets = exports.fetchSellingTickets = function fetchSellingTickets(user_id) {
+  return $.ajax({
+    method: 'GET',
+    url: 'api/users/' + user_id + '/tickets_selling'
+  });
+};
+
+var fetchBuyingTickets = exports.fetchBuyingTickets = function fetchBuyingTickets(user_id) {
+  return $.ajax({
+    method: 'GET',
+    url: 'api/users/' + user_id + '/tickets_buying'
+  });
+};
 
 /***/ })
 /******/ ]);
