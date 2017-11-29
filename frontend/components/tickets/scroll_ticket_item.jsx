@@ -7,9 +7,11 @@ class ScrollTicketItem extends React.Component {
   }
 
   render() {
+    console.log("TICKET");
+    console.log(this.props.ticket);
     return(
       <div>
-        
+        sup
       </div>
     )
   }

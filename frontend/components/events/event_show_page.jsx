@@ -8,9 +8,12 @@ class EventShowPage extends React.Component {
     this.renderDetailsHeader = this.renderDetailsHeader.bind(this);
   }
 
-  componentDidMount() {
+  componentWillMount(){
     this.props.fetchEvent(this.props.match.params.id);
     this.props.fetchEventTickets(this.props.match.params.id);
+  }
+
+  componentDidMount() {
   }
 
   componentWillReceiveProps(newProps) {
@@ -47,8 +50,8 @@ class EventShowPage extends React.Component {
 
 
   render() {
-
-
+    console.log("TICKETS");
+    console.log(this.props.tickets);
     return (
       <div className="event-show-page">
         <div className="event-show-top">
@@ -62,7 +65,11 @@ class EventShowPage extends React.Component {
             </div>
             <div className="event-show-tickets-container">
               <div className="event-show-ticket-scrollable-container">
-
+                {
+                  this.props.tickets.map(ticket => (
+                    <ScrollTicketItem ticket={ticket} />
+                  ))
+                }
               </div>
             </div>
           </div>

@@ -6,7 +6,7 @@ import { fetchEventTickets } from '../../actions/ticket_actions';
 
 const mapStateToProps = state => ({
   eventQ: state.entities.events,
-  tickets: state.entities.tickets
+  tickets: Object.values(state.entities.tickets)
 });
 
 const mapDispatchToProps = dispatch => ({
