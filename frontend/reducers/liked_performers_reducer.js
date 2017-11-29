@@ -1,4 +1,5 @@
 import { RECEIVE_LIKE, RECEIVE_ALL_PERFORMER_LIKES, REMOVE_LIKE } from '../actions/like_actions';
+import { LOGOUT_CURRENT_USER } from '../actions/session_actions';
 
 const likedPerformersReducer = (state = [], action) => {
   Object.freeze(state);
@@ -15,6 +16,8 @@ const likedPerformersReducer = (state = [], action) => {
       newState = Array.from(state);
       newState.push(action.id);
       return newState;
+    case LOGOUT_CURRENT_USER:
+      return [];
     default:
       return state;
   }

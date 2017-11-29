@@ -62305,6 +62305,8 @@ Object.defineProperty(exports, "__esModule", {
 
 var _like_actions = __webpack_require__(285);
 
+var _session_actions = __webpack_require__(19);
+
 var likedPerformersReducer = function likedPerformersReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
   var action = arguments[1];
@@ -62323,6 +62325,8 @@ var likedPerformersReducer = function likedPerformersReducer() {
       newState = Array.from(state);
       newState.push(action.id);
       return newState;
+    case _session_actions.LOGOUT_CURRENT_USER:
+      return [];
     default:
       return state;
   }
