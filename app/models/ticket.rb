@@ -4,7 +4,8 @@ class Ticket < ApplicationRecord
   belongs_to :buyer,
     primary_key: :id,
     class_name: :User,
-    foreign_key: :buyer_id
+    foreign_key: :buyer_id,
+    optional: true
 
   belongs_to :seller,
     primary_key: :id,
@@ -15,4 +16,5 @@ class Ticket < ApplicationRecord
     primary_key: :id,
     class_name: :Subevent,
     foreign_key: :event_id
+    
 end

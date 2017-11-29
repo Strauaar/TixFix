@@ -110,5 +110,5 @@ for i in 0..3
   )
 end
 
-Ticket.create(seller_id: demo_user1.id, buyer_id: demo_user2.id, event_id: subevent.id)
-Ticket.create(seller_id: demo_user1.id, event_id: subevent.id)
+Ticket.create(seller_id: demo_user1.id, buyer_id: demo_user2.id, event_id: subevent.id, price: 100)
+Ticket.create(seller_id: demo_user1.id, event_id: subevent.id, price: 120)

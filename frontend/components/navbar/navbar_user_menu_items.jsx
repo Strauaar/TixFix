@@ -29,8 +29,8 @@ const UserMenuItems = ({currentUser, logout}) => {
 
   return (
     <ul className="sign-in-row">
-      <li><a href="#"> <i className="fa fa-envelope-open-o" aria-hidden="true"></i>
-        Sell tickets</a>
+      <li><Link to="/tickets/sell"><i className="fa fa-envelope-open-o" aria-hidden="true"></i>
+        Sell tickets</Link>
       </li>
 
       <li>

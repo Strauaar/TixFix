@@ -8,5 +8,6 @@ Rails.application.routes.draw do
     resources :subevents, path: :events, only: [:show]
     resources :categories, only: [:show]
     resources :performer_likes, only: [:create, :destroy, :index]
+
   end
 end
