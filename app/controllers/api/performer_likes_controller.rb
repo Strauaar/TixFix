@@ -1,11 +1,13 @@
 class Api::PerformerLikesController < ApplicationController
 
   def create
-
+    @like = PerformerLike.create(user_id: params[:user_id], performer_id: params[:performer_id])
+    render :show
   end
 
   def destroy
-
+    @like = PerformerLike.create(user_id: params[:user_id], performer_id: params[:performer_id])
+    render :show
   end
 
   def index

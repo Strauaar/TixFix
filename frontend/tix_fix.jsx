@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import configureStore from './store/store';
 import Root from './components/root';
 import {  fetchMoreEvents } from './actions/event_actions';
-import { fetchPerformerLikes } from './actions/like_actions';
+import { fetchPerformerLikes, createPerformerLike, deletePerformerLike } from './actions/like_actions';
 import { fetchEventByCategory, fetchEvents } from './utils/event_util';
 import * as SessionApiUtil from './utils/session_util';
 import { RECEIVE_CURRENT_USER,
@@ -29,6 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.fetchSubCategoryList = fetchSubCategoryList;
   window.fetchSubCategoryEvents = fetchSubCategoryEvents;
   window.fetchPerformerLikes = fetchPerformerLikes;
+  window.createPerformerLike = createPerformerLike;
 
 
   const rootEl = document.getElementById("root");

@@ -26,9 +26,9 @@ export const fetchPerformerLikes = (user_id) => dispatch => (
 );
 
 export const createPerformerLike = (user_id, performer_id) => dispatch => (
-  LikeApiUtil.createPerformerLike(user_id, performer_id).then(liked_performer_id => dispatch(receiveLike(liked_performer_id)))
+  LikeApiUtil.createPerformerLike(user_id, performer_id).then(liked_performer_id_obj => dispatch(receiveLike(liked_performer_id_obj.performer_id)))
 );
 
 export const deletePerformerLike = (user_id, performer_id) => dispatch => (
-  LikeApiUtil.deletePerformerLike(user_id, performer_id).then(unliked_performer_id => dispatch(removeLike(unliked_performer_id)))
+  LikeApiUtil.deletePerformerLike(user_id, performer_id).then(unliked_performer_id_obj => dispatch(removeLike(unliked_performer_id_obj.id)))
 );

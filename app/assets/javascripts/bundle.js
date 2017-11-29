@@ -36832,6 +36832,7 @@ document.addEventListener("DOMContentLoaded", function () {
   window.fetchSubCategoryList = _category_actions.fetchSubCategoryList;
   window.fetchSubCategoryEvents = _category_actions.fetchSubCategoryEvents;
   window.fetchPerformerLikes = _like_actions.fetchPerformerLikes;
+  window.createPerformerLike = _like_actions.createPerformerLike;
 
   var rootEl = document.getElementById("root");
   _reactDom2.default.render(_react2.default.createElement(_root2.default, { store: store }), rootEl);
@@ -60777,9 +60778,9 @@ var _react2 = _interopRequireDefault(_react);
 
 var _lodash = __webpack_require__(10);
 
-var _event_card_item = __webpack_require__(269);
+var _event_card_item_container = __webpack_require__(287);
 
-var _event_card_item2 = _interopRequireDefault(_event_card_item);
+var _event_card_item_container2 = _interopRequireDefault(_event_card_item_container);
 
 var _events_ul_container = __webpack_require__(272);
 
@@ -60858,7 +60859,7 @@ var EventsList = function (_React$Component) {
           _events_ul_container2.default,
           null,
           this.props.events.map(function (event) {
-            return _react2.default.createElement(_event_card_item2.default, { key: event.id, id: event.id, event: event });
+            return _react2.default.createElement(_event_card_item_container2.default, { key: event.id, id: event.id, event: event });
           })
         )
       );
@@ -60910,24 +60911,42 @@ var EventCard = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (EventCard.__proto__ || Object.getPrototypeOf(EventCard)).call(this, props));
 
     _this.renderCardHeader = _this.renderCardHeader.bind(_this);
+    _this.renderHeart = _this.renderHeart.bind(_this);
     return _this;
   }
 
   _createClass(EventCard, [{
+    key: 'renderHeart',
+    value: function renderHeart() {
+      console.log(this.props);
+      if (this.props.liked_performers_ids.includes(this.props.event.performer.id)) {
+        console.log("LIKE");
+        return _react2.default.createElement(
+          'div',
+          { className: 'header-icon-box' },
+          _react2.default.createElement('i', { className: 'fa fa-heart fa-2x header-icon in-image-icon liked-icon', 'aria-hidden': 'true' })
+        );
+      } else {
+
+        return _react2.default.createElement(
+          'div',
+          { className: 'header-icon-box' },
+          _react2.default.createElement('i', { className: 'fa fa-heart fa-2x header-icon in-image-icon', 'aria-hidden': 'true' })
+        );
+      }
+    }
+  }, {
     key: 'renderCardHeader',
     value: function renderCardHeader() {
       if (this.props.event.image_url) {
+        var heart = this.renderHeart();
         return _react2.default.createElement(
           'div',
           { className: 'event-card-image fade-in', style: { backgroundImage: 'url(' + this.props.event.image_url + ')' } },
           _react2.default.createElement(
             'div',
             { className: 'event-card-header-block in-image' },
-            _react2.default.createElement(
-              'div',
-              { className: 'header-icon-box' },
-              _react2.default.createElement('i', { className: 'fa fa-heart fa-2x header-icon in-image-icon', 'aria-hidden': 'true' })
-            ),
+            heart,
             _react2.default.createElement(
               'p',
               { className: 'event-card-header-text in-image-text' },
@@ -62347,16 +62366,16 @@ var fetchPerformerLikes = exports.fetchPerformerLikes = function fetchPerformerL
 
 var createPerformerLike = exports.createPerformerLike = function createPerformerLike(user_id, performer_id) {
   return function (dispatch) {
-    return LikeApiUtil.createPerformerLike(user_id, performer_id).then(function (liked_performer_id) {
-      return dispatch(receiveLike(liked_performer_id));
+    return LikeApiUtil.createPerformerLike(user_id, performer_id).then(function (liked_performer_id_obj) {
+      return dispatch(receiveLike(liked_performer_id_obj.performer_id));
     });
   };
 };
 
 var deletePerformerLike = exports.deletePerformerLike = function deletePerformerLike(user_id, performer_id) {
   return function (dispatch) {
-    return LikeApiUtil.deletePerformerLike(user_id, performer_id).then(function (unliked_performer_id) {
-      return dispatch(removeLike(unliked_performer_id));
+    return LikeApiUtil.deletePerformerLike(user_id, performer_id).then(function (unliked_performer_id_obj) {
+      return dispatch(removeLike(unliked_performer_id_obj.id));
     });
   };
 };
@@ -62400,6 +62419,48 @@ var deletePerformerLike = exports.deletePerformerLike = function deletePerformer
     }
   });
 };
+
+/***/ }),
+/* 287 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = __webpack_require__(5);
+
+var _reactRouterDom = __webpack_require__(3);
+
+var _event_card_item = __webpack_require__(269);
+
+var _event_card_item2 = _interopRequireDefault(_event_card_item);
+
+var _like_actions = __webpack_require__(285);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    liked_performers_ids: state.entities.liked_performers_ids
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    createPerformerLike: function createPerformerLike(user_id, performer_id) {
+      return dispatch((0, _like_actions.createPerformerLike)(user_id, performer_id));
+    },
+    deletePerformerLike: function deletePerformerLike(user_id, performer_id) {
+      return dispatch((0, _like_actions.deletePerformerLike)(user_id, performer_id));
+    }
+  };
+};
+
+exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_event_card_item2.default));
 
 /***/ })
 /******/ ]);

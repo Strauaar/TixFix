@@ -47,7 +47,6 @@
 .in-image {
   position: relative;
   top: 80px;
-
 }
 
 .header-icon-box {
@@ -67,6 +66,10 @@
 
 .in-image-icon {
   color:white;
+}
+
+.liked-icon {
+  color: #f73b3b;
 }
 
 .in-image-text {
@@ -136,11 +139,12 @@
 
 .header-icon:hover {
   -webkit-animation: beat 1s ease;
-  animation: beat 0.1s ease;
+  animation: beat 0.7s ease;
   fill: red;
 }
 
 @keyframes beat {
+  90% { transform: scale(0.7)};
   100% { transform: scale(0.9) };
 }
 

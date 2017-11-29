@@ -1,6 +1,6 @@
 import React from 'react';
 import { merge } from 'lodash';
-import EventCardItem from './event_card_item';
+import EventCardItemContainer from './event_card_item_container';
 import EventsUlContainer from './events_ul_container';
 
 class EventsList extends React.Component {
@@ -48,7 +48,7 @@ class EventsList extends React.Component {
         </div>
         <EventsUlContainer>
           {
-            this.props.events.map(event => <EventCardItem key={event.id} id={event.id} event={event}/>)
+            this.props.events.map(event => <EventCardItemContainer key={event.id} id={event.id} event={event}/>)
           }
         </EventsUlContainer>
       </div>
