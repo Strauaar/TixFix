@@ -51,7 +51,7 @@ class Event < ApplicationRecord
   end
 
   def self.filter(filters)
-    events = Event.all
+    events = Event.includes(:subevents)
     if filters["categoryId"] != ""
       child_cat_ids = Category.find(filters["categoryId"]).subcategories.pluck(:id)
       events = events.where(category_id: child_cat_ids)
