@@ -13,6 +13,9 @@ class ScrollTicketItem extends React.Component {
   }
 
   render() {
+    if(this.props.ticket === undefined) {
+      return null;
+    }
     return(
       <Link to={`/events/${this.props.ticket.event_id}/ticket/${this.props.ticket.id}`}><div onClick={this.handleClick} className="ticket-item-container">
         <div className="ticket-item">

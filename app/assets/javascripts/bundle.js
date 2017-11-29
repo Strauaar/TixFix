@@ -62120,6 +62120,9 @@ var ScrollTicketItem = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
+      if (this.props.ticket === undefined) {
+        return null;
+      }
       return _react2.default.createElement(
         _reactRouterDom.Link,
         { to: '/events/' + this.props.ticket.event_id + '/ticket/' + this.props.ticket.id },
