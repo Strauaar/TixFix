@@ -1,5 +1,6 @@
 import React from 'react';
 import ScrollTicketItem from '../tickets/scroll_ticket_item';
+import moment from 'moment';
 
 class EventShowPage extends React.Component {
   constructor(props) {
@@ -8,16 +9,17 @@ class EventShowPage extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchEvent(this.props.match.params.eventId)
+    this.props.fetchEvent(this.props.match.params.id)
   }
 
   renderDetailsHeader() {
     if (Object.keys(this.props.eventQ).length === 0) {
       return null
-    } else { const month = moment(subevent.date).format('MMM');
-     const day = moment(subevent.date).format('DD');
-     const dayString = moment(subevent.date).format('ddd');
-     const time = moment(subevent.date).format('h:MMa');
+    } else {
+      const month = moment(this.props.eventQ.date).format('MMM');
+     const day = moment(this.props.eventQ.date).format('DD');
+     const dayString = moment(this.props.eventQ.date).format('ddd');
+     const time = moment(this.props.eventQ.date).format('h:MMa');
       return <div className="card-detail-container event-show-detail">
         <div className="card-detail-date-block event-show-detail-date-block">
           <span className="card-detail-day event-show-day-text">{dayString}

@@ -28,16 +28,15 @@ class App extends React.Component {
       <div>
         <div className="nav-bar-background"></div>
         <NavBarContainer></NavBarContainer>
-        <Route path="/events/:eventId" component={EventShowPageContainer} />
 
         <Switch>
           <Route exact path="/"component={CategoryCardList}/>
           <Route path="/category"component={CategoryCardList}/>
         </Switch>
-
         <Switch>
           <Route exact path="/" component={EventsListContainer}/>
           <Route path="/category/:id" component={EventsListContainer}/>
+          <Route path="/events/:id" component={EventShowPageContainer} />
         </Switch>
 
         <Route path="/subcategory/:id" component={SubCategoryPageContainer} />

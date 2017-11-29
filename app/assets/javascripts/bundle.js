@@ -59316,7 +59316,6 @@ var App = function (_React$Component) {
         null,
         _react2.default.createElement('div', { className: 'nav-bar-background' }),
         _react2.default.createElement(_navbar_container2.default, null),
-        _react2.default.createElement(_reactRouterDom.Route, { path: '/events/:eventId', component: _event_show_page_container2.default }),
         _react2.default.createElement(
           _reactRouterDom.Switch,
           null,
@@ -59327,7 +59326,8 @@ var App = function (_React$Component) {
           _reactRouterDom.Switch,
           null,
           _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _events_list_container2.default }),
-          _react2.default.createElement(_reactRouterDom.Route, { path: '/category/:id', component: _events_list_container2.default })
+          _react2.default.createElement(_reactRouterDom.Route, { path: '/category/:id', component: _events_list_container2.default }),
+          _react2.default.createElement(_reactRouterDom.Route, { path: '/events/:id', component: _event_show_page_container2.default })
         ),
         _react2.default.createElement(_reactRouterDom.Route, { path: '/subcategory/:id', component: _subcategory_page_container2.default }),
         _react2.default.createElement(_reactRouterDom.Route, { path: '/category/:id', component: _subcategory_list_container2.default }),
@@ -61484,6 +61484,10 @@ var _scroll_ticket_item = __webpack_require__(276);
 
 var _scroll_ticket_item2 = _interopRequireDefault(_scroll_ticket_item);
 
+var _moment = __webpack_require__(0);
+
+var _moment2 = _interopRequireDefault(_moment);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -61507,7 +61511,7 @@ var EventShowPage = function (_React$Component) {
   _createClass(EventShowPage, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      this.props.fetchEvent(this.props.match.params.eventId);
+      this.props.fetchEvent(this.props.match.params.id);
     }
   }, {
     key: 'renderDetailsHeader',
@@ -61515,10 +61519,10 @@ var EventShowPage = function (_React$Component) {
       if (Object.keys(this.props.eventQ).length === 0) {
         return null;
       } else {
-        var month = moment(subevent.date).format('MMM');
-        var day = moment(subevent.date).format('DD');
-        var dayString = moment(subevent.date).format('ddd');
-        var time = moment(subevent.date).format('h:MMa');
+        var month = (0, _moment2.default)(this.props.eventQ.date).format('MMM');
+        var day = (0, _moment2.default)(this.props.eventQ.date).format('DD');
+        var dayString = (0, _moment2.default)(this.props.eventQ.date).format('ddd');
+        var time = (0, _moment2.default)(this.props.eventQ.date).format('h:MMa');
         return _react2.default.createElement(
           'div',
           { className: 'card-detail-container event-show-detail' },
