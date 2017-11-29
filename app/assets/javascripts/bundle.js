@@ -23165,7 +23165,7 @@ var receiveErrors = exports.receiveErrors = function receiveErrors(errors) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.fetchEventTickets = exports.fetchBuyingTickets = exports.fetchSellingTickets = exports.receiveTickets = exports.RECEIVE_TICKETS = undefined;
+exports.fetchEventTicket = exports.fetchEventTickets = exports.fetchBuyingTickets = exports.fetchSellingTickets = exports.receiveTicket = exports.receiveTickets = exports.RECEIVE_TICKET = exports.RECEIVE_TICKETS = undefined;
 
 var _ticket_util = __webpack_require__(48);
 
@@ -23174,11 +23174,19 @@ var TicketApiUtil = _interopRequireWildcard(_ticket_util);
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 var RECEIVE_TICKETS = exports.RECEIVE_TICKETS = "RECEIVE_TICKETS";
+var RECEIVE_TICKET = exports.RECEIVE_TICKET = "RECEIVE_TICKET";
 
 var receiveTickets = exports.receiveTickets = function receiveTickets(tickets) {
   return {
     type: RECEIVE_TICKETS,
     tickets: tickets
+  };
+};
+
+var receiveTicket = exports.receiveTicket = function receiveTicket(ticket) {
+  return {
+    type: RECEIVE_TICKET,
+    ticket: ticket
   };
 };
 
@@ -23202,6 +23210,14 @@ var fetchEventTickets = exports.fetchEventTickets = function fetchEventTickets(e
   return function (dispatch) {
     return TicketApiUtil.fetchEventTickets(event_id).then(function (ticket_list) {
       return dispatch(receiveTickets(ticket_list));
+    });
+  };
+};
+
+var fetchEventTicket = exports.fetchEventTicket = function fetchEventTicket(event_id) {
+  return function (dispatch) {
+    return TicketApiUtil.fetchEventTicket(event_id).then(function (ticket) {
+      return dispatch(receiveTicket(ticket));
     });
   };
 };
@@ -24467,6 +24483,13 @@ var fetchBuyingTickets = exports.fetchBuyingTickets = function fetchBuyingTicket
   return $.ajax({
     method: 'GET',
     url: 'api/users/' + user_id + '/tickets_buying'
+  });
+};
+
+var fetchEventTicket = exports.fetchEventTicket = function fetchEventTicket(event_id) {
+  return $.ajax({
+    method: 'GET',
+    url: 'api/events/' + event_id
   });
 };
 
@@ -55128,6 +55151,9 @@ var ticketsReducer = function ticketsReducer() {
     case _ticket_actions.RECEIVE_TICKETS:
       newState = Object.assign({}, action.tickets);
       return newState;
+    case _ticket_actions.RECEIVE_TICKET:
+      newState = Object.assign({}, action.ticket);
+      return newState;
     default:
       return state;
   }
@@ -59576,9 +59602,9 @@ var _subcategory_page_container = __webpack_require__(287);
 
 var _subcategory_page_container2 = _interopRequireDefault(_subcategory_page_container);
 
-var _event_checkout_page = __webpack_require__(289);
+var _event_checkout_page_container = __webpack_require__(292);
 
-var _event_checkout_page2 = _interopRequireDefault(_event_checkout_page);
+var _event_checkout_page_container2 = _interopRequireDefault(_event_checkout_page_container);
 
 var _tickets_sell_splash_page = __webpack_require__(290);
 
@@ -59640,7 +59666,7 @@ var App = function (_React$Component) {
           null,
           _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _events_list_container2.default }),
           _react2.default.createElement(_reactRouterDom.Route, { path: '/category/:id', component: _events_list_container2.default }),
-          _react2.default.createElement(_reactRouterDom.Route, { path: '/events/:eventId/ticket/:ticketId', component: _event_checkout_page2.default }),
+          _react2.default.createElement(_reactRouterDom.Route, { path: '/events/:eventId/ticket/:ticketId', component: _event_checkout_page_container2.default }),
           _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/events/:id', component: _event_show_page_container2.default }),
           _react2.default.createElement(_reactRouterDom.Route, { path: '/subcategory/:id', component: _subcategory_page_container2.default }),
           _react2.default.createElement(_reactRouterDom.Route, { path: '/tickets/sell', component: _tickets_sell_splash_page2.default })
@@ -60607,9 +60633,6 @@ var LocationDateFilter = function (_React$Component) {
   }
 
   _createClass(LocationDateFilter, [{
-    key: 'componentWillReceiveProps',
-    value: function componentWillReceiveProps(newProps) {}
-  }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
       var _this2 = this;
@@ -61066,15 +61089,371 @@ exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapSt
 
 /***/ }),
 /* 274 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-throw new Error("Module build failed: SyntaxError: Unexpected token (14:4)\n\n\u001b[0m \u001b[90m 12 | \u001b[39m  componentDidMount() {\n \u001b[90m 13 | \u001b[39m    \u001b[36mif\u001b[39m(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mprops\u001b[33m.\u001b[39mmatch\u001b[33m.\u001b[39mpathname\u001b[33m=\u001b[39m\u001b[32m\"/\"\u001b[39m)\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 14 | \u001b[39m    }\n \u001b[90m    | \u001b[39m    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 15 | \u001b[39m    \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mprops\u001b[33m.\u001b[39mfetchEvents(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mprops\u001b[33m.\u001b[39mfilter)\u001b[33m;\u001b[39m\n \u001b[90m 16 | \u001b[39m  }\n \u001b[90m 17 | \u001b[39m\u001b[0m\n");
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _lodash = __webpack_require__(10);
+
+var _event_card_item_container = __webpack_require__(275);
+
+var _event_card_item_container2 = _interopRequireDefault(_event_card_item_container);
+
+var _events_ul_container = __webpack_require__(279);
+
+var _events_ul_container2 = _interopRequireDefault(_events_ul_container);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var EventsList = function (_React$Component) {
+  _inherits(EventsList, _React$Component);
+
+  function EventsList(props) {
+    _classCallCheck(this, EventsList);
+
+    var _this = _possibleConstructorReturn(this, (EventsList.__proto__ || Object.getPrototypeOf(EventsList)).call(this, props));
+
+    _this.renderHeader = _this.renderHeader.bind(_this);
+    return _this;
+  }
+
+  _createClass(EventsList, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      if (this.props.match.pathname = "/") {}
+      this.props.fetchEvents(this.props.filter);
+    }
+  }, {
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(newProps) {
+      if (newProps.match.params.id !== this.props.match.params.id) {
+        if (newProps.match.url === "/") {
+          this.props.fetchEvents({ categoryId: null, location: null, date: null });
+        } else {
+          // this.props.fetchEvents(merge({}, newProps.filter, { categoryId: newProps.match.params.id}))
+        }
+      }
+    }
+  }, {
+    key: 'renderHeader',
+    value: function renderHeader() {
+      if (this.props.categoryId === 1) {
+        return "Concert Tickets";
+      } else if (this.props.categoryId === 2) {
+        return "Sport Tickets";
+      } else if (this.props.categoryId === 3) {
+        return "Theater Tickets";
+      }
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { className: 'events-list-container' },
+        _react2.default.createElement(
+          'div',
+          { className: 'events-list-header-container' },
+          _react2.default.createElement(
+            'p',
+            { className: 'events-list-header fade-in' },
+            this.renderHeader()
+          )
+        ),
+        _react2.default.createElement(
+          _events_ul_container2.default,
+          null,
+          this.props.events.map(function (event) {
+            return _react2.default.createElement(_event_card_item_container2.default, { key: event.id, id: event.id, event: event });
+          })
+        )
+      );
+    }
+  }]);
+
+  return EventsList;
+}(_react2.default.Component);
+
+exports.default = EventsList;
 
 /***/ }),
-/* 275 */,
-/* 276 */,
-/* 277 */,
+/* 275 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = __webpack_require__(5);
+
+var _reactRouterDom = __webpack_require__(2);
+
+var _event_card_item = __webpack_require__(276);
+
+var _event_card_item2 = _interopRequireDefault(_event_card_item);
+
+var _like_actions = __webpack_require__(26);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    liked_performers_ids: state.entities.liked_performers_ids,
+    current_user: state.session.currentUser
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    createPerformerLike: function createPerformerLike(user_id, performer_id) {
+      return dispatch((0, _like_actions.createPerformerLike)(user_id, performer_id));
+    },
+    deletePerformerLike: function deletePerformerLike(user_id, performer_id) {
+      return dispatch((0, _like_actions.deletePerformerLike)(user_id, performer_id));
+    }
+  };
+};
+
+exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_event_card_item2.default));
+
+/***/ }),
+/* 276 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(2);
+
+var _event_card_item_details = __webpack_require__(277);
+
+var _event_card_item_details2 = _interopRequireDefault(_event_card_item_details);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var EventCard = function (_React$Component) {
+  _inherits(EventCard, _React$Component);
+
+  function EventCard(props) {
+    _classCallCheck(this, EventCard);
+
+    var _this = _possibleConstructorReturn(this, (EventCard.__proto__ || Object.getPrototypeOf(EventCard)).call(this, props));
+
+    _this.renderCardHeader = _this.renderCardHeader.bind(_this);
+    _this.renderHeart = _this.renderHeart.bind(_this);
+    _this.handleLikeClick = _this.handleLikeClick.bind(_this);
+    return _this;
+  }
+
+  _createClass(EventCard, [{
+    key: 'handleLikeClick',
+    value: function handleLikeClick(type) {
+      if (this.props.current_user === null) {
+        this.props.history.push("/session");
+      } else if (type === 'unlike') {
+        this.props.deletePerformerLike(this.props.current_user.id, this.props.event.performer.id);
+      } else if (type === 'like') {
+        this.props.createPerformerLike(this.props.current_user.id, this.props.event.performer.id);
+      }
+    }
+  }, {
+    key: 'renderHeart',
+    value: function renderHeart() {
+      var _this2 = this;
+
+      if (this.props.liked_performers_ids.includes(this.props.event.performer.id)) {
+        return _react2.default.createElement(
+          'div',
+          { className: 'header-icon-box', onClick: function onClick() {
+              return _this2.handleLikeClick('unlike');
+            } },
+          _react2.default.createElement('i', { className: 'fa fa-heart fa-2x header-icon in-image-icon liked-icon', 'aria-hidden': 'true' })
+        );
+      } else {
+        return _react2.default.createElement(
+          'div',
+          { className: 'header-icon-box', onClick: function onClick() {
+              return _this2.handleLikeClick('like');
+            } },
+          _react2.default.createElement('i', { className: 'fa fa-heart fa-2x header-icon in-image-icon', 'aria-hidden': 'true' })
+        );
+      }
+    }
+  }, {
+    key: 'renderCardHeader',
+    value: function renderCardHeader() {
+      if (this.props.event.image_url) {
+        var heart = this.renderHeart();
+        return _react2.default.createElement(
+          'div',
+          { className: 'event-card-image fade-in', style: { backgroundImage: 'url(' + this.props.event.image_url + ')' } },
+          _react2.default.createElement(
+            'div',
+            { className: 'event-card-header-block in-image' },
+            heart,
+            _react2.default.createElement(
+              'p',
+              { className: 'event-card-header-text in-image-text' },
+              this.props.event.performer.name
+            )
+          ),
+          _react2.default.createElement('div', { className: 'event-card-image-layer' })
+        );
+      } else {
+        return _react2.default.createElement(
+          'div',
+          { className: 'event-card-header' },
+          _react2.default.createElement(
+            'div',
+            { className: 'event-card-header-block' },
+            _react2.default.createElement('i', { className: 'fa fa-heart-o fa-2x header-icon', 'aria-hidden': 'true' }),
+            _react2.default.createElement(
+              'p',
+              { className: 'event-card-header-text' },
+              this.props.event.name
+            )
+          )
+        );
+      }
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { className: 'top-event-card-block fade-in' },
+        _react2.default.createElement(
+          'li',
+          { className: 'event-card-block fade-in' },
+          this.renderCardHeader(),
+          _react2.default.createElement(_event_card_item_details2.default, { eventQ: this.props.event })
+        )
+      );
+    }
+  }]);
+
+  return EventCard;
+}(_react2.default.Component);
+
+exports.default = EventCard;
+
+/***/ }),
+/* 277 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _moment = __webpack_require__(0);
+
+var _moment2 = _interopRequireDefault(_moment);
+
+var _reactRouterDom = __webpack_require__(2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var EventCardItemDetails = function EventCardItemDetails(_ref) {
+  var eventQ = _ref.eventQ;
+
+  return _react2.default.createElement(
+    'div',
+    null,
+    eventQ.subevents.map(function (subevent) {
+      var month = (0, _moment2.default)(subevent.date).format('MMM');
+      var day = (0, _moment2.default)(subevent.date).format('DD');
+      var dayString = (0, _moment2.default)(subevent.date).format('ddd');
+      var time = (0, _moment2.default)(subevent.date).format('h:MMa');
+      return _react2.default.createElement(
+        _reactRouterDom.Link,
+        { to: '/events/' + subevent.id },
+        _react2.default.createElement(
+          'div',
+          { className: 'card-detail-container' },
+          _react2.default.createElement(
+            'div',
+            { className: 'card-detail-date-block' },
+            _react2.default.createElement(
+              'span',
+              { className: 'card-detail-day' },
+              dayString
+            ),
+            _react2.default.createElement(
+              'span',
+              { className: 'card-detail-date' },
+              month,
+              ' ',
+              day
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'card-detail-event-block' },
+            _react2.default.createElement(
+              'p',
+              { className: 'card-detail-event-name' },
+              eventQ.name
+            ),
+            _react2.default.createElement(
+              'span',
+              { className: 'card-detail-date-venue' },
+              time,
+              ' - ',
+              eventQ.venue.name
+            )
+          )
+        )
+      );
+    })
+  );
+};
+
+exports.default = EventCardItemDetails;
+
+/***/ }),
 /* 278 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -61333,8 +61712,157 @@ module.exports = webpackContext;
 webpackContext.id = 278;
 
 /***/ }),
-/* 279 */,
-/* 280 */,
+/* 279 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = __webpack_require__(5);
+
+var _events_ul = __webpack_require__(280);
+
+var _events_ul2 = _interopRequireDefault(_events_ul);
+
+var _event_actions = __webpack_require__(8);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    categoryId: state.ui.filter.categoryId,
+    filter: state.ui.filter
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    fetchMoreEvents: function fetchMoreEvents(currentCount) {
+      return dispatch((0, _event_actions.fetchMoreEvents)(currentCount));
+    }
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_events_ul2.default);
+
+/***/ }),
+/* 280 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _lodash = __webpack_require__(10);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var EventsUl = function (_React$Component) {
+  _inherits(EventsUl, _React$Component);
+
+  function EventsUl(props) {
+    _classCallCheck(this, EventsUl);
+
+    return _possibleConstructorReturn(this, (EventsUl.__proto__ || Object.getPrototypeOf(EventsUl)).call(this, props));
+  }
+
+  _createClass(EventsUl, [{
+    key: 'loadMoreEvents',
+    value: function loadMoreEvents(childrenCount, categoryId) {
+      if (categoryId === undefined) {
+        this.props.fetchMoreEvents(childrenCount, (0, _lodash.merge)({}, this.props.filter, { categoryId: null }));
+      } else {
+        this.props.fetchMoreEvents(childrenCount, (0, _lodash.merge)({}, this.props.filter, { categoryId: categoryId }));
+      }
+    }
+  }, {
+    key: 'renderLoadMoreButton',
+    value: function renderLoadMoreButton(childrenCount) {
+      var _this2 = this;
+
+      if (childrenCount % 10 === 0 && childrenCount !== 0) {
+        return _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(
+            'button',
+            { onClick: function onClick() {
+                return _this2.loadMoreEvents(childrenCount, _this2.props.categoryId);
+              }, className: 'load-more-btn' },
+            'Load More'
+          )
+        );
+      }
+    }
+  }, {
+    key: 'renderEventCards',
+    value: function renderEventCards(children, start_index) {
+      var result = [];
+      for (var i = start_index; i < children.length; i += 3) {
+        result.push(children[i]);
+      }
+      return result.map(function (EventCard) {
+        return EventCard;
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var childrenCount = _react2.default.Children.count(this.props.children);
+      var children = _react2.default.Children.toArray(this.props.children);
+
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'div',
+          { className: 'event-list' },
+          _react2.default.createElement(
+            'div',
+            { className: 'col' },
+            this.renderEventCards(children, 0)
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'col' },
+            this.renderEventCards(children, 1)
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'col' },
+            this.renderEventCards(children, 2)
+          )
+        ),
+        this.renderLoadMoreButton(childrenCount)
+      );
+    }
+  }]);
+
+  return EventsUl;
+}(_react2.default.Component);
+
+exports.default = EventsUl;
+
+/***/ }),
 /* 281 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -62043,7 +62571,8 @@ var EventCheckoutPage = function (_React$Component) {
   _createClass(EventCheckoutPage, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      console.log("ASDSADSAD");
+      this.props.fetchEvent(this.props.match.params.eventId);
+      this.props.fetchEventTicket(this.props.match.params.ticketId);
     }
   }, {
     key: "render",
@@ -62430,6 +62959,48 @@ var Footer = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = Footer;
+
+/***/ }),
+/* 292 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = __webpack_require__(5);
+
+var _reactRouterDom = __webpack_require__(2);
+
+var _event_actions = __webpack_require__(8);
+
+var _ticket_actions = __webpack_require__(28);
+
+var _event_checkout_page = __webpack_require__(289);
+
+var _event_checkout_page2 = _interopRequireDefault(_event_checkout_page);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {};
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    fetchEvent: function fetchEvent(id) {
+      return dispatch((0, _event_actions.fetchEvent)(id));
+    },
+    fetchEventTicket: function fetchEventTicket(id) {
+      return dispatch((0, _ticket_actions.fetchEventTicket)(id));
+    }
+  };
+};
+
+exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_event_checkout_page2.default));
 
 /***/ })
 /******/ ]);

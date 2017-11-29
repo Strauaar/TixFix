@@ -6,7 +6,8 @@ class EventCheckoutPage extends React.Component {
   }
 
   componentDidMount() {
-    console.log("ASDSADSAD");
+    this.props.fetchEvent(this.props.match.params.eventId);
+    this.props.fetchEventTicket(this.props.match.params.ticketId);
   }
   render() {
 

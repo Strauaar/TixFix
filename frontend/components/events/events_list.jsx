@@ -10,7 +10,7 @@ class EventsList extends React.Component {
   }
 
   componentDidMount() {
-    if(this.props.match.pathname="/")
+    if(this.props.match.pathname="/"){
     }
     this.props.fetchEvents(this.props.filter);
   }

@@ -12,10 +12,6 @@ class LocationDateFilter extends React.Component{
     this.state = {dateSelect: "Choose dates", locationSelect: "Select location", dateClicked: false, locationClicked: false}
   }
 
-  componentWillReceiveProps(newProps) {
-
-  }
-
   componentDidMount(){
     $("body").on.bind(this);
     $("body").on('click', (e) => {

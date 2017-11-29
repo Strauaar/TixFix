@@ -18,3 +18,10 @@ export const fetchBuyingTickets = (user_id) => (
     url: `api/users/${user_id}/tickets_buying`
   })
 );
+
+export const fetchEventTicket = (event_id) => (
+  $.ajax({
+    method: 'GET',
+    url: `api/events/${event_id}`
+  })
+);
