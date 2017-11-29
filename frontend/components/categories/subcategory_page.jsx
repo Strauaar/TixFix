@@ -1,12 +1,12 @@
 import React from 'react';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
 
 class SubCategoryPage extends React.Component {
   constructor() {
     super();
-    this.state = {count: 20}
+    this.state = {count: 20};
     this.eventCount = this.eventCount.bind(this);
-    this.renderEvents = this.renderEvents.bind(this);
     this.renderButton = this.renderButton.bind(this);
   }
 
@@ -48,19 +48,21 @@ class SubCategoryPage extends React.Component {
                    const day = moment(subevent.date).format('DD');
                    const dayString = moment(subevent.date).format('ddd');
                    const time = moment(subevent.date).format('h:MMa');
-                  return <div className="card-detail-container subcategory-card-detail-container">
-                    <div className="card-detail-date-block">
-                      <span className="card-detail-day">{dayString}
-                      </span>
-                      <span className="card-detail-date">
-                        {month} {day}
-                      </span>
+                  return <Link className="subcategory-card-link-container" to={`/events/${subevent.id}`}>
+                    <div className="card-detail-container subcategory-card-detail-container">
+                      <div className="card-detail-date-block">
+                        <span className="card-detail-day">{dayString}
+                        </span>
+                        <span className="card-detail-date">
+                          {month} {day}
+                        </span>
+                      </div>
+                      <div className="card-detail-event-block subcategory-event-detail-block">
+                        <p className="card-detail-event-name">{eventQ.name}</p>
+                        <span className="card-detail-date-venue">{time}  at {eventQ.venue.name}, {eventQ.venue.city}, {eventQ.venue.state}</span>
+                      </div>
                     </div>
-                    <div className="card-detail-event-block subcategory-event-detail-block">
-                      <p className="card-detail-event-name">{eventQ.name}</p>
-                      <span className="card-detail-date-venue">{time}  at {eventQ.venue.name}, {eventQ.venue.city}, {eventQ.venue.state}</span>
-                    </div>
-                  </div>
+                  </Link>
                 })
               })
             }

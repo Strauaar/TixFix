@@ -37,9 +37,9 @@ class App extends React.Component {
           <Route exact path="/" component={EventsListContainer}/>
           <Route path="/category/:id" component={EventsListContainer}/>
           <Route path="/events/:id" component={EventShowPageContainer} />
+          <Route path="/subcategory/:id" component={SubCategoryPageContainer} />
         </Switch>
 
-        <Route path="/subcategory/:id" component={SubCategoryPageContainer} />
         <Route path="/category/:id" component={SubCategoryListContainer} />
         <Route path="/" component={CFooter}/>
       </div>

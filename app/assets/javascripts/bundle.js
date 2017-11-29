@@ -59327,9 +59327,9 @@ var App = function (_React$Component) {
           null,
           _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _events_list_container2.default }),
           _react2.default.createElement(_reactRouterDom.Route, { path: '/category/:id', component: _events_list_container2.default }),
-          _react2.default.createElement(_reactRouterDom.Route, { path: '/events/:id', component: _event_show_page_container2.default })
+          _react2.default.createElement(_reactRouterDom.Route, { path: '/events/:id', component: _event_show_page_container2.default }),
+          _react2.default.createElement(_reactRouterDom.Route, { path: '/subcategory/:id', component: _subcategory_page_container2.default })
         ),
-        _react2.default.createElement(_reactRouterDom.Route, { path: '/subcategory/:id', component: _subcategory_page_container2.default }),
         _react2.default.createElement(_reactRouterDom.Route, { path: '/category/:id', component: _subcategory_list_container2.default }),
         _react2.default.createElement(_reactRouterDom.Route, { path: '/', component: _footer2.default })
       );
@@ -60747,6 +60747,8 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _lodash = __webpack_require__(13);
+
 var _event_card_item = __webpack_require__(269);
 
 var _event_card_item2 = _interopRequireDefault(_event_card_item);
@@ -60778,14 +60780,25 @@ var EventsList = function (_React$Component) {
   _createClass(EventsList, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
+      if (this.props.match.pathname = "/") {
+        console.log("IS ROOT");
+      }
       this.props.fetchEvents(this.props.filter);
     }
   }, {
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(newProps) {
-      // if(newProps.match.params.id !== this.props.match.params.id) {
-      //   this.props.fetchEvents(newProps.filter)
-      // }
+      console.log("NEW PROP");
+      console.log(newProps.match);
+      console.log("old");
+      console.log(this.props.match);
+      if (newProps.match.params.id !== this.props.match.params.id) {
+        if (newProps.match.url === "/") {
+          this.props.fetchEvents({ categoryId: null, location: null, date: null });
+        } else {
+          // this.props.fetchEvents(merge({}, newProps.filter, { categoryId: newProps.match.params.id}))
+        }
+      }
     }
   }, {
     key: 'renderHeader',
@@ -61873,6 +61886,8 @@ var _moment = __webpack_require__(0);
 
 var _moment2 = _interopRequireDefault(_moment);
 
+var _reactRouterDom = __webpack_require__(3);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -61891,7 +61906,6 @@ var SubCategoryPage = function (_React$Component) {
 
     _this.state = { count: 20 };
     _this.eventCount = _this.eventCount.bind(_this);
-    _this.renderEvents = _this.renderEvents.bind(_this);
     _this.renderButton = _this.renderButton.bind(_this);
     return _this;
   }
@@ -61958,42 +61972,46 @@ var SubCategoryPage = function (_React$Component) {
                 var dayString = (0, _moment2.default)(subevent.date).format('ddd');
                 var time = (0, _moment2.default)(subevent.date).format('h:MMa');
                 return _react2.default.createElement(
-                  'div',
-                  { className: 'card-detail-container subcategory-card-detail-container' },
+                  _reactRouterDom.Link,
+                  { className: 'subcategory-card-link-container', to: '/events/' + subevent.id },
                   _react2.default.createElement(
                     'div',
-                    { className: 'card-detail-date-block' },
+                    { className: 'card-detail-container subcategory-card-detail-container' },
                     _react2.default.createElement(
-                      'span',
-                      { className: 'card-detail-day' },
-                      dayString
+                      'div',
+                      { className: 'card-detail-date-block' },
+                      _react2.default.createElement(
+                        'span',
+                        { className: 'card-detail-day' },
+                        dayString
+                      ),
+                      _react2.default.createElement(
+                        'span',
+                        { className: 'card-detail-date' },
+                        month,
+                        ' ',
+                        day
+                      )
                     ),
                     _react2.default.createElement(
-                      'span',
-                      { className: 'card-detail-date' },
-                      month,
-                      ' ',
-                      day
-                    )
-                  ),
-                  _react2.default.createElement(
-                    'div',
-                    { className: 'card-detail-event-block subcategory-event-detail-block' },
-                    _react2.default.createElement(
-                      'p',
-                      { className: 'card-detail-event-name' },
-                      eventQ.name
-                    ),
-                    _react2.default.createElement(
-                      'span',
-                      { className: 'card-detail-date-venue' },
-                      time,
-                      '  at ',
-                      eventQ.venue.name,
-                      ', ',
-                      eventQ.venue.city,
-                      ', ',
-                      eventQ.venue.state
+                      'div',
+                      { className: 'card-detail-event-block subcategory-event-detail-block' },
+                      _react2.default.createElement(
+                        'p',
+                        { className: 'card-detail-event-name' },
+                        eventQ.name
+                      ),
+                      _react2.default.createElement(
+                        'span',
+                        { className: 'card-detail-date-venue' },
+                        time,
+                        '  at ',
+                        eventQ.venue.name,
+                        ', ',
+                        eventQ.venue.city,
+                        ', ',
+                        eventQ.venue.state
+                      )
                     )
                   )
                 );

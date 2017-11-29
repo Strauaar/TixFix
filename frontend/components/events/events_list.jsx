@@ -1,4 +1,5 @@
 import React from 'react';
+import { merge } from 'lodash';
 import EventCardItem from './event_card_item';
 import EventsUlContainer from './events_ul_container';
 
@@ -9,13 +10,24 @@ class EventsList extends React.Component {
   }
 
   componentDidMount() {
+    if(this.props.match.pathname="/") {
+      console.log("IS ROOT");
+    }
     this.props.fetchEvents(this.props.filter);
   }
 
   componentWillReceiveProps(newProps) {
-    // if(newProps.match.params.id !== this.props.match.params.id) {
-    //   this.props.fetchEvents(newProps.filter)
-    // }
+    console.log("NEW PROP")
+    console.log(newProps.match);
+    console.log("old");
+    console.log(this.props.match)
+    if(newProps.match.params.id !== this.props.match.params.id) {
+      if(newProps.match.url === "/") {
+        this.props.fetchEvents({categoryId: null, location: null, date: null})
+      } else {
+        // this.props.fetchEvents(merge({}, newProps.filter, { categoryId: newProps.match.params.id}))
+      }
+    }
   }
 
   renderHeader() {
