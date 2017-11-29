@@ -2,7 +2,7 @@ import * as TicketApiUtil from '../utils/ticket_util';
 export const RECEIVE_TICKETS = "RECEIVE_TICKETS";
 
 
-const receive_tickets = (tickets) => ({
+export const receiveTickets = (tickets) => ({
   type: RECEIVE_TICKETS,
   tickets
 });

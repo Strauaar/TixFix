@@ -14,6 +14,7 @@ import { RECEIVE_CURRENT_USER,
          createUser } from './actions/session_actions';
 import * as CategoryUtil from './utils/category_util';
 import { fetchSubCategoryList, fetchSubCategoryEvents } from './actions/category_actions';
+import { receiveTickets, fetchSellingTickets } from './actions/ticket_actions';
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -32,8 +33,9 @@ document.addEventListener("DOMContentLoaded", () => {
   window.fetchPerformerLikes = fetchPerformerLikes;
   window.createPerformerLike = createPerformerLike;
   window.fetchEventTickets = TicketApiUtil.fetchEventTickets;
-  window.fetchSellingTickets = TicketApiUtil.fetchSellingTickets;
+  window.fetchSellingTickets = fetchSellingTickets;
   window.fetchBuyingTickets = TicketApiUtil.fetchBuyingTickets;
+  window.receiveTickets = receiveTickets;
 
   const rootEl = document.getElementById("root");
   ReactDOM.render(<Root store={store} />, rootEl);

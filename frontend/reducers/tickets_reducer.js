@@ -1,10 +1,12 @@
 import { RECEIVE_TICKETS } from '../actions/ticket_actions';
 
 const ticketsReducer = (state = {}, action) => {
-  Object.freeze(state):
+  Object.freeze(state);
+  let newState;
   switch(action.type) {
     case RECEIVE_TICKETS:
-      return action.tickets;
+      newState = Object.assign({}, action.tickets);
+      return newState;
     default:
       return state;
   }
