@@ -62429,7 +62429,7 @@ var fetchPerformerLikes = exports.fetchPerformerLikes = function fetchPerformerL
 var deletePerformerLike = exports.deletePerformerLike = function deletePerformerLike(user_id, performer_id) {
   return $.ajax({
     method: 'DELETE',
-    url: '/api/performer_likes',
+    url: '/api/performer_likes/1',
     data: {
       performer_id: performer_id,
       user_id: user_id

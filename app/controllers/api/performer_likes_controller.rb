@@ -6,7 +6,8 @@ class Api::PerformerLikesController < ApplicationController
   end
 
   def destroy
-    @like = PerformerLike.create(user_id: params[:user_id], performer_id: params[:performer_id])
+    @like = PerformerLike.find_by(user_id: params[:user_id], performer_id: params[:performer_id])
+    @like.delete
     render :show
   end
 

@@ -20,7 +20,7 @@ export const fetchPerformerLikes = (user_id) => (
 export const deletePerformerLike = (user_id, performer_id) => (
   $.ajax({
     method: 'DELETE',
-    url: `/api/performer_likes`,
+    url: `/api/performer_likes/1`,
     data: {
             performer_id,
             user_id
