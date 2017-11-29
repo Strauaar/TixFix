@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 
 class SubCategoryPage extends React.Component {
   constructor() {
@@ -19,26 +20,6 @@ class SubCategoryPage extends React.Component {
       count += eventQ.subevents.length;
     })
     return count;
-  }
-
-  renderEvents() {
-    this.props.events.map(eventQ => {
-       return eventQ.subevents.map(subevent => (
-        <div className="card-detail-container subcategory-card-detail-container">
-          <div className="card-detail-date-block">
-            <span className="card-detail-day">{new Date(subevent.date).toString().slice(0,3)}
-            </span>
-            <span className="card-detail-date">
-              {new Date(subevent.date).toString().slice(4,10)}
-            </span>
-          </div>
-          <div className="card-detail-event-block subcategory-event-detail-block">
-            <p className="card-detail-event-name">{eventQ.name}</p>
-            <span className="card-detail-date-venue">{new Date(subevent.date).toString().slice(19, 24)}  at {eventQ.venue.name}, {eventQ.venue.city}, {eventQ.venue.state}</span>
-          </div>
-        </div>
-      ))
-    })
   }
 
   renderButton() {
@@ -62,21 +43,25 @@ class SubCategoryPage extends React.Component {
           <div id="sub">
             {
               this.props.events.map(eventQ => {
-                 return eventQ.subevents.map(subevent => (
-                  <div className="card-detail-container subcategory-card-detail-container">
+                 return eventQ.subevents.map(subevent => {
+                   const month = moment(subevent.date).format('MMM');
+                   const day = moment(subevent.date).format('DD');
+                   const dayString = moment(subevent.date).format('ddd');
+                   const time = moment(subevent.date).format('h:MMa');
+                  return <div className="card-detail-container subcategory-card-detail-container">
                     <div className="card-detail-date-block">
-                      <span className="card-detail-day">{new Date(subevent.date).toString().slice(0,3)}
+                      <span className="card-detail-day">{dayString}
                       </span>
                       <span className="card-detail-date">
-                        {new Date(subevent.date).toString().slice(4,10)}
+                        {month} {day}
                       </span>
                     </div>
                     <div className="card-detail-event-block subcategory-event-detail-block">
                       <p className="card-detail-event-name">{eventQ.name}</p>
-                      <span className="card-detail-date-venue">{new Date(subevent.date).toString().slice(19, 24)}  at {eventQ.venue.name}, {eventQ.venue.city}, {eventQ.venue.state}</span>
+                      <span className="card-detail-date-venue">{time}  at {eventQ.venue.name}, {eventQ.venue.city}, {eventQ.venue.state}</span>
                     </div>
                   </div>
-                ))
+                })
               })
             }
           </div>

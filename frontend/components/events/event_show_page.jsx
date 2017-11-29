@@ -14,18 +14,21 @@ class EventShowPage extends React.Component {
   renderDetailsHeader() {
     if (Object.keys(this.props.eventQ).length === 0) {
       return null
-    } else {
+    } else { const month = moment(subevent.date).format('MMM');
+     const day = moment(subevent.date).format('DD');
+     const dayString = moment(subevent.date).format('ddd');
+     const time = moment(subevent.date).format('h:MMa');
       return <div className="card-detail-container event-show-detail">
         <div className="card-detail-date-block event-show-detail-date-block">
-          <span className="card-detail-day event-show-day-text">{new Date(this.props.eventQ.date).toString().slice(0,3)}
+          <span className="card-detail-day event-show-day-text">{dayString}
           </span>
           <span className="card-detail-date event-show-date-text">
-            {new Date(this.props.eventQ.date).toString().slice(4,10)}
+            {month} {day}
           </span>
         </div>
         <div className="card-detail-event-block event-show-card-block">
           <p className="card-detail-event-name event-show-detail-name">{this.props.eventQ.name}</p>
-          <span className="card-detail-date-venue event-show-detail-venue">{new Date(this.props.eventQ.date).toString().slice(19, 24)} at {this.props.eventQ.venue.name}, {this.props.eventQ.venue.city}, {this.props.eventQ.venue.state}</span>
+          <span className="card-detail-date-venue event-show-detail-venue">{time} at {this.props.eventQ.venue.name}, {this.props.eventQ.venue.city}, {this.props.eventQ.venue.state}</span>
         </div>
       </div>
     }
@@ -33,7 +36,7 @@ class EventShowPage extends React.Component {
 
 
   render() {
-    
+
 
     return (
       <div className="event-show-page">
