@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import eventsReducer from './events_reducer';
-import likedPerformersReducer from './likedPerformersReducer';
+import likedPerformersReducer from './liked_performers_reducer';
 
 export default combineReducers({
   events: eventsReducer,

@@ -54806,15 +54806,15 @@ var _events_reducer = __webpack_require__(208);
 
 var _events_reducer2 = _interopRequireDefault(_events_reducer);
 
-var _likedPerformersReducer = __webpack_require__(283);
+var _liked_performers_reducer = __webpack_require__(284);
 
-var _likedPerformersReducer2 = _interopRequireDefault(_likedPerformersReducer);
+var _liked_performers_reducer2 = _interopRequireDefault(_liked_performers_reducer);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = (0, _redux.combineReducers)({
   events: _events_reducer2.default,
-  liked_performers_ids: _likedPerformersReducer2.default
+  liked_performers_ids: _liked_performers_reducer2.default
 });
 
 /***/ }),
@@ -62253,7 +62253,8 @@ var Footer = function (_React$Component) {
 exports.default = Footer;
 
 /***/ }),
-/* 283 */
+/* 283 */,
+/* 284 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
