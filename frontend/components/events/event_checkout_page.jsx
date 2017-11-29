@@ -38,11 +38,9 @@ class EventCheckoutPage extends React.Component {
           <div className="ticket-details-container">
             <div className="ticket-price-block detail-section">
               <span className="ticket-detail-subheader">TICKET PRICE</span>
-              <span>$ 77.00</span>
+              <span>$77.00 <span className="each">/ea</span></span>
             </div>
-            <div className="num-tickets-block">
-              SELECTOR HERE
-            </div>
+
           </div>
           <div className="ticket-checkout-button-container">
             <button>Go to checkout</button>

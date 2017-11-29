@@ -2,6 +2,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  font-family: 'Roboto Condensed', sans-serif;
 }
 
 .event-ticket-checkout-details {
@@ -14,6 +15,13 @@
   padding: 20px 0;
   width: 100%;
   border-bottom: 3px dotted #ccc;
+}
+
+.selected-seats-container p {
+  font-size: 20px;
+  font-weight: 700;
+  color: #87909A;
+
 }
 
 .seats-sub-container {
@@ -29,6 +37,17 @@
   align-items: flex-start;
 }
 
+.ticket-detail-subheader {
+  font-weight: 700;
+  color: #87909A;
+}
+
+.ticket-detail-subheader + span {
+  color: #5C6570;
+  font-weight: 700;
+  padding: 10px 0;
+}
+
 .delivery-method-container {
   padding: 20px 0;
   border-bottom: 3px dotted #ccc;
@@ -37,6 +56,9 @@
 .ticket-details-container {
   padding: 20px 0;
   border-bottom: 1px solid #ccc;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .ticket-checkout-button-container {
@@ -45,6 +67,14 @@
 
 .ticket-checkout-button-container  button{
   width: 100%;
-  height: 30px;
+  padding: 15px;
   border-style: none;
+  font-size: 20px;
+  color: white;
+  background-color: #d92b79;
+}
+
+.each {
+  font-size: 13px;
+  font-weight: 500;
 }

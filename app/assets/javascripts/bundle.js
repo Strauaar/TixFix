@@ -62670,13 +62670,13 @@ var EventCheckoutPage = function (_React$Component) {
               _react2.default.createElement(
                 "span",
                 null,
-                "$ 77.00"
+                "$77.00 ",
+                _react2.default.createElement(
+                  "span",
+                  { className: "each" },
+                  "/ea"
+                )
               )
-            ),
-            _react2.default.createElement(
-              "div",
-              { className: "num-tickets-block" },
-              "SELECTOR HERE"
             )
           ),
           _react2.default.createElement(
