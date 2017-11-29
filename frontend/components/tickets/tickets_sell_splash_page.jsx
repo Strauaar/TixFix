@@ -57,6 +57,12 @@ class TicketPage extends React.Component {
               </div>
           </div>
         </div>
+        <div className="circle-cont">
+
+          <div className = "circle">
+
+          </div>
+        </div>
       </div>
     )
   }
