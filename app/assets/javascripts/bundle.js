@@ -62672,7 +62672,7 @@ var EventCheckoutPage = function (_React$Component) {
               _react2.default.createElement(
                 'strong',
                 null,
-                'Thu, Dec 28, 2017'
+                (0, _moment2.default)().add(4, 'days').format('ddd, MMM DD, YYYY')
               )
             )
           ),

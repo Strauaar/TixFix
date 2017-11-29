@@ -39,7 +39,7 @@ class EventCheckoutPage extends React.Component {
           <div className="delivery-method-container detail-section">
             <span className="ticket-detail-subheader">DELIVERY</span>
             <span>UPS</span>
-            <span>Delivery by: <strong>Thu, Dec 28, 2017</strong></span>
+            <span>Delivery by: <strong>{moment().add(4, 'days').format('ddd, MMM DD, YYYY')}</strong></span>
           </div>
           <div className="ticket-details-container">
             <div className="ticket-price-block detail-section">
