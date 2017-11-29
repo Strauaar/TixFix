@@ -16,6 +16,8 @@ class EventsList extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
+    console.log("new", newProps);
+    console.log("old", this.props);
     if(newProps.match.params.id !== this.props.match.params.id) {
       if(newProps.match.url === "/") {
         this.props.fetchEvents({categoryId: null, location: null, date: null})
@@ -36,9 +38,9 @@ class EventsList extends React.Component {
   }
 
   render() {
-    if(this.props.events == undefined) {
-      return null
-    }
+    // if(this.props.events == undefined) {
+    //   return null
+    // }
     return(
       <div className="events-list-container">
         <div className="events-list-header-container">
