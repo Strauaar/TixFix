@@ -54806,10 +54806,15 @@ var _events_reducer = __webpack_require__(208);
 
 var _events_reducer2 = _interopRequireDefault(_events_reducer);
 
+var _likedPerformersReducer = __webpack_require__(283);
+
+var _likedPerformersReducer2 = _interopRequireDefault(_likedPerformersReducer);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = (0, _redux.combineReducers)({
-  events: _events_reducer2.default
+  events: _events_reducer2.default,
+  liked_performers_ids: _likedPerformersReducer2.default
 });
 
 /***/ }),
@@ -62246,6 +62251,30 @@ var Footer = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = Footer;
+
+/***/ }),
+/* 283 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var likedPerformersReducer = function likedPerformersReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var action = arguments[1];
+
+  Object.freeze(state);
+  switch (action.type) {
+    default:
+      return state;
+  }
+};
+
+exports.default = likedPerformersReducer;
 
 /***/ })
 /******/ ]);
