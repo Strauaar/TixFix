@@ -1,0 +1,37 @@
+.ticket-item {
+  display: flex;
+  flex-direction: row;
+  font-family: 'Roboto Condensed', sans-serif;
+  justify-content: space-between;
+  padding: 0 10px;
+  align-items: flex-start;
+}
+
+.ticket-item-left-block {
+  display: flex;
+  flex-direction: column;
+  width: 127px;
+}
+
+.ticket-type {
+  font-size: 17px;
+}
+
+.ticket-count-and-shipping {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 12px;
+  margin-top: 20px;
+}
+
+.ticket-item-seat-block {
+
+}
+
+.ticket-item-price-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin: 0px;
+}

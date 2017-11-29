@@ -62085,8 +62085,61 @@ var ScrollTicketItem = function (_React$Component) {
       console.log(this.props.ticket);
       return _react2.default.createElement(
         'div',
-        null,
-        'sup'
+        { className: 'ticket-item-container' },
+        _react2.default.createElement(
+          'div',
+          { className: 'ticket-item' },
+          _react2.default.createElement(
+            'div',
+            { className: 'ticket-item-left-block' },
+            _react2.default.createElement(
+              'div',
+              { className: 'ticket-type' },
+              _react2.default.createElement(
+                'span',
+                null,
+                'General Admission'
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'ticket-count-and-shipping' },
+              _react2.default.createElement(
+                'span',
+                null,
+                '1 ticket'
+              ),
+              _react2.default.createElement(
+                'span',
+                null,
+                'UPS'
+              )
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'ticket-item-seat-block' },
+            _react2.default.createElement(
+              'span',
+              null,
+              'GA'
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'ticket-item-price-block' },
+            _react2.default.createElement(
+              'span',
+              null,
+              '$120'
+            ),
+            _react2.default.createElement(
+              'span',
+              null,
+              '/ea'
+            )
+          )
+        )
       );
     }
   }]);
