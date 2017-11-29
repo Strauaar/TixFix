@@ -3,6 +3,9 @@ import moment from 'moment';
 import { Link } from 'react-router-dom';
 
 const EventCardItemDetails = ({ eventQ }) => {
+  if(eventQ.subevents == undefined) {
+    return null
+  }
   return (
     <div>
       {

@@ -128,7 +128,6 @@ class SessionsModal extends React.Component {
       $(".modal").removeClass("is-open");
       this.props.history.push("/");
     }.bind(this));
-
     return(
       <div className="modal is-open">
           <form className="modal-form">

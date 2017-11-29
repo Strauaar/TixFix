@@ -20,7 +20,7 @@ class EventsList extends React.Component {
       if(newProps.match.url === "/") {
         this.props.fetchEvents({categoryId: null, location: null, date: null})
       } else {
-        // this.props.fetchEvents(merge({}, newProps.filter, { categoryId: newProps.match.params.id}))
+        this.props.fetchEvents(merge({}, this.props.filter, { categoryId: newProps.match.params.id}))
       }
     }
   }
@@ -36,6 +36,9 @@ class EventsList extends React.Component {
   }
 
   render() {
+    if(this.props.events == undefined) {
+      return null
+    }
     return(
       <div className="events-list-container">
         <div className="events-list-header-container">

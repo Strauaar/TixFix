@@ -3,15 +3,29 @@ import moment from 'moment';
 
 class EventCheckoutPage extends React.Component {
   constructor(props){
-    super(props)
+    super(props);
+    this.updateTicket = this.updateTicket.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchEvent(this.props.match.params.eventId);
     this.props.fetchEventTicket(this.props.match.params.ticketId);
   }
+
+  updateTicket(ticketId, user) {
+    if (user === null) {
+      this.props.history.push("/session")
+    } else {
+      $.ajax({
+        method: 'PATCH',
+        url: `api/tickets/${ticketId}`,
+        data: { user_id: user.id }
+      })
+    }
+  }
+
   render() {
-    let { eventQ, ticket } = this.props;
+    let { eventQ, ticket, currentUser } = this.props;
     const month = moment(eventQ.date).format('MMM');
     const day = moment(eventQ.date).format('DD');
     const dayString = moment(eventQ.date).format('ddd');
@@ -67,7 +81,7 @@ class EventCheckoutPage extends React.Component {
 
           </div>
           <div className="ticket-checkout-button-container">
-            <button>Go to checkout</button>
+            <button onClick={() => this.updateTicket(ticket.id, currentUser)}>Go to checkout</button>
           </div>
         </div>
       </div>

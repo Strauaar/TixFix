@@ -6,7 +6,8 @@ import EventCheckoutPage from './event_checkout_page';
 
 const mapStateToProps = state => ({
   ticket: state.entities.tickets,
-  eventQ: state.entities.events
+  eventQ: state.entities.events,
+  currentUser: state.session.currentUser
 });
 
 const mapDispatchToProps = dispatch => ({

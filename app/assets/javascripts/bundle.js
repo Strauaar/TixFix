@@ -60334,7 +60334,6 @@ var SessionsModal = function (_React$Component) {
         $(".modal").removeClass("is-open");
         this.props.history.push("/");
       }.bind(this));
-
       return _react2.default.createElement(
         'div',
         { className: 'modal is-open' },
@@ -61147,7 +61146,7 @@ var EventsList = function (_React$Component) {
         if (newProps.match.url === "/") {
           this.props.fetchEvents({ categoryId: null, location: null, date: null });
         } else {
-          // this.props.fetchEvents(merge({}, newProps.filter, { categoryId: newProps.match.params.id}))
+          this.props.fetchEvents((0, _lodash.merge)({}, this.props.filter, { categoryId: newProps.match.params.id }));
         }
       }
     }
@@ -61165,6 +61164,9 @@ var EventsList = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
+      if (this.props.events == undefined) {
+        return null;
+      }
       return _react2.default.createElement(
         'div',
         { className: 'events-list-container' },
@@ -61399,6 +61401,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var EventCardItemDetails = function EventCardItemDetails(_ref) {
   var eventQ = _ref.eventQ;
 
+  if (eventQ.subevents == undefined) {
+    return null;
+  }
   return _react2.default.createElement(
     'div',
     null,
@@ -62569,7 +62574,10 @@ var EventCheckoutPage = function (_React$Component) {
   function EventCheckoutPage(props) {
     _classCallCheck(this, EventCheckoutPage);
 
-    return _possibleConstructorReturn(this, (EventCheckoutPage.__proto__ || Object.getPrototypeOf(EventCheckoutPage)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (EventCheckoutPage.__proto__ || Object.getPrototypeOf(EventCheckoutPage)).call(this, props));
+
+    _this.updateTicket = _this.updateTicket.bind(_this);
+    return _this;
   }
 
   _createClass(EventCheckoutPage, [{
@@ -62579,11 +62587,27 @@ var EventCheckoutPage = function (_React$Component) {
       this.props.fetchEventTicket(this.props.match.params.ticketId);
     }
   }, {
+    key: 'updateTicket',
+    value: function updateTicket(ticketId, user) {
+      if (user === null) {
+        this.props.history.push("/session");
+      } else {
+        $.ajax({
+          method: 'PATCH',
+          url: 'api/tickets/' + ticketId,
+          data: { user_id: user.id }
+        });
+      }
+    }
+  }, {
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
       var _props = this.props,
           eventQ = _props.eventQ,
-          ticket = _props.ticket;
+          ticket = _props.ticket,
+          currentUser = _props.currentUser;
 
       var month = (0, _moment2.default)(eventQ.date).format('MMM');
       var day = (0, _moment2.default)(eventQ.date).format('DD');
@@ -62753,7 +62777,9 @@ var EventCheckoutPage = function (_React$Component) {
             { className: 'ticket-checkout-button-container' },
             _react2.default.createElement(
               'button',
-              null,
+              { onClick: function onClick() {
+                  return _this2.updateTicket(ticket.id, currentUser);
+                } },
               'Go to checkout'
             )
           )
@@ -63044,7 +63070,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var mapStateToProps = function mapStateToProps(state) {
   return {
     ticket: state.entities.tickets,
-    eventQ: state.entities.events
+    eventQ: state.entities.events,
+    currentUser: state.session.currentUser
   };
 };
 
