@@ -59745,8 +59745,7 @@ var App = function (_React$Component) {
           null,
           _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _footer2.default }),
           _react2.default.createElement(_reactRouterDom.Route, { path: '/subcategory/:id', component: _footer2.default }),
-          _react2.default.createElement(_reactRouterDom.Route, { path: '/category/:id', component: _footer2.default }),
-          _react2.default.createElement(_reactRouterDom.Route, { path: '/tickets/sell', component: _footer2.default })
+          _react2.default.createElement(_reactRouterDom.Route, { path: '/category/:id', component: _footer2.default })
         )
       );
     }
@@ -62877,9 +62876,10 @@ var TicketPage = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (TicketPage.__proto__ || Object.getPrototypeOf(TicketPage)).call(this, props));
 
-    _this.state = { input: null };
+    _this.state = { input: "" };
     _this.handleInput = _this.handleInput.bind(_this);
     _this.keyPress = _this.keyPress.bind(_this);
+    _this.renderSearchList = _this.renderSearchList.bind(_this);
     return _this;
   }
 
@@ -62893,6 +62893,23 @@ var TicketPage = function (_React$Component) {
     value: function keyPress(e) {
       if (e.keyCode == 13) {
         this.props.fetchEvents({ name: this.state.input });
+      }
+    }
+  }, {
+    key: "renderSearchList",
+    value: function renderSearchList() {
+      if (this.state.input.length > 1) {
+        var result = [];
+        for (var i = 0; i < this.props.events.length; i++) {
+          result.push(_react2.default.createElement(
+            "li",
+            null,
+            this.props.events[i].name
+          ));
+        }
+        return result.map(function (li) {
+          return li;
+        });
       }
     }
   }, {
@@ -62920,6 +62937,15 @@ var TicketPage = function (_React$Component) {
                 "span",
                 { className: "icon-container" },
                 _react2.default.createElement("i", { className: "fa fa-search search-icon fa-2x", "aria-hidden": "true" })
+              )
+            ),
+            _react2.default.createElement(
+              "div",
+              null,
+              _react2.default.createElement(
+                "ul",
+                null,
+                this.renderSearchList()
               )
             )
           )
@@ -63156,7 +63182,9 @@ var _event_actions = __webpack_require__(8);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state) {
-  return {};
+  return {
+    events: Object.values(state.entities.events)
+  };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {

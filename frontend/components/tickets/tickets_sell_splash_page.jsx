@@ -3,9 +3,10 @@ import React from 'react';
 class TicketPage extends React.Component {
   constructor(props){
     super(props)
-    this.state = {input: null}
+    this.state = {input: ""}
     this.handleInput = this.handleInput.bind(this);
     this.keyPress = this.keyPress.bind(this);
+    this.renderSearchList = this.renderSearchList.bind(this);
   }
 
   handleInput(e) {
@@ -15,6 +16,16 @@ class TicketPage extends React.Component {
   keyPress(e){
     if (e.keyCode == 13){
       this.props.fetchEvents({name: this.state.input})
+    }
+  }
+
+  renderSearchList(){
+    if(this.state.input.length > 1) {
+      let result = [];
+      for(let i = 0; i < this.props.events.length; i++) {
+        result.push(<li>{this.props.events[i].name}</li>)
+      }
+      return result.map(li => li);
     }
   }
 
@@ -28,6 +39,13 @@ class TicketPage extends React.Component {
                 <input onKeyDown={this.keyPress} onChange={this.handleInput} className="searchbar" placeholder="Search for events...">
                 </input>
                 <span className="icon-container"><i className="fa fa-search search-icon fa-2x" aria-hidden="true"></i></span>
+              </div>
+              <div>
+                <ul>
+                  {
+                    this.renderSearchList()
+                  }
+                </ul>
               </div>
           </div>
         </div>

@@ -4,7 +4,7 @@ import TicketPage from './tickets_sell_splash_page';
 import { fetchEvents } from '../../actions/event_actions';
 
 const mapStateToProps = state => ({
-
+  events: Object.values(state.entities.events)
 });
 
 const mapDispatchToProps = dispatch => ({
