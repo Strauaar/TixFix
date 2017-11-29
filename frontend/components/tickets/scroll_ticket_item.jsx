@@ -1,16 +1,22 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import TicketItem from './ticket_item';
 
 class ScrollTicketItem extends React.Component {
   constructor(props) {
     super(props)
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    // this.props.history.push
   }
 
   render() {
     console.log("TICKET");
     console.log(this.props.ticket);
     return(
-      <div className="ticket-item-container">
+      <Link to={`/events/${this.props.ticket.event_id}/ticket/${this.props.ticket.id}`}><div onClick={this.handleClick} className="ticket-item-container">
         <div className="ticket-item">
           <div className="ticket-item-left-block">
             <div className="ticket-type">
@@ -25,11 +31,12 @@ class ScrollTicketItem extends React.Component {
             <span>{this.props.ticket.row}</span>
           </div>
           <div className="ticket-item-price-block">
-            <span>${this.props.ticket.price}</span>
-            <span>/ea</span>
+            <span className="price">${this.props.ticket.price}</span>
+            <span className="ea">/ea</span>
           </div>
         </div>
       </div>
+    </Link>
     )
   }
 }

@@ -59621,7 +59621,14 @@ var App = function (_React$Component) {
           _react2.default.createElement(_reactRouterDom.Route, { path: '/tickets/sell', component: _tickets_sell_splash_page2.default })
         ),
         _react2.default.createElement(_reactRouterDom.Route, { path: '/category/:id', component: _subcategory_list_container2.default }),
-        _react2.default.createElement(_reactRouterDom.Route, { path: '/', component: _footer2.default })
+        _react2.default.createElement(
+          _reactRouterDom.Switch,
+          null,
+          _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _footer2.default }),
+          _react2.default.createElement(_reactRouterDom.Route, { path: '/subcategory/:id', component: _footer2.default }),
+          _react2.default.createElement(_reactRouterDom.Route, { path: '/category/:id', component: _footer2.default }),
+          _react2.default.createElement(_reactRouterDom.Route, { path: '/tickets/sell', component: _footer2.default })
+        )
       );
     }
   }]);
@@ -62057,6 +62064,8 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRouterDom = __webpack_require__(3);
+
 var _ticket_item = __webpack_require__(284);
 
 var _ticket_item2 = _interopRequireDefault(_ticket_item);
@@ -62075,69 +62084,81 @@ var ScrollTicketItem = function (_React$Component) {
   function ScrollTicketItem(props) {
     _classCallCheck(this, ScrollTicketItem);
 
-    return _possibleConstructorReturn(this, (ScrollTicketItem.__proto__ || Object.getPrototypeOf(ScrollTicketItem)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (ScrollTicketItem.__proto__ || Object.getPrototypeOf(ScrollTicketItem)).call(this, props));
+
+    _this.handleClick = _this.handleClick.bind(_this);
+    return _this;
   }
 
   _createClass(ScrollTicketItem, [{
+    key: 'handleClick',
+    value: function handleClick() {
+      // this.props.history.push
+    }
+  }, {
     key: 'render',
     value: function render() {
       console.log("TICKET");
       console.log(this.props.ticket);
       return _react2.default.createElement(
-        'div',
-        { className: 'ticket-item-container' },
+        _reactRouterDom.Link,
+        { to: '/events/' + this.props.ticket.event_id + '/ticket/' + this.props.ticket.id },
         _react2.default.createElement(
           'div',
-          { className: 'ticket-item' },
+          { onClick: this.handleClick, className: 'ticket-item-container' },
           _react2.default.createElement(
             'div',
-            { className: 'ticket-item-left-block' },
+            { className: 'ticket-item' },
             _react2.default.createElement(
               'div',
-              { className: 'ticket-type' },
+              { className: 'ticket-item-left-block' },
               _react2.default.createElement(
-                'span',
-                null,
-                this.props.ticket.type_of
+                'div',
+                { className: 'ticket-type' },
+                _react2.default.createElement(
+                  'span',
+                  null,
+                  this.props.ticket.type_of
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'ticket-count-and-shipping' },
+                _react2.default.createElement(
+                  'span',
+                  null,
+                  '1 ticket'
+                ),
+                _react2.default.createElement(
+                  'span',
+                  null,
+                  'UPS'
+                )
               )
             ),
             _react2.default.createElement(
               'div',
-              { className: 'ticket-count-and-shipping' },
+              { className: 'ticket-item-seat-block' },
               _react2.default.createElement(
                 'span',
                 null,
-                '1 ticket'
+                this.props.ticket.row
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'ticket-item-price-block' },
+              _react2.default.createElement(
+                'span',
+                { className: 'price' },
+                '$',
+                this.props.ticket.price
               ),
               _react2.default.createElement(
                 'span',
-                null,
-                'UPS'
+                { className: 'ea' },
+                '/ea'
               )
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'ticket-item-seat-block' },
-            _react2.default.createElement(
-              'span',
-              null,
-              this.props.ticket.row
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'ticket-item-price-block' },
-            _react2.default.createElement(
-              'span',
-              null,
-              '$',
-              this.props.ticket.price
-            ),
-            _react2.default.createElement(
-              'span',
-              null,
-              '/ea'
             )
           )
         )

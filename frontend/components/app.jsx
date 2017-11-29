@@ -43,7 +43,12 @@ class App extends React.Component {
         </Switch>
 
         <Route path="/category/:id" component={SubCategoryListContainer} />
-        <Route path="/" component={CFooter}/>
+        <Switch>
+          <Route exact path="/" component={CFooter}/>
+          <Route path="/subcategory/:id" component={CFooter}/>
+          <Route path="/category/:id" component={CFooter}/>
+          <Route path="/tickets/sell" component={CFooter}/>
+        </Switch>
       </div>
     )
   }
