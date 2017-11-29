@@ -12,13 +12,15 @@ class TicketPage extends React.Component {
   }
 
   handleInput(e) {
+    if(e.target.value === "") {
+      this.props.clearEvents();
+    }
     this.setState({input: e.target.value})
   }
 
   keyPress(e){
-    if (e.keyCode == 13){
-      this.props.fetchEvents({name: this.state.input})
-    }
+    this.setState({input: e.target.value})
+    this.props.fetchEvents({name: this.state.input})
   }
 
   renderSearchList(){

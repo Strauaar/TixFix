@@ -2,7 +2,7 @@ class Api::EventsController < ApplicationController
   def index
     @count = params[:currentCount]
     if params[:filter][:name]
-      query =  "%" + params[:filter][:name].downcase.split('').join("%") + "%"
+      query =  '%' + params[:filter][:name].downcase.split('').join("%") + '%'
       @subevents = Subevent.where("lower(name) LIKE ?", query).limit(10)
       render :subevents
     else
