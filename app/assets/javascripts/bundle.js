@@ -59754,7 +59754,8 @@ var App = function (_React$Component) {
           null,
           _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _footer2.default }),
           _react2.default.createElement(_reactRouterDom.Route, { path: '/subcategory/:id', component: _footer2.default }),
-          _react2.default.createElement(_reactRouterDom.Route, { path: '/category/:id', component: _footer2.default })
+          _react2.default.createElement(_reactRouterDom.Route, { path: '/category/:id', component: _footer2.default }),
+          _react2.default.createElement(_reactRouterDom.Route, { path: '/tickets/sell', component: _footer2.default })
         )
       );
     }
@@ -63092,7 +63093,6 @@ var Footer = function (_React$Component) {
         _react2.default.createElement(
           "div",
           { className: "footer-top" },
-          _react2.default.createElement("div", { className: "footer-apps" }),
           _react2.default.createElement(
             "div",
             { className: "footer-social" },
@@ -63236,8 +63236,7 @@ var Footer = function (_React$Component) {
                 )
               )
             )
-          ),
-          _react2.default.createElement("div", { className: "footer-bottom" })
+          )
         )
       );
     }
