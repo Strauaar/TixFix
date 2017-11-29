@@ -3,7 +3,7 @@
   flex-direction: row;
   font-family: 'Roboto Condensed', sans-serif;
   justify-content: space-between;
-  padding: 0 10px;
+  padding: 20px 10px;
   align-items: flex-start;
 }
 
@@ -32,6 +32,6 @@
 .ticket-item-price-block {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  align-items: flex-end;
   margin: 0px;
 }
