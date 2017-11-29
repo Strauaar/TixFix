@@ -5,7 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-demo_user = User.create(first_name: "demo_user", last_name: "1", email: "demoemail@email.com", password: "password")
+demo_user1 = User.create(first_name: "demo_user", last_name: "1", email: "demoemail@email.com", password: "password")
+demo_user2 = User.create(first_name: "demo_user", last_name: "2", email: "email@email.com", password: "password")
+
 concerts_cateogry = Category.create(name:"Concerts")
 sports_category = Category.create(name:"Sports")
 theater_category = Category.create(name:"Theater and Comedy")
@@ -48,6 +50,16 @@ jayz_event1 = Event.create(
   image_url: "jayz.jpg",
   performer_id: jayz_performer.id,
   venue_id: billyg_venue.id
+)
+
+subevent = Subevent.create(
+  name: "Jay Z",
+  venue_id: billyg_venue.id,
+  performer_id: jayz_performer.id,
+  category_id: rap_subcategory.id,
+      image_url: "jayz.jpg",
+  date: "Dec 24, 2017",
+  event_id: jayz_event.id
 )
 
 
@@ -97,3 +109,6 @@ for i in 0..3
     event_id: jayz_event1.id
   )
 end
+
+Ticket.create(seller_id: demo_user1.id, buyer_id: demo_user2.id, event_id: subevent.id)
+Ticket.create(seller_id: demo_user1.id, event_id: subevent.id)

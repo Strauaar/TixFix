@@ -21,6 +21,11 @@ class Subevent < ApplicationRecord
     class_name: :Event,
     foreign_key: :event_id
 
+  has_many :tickets,
+    primary_key: :id,
+    class_name: :Ticket,
+    foreign_key: :event_id
+
   def self.filter_date(category_ids, date_filter)
     if date_filter == 'This weekend'
       start_date = DateTime.now.end_of_week - 2

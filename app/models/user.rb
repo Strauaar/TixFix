@@ -14,6 +14,16 @@ class User < ApplicationRecord
     through: :user_likes,
     source: :performer
 
+  has_many :selling_tickets,
+    primary_key: :id,
+    class_name: :Ticket,
+    foreign_key: :seller_id
+
+  has_many :bought_tickets,
+    primary_key: :id,
+    class_name: :Ticket,
+    foreign_key: :buyer_id
+
   attr_reader :password
 
   def password=(password)
