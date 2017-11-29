@@ -54888,11 +54888,16 @@ var _liked_performers_reducer = __webpack_require__(210);
 
 var _liked_performers_reducer2 = _interopRequireDefault(_liked_performers_reducer);
 
+var _tickets_reducer = __webpack_require__(289);
+
+var _tickets_reducer2 = _interopRequireDefault(_tickets_reducer);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = (0, _redux.combineReducers)({
   events: _events_reducer2.default,
-  liked_performers_ids: _liked_performers_reducer2.default
+  liked_performers_ids: _liked_performers_reducer2.default,
+  tickets: _tickets_reducer2.default
 });
 
 /***/ }),
@@ -62574,6 +62579,12 @@ var fetchBuyingTickets = exports.fetchBuyingTickets = function fetchBuyingTicket
     url: 'api/users/' + user_id + '/tickets_buying'
   });
 };
+
+/***/ }),
+/* 289 */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed: SyntaxError: Unexpected token, expected ; (4:22)\n\n\u001b[0m \u001b[90m 2 | \u001b[39m\n \u001b[90m 3 | \u001b[39m\u001b[36mconst\u001b[39m ticketsReducer \u001b[33m=\u001b[39m (state \u001b[33m=\u001b[39m {}\u001b[33m,\u001b[39m action) \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 4 | \u001b[39m  \u001b[33mObject\u001b[39m\u001b[33m.\u001b[39mfreeze(state)\u001b[33m:\u001b[39m\n \u001b[90m   | \u001b[39m                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 5 | \u001b[39m  \u001b[36mswitch\u001b[39m(action\u001b[33m.\u001b[39mtype) {\n \u001b[90m 6 | \u001b[39m    \u001b[36mcase\u001b[39m \u001b[33mRECEIVE_TICKETS\u001b[39m\u001b[33m:\u001b[39m\n \u001b[90m 7 | \u001b[39m      \u001b[36mreturn\u001b[39m action\u001b[33m.\u001b[39mtickets\u001b[33m;\u001b[39m\u001b[0m\n");
 
 /***/ })
 /******/ ]);
