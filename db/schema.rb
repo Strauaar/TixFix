@@ -72,6 +72,8 @@ ActiveRecord::Schema.define(version: 20171129105044) do
     t.integer "buyer_id"
     t.integer "event_id", null: false
     t.integer "price", null: false
+    t.string "type_of", null: false
+    t.string "row", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["buyer_id"], name: "index_tickets_on_buyer_id"

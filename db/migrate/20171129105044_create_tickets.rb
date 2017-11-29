@@ -5,6 +5,8 @@ class CreateTickets < ActiveRecord::Migration[5.1]
       t.integer :buyer_id
       t.integer :event_id, null: false
       t.integer :price, null: false
+      t.string :type_of, null: false
+      t.string :row, null: false
       t.timestamps
     end
     add_index :tickets, :seller_id
