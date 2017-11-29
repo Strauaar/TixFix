@@ -9,10 +9,17 @@
   width: 600px;
   display: flex;
   flex-direction: column;
+  margin-top: 50px;
+}
+
+.checkout-event-detail {
+  padding-bottom: 5px;
+  align-items: center;
 }
 
 .selected-seats-container {
   padding: 20px 0;
+  padding-top: 0px;
   width: 100%;
   border-bottom: 3px dotted #ccc;
 }
@@ -72,6 +79,10 @@
   font-size: 20px;
   color: white;
   background-color: #d92b79;
+}
+
+.ticket-checkout-button-container  button:hover {
+  cursor:pointer
 }
 
 .each {

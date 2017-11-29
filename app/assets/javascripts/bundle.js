@@ -62585,13 +62585,60 @@ var EventCheckoutPage = function (_React$Component) {
           eventQ = _props.eventQ,
           ticket = _props.ticket;
 
+      var month = (0, _moment2.default)(eventQ.date).format('MMM');
+      var day = (0, _moment2.default)(eventQ.date).format('DD');
+      var dayString = (0, _moment2.default)(eventQ.date).format('ddd');
+      var time = (0, _moment2.default)(eventQ.date).format('h:MMa');
       return _react2.default.createElement(
         'div',
         { className: 'event-ticket-checkout-container' },
         _react2.default.createElement(
           'div',
           { className: 'event-ticket-checkout-details' },
-          _react2.default.createElement('div', { className: 'event-detail-header' }),
+          _react2.default.createElement(
+            'div',
+            { className: 'event-detail-header' },
+            _react2.default.createElement(
+              'div',
+              { className: 'card-detail-container checkout-event-detail' },
+              _react2.default.createElement(
+                'div',
+                { className: 'card-detail-date-block event-show-detail-date-block' },
+                _react2.default.createElement(
+                  'span',
+                  { className: 'card-detail-day event-show-day-text' },
+                  dayString
+                ),
+                _react2.default.createElement(
+                  'span',
+                  { className: 'card-detail-date event-show-date-text' },
+                  month,
+                  ' ',
+                  day
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'card-detail-event-block event-show-card-block' },
+                _react2.default.createElement(
+                  'p',
+                  { className: 'card-detail-event-name event-show-detail-name' },
+                  this.props.eventQ.name
+                ),
+                _react2.default.createElement(
+                  'span',
+                  { className: 'card-detail-date-venue event-show-detail-venue' },
+                  time,
+                  ' at ',
+                  this.props.eventQ.venue,
+                  ', ',
+                  this.props.eventQ.city,
+                  ', ',
+                  this.props.eventQ.state
+                )
+              )
+            )
+          ),
           _react2.default.createElement(
             'div',
             { className: 'selected-seats-container' },

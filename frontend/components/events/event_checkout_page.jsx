@@ -12,10 +12,28 @@ class EventCheckoutPage extends React.Component {
   }
   render() {
     let { eventQ, ticket } = this.props;
+    const month = moment(eventQ.date).format('MMM');
+    const day = moment(eventQ.date).format('DD');
+    const dayString = moment(eventQ.date).format('ddd');
+    const time = moment(eventQ.date).format('h:MMa');
     return (
       <div className="event-ticket-checkout-container">
         <div className="event-ticket-checkout-details">
           <div className="event-detail-header">
+
+            <div className="card-detail-container checkout-event-detail">
+              <div className="card-detail-date-block event-show-detail-date-block">
+                <span className="card-detail-day event-show-day-text">{dayString}
+                </span>
+                <span className="card-detail-date event-show-date-text">
+                  {month} {day}
+                </span>
+              </div>
+              <div className="card-detail-event-block event-show-card-block">
+                <p className="card-detail-event-name event-show-detail-name">{this.props.eventQ.name}</p>
+                <span className="card-detail-date-venue event-show-detail-venue">{time} at {this.props.eventQ.venue}, {this.props.eventQ.city}, {this.props.eventQ.state}</span>
+              </div>
+            </div>
 
           </div>
           <div className="selected-seats-container">
