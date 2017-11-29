@@ -15,12 +15,12 @@ class TicketPage extends React.Component {
     if(e.target.value === "") {
       this.props.clearEvents();
     }
+    this.props.fetchEvents({name: e.target.value})
     this.setState({input: e.target.value})
   }
 
   keyPress(e){
     this.setState({input: e.target.value})
-    this.props.fetchEvents({name: this.state.input})
   }
 
   renderSearchList(){
@@ -31,7 +31,7 @@ class TicketPage extends React.Component {
         const day = moment(this.props.events[i].date).format('DD');
         const dayString = moment(this.props.events[i].date).format('ddd');
         const time = moment(this.props.events[i].date).format('h:MMa');
-        result.push(<li className="search-event-item"><Link to={`events/${this.props.events[i].id}/tickets/sell`}><div className="search-list-item-container"><span className="search-event-name">{this.props.events[i].name}</span><div><span className="search-event-date">{time} {dayString} {month}, {day}</span></div></div></Link></li>)
+        result.push(<li className="search-event-item"><Link to={`/events/${this.props.events[i].id}/sell`}><div className="search-list-item-container"><span className="search-event-name">{this.props.events[i].name}</span><div><span className="search-event-date">{time} {dayString} {month}, {day}</span></div></div></Link></li>)
       }
       return result.map(li => li);
     }
