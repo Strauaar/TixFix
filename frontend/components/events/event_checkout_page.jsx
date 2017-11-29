@@ -15,26 +15,37 @@ class EventCheckoutPage extends React.Component {
           <div className="selected-seats-container">
             <p>SELECTED SEATS</p>
             <div className="seats-sub-container">
-              <div className="section-detail">
-
+              <div className="section-detail detail-section">
+                <span className="ticket-detail-subheader">SECTION</span>
+                <span>General Admission</span>
+                <span>Seat printed on ticket</span>
               </div>
-              <div className="row-detail">
-
+              <div className="row-detail detail-section">
+                <span className="ticket-detail-subheader">ROW</span>
+                <span>GA</span>
               </div>
-              <div className="seat-detail">
-
+              <div className="seat-detail detail-section">
+                <span className="ticket-detail-subheader">SEATS</span>
+                <span>-</span>
               </div>
             </div>
           </div>
-          <div className="delivery-method-container">
-
+          <div className="delivery-method-container detail-section">
+            <span className="ticket-detail-subheader">DELIVERY</span>
+            <span>UPS</span>
+            <span>Delivery by: <strong>Thu, Dec 28, 2017</strong></span>
           </div>
-
           <div className="ticket-details-container">
-
+            <div className="ticket-price-block detail-section">
+              <span className="ticket-detail-subheader">TICKET PRICE</span>
+              <span>$ 77.00</span>
+            </div>
+            <div className="num-tickets-block">
+              SELECTOR HERE
+            </div>
           </div>
           <div className="ticket-checkout-button-container">
-
+            <button>Go to checkout</button>
           </div>
         </div>
       </div>

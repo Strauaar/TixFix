@@ -1,0 +1,50 @@
+.event-ticket-checkout-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.event-ticket-checkout-details {
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+}
+
+.selected-seats-container {
+  padding: 20px 0;
+  width: 100%;
+  border-bottom: 3px dotted #ccc;
+}
+
+.seats-sub-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0;
+}
+
+.detail-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.delivery-method-container {
+  padding: 20px 0;
+  border-bottom: 3px dotted #ccc;
+}
+
+.ticket-details-container {
+  padding: 20px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.ticket-checkout-button-container {
+  padding-top: 20px;
+}
+
+.ticket-checkout-button-container  button{
+  width: 100%;
+  height: 30px;
+  border-style: none;
+}

@@ -62583,14 +62583,111 @@ var EventCheckoutPage = function (_React$Component) {
             _react2.default.createElement(
               "div",
               { className: "seats-sub-container" },
-              _react2.default.createElement("div", { className: "section-detail" }),
-              _react2.default.createElement("div", { className: "row-detail" }),
-              _react2.default.createElement("div", { className: "seat-detail" })
+              _react2.default.createElement(
+                "div",
+                { className: "section-detail detail-section" },
+                _react2.default.createElement(
+                  "span",
+                  { className: "ticket-detail-subheader" },
+                  "SECTION"
+                ),
+                _react2.default.createElement(
+                  "span",
+                  null,
+                  "General Admission"
+                ),
+                _react2.default.createElement(
+                  "span",
+                  null,
+                  "Seat printed on ticket"
+                )
+              ),
+              _react2.default.createElement(
+                "div",
+                { className: "row-detail detail-section" },
+                _react2.default.createElement(
+                  "span",
+                  { className: "ticket-detail-subheader" },
+                  "ROW"
+                ),
+                _react2.default.createElement(
+                  "span",
+                  null,
+                  "GA"
+                )
+              ),
+              _react2.default.createElement(
+                "div",
+                { className: "seat-detail detail-section" },
+                _react2.default.createElement(
+                  "span",
+                  { className: "ticket-detail-subheader" },
+                  "SEATS"
+                ),
+                _react2.default.createElement(
+                  "span",
+                  null,
+                  "-"
+                )
+              )
             )
           ),
-          _react2.default.createElement("div", { className: "delivery-method-container" }),
-          _react2.default.createElement("div", { className: "ticket-details-container" }),
-          _react2.default.createElement("div", { className: "ticket-checkout-button-container" })
+          _react2.default.createElement(
+            "div",
+            { className: "delivery-method-container detail-section" },
+            _react2.default.createElement(
+              "span",
+              { className: "ticket-detail-subheader" },
+              "DELIVERY"
+            ),
+            _react2.default.createElement(
+              "span",
+              null,
+              "UPS"
+            ),
+            _react2.default.createElement(
+              "span",
+              null,
+              "Delivery by: ",
+              _react2.default.createElement(
+                "strong",
+                null,
+                "Thu, Dec 28, 2017"
+              )
+            )
+          ),
+          _react2.default.createElement(
+            "div",
+            { className: "ticket-details-container" },
+            _react2.default.createElement(
+              "div",
+              { className: "ticket-price-block detail-section" },
+              _react2.default.createElement(
+                "span",
+                { className: "ticket-detail-subheader" },
+                "TICKET PRICE"
+              ),
+              _react2.default.createElement(
+                "span",
+                null,
+                "$ 77.00"
+              )
+            ),
+            _react2.default.createElement(
+              "div",
+              { className: "num-tickets-block" },
+              "SELECTOR HERE"
+            )
+          ),
+          _react2.default.createElement(
+            "div",
+            { className: "ticket-checkout-button-container" },
+            _react2.default.createElement(
+              "button",
+              null,
+              "Go to checkout"
+            )
+          )
         )
       );
     }
