@@ -23,6 +23,7 @@
   width: 100%;
   max-height: 300px;
   overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 .header-block {
@@ -38,7 +39,7 @@
 }
 
 .sale-block {
-  width: 45%;
+  width: 49%;
 }
 
 .myhub-sales-payments-container {
@@ -46,30 +47,8 @@
   flex-direction: row;
   justify-content: space-between;
   margin-bottom: 20px;
-  padding: 20px 15px;
-  width: 100%;
+  padding: 0 0;
   max-height: 300px;
-  overflow-x: hidden;
-}
-
-// .myhub-sales-payments-container div:first-child{
-//   padding-right: 0;
-// }
-//
-// .myhub-sales-payments-container div:last-child{
-//   padding-left: 0;
-// }
-
-.myhub-sales-payments-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  background-color: white;
-  margin-bottom: 20px;
-  padding: 20px 15px;
-  width: 100%;
-  max-height: 300px;
-  overflow-x: hidden;
 }
 
 .myhub-scroll-container {
@@ -77,7 +56,6 @@
   width: 100%;
   // overflow: hidden;
   position: relative;
-  overflow-x: hidden;
 }
 
 .list-container {
