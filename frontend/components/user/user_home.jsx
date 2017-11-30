@@ -1,7 +1,5 @@
-
-
-
 import React from 'react';
+import moment from 'moment';
 
 class UserHome extends React.Component {
   constructor(props) {
@@ -71,7 +69,10 @@ class UserHome extends React.Component {
             <span className="list-item-event-name">{eventQ.name}</span>
           </div>
           <div>
-            <span className="list-item-venue-name">{eventQ.venue.name}</span>
+            <span className="list-item-venue-name">{moment(eventQ.date).format('h:mma')} at </span>
+            <span className="list-item-venue-name">{eventQ.venue.name} | </span>
+            <span className="list-item-venue-name">{eventQ.venue.city}, </span>
+            <span className="list-item-venue-name">{eventQ.venue.state}</span>
           </div>
         </div>
       )

@@ -63661,6 +63661,10 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _moment = __webpack_require__(0);
+
+var _moment2 = _interopRequireDefault(_moment);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -63781,7 +63785,25 @@ var UserHome = function (_React$Component) {
               _react2.default.createElement(
                 'span',
                 { className: 'list-item-venue-name' },
-                eventQ.venue.name
+                (0, _moment2.default)(eventQ.date).format('h:mma'),
+                ' at '
+              ),
+              _react2.default.createElement(
+                'span',
+                { className: 'list-item-venue-name' },
+                eventQ.venue.name,
+                ' | '
+              ),
+              _react2.default.createElement(
+                'span',
+                { className: 'list-item-venue-name' },
+                eventQ.venue.city,
+                ', '
+              ),
+              _react2.default.createElement(
+                'span',
+                { className: 'list-item-venue-name' },
+                eventQ.venue.state
               )
             )
           );
