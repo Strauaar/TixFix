@@ -63146,7 +63146,7 @@ var SellTicketPage = function (_React$Component) {
 
     _this.createTicket = _this.createTicket.bind(_this);
     _this.update = _this.update.bind(_this);
-    _this.state = { price: 0, row: '-', type_of: "GA" };
+    _this.state = { price: 0, row: '-', type_of: "GA", num_tickets: 0 };
     return _this;
   }
 
@@ -63167,6 +63167,8 @@ var SellTicketPage = function (_React$Component) {
         this.setState({ type_of: e.target.value });
       } else if (type === 'row') {
         this.setState({ row: e.target.value });
+      } else if (type === 'num_tickets') {
+        this.setState({ num_tickets: e.target.value });
       }
     }
   }, {
@@ -63301,7 +63303,9 @@ var SellTicketPage = function (_React$Component) {
                     { className: 'num-tickets-selector' },
                     _react2.default.createElement(
                       'select',
-                      { 'class': 'ticket-qty' },
+                      { onChange: function onChange() {
+                          return _this2.update('num_tickets');
+                        }, 'class': 'ticket-qty' },
                       _react2.default.createElement(
                         'option',
                         { value: '1', selected: true },

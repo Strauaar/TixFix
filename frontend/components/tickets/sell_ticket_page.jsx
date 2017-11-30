@@ -8,7 +8,7 @@ class SellTicketPage extends React.Component {
     super(props);
     this.createTicket = this.createTicket.bind(this);
     this.update = this.update.bind(this);
-    this.state = {price: 0, row: '-', type_of: "GA"}
+    this.state = {price: 0, row: '-', type_of: "GA", num_tickets: 0}
   }
   componentWillMount(){
     console.log(this.props);
@@ -23,6 +23,8 @@ class SellTicketPage extends React.Component {
       this.setState({type_of: e.target.value})
     } else if (type === 'row') {
       this.setState({row: e.target.value})
+    } else if (type === 'num_tickets') {
+      this.setState({num_tickets: e.target.value})
     }
   }
 
@@ -82,7 +84,7 @@ class SellTicketPage extends React.Component {
                   <div className="num-tickets-container">
                     <span>HOW MANY TICKETS DO YOU HAVE?</span>
                     <div className="num-tickets-selector">
-                      <select class="ticket-qty">
+                      <select onChange={() => this.update('num_tickets')} class="ticket-qty">
                         <option value="1" selected>1 Ticket</option>
                         <option value="2">2 Tickets</option>
                         <option value="3">3 Tickets</option>
