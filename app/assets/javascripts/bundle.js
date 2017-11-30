@@ -59695,7 +59695,7 @@ var _myhub_container = __webpack_require__(295);
 
 var _myhub_container2 = _interopRequireDefault(_myhub_container);
 
-var _footer = __webpack_require__(301);
+var _footer = __webpack_require__(302);
 
 var _footer2 = _interopRequireDefault(_footer);
 
@@ -63515,6 +63515,10 @@ var _user_fav_container = __webpack_require__(299);
 
 var _user_fav_container2 = _interopRequireDefault(_user_fav_container);
 
+var _user_navigation_bar = __webpack_require__(301);
+
+var _user_navigation_bar2 = _interopRequireDefault(_user_navigation_bar);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -63541,14 +63545,11 @@ var MyHub = function (_React$Component) {
         _react2.default.createElement(
           'div',
           { className: 'myhub-user-header' },
+          _react2.default.createElement('div', { className: 'darken-div' }),
           _react2.default.createElement(
             'div',
             { className: 'myhub-user-pic-container' },
-            _react2.default.createElement(
-              'div',
-              { className: 'myhub-user-pic' },
-              'USERPIC HERE'
-            ),
+            _react2.default.createElement('div', { className: 'myhub-user-pic' }),
             _react2.default.createElement(
               'span',
               { className: 'myhub-user-name' },
@@ -63557,38 +63558,17 @@ var MyHub = function (_React$Component) {
           )
         ),
         _react2.default.createElement(
-          'div',
-          { className: 'myhub-nav-container' },
+          _user_navigation_bar2.default,
+          null,
           _react2.default.createElement(
-            'div',
-            { className: 'myhub-pathname' },
-            'LINK NAME'
+            _reactRouterDom.NavLink,
+            { to: '/myhub' },
+            'My Hub'
           ),
           _react2.default.createElement(
-            'div',
-            { className: 'myhub-list-container' },
-            _react2.default.createElement(
-              'ul',
-              { className: 'myhub-ul' },
-              _react2.default.createElement(
-                'li',
-                { className: 'myhub-list-item' },
-                _react2.default.createElement(
-                  _reactRouterDom.NavLink,
-                  { to: '/myhub' },
-                  'My Hub'
-                )
-              ),
-              _react2.default.createElement(
-                'li',
-                { className: 'myhub-list-item' },
-                _react2.default.createElement(
-                  _reactRouterDom.NavLink,
-                  { to: '/myhub/favorites' },
-                  'Favorites'
-                )
-              )
-            )
+            _reactRouterDom.NavLink,
+            { to: '/myhub/favorites' },
+            'Favorites'
           )
         ),
         _react2.default.createElement(
@@ -63774,6 +63754,53 @@ exports.default = UserFav;
 
 /***/ }),
 /* 301 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var UserNavBar = function UserNavBar(props) {
+
+  return _react2.default.createElement(
+    "div",
+    { className: "myhub-nav-container" },
+    _react2.default.createElement(
+      "div",
+      { className: "myhub-pathname" },
+      "LINK NAME"
+    ),
+    _react2.default.createElement(
+      "div",
+      { className: "myhub-list-container" },
+      _react2.default.createElement(
+        "ul",
+        { className: "myhub-ul" },
+        props.children.map(function (navlink) {
+          return _react2.default.createElement(
+            "li",
+            { className: "myhub-list-item" },
+            navlink
+          );
+        })
+      )
+    )
+  );
+};
+
+exports.default = UserNavBar;
+
+/***/ }),
+/* 302 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
