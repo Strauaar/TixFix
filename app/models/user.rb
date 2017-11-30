@@ -52,4 +52,24 @@ class User < ApplicationRecord
     end
   end
 
+  def tickets_sold_price
+
+  end
+
+  def tickets_bought_price
+
+  end
+
+  def upcoming_events
+
+  end
+
+  def sold_tickets
+
+  end
+
+  def tickets_selling
+
+  end
+
 end

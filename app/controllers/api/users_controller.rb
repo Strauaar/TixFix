@@ -25,6 +25,26 @@ class Api::UsersController < ApplicationController
     render :tickets_buying
   end
 
+  def tickets_sold_price
+
+  end
+
+  def tickets_bought_price
+
+  end
+
+  def upcoming_events
+
+  end
+
+  def sold_tickets
+
+  end
+
+  def tickets_selling
+
+  end
+
   def user_params
     params.permit(:first_name, :last_name, :email, :password)
   end
