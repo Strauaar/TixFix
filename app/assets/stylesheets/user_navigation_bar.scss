@@ -24,12 +24,13 @@
   display:flex;
   flex-direction: row;
   padding: 0;
+  margin-bottom: 13px;
   list-style: none;
 }
 
 .myhub-ul li {
   padding-right: 50px;
-  padding: 7px;
+  padding-top: 7px;
 }
 
 .myhub-ul li:first-child{
@@ -41,6 +42,7 @@
   color: #5C6570;
   font-size: 20px;
   font-weight: 700;
+  padding-bottom: 10px;
 }
 
 .myhub-list-item {

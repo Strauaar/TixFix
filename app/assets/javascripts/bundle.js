@@ -63562,12 +63562,12 @@ var MyHub = function (_React$Component) {
           null,
           _react2.default.createElement(
             _reactRouterDom.NavLink,
-            { to: '/myhub' },
+            { activeClassName: 'nav-selected', exact: true, to: '/myhub' },
             'My Hub'
           ),
           _react2.default.createElement(
             _reactRouterDom.NavLink,
-            { to: '/myhub/favorites' },
+            { activeClassName: 'nav-selected', to: '/myhub/favorites' },
             'Favorites'
           )
         ),

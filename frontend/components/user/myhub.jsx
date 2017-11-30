@@ -20,8 +20,8 @@ class MyHub extends React.Component {
           </div>
         </div>
         <UserNavBar>
-          <NavLink to="/myhub">My Hub</NavLink>
-          <NavLink to="/myhub/favorites">Favorites</NavLink>
+          <NavLink activeClassName="nav-selected" exact to="/myhub">My Hub</NavLink>
+          <NavLink activeClassName="nav-selected" to="/myhub/favorites">Favorites</NavLink>
         </UserNavBar>
         <div>
           <Switch>
