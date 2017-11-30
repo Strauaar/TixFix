@@ -66,9 +66,14 @@ class UserHome extends React.Component {
       return <span>You dont have any upcoming events</span>
     } else {
       return this.props.events.map(eventQ =>
-        <span>
-          {eventQ.name}
-        </span>
+        <div className="myhub-list-item">
+          <div>
+            <span className="list-item-event-name">{eventQ.name}</span>
+          </div>
+          <div>
+            <span className="list-item-venue-name">{eventQ.venue.name}</span>
+          </div>
+        </div>
       )
     }
   }

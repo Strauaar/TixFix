@@ -63764,9 +63764,26 @@ var UserHome = function (_React$Component) {
       } else {
         return this.props.events.map(function (eventQ) {
           return _react2.default.createElement(
-            'span',
-            null,
-            eventQ.name
+            'div',
+            { className: 'myhub-list-item' },
+            _react2.default.createElement(
+              'div',
+              null,
+              _react2.default.createElement(
+                'span',
+                { className: 'list-item-event-name' },
+                eventQ.name
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              null,
+              _react2.default.createElement(
+                'span',
+                { className: 'list-item-venue-name' },
+                eventQ.venue.name
+              )
+            )
           );
         });
       }
