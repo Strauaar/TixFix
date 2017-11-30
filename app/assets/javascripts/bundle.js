@@ -61161,11 +61161,11 @@ var EventsList = function (_React$Component) {
     value: function componentWillReceiveProps(newProps) {
       console.log("new", newProps);
       console.log("old", this.props);
-      if (newProps.match.params.id !== this.props.match.params.id) {
+      if (newProps.match.params.id !== this.props.match.params.id && newProps.match.pathname !== this.props.match.pathname) {
         if (newProps.match.pathname === "/") {
           this.props.fetchEvents({ categoryId: null, location: null, date: null });
         } else {
-          // this.props.fetchEvents(merge({}, this.props.filter, { categoryId: newProps.match.params.id}))
+          this.props.fetchEvents((0, _lodash.merge)({}, this.props.filter, { categoryId: newProps.match.params.id }));
         }
       }
     }
