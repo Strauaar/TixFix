@@ -8,7 +8,7 @@ class SellTicketPage extends React.Component {
     super(props);
     this.createTicket = this.createTicket.bind(this);
     this.update = this.update.bind(this);
-    this.state = {price: 0, row: '-', type_of: "GA", num_tickets: 0}
+    this.state = {price: 0, row: '-', type_of: "GA", num_tickets: 1}
   }
   componentWillMount(){
     console.log(this.props);
@@ -37,7 +37,7 @@ class SellTicketPage extends React.Component {
         method: 'POST',
         url: `api/tickets`,
         data: params
-      })
+      }).then(e => console.log(e))
     }
   }
 
@@ -84,7 +84,7 @@ class SellTicketPage extends React.Component {
                   <div className="num-tickets-container">
                     <span>HOW MANY TICKETS DO YOU HAVE?</span>
                     <div className="num-tickets-selector">
-                      <select onChange={() => this.update('num_tickets')} class="ticket-qty">
+                      <select onChange={(e) => this.update('num_tickets',e)} class="ticket-qty">
                         <option value="1" selected>1 Ticket</option>
                         <option value="2">2 Tickets</option>
                         <option value="3">3 Tickets</option>

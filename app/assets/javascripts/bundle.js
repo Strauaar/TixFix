@@ -63146,7 +63146,7 @@ var SellTicketPage = function (_React$Component) {
 
     _this.createTicket = _this.createTicket.bind(_this);
     _this.update = _this.update.bind(_this);
-    _this.state = { price: 0, row: '-', type_of: "GA", num_tickets: 0 };
+    _this.state = { price: 0, row: '-', type_of: "GA", num_tickets: 1 };
     return _this;
   }
 
@@ -63182,6 +63182,8 @@ var SellTicketPage = function (_React$Component) {
           method: 'POST',
           url: 'api/tickets',
           data: params
+        }).then(function (e) {
+          return console.log(e);
         });
       }
     }
@@ -63303,8 +63305,8 @@ var SellTicketPage = function (_React$Component) {
                     { className: 'num-tickets-selector' },
                     _react2.default.createElement(
                       'select',
-                      { onChange: function onChange() {
-                          return _this2.update('num_tickets');
+                      { onChange: function onChange(e) {
+                          return _this2.update('num_tickets', e);
                         }, 'class': 'ticket-qty' },
                       _react2.default.createElement(
                         'option',

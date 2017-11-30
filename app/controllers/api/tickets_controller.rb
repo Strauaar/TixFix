@@ -1,6 +1,9 @@
 class Api::TicketsController < ApplicationController
   def create
-    @ticket = Ticket.create(seller_id: params[:seller_id], event_id: params[:event_id], price: params[:price], type_of: params[:type_of], row: params[:row])
+    params[:num_tickets].to_i.times do
+      @ticket = Ticket.create(seller_id: params[:seller_id], event_id: params[:event_id], price: params[:price], type_of: params[:type_of], row: params[:row])
+    end
+    render :create
   end
 
   def show
