@@ -63656,12 +63656,71 @@ var UserHome = function (_React$Component) {
   }
 
   _createClass(UserHome, [{
-    key: 'render',
+    key: "render",
     value: function render() {
       return _react2.default.createElement(
-        'div',
-        null,
-        'USERHOME'
+        "div",
+        { className: "myhub-home-container" },
+        _react2.default.createElement(
+          "div",
+          { className: "myhub-home-block" },
+          _react2.default.createElement(
+            "div",
+            { className: "myhub-whats-next home-block" },
+            _react2.default.createElement(
+              "div",
+              { className: "header-block" },
+              _react2.default.createElement(
+                "span",
+                null,
+                "WHAT'S NEXT"
+              )
+            )
+          ),
+          _react2.default.createElement(
+            "div",
+            { className: "myhub-listings home-block" },
+            _react2.default.createElement(
+              "div",
+              { className: "header-block" },
+              _react2.default.createElement(
+                "span",
+                null,
+                "LISTINGS"
+              )
+            )
+          ),
+          _react2.default.createElement(
+            "div",
+            { className: "myhub-sales-payments-container" },
+            _react2.default.createElement(
+              "div",
+              { className: "myhub-sales-block home-block" },
+              _react2.default.createElement(
+                "div",
+                { className: "header-block" },
+                _react2.default.createElement(
+                  "span",
+                  null,
+                  "SALES"
+                )
+              )
+            ),
+            _react2.default.createElement(
+              "div",
+              { className: "myhub-payments-block home-block" },
+              _react2.default.createElement(
+                "div",
+                { className: "header-block" },
+                _react2.default.createElement(
+                  "span",
+                  null,
+                  "PAYMENTS"
+                )
+              )
+            )
+          )
+        )
       );
     }
   }]);
