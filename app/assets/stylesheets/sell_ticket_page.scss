@@ -39,6 +39,7 @@
 .num-tickets-container span {
   padding: 20px 0;
   font-weight: 700;
+  font-size: 20px;
 }
 .seats-container {
   display: flex;
@@ -65,10 +66,13 @@
 .seat-input-block span {
   font-weight: 700;
   color: #B1BAC2;
+  font-size: 18px;
 }
 
 .seats-text {
   font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 30px;
 }
 
 .post-ticket-btn-container {
