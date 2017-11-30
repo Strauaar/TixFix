@@ -26,15 +26,18 @@ class Api::UsersController < ApplicationController
   end
 
   def tickets_sold_price
-
+    @price = current_user.tickets_sold_price
+    render :price
   end
 
   def tickets_bought_price
-
+    @price = current_user.tickets_bought_price
+    render :price
   end
 
   def upcoming_events
-
+    @subevents = current_user.upcoming_events
+    render 'events/subevents'
   end
 
   def sold_tickets

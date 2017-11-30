@@ -24,6 +24,11 @@ class User < ApplicationRecord
     class_name: :Ticket,
     foreign_key: :buyer_id
 
+  has_many :events_attending,
+    through: :bought_tickets,
+    source: :event
+
+
   attr_reader :password
 
   def password=(password)
@@ -53,15 +58,19 @@ class User < ApplicationRecord
   end
 
   def tickets_sold_price
-
+    all_sold_tickets = self.selling_tickets.where('buyer_id IS NOT null')
+    cumulative_price = all_sold_tickets.pluck(:price).inject(:+)
+    cumulative_price
   end
 
   def tickets_bought_price
-
+    all_bought_tickets = self.bought_tickets
+    cumulative_price = all_bought_tickets.pluck(:price).inject(:+)
+    cumulative_price
   end
 
   def upcoming_events
-
+    self.events_attending.where("date > ?", DateTime.now)
   end
 
   def sold_tickets
