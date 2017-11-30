@@ -63652,70 +63652,111 @@ var UserHome = function (_React$Component) {
   function UserHome(props) {
     _classCallCheck(this, UserHome);
 
-    return _possibleConstructorReturn(this, (UserHome.__proto__ || Object.getPrototypeOf(UserHome)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (UserHome.__proto__ || Object.getPrototypeOf(UserHome)).call(this, props));
+
+    _this.render = _this.render.bind(_this);
+    return _this;
   }
 
   _createClass(UserHome, [{
-    key: "render",
+    key: 'renderList',
+    value: function renderList(type) {
+      switch (type) {
+        case 'upcoming_events':
+          return 'eveasdnts';
+        case 'listings':
+          return 'liasdasdsts';
+        case 'salasdes':
+          return 'saled';
+        default:
+          return 'defuadaslat';
+      }
+    }
+  }, {
+    key: 'render',
     value: function render() {
       return _react2.default.createElement(
-        "div",
-        { className: "myhub-home-container" },
+        'div',
+        { className: 'myhub-home-container' },
         _react2.default.createElement(
-          "div",
-          { className: "myhub-home-block" },
+          'div',
+          { className: 'myhub-home-block' },
           _react2.default.createElement(
-            "div",
-            { className: "myhub-whats-next home-block" },
+            'div',
+            { className: 'myhub-whats-next home-block' },
             _react2.default.createElement(
-              "div",
-              { className: "header-block" },
+              'div',
+              { className: 'header-block' },
               _react2.default.createElement(
-                "span",
+                'span',
                 null,
-                "WHAT'S NEXT"
-              )
-            )
-          ),
-          _react2.default.createElement(
-            "div",
-            { className: "myhub-listings home-block" },
-            _react2.default.createElement(
-              "div",
-              { className: "header-block" },
-              _react2.default.createElement(
-                "span",
-                null,
-                "LISTINGS"
-              )
-            )
-          ),
-          _react2.default.createElement(
-            "div",
-            { className: "myhub-sales-payments-container" },
-            _react2.default.createElement(
-              "div",
-              { className: "myhub-sales-block home-block" },
-              _react2.default.createElement(
-                "div",
-                { className: "header-block" },
-                _react2.default.createElement(
-                  "span",
-                  null,
-                  "SALES"
-                )
+                'WHAT\'S NEXT'
               )
             ),
             _react2.default.createElement(
-              "div",
-              { className: "myhub-payments-block home-block" },
+              'div',
+              null,
+              this.renderList('upcoming_events')
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'myhub-listings home-block' },
+            _react2.default.createElement(
+              'div',
+              { className: 'header-block' },
               _react2.default.createElement(
-                "div",
-                { className: "header-block" },
+                'span',
+                null,
+                'LISTINGS'
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              null,
+              this.renderList('listings')
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'myhub-sales-payments-container' },
+            _react2.default.createElement(
+              'div',
+              { className: 'myhub-sales-block home-block sale-block' },
+              _react2.default.createElement(
+                'div',
+                { className: 'header-block' },
                 _react2.default.createElement(
-                  "span",
+                  'span',
                   null,
-                  "PAYMENTS"
+                  'SALES'
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                null,
+                this.renderList('sales')
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'myhub-payments-block home-block sale-block' },
+              _react2.default.createElement(
+                'div',
+                { className: 'header-block' },
+                _react2.default.createElement(
+                  'span',
+                  null,
+                  'PAYMENTS'
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(
+                  'span',
+                  null,
+                  'You\'ve paid $100'
                 )
               )
             )

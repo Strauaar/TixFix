@@ -16,16 +16,28 @@
   background-color: white;
   margin-bottom: 20px;
   padding: 20px 15px;
+  display: flex;
+  flex-direction: column;
 }
 
 .header-block {
   width: 100%;
   border-bottom: 2px solid #E7EAEC;
-  padding-bottom: 2px;
+  padding-bottom: 8px;
 }
 
 .header-block >span {
   font-weight: 700;
   font-size: 18px;
   color: #5C6570;
+}
+
+.sale-block {
+  width: 45%;
+}
+
+.myhub-sales-payments-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
