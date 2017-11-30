@@ -24422,7 +24422,7 @@ var fetchMoreEvents = exports.fetchMoreEvents = function fetchMoreEvents(current
 var fetchUpcomingEvents = exports.fetchUpcomingEvents = function fetchUpcomingEvents() {
   return $.ajax({
     method: 'GET',
-    url: 'api/users/1/upcoming_events'
+    url: 'api/user/upcoming_events'
   });
 };
 //
@@ -63680,34 +63680,67 @@ var UserHome = function (_React$Component) {
     _this.render = _this.render.bind(_this);
     _this.ticketsSoldPrice = _this.ticketsSoldPrice.bind(_this);
     _this.ticketsBoughtPrice = _this.ticketsBoughtPrice.bind(_this);
-    // this.upcomingEvents = this.upcomingEvents.bind(this);
     _this.soldTickets = _this.soldTickets.bind(_this);
     _this.ticketsSelling = _this.ticketsSelling.bind(_this);
+    _this.renderUpcomingEvents = _this.renderUpcomingEvents.bind(_this);
     return _this;
   }
 
   _createClass(UserHome, [{
     key: 'ticketsSoldPrice',
-    value: function ticketsSoldPrice() {}
+    value: function ticketsSoldPrice() {
+      var _this2 = this;
+
+      $.ajax({
+        method: 'GET',
+        url: 'api/user/tickets/sold/price'
+      }).then(function (res) {
+        return _this2.cumulative_sold_price = res.price;
+      });
+    }
   }, {
     key: 'ticketsBoughtPrice',
-    value: function ticketsBoughtPrice() {}
+    value: function ticketsBoughtPrice() {
+      var _this3 = this;
 
-    // upcomingEvents() {
-    //
-    // }
-
+      $.ajax({
+        method: 'GET',
+        url: 'api/user/tickets/bought/price'
+      }).then(function (res) {
+        return _this3.cumulative_bought_price = res.price;
+      });
+    }
   }, {
     key: 'soldTickets',
-    value: function soldTickets() {}
+    value: function soldTickets() {
+      var _this4 = this;
+
+      $.ajax({
+        method: 'GET',
+        url: 'api/user/tickets/sold'
+      }).then(function (tickets) {
+        return _this4.sold_tickets = Object.values(tickets);
+      });
+    }
   }, {
     key: 'ticketsSelling',
-    value: function ticketsSelling() {}
+    value: function ticketsSelling() {
+      var _this5 = this;
+
+      $.ajax({
+        method: 'GET',
+        url: 'api/user/tickets/selling'
+      }).then(function (tickets) {
+        return _this5.selling_tickets = Object.values(tickets);
+      });
+    }
   }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
       this.props.upcomingEvents();
-      console.log(this.props.events);
+      this.ticketsSoldPrice();
+      this.soldTickets();
+      this.ticketsSelling();
     }
   }, {
     key: 'componentWillReceiveProps',
@@ -63717,11 +63750,30 @@ var UserHome = function (_React$Component) {
       }
     }
   }, {
+    key: 'renderUpcomingEvents',
+    value: function renderUpcomingEvents() {
+      if (this.props.events.length === 0) {
+        return _react2.default.createElement(
+          'span',
+          null,
+          '"You dont have any upcoming events"'
+        );
+      } else {
+        return this.props.events.map(function (eventQ) {
+          return _react2.default.createElement(
+            'span',
+            null,
+            eventQ.name
+          );
+        });
+      }
+    }
+  }, {
     key: 'renderList',
     value: function renderList(type) {
       switch (type) {
         case 'upcoming_events':
-          return 'eveasdnts';
+          return this.renderUpcomingEvents();
         case 'listings':
           return 'liasdasdsts';
         case 'sales':
@@ -63733,6 +63785,9 @@ var UserHome = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
+      if (this.props.events === undefined) {
+        return null;
+      }
       return _react2.default.createElement(
         'div',
         { className: 'myhub-home-container' },

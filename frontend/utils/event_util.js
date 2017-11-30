@@ -32,7 +32,7 @@ export const fetchMoreEvents = (currentCount, filter) => (
 export const fetchUpcomingEvents = () => (
   $.ajax({
     method: 'GET',
-    url: 'api/users/1/upcoming_events'
+    url: 'api/user/upcoming_events'
   })
 );
 //

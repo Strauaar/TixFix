@@ -57,6 +57,10 @@ class User < ApplicationRecord
     end
   end
 
+
+  def sold_tickets
+    self.selling_tickets.where("buyer_id IS NOT NULL")
+  end
   def tickets_sold_price
     cumulative_price = self.sold_tickets.pluck(:price).inject(:+)
     cumulative_price
@@ -70,10 +74,6 @@ class User < ApplicationRecord
 
   def upcoming_events
     self.events_attending.where("date > ?", DateTime.now)
-  end
-
-  def sold_tickets
-    self.selling_tickets.where("buyer_id IS NOT NULL")
   end
 
   def tickets_selling

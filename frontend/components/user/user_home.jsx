@@ -9,35 +9,47 @@ class UserHome extends React.Component {
     this.render = this.render.bind(this);
     this.ticketsSoldPrice = this.ticketsSoldPrice.bind(this);
     this.ticketsBoughtPrice = this.ticketsBoughtPrice.bind(this);
-    // this.upcomingEvents = this.upcomingEvents.bind(this);
     this.soldTickets = this.soldTickets.bind(this);
     this.ticketsSelling = this.ticketsSelling.bind(this);
+    this.renderUpcomingEvents = this.renderUpcomingEvents.bind(this);
   }
 
 
   ticketsSoldPrice() {
-
+    $.ajax({
+      method: 'GET',
+      url: 'api/user/tickets/sold/price'
+    }).then(res => this.cumulative_sold_price = res.price)
   }
 
   ticketsBoughtPrice() {
-
+    $.ajax({
+      method: 'GET',
+      url: 'api/user/tickets/bought/price'
+    }).then(res => this.cumulative_bought_price = res.price)
   }
 
-  // upcomingEvents() {
-  //
-  // }
 
   soldTickets() {
+    $.ajax({
+      method: 'GET',
+      url: 'api/user/tickets/sold'
+    }).then(tickets => this.sold_tickets = Object.values(tickets))
 
   }
 
   ticketsSelling() {
-
+    $.ajax({
+      method: 'GET',
+      url: 'api/user/tickets/selling'
+    }).then(tickets => this.selling_tickets = Object.values(tickets))
   }
 
   componentDidMount() {
     this.props.upcomingEvents();
-    console.log(this.props.events);
+    this.ticketsSoldPrice();
+    this.soldTickets();
+    this.ticketsSelling();
   }
 
   componentWillReceiveProps(newProps) {
@@ -46,12 +58,22 @@ class UserHome extends React.Component {
     }
   }
 
-
+  renderUpcomingEvents() {
+    if(this.props.events.length === 0){
+      return <span>"You dont have any upcoming events"</span>
+    } else {
+      return this.props.events.map(eventQ =>
+        <span>
+          {eventQ.name}
+        </span>
+      )
+    }
+  }
 
   renderList(type) {
     switch(type) {
       case 'upcoming_events':
-        return 'eveasdnts';
+        return this.renderUpcomingEvents();
       case 'listings':
         return 'liasdasdsts';
       case 'sales':
@@ -62,6 +84,9 @@ class UserHome extends React.Component {
   }
 
   render() {
+    if(this.props.events === undefined) {
+      return null
+    }
     return (
       <div className="myhub-home-container">
         <div className="myhub-home-block">
