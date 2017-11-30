@@ -19,10 +19,10 @@ class EventsList extends React.Component {
     console.log("new", newProps);
     console.log("old", this.props);
     if(newProps.match.params.id !== this.props.match.params.id) {
-      if(newProps.match.url === "/") {
+      if(newProps.match.pathname === "/") {
         this.props.fetchEvents({categoryId: null, location: null, date: null})
       } else {
-        this.props.fetchEvents(merge({}, this.props.filter, { categoryId: newProps.match.params.id}))
+        // this.props.fetchEvents(merge({}, this.props.filter, { categoryId: newProps.match.params.id}))
       }
     }
   }

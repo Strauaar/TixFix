@@ -21,6 +21,8 @@ class CategoryCard extends React.Component {
       this.props.history.push("/")
       this.props.fetchEvents(merge({}, this.props.filter, { categoryId: id }));
     } else {
+      console.log(this.props.filter);
+      console.log(id);
       this.props.history.push(`/category/${id}`);
       this.props.fetchEvents(merge({}, this.props.filter, { categoryId: id }));
     }
