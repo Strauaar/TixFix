@@ -63146,7 +63146,7 @@ var SellTicketPage = function (_React$Component) {
 
     _this.createTicket = _this.createTicket.bind(_this);
     _this.update = _this.update.bind(_this);
-    _this.state = { price: 0, row: '-', type_of: "GA", num_tickets: 1 };
+    _this.state = { price: 0, row: '-', type_of: "GA" };
     return _this;
   }
 
@@ -63310,7 +63310,7 @@ var SellTicketPage = function (_React$Component) {
                         }, 'class': 'ticket-qty' },
                       _react2.default.createElement(
                         'option',
-                        { value: '1', selected: true },
+                        { value: '1' },
                         '1 Ticket'
                       ),
                       _react2.default.createElement(
