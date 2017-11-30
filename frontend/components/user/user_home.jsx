@@ -12,6 +12,9 @@ class UserHome extends React.Component {
     this.soldTickets = this.soldTickets.bind(this);
     this.ticketsSelling = this.ticketsSelling.bind(this);
     this.renderUpcomingEvents = this.renderUpcomingEvents.bind(this);
+    this.renderTicketListings = this.renderTicketListings.bind(this);
+    this.renderSales = this.renderSales.bind(this);
+    this.state = {cumulative_sold_price: null, cumulative_bought_price: null, sold_tickets: null, selling_tickets: null}
   }
 
 
@@ -19,14 +22,14 @@ class UserHome extends React.Component {
     $.ajax({
       method: 'GET',
       url: 'api/user/tickets/sold/price'
-    }).then(res => this.cumulative_sold_price = res.price)
+    }).then(res => this.setState({cumulative_sold_price:res.price}))
   }
 
   ticketsBoughtPrice() {
     $.ajax({
       method: 'GET',
       url: 'api/user/tickets/bought/price'
-    }).then(res => this.cumulative_bought_price = res.price)
+    }).then(res => this.setState({cumulative_bought_price:res.prices}))
   }
 
 
@@ -34,7 +37,7 @@ class UserHome extends React.Component {
     $.ajax({
       method: 'GET',
       url: 'api/user/tickets/sold'
-    }).then(tickets => this.sold_tickets = Object.values(tickets))
+    }).then(tickets => this.setState({sold_tickets: Object.values(tickets)}))
 
   }
 
@@ -42,7 +45,7 @@ class UserHome extends React.Component {
     $.ajax({
       method: 'GET',
       url: 'api/user/tickets/selling'
-    }).then(tickets => this.selling_tickets = Object.values(tickets))
+    }).then(tickets => this.setState({selling_tickets: Object.values(tickets)}))
   }
 
   componentDidMount() {
@@ -60,11 +63,35 @@ class UserHome extends React.Component {
 
   renderUpcomingEvents() {
     if(this.props.events.length === 0){
-      return <span>"You dont have any upcoming events"</span>
+      return <span>You dont have any upcoming events</span>
     } else {
       return this.props.events.map(eventQ =>
         <span>
           {eventQ.name}
+        </span>
+      )
+    }
+  }
+
+  renderTicketListings() {
+    if(this.state.selling_tickets === 0 || this.state.selling_tickets === null){
+      return <span>You dont have any listings</span>
+    } else {
+      return this.state.selling_tickets.map(ticket =>
+        <span>
+          {ticket.event.name}
+        </span>
+      )
+    }
+  }
+
+  renderSales() {
+    if(this.state.sold_tickets === 0 || this.state.sold_tickets === null){
+      return <span>You dont have any sales</span>
+    } else {
+      return this.state.sold_tickets.map(ticket =>
+        <span>
+          {ticket.event.name}
         </span>
       )
     }
@@ -75,9 +102,9 @@ class UserHome extends React.Component {
       case 'upcoming_events':
         return this.renderUpcomingEvents();
       case 'listings':
-        return 'liasdasdsts';
+        return this.renderTicketListings();
       case 'sales':
-        return 'saled';
+        return this.renderSales();
       default:
         return 'defuadaslat';
     }
@@ -94,10 +121,12 @@ class UserHome extends React.Component {
             <div className="header-block">
               <span>WHAT'S NEXT</span>
             </div>
-            <div className="list-container">
-              {
-                this.renderList('upcoming_events')
-              }
+            <div className="myhub-scroll-container">
+              <div className="list-container">
+                {
+                  this.renderList('upcoming_events')
+                }
+              </div>
             </div>
           </div>
           <div className="myhub-listings home-block">
@@ -127,7 +156,7 @@ class UserHome extends React.Component {
               </div>
               <div className="list-container">
                 <span>
-                  You've paid $100
+
                 </span>
               </div>
             </div>

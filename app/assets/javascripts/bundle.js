@@ -63683,6 +63683,9 @@ var UserHome = function (_React$Component) {
     _this.soldTickets = _this.soldTickets.bind(_this);
     _this.ticketsSelling = _this.ticketsSelling.bind(_this);
     _this.renderUpcomingEvents = _this.renderUpcomingEvents.bind(_this);
+    _this.renderTicketListings = _this.renderTicketListings.bind(_this);
+    _this.renderSales = _this.renderSales.bind(_this);
+    _this.state = { cumulative_sold_price: null, cumulative_bought_price: null, sold_tickets: null, selling_tickets: null };
     return _this;
   }
 
@@ -63695,7 +63698,7 @@ var UserHome = function (_React$Component) {
         method: 'GET',
         url: 'api/user/tickets/sold/price'
       }).then(function (res) {
-        return _this2.cumulative_sold_price = res.price;
+        return _this2.setState({ cumulative_sold_price: res.price });
       });
     }
   }, {
@@ -63707,7 +63710,7 @@ var UserHome = function (_React$Component) {
         method: 'GET',
         url: 'api/user/tickets/bought/price'
       }).then(function (res) {
-        return _this3.cumulative_bought_price = res.price;
+        return _this3.setState({ cumulative_bought_price: res.prices });
       });
     }
   }, {
@@ -63719,7 +63722,7 @@ var UserHome = function (_React$Component) {
         method: 'GET',
         url: 'api/user/tickets/sold'
       }).then(function (tickets) {
-        return _this4.sold_tickets = Object.values(tickets);
+        return _this4.setState({ sold_tickets: Object.values(tickets) });
       });
     }
   }, {
@@ -63731,7 +63734,7 @@ var UserHome = function (_React$Component) {
         method: 'GET',
         url: 'api/user/tickets/selling'
       }).then(function (tickets) {
-        return _this5.selling_tickets = Object.values(tickets);
+        return _this5.setState({ selling_tickets: Object.values(tickets) });
       });
     }
   }, {
@@ -63756,7 +63759,7 @@ var UserHome = function (_React$Component) {
         return _react2.default.createElement(
           'span',
           null,
-          '"You dont have any upcoming events"'
+          'You dont have any upcoming events'
         );
       } else {
         return this.props.events.map(function (eventQ) {
@@ -63769,15 +63772,53 @@ var UserHome = function (_React$Component) {
       }
     }
   }, {
+    key: 'renderTicketListings',
+    value: function renderTicketListings() {
+      if (this.state.selling_tickets === 0 || this.state.selling_tickets === null) {
+        return _react2.default.createElement(
+          'span',
+          null,
+          'You dont have any listings'
+        );
+      } else {
+        return this.state.selling_tickets.map(function (ticket) {
+          return _react2.default.createElement(
+            'span',
+            null,
+            ticket.event.name
+          );
+        });
+      }
+    }
+  }, {
+    key: 'renderSales',
+    value: function renderSales() {
+      if (this.state.sold_tickets === 0 || this.state.sold_tickets === null) {
+        return _react2.default.createElement(
+          'span',
+          null,
+          'You dont have any sales'
+        );
+      } else {
+        return this.state.sold_tickets.map(function (ticket) {
+          return _react2.default.createElement(
+            'span',
+            null,
+            ticket.event.name
+          );
+        });
+      }
+    }
+  }, {
     key: 'renderList',
     value: function renderList(type) {
       switch (type) {
         case 'upcoming_events':
           return this.renderUpcomingEvents();
         case 'listings':
-          return 'liasdasdsts';
+          return this.renderTicketListings();
         case 'sales':
-          return 'saled';
+          return this.renderSales();
         default:
           return 'defuadaslat';
       }
@@ -63808,8 +63849,12 @@ var UserHome = function (_React$Component) {
             ),
             _react2.default.createElement(
               'div',
-              { className: 'list-container' },
-              this.renderList('upcoming_events')
+              { className: 'myhub-scroll-container' },
+              _react2.default.createElement(
+                'div',
+                { className: 'list-container' },
+                this.renderList('upcoming_events')
+              )
             )
           ),
           _react2.default.createElement(
@@ -63866,11 +63911,7 @@ var UserHome = function (_React$Component) {
               _react2.default.createElement(
                 'div',
                 { className: 'list-container' },
-                _react2.default.createElement(
-                  'span',
-                  null,
-                  'You\'ve paid $100'
-                )
+                _react2.default.createElement('span', null)
               )
             )
           )
