@@ -41,11 +41,13 @@ class Api::UsersController < ApplicationController
   end
 
   def sold_tickets
-
+    @tickets = current_user.sold_tickets
+    render :tickets
   end
 
   def tickets_selling
-
+    @tickets = current_user.tickets_selling
+    render :tickets
   end
 
   def user_params
