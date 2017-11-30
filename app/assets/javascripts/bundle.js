@@ -63655,10 +63655,30 @@ var UserHome = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (UserHome.__proto__ || Object.getPrototypeOf(UserHome)).call(this, props));
 
     _this.render = _this.render.bind(_this);
+    _this.ticketsSoldPrice = _this.ticketsSoldPrice.bind(_this);
+    _this.ticketsBoughtPrice = _this.ticketsBoughtPrice.bind(_this);
+    _this.upcomingEvents = _this.upcomingEvents.bind(_this);
+    _this.soldTickets = _this.soldTickets.bind(_this);
+    _this.ticketsSelling = _this.ticketsSelling.bind(_this);
     return _this;
   }
 
   _createClass(UserHome, [{
+    key: 'ticketsSoldPrice',
+    value: function ticketsSoldPrice() {}
+  }, {
+    key: 'ticketsBoughtPrice',
+    value: function ticketsBoughtPrice() {}
+  }, {
+    key: 'upcomingEvents',
+    value: function upcomingEvents() {}
+  }, {
+    key: 'soldTickets',
+    value: function soldTickets() {}
+  }, {
+    key: 'ticketsSelling',
+    value: function ticketsSelling() {}
+  }, {
     key: 'renderList',
     value: function renderList(type) {
       switch (type) {

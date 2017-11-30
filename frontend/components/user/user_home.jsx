@@ -7,7 +7,34 @@ class UserHome extends React.Component {
   constructor(props) {
     super(props);
     this.render = this.render.bind(this);
+    this.ticketsSoldPrice = this.ticketsSoldPrice.bind(this);
+    this.ticketsBoughtPrice = this.ticketsBoughtPrice.bind(this);
+    this.upcomingEvents = this.upcomingEvents.bind(this);
+    this.soldTickets = this.soldTickets.bind(this);
+    this.ticketsSelling = this.ticketsSelling.bind(this);
   }
+
+  ticketsSoldPrice() {
+
+  }
+
+  ticketsBoughtPrice() {
+
+  }
+
+  upcomingEvents() {
+
+  }
+
+  soldTickets() {
+
+  }
+
+  ticketsSelling() {
+
+  }
+
+
 
   renderList(type) {
     switch(type) {
