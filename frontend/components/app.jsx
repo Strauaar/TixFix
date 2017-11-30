@@ -18,6 +18,7 @@ import SubCategoryPageContainer from './categories/subcategory_page_container';
 import EventCheckoutPageContainer from './events/event_checkout_page_container';
 import TicketSellSplashPageContainer from './tickets/tickets_sell_splash_page_container';
 import SellTicketPageContainer from './tickets/sell_ticket_page_container';
+import MyHubContainer from './user/myhub_container';
 import CFooter from './footer/footer';
 
 
@@ -54,6 +55,7 @@ class App extends React.Component {
           <Route path="/subcategory/:id" component={SubCategoryPageContainer} />
           <Route exact path="/tickets/sell" component={TicketSellSplashPageContainer} />
           <Route path="/events/:eventId/sell" component={SellTicketPageContainer} />
+          <Route path="/myhub" component={MyHubContainer} />
         </Switch>
 
         <Route path="/category/:id" component={SubCategoryListContainer} />
