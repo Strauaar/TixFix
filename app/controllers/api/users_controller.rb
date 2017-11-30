@@ -37,7 +37,7 @@ class Api::UsersController < ApplicationController
 
   def upcoming_events
     @subevents = current_user.upcoming_events
-    render 'events/subevents'
+    render 'api/events/subevents'
   end
 
   def sold_tickets

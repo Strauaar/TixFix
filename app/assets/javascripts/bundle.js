@@ -4981,7 +4981,7 @@ if (process.env.NODE_ENV !== 'production') {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.fetchMoreEvents = exports.fetchEvents = exports.fetchEvent = exports.clearEvents = exports.receiveEvents = exports.CLEAR_EVENTS = exports.RECEIVE_EVENT = exports.RECEIVE_MORE_EVENTS = exports.RECEIVE_EVENTS = undefined;
+exports.upcomingEvents = exports.fetchMoreEvents = exports.fetchEvents = exports.fetchEvent = exports.clearEvents = exports.receiveEvents = exports.CLEAR_EVENTS = exports.RECEIVE_EVENT = exports.RECEIVE_MORE_EVENTS = exports.RECEIVE_EVENTS = undefined;
 
 var _event_util = __webpack_require__(46);
 
@@ -5043,6 +5043,14 @@ var fetchMoreEvents = exports.fetchMoreEvents = function fetchMoreEvents(current
   return function (dispatch) {
     return EventApiUtil.fetchMoreEvents(currentCount, filter).then(function (events) {
       return dispatch(receiveMoreEvents(events, filter));
+    });
+  };
+};
+
+var upcomingEvents = exports.upcomingEvents = function upcomingEvents() {
+  return function (dispatch) {
+    return EventApiUtil.fetchUpcomingEvents().then(function (events) {
+      return dispatch(receiveEvents(events));
     });
   };
 };
@@ -24408,6 +24416,13 @@ var fetchMoreEvents = exports.fetchMoreEvents = function fetchMoreEvents(current
     url: 'api/events',
     data: { currentCount: currentCount,
       filter: filter }
+  });
+};
+
+var fetchUpcomingEvents = exports.fetchUpcomingEvents = function fetchUpcomingEvents() {
+  return $.ajax({
+    method: 'GET',
+    url: 'api/users/1/upcoming_events'
   });
 };
 //
@@ -63605,6 +63620,8 @@ var _reactRedux = __webpack_require__(3);
 
 var _reactRouterDom = __webpack_require__(2);
 
+var _event_actions = __webpack_require__(7);
+
 var _user_home = __webpack_require__(298);
 
 var _user_home2 = _interopRequireDefault(_user_home);
@@ -63612,11 +63629,17 @@ var _user_home2 = _interopRequireDefault(_user_home);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state) {
-  return {};
+  return {
+    events: Object.values(state.entities.events)
+  };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {};
+  return {
+    upcomingEvents: function upcomingEvents() {
+      return dispatch((0, _event_actions.upcomingEvents)());
+    }
+  };
 };
 
 exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_user_home2.default));
@@ -63657,7 +63680,7 @@ var UserHome = function (_React$Component) {
     _this.render = _this.render.bind(_this);
     _this.ticketsSoldPrice = _this.ticketsSoldPrice.bind(_this);
     _this.ticketsBoughtPrice = _this.ticketsBoughtPrice.bind(_this);
-    _this.upcomingEvents = _this.upcomingEvents.bind(_this);
+    // this.upcomingEvents = this.upcomingEvents.bind(this);
     _this.soldTickets = _this.soldTickets.bind(_this);
     _this.ticketsSelling = _this.ticketsSelling.bind(_this);
     return _this;
@@ -63669,15 +63692,30 @@ var UserHome = function (_React$Component) {
   }, {
     key: 'ticketsBoughtPrice',
     value: function ticketsBoughtPrice() {}
-  }, {
-    key: 'upcomingEvents',
-    value: function upcomingEvents() {}
+
+    // upcomingEvents() {
+    //
+    // }
+
   }, {
     key: 'soldTickets',
     value: function soldTickets() {}
   }, {
     key: 'ticketsSelling',
     value: function ticketsSelling() {}
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.props.upcomingEvents();
+      console.log(this.props.events);
+    }
+  }, {
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(newProps) {
+      if (this.props.events.length !== newProps.events.length) {
+        console.log(newProps.events);
+      }
+    }
   }, {
     key: 'renderList',
     value: function renderList(type) {

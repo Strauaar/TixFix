@@ -9,10 +9,11 @@ class UserHome extends React.Component {
     this.render = this.render.bind(this);
     this.ticketsSoldPrice = this.ticketsSoldPrice.bind(this);
     this.ticketsBoughtPrice = this.ticketsBoughtPrice.bind(this);
-    this.upcomingEvents = this.upcomingEvents.bind(this);
+    // this.upcomingEvents = this.upcomingEvents.bind(this);
     this.soldTickets = this.soldTickets.bind(this);
     this.ticketsSelling = this.ticketsSelling.bind(this);
   }
+
 
   ticketsSoldPrice() {
 
@@ -22,9 +23,9 @@ class UserHome extends React.Component {
 
   }
 
-  upcomingEvents() {
-
-  }
+  // upcomingEvents() {
+  //
+  // }
 
   soldTickets() {
 
@@ -32,6 +33,17 @@ class UserHome extends React.Component {
 
   ticketsSelling() {
 
+  }
+
+  componentDidMount() {
+    this.props.upcomingEvents();
+    console.log(this.props.events);
+  }
+
+  componentWillReceiveProps(newProps) {
+    if(this.props.events.length !== newProps.events.length) {
+      console.log(newProps.events);
+    }
   }
 
 
