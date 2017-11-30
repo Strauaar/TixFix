@@ -5,3 +5,27 @@
   justify-content: center;
   background-color: #F6F8F9;
 }
+
+.myhub-home-block {
+  background-color: #F6F8F9;
+  width: 50vw;
+  margin-top: 30px;
+}
+
+.home-block {
+  background-color: white;
+  margin-bottom: 20px;
+  padding: 20px 15px;
+}
+
+.header-block {
+  width: 100%;
+  border-bottom: 2px solid #E7EAEC;
+  padding-bottom: 2px;
+}
+
+.header-block >span {
+  font-weight: 700;
+  font-size: 18px;
+  color: #5C6570;
+}
