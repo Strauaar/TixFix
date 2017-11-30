@@ -63096,12 +63096,81 @@ var SellTicketPage = function (_React$Component) {
   }
 
   _createClass(SellTicketPage, [{
-    key: 'render',
+    key: "render",
     value: function render() {
       return _react2.default.createElement(
-        'div',
-        null,
-        'hiasdsadsaddddddddddddddddddddd'
+        "div",
+        { className: "sell-ticket-whole-container" },
+        _react2.default.createElement(
+          "div",
+          { className: "sell-ticket-block" },
+          _react2.default.createElement(
+            "div",
+            { className: "sell-ticket-header" },
+            " ",
+            _react2.default.createElement(
+              "span",
+              null,
+              "FILL US IN ON YOUR TICKETS"
+            )
+          ),
+          _react2.default.createElement(
+            "div",
+            { className: "form-container" },
+            _react2.default.createElement(
+              "div",
+              { className: "num-tickets-container" },
+              _react2.default.createElement(
+                "span",
+                null,
+                "HOW MANY TICKETS DO YOU HAVE?"
+              ),
+              _react2.default.createElement(
+                "div",
+                { className: "num-tickets-selector" },
+                "DROPDOWN"
+              )
+            ),
+            _react2.default.createElement(
+              "div",
+              { className: "seats-container" },
+              _react2.default.createElement(
+                "div",
+                { className: "seats-header-container" },
+                _react2.default.createElement("span", null),
+                _react2.default.createElement(
+                  "span",
+                  null,
+                  "WHERE ARE YOUR SEATS?"
+                )
+              ),
+              _react2.default.createElement(
+                "div",
+                { className: "section-row-input-block" },
+                _react2.default.createElement(
+                  "div",
+                  { className: "seat-input-block" },
+                  _react2.default.createElement(
+                    "span",
+                    null,
+                    "SECTION"
+                  ),
+                  _react2.default.createElement("input", null)
+                ),
+                _react2.default.createElement(
+                  "div",
+                  { className: "seat-input-block" },
+                  _react2.default.createElement(
+                    "span",
+                    null,
+                    "ROW"
+                  ),
+                  _react2.default.createElement("input", null)
+                )
+              )
+            )
+          )
+        )
       );
     }
   }]);

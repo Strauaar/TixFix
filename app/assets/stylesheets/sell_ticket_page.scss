@@ -1,0 +1,57 @@
+.sell-ticket-whole-container {
+  display: flex;
+  justify-content: center;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+.sell-ticket-block {
+  width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center
+}
+
+.sell-ticket-header {
+  font-size: 26px;
+  font-weight: 700;
+  padding: 15px 0px;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.num-tickets-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-bottom: 1px #E6E9EB solid;
+  padding-bottom: 10px;
+}
+
+.num-tickets-container span {
+  padding: 12px 0;
+}
+.seats-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 22px 0;
+  padding-top: 10px;
+  border-bottom: 1px #E6E9EB solid;
+}
+
+.section-row-input-block {
+  display: flex;
+  flex-direction: row;
+
+
+}
+
+.seat-input-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 0;
+}
