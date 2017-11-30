@@ -63169,6 +63169,8 @@ var SellTicketPage = function (_React$Component) {
         this.setState({ row: e.target.value });
       } else if (type === 'num_tickets') {
         this.setState({ num_tickets: e.target.value });
+      } else if (type === 'price') {
+        this.setState({ price: e.target.value });
       }
     }
   }, {
@@ -63414,7 +63416,9 @@ var SellTicketPage = function (_React$Component) {
                       { className: 'dollar-sign' },
                       '$'
                     ),
-                    _react2.default.createElement('input', { className: 'price-input' })
+                    _react2.default.createElement('input', { onChange: function onChange(e) {
+                        return _this2.update('price', e);
+                      }, className: 'price-input' })
                   ),
                   _react2.default.createElement(
                     'span',

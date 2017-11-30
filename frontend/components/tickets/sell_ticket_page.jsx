@@ -25,6 +25,8 @@ class SellTicketPage extends React.Component {
       this.setState({row: e.target.value})
     } else if (type === 'num_tickets') {
       this.setState({num_tickets: e.target.value})
+    } else if (type === 'price') {
+      this.setState({price: e.target.value})
     }
   }
 
@@ -115,7 +117,7 @@ class SellTicketPage extends React.Component {
                   </div>
                 </div>
                 <div className="price-container">
-                  <div><strong className="dollar-sign">$</strong><input className="price-input"></input></div>
+                  <div><strong className="dollar-sign">$</strong><input onChange={(e)=>this.update('price',e)} className="price-input"></input></div>
                   <span>price per ticket</span>
                 </div>
               </div>
