@@ -124,6 +124,33 @@
   margin-bottom: 30px;
 }
 
+.price-container {
+  background-color: #F6F8F9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.dollar-sign {
+  font-size:32px;
+}
+.price-input {
+  background-color: #F6F8F9;
+  border: none;
+  border-bottom: #00A1A1 2px solid;
+  width: 100px;
+  color: #535353;
+  font-size: 32px;
+  font-weight: 700;
+  font-family: 'Roboto Condensed', sans-serif;
+  padding-top: 20px;
+}
+
+.price-input:focus {
+  outline: none;
+}
+
 .post-ticket-btn-container {
   margin-top: 20px;
   width: 100%;

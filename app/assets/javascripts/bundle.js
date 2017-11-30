@@ -63402,6 +63402,25 @@ var SellTicketPage = function (_React$Component) {
                         } })
                     )
                   )
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'price-container' },
+                  _react2.default.createElement(
+                    'div',
+                    null,
+                    _react2.default.createElement(
+                      'strong',
+                      { className: 'dollar-sign' },
+                      '$'
+                    ),
+                    _react2.default.createElement('input', { className: 'price-input' })
+                  ),
+                  _react2.default.createElement(
+                    'span',
+                    null,
+                    'price per ticket'
+                  )
                 )
               ),
               _react2.default.createElement(

@@ -114,6 +114,10 @@ class SellTicketPage extends React.Component {
                     </div>
                   </div>
                 </div>
+                <div className="price-container">
+                  <div><strong className="dollar-sign">$</strong><input className="price-input"></input></div>
+                  <span>price per ticket</span>
+                </div>
               </div>
               <div className="post-ticket-btn-container">
                 <button onClick={() => this.createTicket(this.props.eventQ.id, this.props.currentUser)}className="post-ticket-btn">Post my tickets</button>
