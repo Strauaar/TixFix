@@ -21,7 +21,7 @@ class SellTicketPage extends React.Component {
             <div className="seats-container">
               <div className="seats-header-container">
                 <span></span>
-                <span>WHERE ARE YOUR SEATS?</span>
+                <span className="seats-text">WHERE ARE YOUR SEATS?</span>
               </div>
               <div className="section-row-input-block">
                 <div className="seat-input-block">
@@ -34,6 +34,9 @@ class SellTicketPage extends React.Component {
                 </div>
               </div>
             </div>
+          </div>
+          <div className="post-ticket-btn-container">
+            <button className="post-ticket-btn">Post my tickets</button>
           </div>
         </div>
       </div>

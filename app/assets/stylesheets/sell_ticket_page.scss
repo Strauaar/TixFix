@@ -2,10 +2,12 @@
   display: flex;
   justify-content: center;
   font-family: 'Roboto Condensed', sans-serif;
+  color: #525252;
+  padding-top: 50px;
 }
 
 .sell-ticket-block {
-  width: 800px;
+
   display: flex;
   flex-direction: column;
   align-items: center
@@ -20,6 +22,10 @@
 .form-container {
   display: flex;
   flex-direction: column;
+  background-color: #fff;
+  width: 600px;
+  border: 1px #E6E9EB solid;
+
 }
 
 .num-tickets-container {
@@ -27,26 +33,26 @@
   flex-direction: column;
   align-items: center;
   border-bottom: 1px #E6E9EB solid;
-  padding-bottom: 10px;
+  padding: 40px 0;
 }
 
 .num-tickets-container span {
-  padding: 12px 0;
+  padding: 20px 0;
+  font-weight: 700;
 }
 .seats-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 22px 0;
-  padding-top: 10px;
-  border-bottom: 1px #E6E9EB solid;
+  padding: 40px 0;
+  // border-bottom: 1px #E6E9EB solid;
 }
 
 .section-row-input-block {
   display: flex;
   flex-direction: row;
-
-
+  justify-content: space-between;
+  width: 70%
 }
 
 .seat-input-block {
@@ -54,4 +60,27 @@
   flex-direction: column;
   align-items: center;
   padding: 12px 0;
+}
+
+.seat-input-block span {
+  font-weight: 700;
+  color: #B1BAC2;
+}
+
+.seats-text {
+  font-weight: 700;
+}
+
+.post-ticket-btn-container {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.post-ticket-btn {
+  width: 100%;
+  border: none;
+  height: 45px;
+  color: white;
+  background-color: #D94185;
+  font-size: 19px;
 }

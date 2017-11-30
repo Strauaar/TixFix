@@ -63140,7 +63140,7 @@ var SellTicketPage = function (_React$Component) {
                 _react2.default.createElement("span", null),
                 _react2.default.createElement(
                   "span",
-                  null,
+                  { className: "seats-text" },
                   "WHERE ARE YOUR SEATS?"
                 )
               ),
@@ -63168,6 +63168,15 @@ var SellTicketPage = function (_React$Component) {
                   _react2.default.createElement("input", null)
                 )
               )
+            )
+          ),
+          _react2.default.createElement(
+            "div",
+            { className: "post-ticket-btn-container" },
+            _react2.default.createElement(
+              "button",
+              { className: "post-ticket-btn" },
+              "Post my tickets"
             )
           )
         )
