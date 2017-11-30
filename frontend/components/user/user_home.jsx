@@ -15,7 +15,7 @@ class UserHome extends React.Component {
         return 'eveasdnts';
       case 'listings':
         return 'liasdasdsts';
-      case 'salasdes':
+      case 'sales':
         return 'saled';
       default:
         return 'defuadaslat';
@@ -30,7 +30,7 @@ class UserHome extends React.Component {
             <div className="header-block">
               <span>WHAT'S NEXT</span>
             </div>
-            <div>
+            <div className="list-container">
               {
                 this.renderList('upcoming_events')
               }
@@ -40,7 +40,7 @@ class UserHome extends React.Component {
             <div className="header-block">
               <span>LISTINGS</span>
             </div>
-            <div>
+            <div className="list-container">
               {
                 this.renderList('listings')
               }
@@ -51,7 +51,7 @@ class UserHome extends React.Component {
               <div className="header-block">
                 <span>SALES</span>
               </div>
-              <div>
+              <div className="list-container">
                 {
                   this.renderList('sales')
                 }
@@ -61,7 +61,7 @@ class UserHome extends React.Component {
               <div className="header-block">
                 <span>PAYMENTS</span>
               </div>
-              <div>
+              <div className="list-container">
                 <span>
                   You've paid $100
                 </span>

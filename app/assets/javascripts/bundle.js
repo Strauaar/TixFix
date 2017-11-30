@@ -63666,7 +63666,7 @@ var UserHome = function (_React$Component) {
           return 'eveasdnts';
         case 'listings':
           return 'liasdasdsts';
-        case 'salasdes':
+        case 'sales':
           return 'saled';
         default:
           return 'defuadaslat';
@@ -63695,7 +63695,7 @@ var UserHome = function (_React$Component) {
             ),
             _react2.default.createElement(
               'div',
-              null,
+              { className: 'list-container' },
               this.renderList('upcoming_events')
             )
           ),
@@ -63713,7 +63713,7 @@ var UserHome = function (_React$Component) {
             ),
             _react2.default.createElement(
               'div',
-              null,
+              { className: 'list-container' },
               this.renderList('listings')
             )
           ),
@@ -63734,7 +63734,7 @@ var UserHome = function (_React$Component) {
               ),
               _react2.default.createElement(
                 'div',
-                null,
+                { className: 'list-container' },
                 this.renderList('sales')
               )
             ),
@@ -63752,7 +63752,7 @@ var UserHome = function (_React$Component) {
               ),
               _react2.default.createElement(
                 'div',
-                null,
+                { className: 'list-container' },
                 _react2.default.createElement(
                   'span',
                   null,
