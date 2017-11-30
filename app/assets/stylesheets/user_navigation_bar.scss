@@ -1,0 +1,48 @@
+.myhub-nav-container {
+  width: 100%;
+  font-family: 'Roboto Condensed', sans-serif;
+  border-bottom: 2px solid #E7EAEC;
+}
+
+
+.myhub-nav-block {
+  display: flex;
+  flex-direction: column;
+  margin-left: 200px;
+  padding-top: 20px;
+
+}
+
+.myhub-pathname {
+  font-size: 14px;
+}
+
+.myhub-list-container {
+}
+
+.myhub-ul {
+  display:flex;
+  flex-direction: row;
+  padding: 0;
+  list-style: none;
+}
+
+.myhub-ul li {
+  padding-right: 50px;
+  padding: 7px;
+}
+
+.myhub-ul li:first-child{
+  padding-left: 0;
+}
+
+.myhub-ul a {
+  text-decoration: none;
+  color: #5C6570;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.myhub-list-item {
+
+}

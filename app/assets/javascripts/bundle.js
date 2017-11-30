@@ -63776,22 +63776,26 @@ var UserNavBar = function UserNavBar(props) {
     { className: "myhub-nav-container" },
     _react2.default.createElement(
       "div",
-      { className: "myhub-pathname" },
-      "LINK NAME"
-    ),
-    _react2.default.createElement(
-      "div",
-      { className: "myhub-list-container" },
+      { className: "myhub-nav-block" },
       _react2.default.createElement(
-        "ul",
-        { className: "myhub-ul" },
-        props.children.map(function (navlink) {
-          return _react2.default.createElement(
-            "li",
-            { className: "myhub-list-item" },
-            navlink
-          );
-        })
+        "div",
+        { className: "myhub-pathname" },
+        "LINK NAME"
+      ),
+      _react2.default.createElement(
+        "div",
+        { className: "myhub-list-container" },
+        _react2.default.createElement(
+          "ul",
+          { className: "myhub-ul" },
+          props.children.map(function (navlink) {
+            return _react2.default.createElement(
+              "li",
+              { className: "myhub-list-item" },
+              navlink
+            );
+          })
+        )
       )
     )
   );
