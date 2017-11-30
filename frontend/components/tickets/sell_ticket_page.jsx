@@ -79,12 +79,23 @@ class SellTicketPage extends React.Component {
                 </div>
               </div>
               <div className="form-container">
-                <div className="num-tickets-container">
-                  <span>HOW MANY TICKETS DO YOU HAVE?</span>
-                  <div className="num-tickets-selector">
-                    DROPDOWN
+                  <div className="num-tickets-container">
+                    <span>HOW MANY TICKETS DO YOU HAVE?</span>
+                    <div className="num-tickets-selector">
+                      <select class="ticket-qty">
+                        <option value="1" selected>1 Ticket</option>
+                        <option value="2">2 Tickets</option>
+                        <option value="3">3 Tickets</option>
+                        <option value="4">4 Tickets</option>
+                        <option value="5">5 Tickets</option>
+                        <option value="6">6 Tickets</option>
+                        <option value="7">7 Tickets</option>
+                        <option value="8">8 Tickets</option>
+                        <option value="9">9 Tickets</option>
+                        <option value="10">10 Tickets</option>
+                      </select>
+                    </div>
                   </div>
-                </div>
                 <div className="seats-container">
                   <div className="seats-header-container">
                     <span></span>

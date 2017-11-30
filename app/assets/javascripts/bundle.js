@@ -63299,7 +63299,60 @@ var SellTicketPage = function (_React$Component) {
                   _react2.default.createElement(
                     'div',
                     { className: 'num-tickets-selector' },
-                    'DROPDOWN'
+                    _react2.default.createElement(
+                      'select',
+                      { 'class': 'ticket-qty' },
+                      _react2.default.createElement(
+                        'option',
+                        { value: '1', selected: true },
+                        '1 Ticket'
+                      ),
+                      _react2.default.createElement(
+                        'option',
+                        { value: '2' },
+                        '2 Tickets'
+                      ),
+                      _react2.default.createElement(
+                        'option',
+                        { value: '3' },
+                        '3 Tickets'
+                      ),
+                      _react2.default.createElement(
+                        'option',
+                        { value: '4' },
+                        '4 Tickets'
+                      ),
+                      _react2.default.createElement(
+                        'option',
+                        { value: '5' },
+                        '5 Tickets'
+                      ),
+                      _react2.default.createElement(
+                        'option',
+                        { value: '6' },
+                        '6 Tickets'
+                      ),
+                      _react2.default.createElement(
+                        'option',
+                        { value: '7' },
+                        '7 Tickets'
+                      ),
+                      _react2.default.createElement(
+                        'option',
+                        { value: '8' },
+                        '8 Tickets'
+                      ),
+                      _react2.default.createElement(
+                        'option',
+                        { value: '9' },
+                        '9 Tickets'
+                      ),
+                      _react2.default.createElement(
+                        'option',
+                        { value: '10' },
+                        '10 Tickets'
+                      )
+                    )
                   )
                 ),
                 _react2.default.createElement(

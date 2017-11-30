@@ -76,6 +76,20 @@
   font-weight: 700;
   font-size: 20px;
 }
+
+.ticket-qty {
+  width: 120px;
+  height: 40px;
+  border: none;
+  position: relative;
+  border: 2px solid #ddd;
+  background-size: 20px 16px;
+  font-size: 16px;
+  // padding: 10px 50px 10px 10px;
+  margin: 0;
+  line-height: 1.2;
+  background-color: white;
+}
 .seats-container {
   display: flex;
   flex-direction: column;
@@ -118,7 +132,7 @@
 .post-ticket-btn {
   width: 100%;
   border: none;
-  height: 45px;
+  height: 60px;
   color: white;
   background-color: #D94185;
   font-size: 19px;
