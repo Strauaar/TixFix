@@ -4,7 +4,11 @@ import { withRouter } from 'react-router-dom';
 import { fetchEvent } from '../../actions/event_actions';
 
 const mapStateToProps = state => ({
-  eventQ: state.entities.events 
+  eventQ: state.entities.events,
+  venue_name: state.entities.events.venue,
+  city: state.entities.events.location,
+  state: state.entities.events.state,
+  name: state.entities.events.name
 });
 
 const mapDispatchToProps = dispatch => ({

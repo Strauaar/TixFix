@@ -17,7 +17,7 @@ import SubCategoryListContainer from './categories/subcategory_list_container';
 import SubCategoryPageContainer from './categories/subcategory_page_container';
 import EventCheckoutPageContainer from './events/event_checkout_page_container';
 import TicketSellSplashPageContainer from './tickets/tickets_sell_splash_page_container';
-import SellTicketPage from './tickets/sell_ticket_page';
+import SellTicketPageContainer from './tickets/sell_ticket_page_container';
 import CFooter from './footer/footer';
 
 
@@ -53,7 +53,7 @@ class App extends React.Component {
           <Route exact path="/events/:id" component={EventShowPageContainer} />
           <Route path="/subcategory/:id" component={SubCategoryPageContainer} />
           <Route exact path="/tickets/sell" component={TicketSellSplashPageContainer} />
-          <Route path="/events/:eventId/sell" component={SellTicketPage} />
+          <Route path="/events/:eventId/sell" component={SellTicketPageContainer} />
         </Switch>
 
         <Route path="/category/:id" component={SubCategoryListContainer} />

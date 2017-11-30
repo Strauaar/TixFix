@@ -59687,9 +59687,9 @@ var _tickets_sell_splash_page_container = __webpack_require__(291);
 
 var _tickets_sell_splash_page_container2 = _interopRequireDefault(_tickets_sell_splash_page_container);
 
-var _sell_ticket_page = __webpack_require__(293);
+var _sell_ticket_page_container = __webpack_require__(295);
 
-var _sell_ticket_page2 = _interopRequireDefault(_sell_ticket_page);
+var _sell_ticket_page_container2 = _interopRequireDefault(_sell_ticket_page_container);
 
 var _footer = __webpack_require__(294);
 
@@ -59751,7 +59751,7 @@ var App = function (_React$Component) {
           _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/events/:id', component: _event_show_page_container2.default }),
           _react2.default.createElement(_reactRouterDom.Route, { path: '/subcategory/:id', component: _subcategory_page_container2.default }),
           _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/tickets/sell', component: _tickets_sell_splash_page_container2.default }),
-          _react2.default.createElement(_reactRouterDom.Route, { path: '/events/:eventId/sell', component: _sell_ticket_page2.default })
+          _react2.default.createElement(_reactRouterDom.Route, { path: '/events/:eventId/sell', component: _sell_ticket_page_container2.default })
         ),
         _react2.default.createElement(_reactRouterDom.Route, { path: '/category/:id', component: _subcategory_list_container2.default }),
         _react2.default.createElement(
@@ -63078,6 +63078,10 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _moment = __webpack_require__(0);
+
+var _moment2 = _interopRequireDefault(_moment);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -63096,91 +63100,150 @@ var SellTicketPage = function (_React$Component) {
   }
 
   _createClass(SellTicketPage, [{
-    key: "render",
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      console.log(this.props);
+    }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.props.fetchEvent(this.props.match.params.eventId);
+    }
+  }, {
+    key: 'render',
     value: function render() {
-      return _react2.default.createElement(
-        "div",
-        { className: "sell-ticket-whole-container" },
-        _react2.default.createElement(
-          "div",
-          { className: "sell-ticket-block" },
+      if (this.props.eventQ === undefined) {
+        console.log("UNDEF");
+        return null;
+      } else {
+        var month = (0, _moment2.default)(this.props.eventQ.date).format('MMM');
+        var day = (0, _moment2.default)(this.props.eventQ.date).format('DD');
+        var dayString = (0, _moment2.default)(this.props.eventQ.date).format('ddd');
+        var time = (0, _moment2.default)(this.props.eventQ.date).format('h:MMa');
+        return _react2.default.createElement(
+          'div',
+          { className: 'sell-ticket-whole-container' },
           _react2.default.createElement(
-            "div",
-            { className: "sell-ticket-header" },
-            " ",
+            'div',
+            { className: 'sell-ticket-block' },
             _react2.default.createElement(
-              "span",
-              null,
-              "FILL US IN ON YOUR TICKETS"
-            )
-          ),
-          _react2.default.createElement(
-            "div",
-            { className: "form-container" },
-            _react2.default.createElement(
-              "div",
-              { className: "num-tickets-container" },
+              'div',
+              { className: 'sell-ticket-header' },
+              ' ',
               _react2.default.createElement(
-                "span",
+                'span',
                 null,
-                "HOW MANY TICKETS DO YOU HAVE?"
-              ),
-              _react2.default.createElement(
-                "div",
-                { className: "num-tickets-selector" },
-                "DROPDOWN"
+                'FILL US IN ON YOUR TICKETS'
               )
             ),
             _react2.default.createElement(
-              "div",
-              { className: "seats-container" },
+              'div',
+              { className: 'card-detail-container subcategory-card-detail-container ticket-sale' },
               _react2.default.createElement(
-                "div",
-                { className: "seats-header-container" },
-                _react2.default.createElement("span", null),
+                'div',
+                { className: 'card-detail-date-block' },
                 _react2.default.createElement(
-                  "span",
-                  { className: "seats-text" },
-                  "WHERE ARE YOUR SEATS?"
+                  'span',
+                  { className: 'card-detail-day' },
+                  dayString
+                ),
+                _react2.default.createElement(
+                  'span',
+                  { className: 'card-detail-date' },
+                  month,
+                  ' ',
+                  day
                 )
               ),
               _react2.default.createElement(
-                "div",
-                { className: "section-row-input-block" },
+                'div',
+                { className: 'card-detail-event-block subcategory-event-detail-block' },
                 _react2.default.createElement(
-                  "div",
-                  { className: "seat-input-block" },
-                  _react2.default.createElement(
-                    "span",
-                    null,
-                    "SECTION"
-                  ),
-                  _react2.default.createElement("input", null)
+                  'p',
+                  { className: 'card-detail-event-name' },
+                  this.props.name
                 ),
                 _react2.default.createElement(
-                  "div",
-                  { className: "seat-input-block" },
-                  _react2.default.createElement(
-                    "span",
-                    null,
-                    "ROW"
-                  ),
-                  _react2.default.createElement("input", null)
+                  'span',
+                  { className: 'card-detail-date-venue' },
+                  time,
+                  '  at ',
+                  this.props.venue_name,
+                  ', ',
+                  this.props.city,
+                  ', ',
+                  this.props.state
                 )
               )
-            )
-          ),
-          _react2.default.createElement(
-            "div",
-            { className: "post-ticket-btn-container" },
+            ),
             _react2.default.createElement(
-              "button",
-              { className: "post-ticket-btn" },
-              "Post my tickets"
+              'div',
+              { className: 'form-container' },
+              _react2.default.createElement(
+                'div',
+                { className: 'num-tickets-container' },
+                _react2.default.createElement(
+                  'span',
+                  null,
+                  'HOW MANY TICKETS DO YOU HAVE?'
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'num-tickets-selector' },
+                  'DROPDOWN'
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'seats-container' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'seats-header-container' },
+                  _react2.default.createElement('span', null),
+                  _react2.default.createElement(
+                    'span',
+                    { className: 'seats-text' },
+                    'WHERE ARE YOUR SEATS?'
+                  )
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'section-row-input-block' },
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'seat-input-block' },
+                    _react2.default.createElement(
+                      'span',
+                      null,
+                      'SECTION'
+                    ),
+                    _react2.default.createElement('input', null)
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'seat-input-block' },
+                    _react2.default.createElement(
+                      'span',
+                      null,
+                      'ROW'
+                    ),
+                    _react2.default.createElement('input', null)
+                  )
+                )
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'post-ticket-btn-container' },
+              _react2.default.createElement(
+                'button',
+                { className: 'post-ticket-btn' },
+                'Post my tickets'
+              )
             )
           )
-        )
-      );
+        );
+      }
     }
   }]);
 
@@ -63385,6 +63448,49 @@ var Footer = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = Footer;
+
+/***/ }),
+/* 295 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = __webpack_require__(4);
+
+var _sell_ticket_page = __webpack_require__(293);
+
+var _sell_ticket_page2 = _interopRequireDefault(_sell_ticket_page);
+
+var _reactRouterDom = __webpack_require__(2);
+
+var _event_actions = __webpack_require__(8);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    eventQ: state.entities.events,
+    venue_name: state.entities.events.venue,
+    city: state.entities.events.location,
+    state: state.entities.events.state,
+    name: state.entities.events.name
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    fetchEvent: function fetchEvent(id) {
+      return dispatch((0, _event_actions.fetchEvent)(id));
+    }
+  };
+};
+
+exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_sell_ticket_page2.default));
 
 /***/ })
 /******/ ]);
