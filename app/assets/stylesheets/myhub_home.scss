@@ -17,7 +17,7 @@
 .home-block {
   background-color: white;
   margin-bottom: 20px;
-  padding: 20px 15px;
+  padding: 24px 20px;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -72,18 +72,27 @@
 .myhub-list-item {
   display: flex;
   flex-direction: column;
-  height: 60px;
+  min-height: 50px;
   justify-content: space-around;
-  padding: 10px 0;
+  padding: 16px 0;
   border-bottom: 1px solid #E7EAEC;
 
 }
 
 .list-item-event-name {
   font-size: 18px;
+  color: #5C6570
 }
 
 .list-item-venue-name {
   font-size: 14px;
   color: #87909A
+}
+
+.list-item-ticket-info {
+  padding: 5px 0;
+}
+
+.list-item-venue-info {
+
 }

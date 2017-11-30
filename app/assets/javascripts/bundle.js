@@ -63822,9 +63822,68 @@ var UserHome = function (_React$Component) {
       } else {
         return this.state.selling_tickets.map(function (ticket) {
           return _react2.default.createElement(
-            'span',
-            null,
-            ticket.event.name
+            'div',
+            { className: 'myhub-list-item' },
+            _react2.default.createElement(
+              'div',
+              null,
+              _react2.default.createElement(
+                'span',
+                { className: 'list-item-event-name' },
+                ticket.event.name,
+                ' Ticket'
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'list-item-ticket-info' },
+              _react2.default.createElement(
+                'span',
+                { className: 'list-item-venue-name' },
+                'Price: $',
+                ticket.price,
+                ' | '
+              ),
+              _react2.default.createElement(
+                'span',
+                { className: 'list-item-venue-name' },
+                ticket.type_of,
+                ' | '
+              ),
+              _react2.default.createElement(
+                'span',
+                { className: 'list-item-venue-name' },
+                'Row: ',
+                ticket.row
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'list-item-venue-info' },
+              _react2.default.createElement(
+                'span',
+                { className: 'list-item-venue-name' },
+                (0, _moment2.default)(ticket.event.date).format('h:mma'),
+                ' at '
+              ),
+              _react2.default.createElement(
+                'span',
+                { className: 'list-item-venue-name' },
+                ticket.venue.name,
+                ' | '
+              ),
+              _react2.default.createElement(
+                'span',
+                { className: 'list-item-venue-name' },
+                ticket.venue.city,
+                ', '
+              ),
+              _react2.default.createElement(
+                'span',
+                { className: 'list-item-venue-name' },
+                ticket.venue.state
+              )
+            )
           );
         });
       }

@@ -84,9 +84,25 @@ class UserHome extends React.Component {
       return <span>You dont have any listings</span>
     } else {
       return this.state.selling_tickets.map(ticket =>
-        <span>
-          {ticket.event.name}
-        </span>
+        <div className="myhub-list-item">
+          <div>
+            <span className="list-item-event-name">{ticket.event.name} Ticket</span>
+          </div>
+
+          <div className="list-item-ticket-info">
+            <span className="list-item-venue-name">Price: ${ticket.price} | </span>
+            <span className="list-item-venue-name">{ticket.type_of} | </span>
+            <span className="list-item-venue-name">Row: {ticket.row}</span>
+          </div>
+          <div className="list-item-venue-info">
+            <span className="list-item-venue-name">{moment(ticket.event.date).format('h:mma')} at </span>
+            <span className="list-item-venue-name">{ticket.venue.name} | </span>
+            <span className="list-item-venue-name">{ticket.venue.city}, </span>
+            <span className="list-item-venue-name">{ticket.venue.state}</span>
+
+          </div>
+
+        </div>
       )
     }
   }
