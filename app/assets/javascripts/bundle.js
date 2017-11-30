@@ -4976,65 +4976,6 @@ if (process.env.NODE_ENV !== 'production') {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-2015, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- */
-
-
-
-/**
- * Use invariant() to assert state which your program assumes to be true.
- *
- * Provide sprintf-style format (only %s is supported) and arguments
- * to provide information about what broke and what you were
- * expecting.
- *
- * The invariant message will be stripped in production, but the invariant
- * will remain to ensure logic does not differ in production.
- */
-
-var invariant = function(condition, format, a, b, c, d, e, f) {
-  if (process.env.NODE_ENV !== 'production') {
-    if (format === undefined) {
-      throw new Error('invariant requires an error message argument');
-    }
-  }
-
-  if (!condition) {
-    var error;
-    if (format === undefined) {
-      error = new Error(
-        'Minified exception occurred; use the non-minified dev environment ' +
-        'for the full error message and additional helpful warnings.'
-      );
-    } else {
-      var args = [a, b, c, d, e, f];
-      var argIndex = 0;
-      error = new Error(
-        format.replace(/%s/g, function() { return args[argIndex++]; })
-      );
-      error.name = 'Invariant Violation';
-    }
-
-    error.framesToPop = 1; // we don't care about invariant's own frame
-    throw error;
-  }
-};
-
-module.exports = invariant;
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
 
 
 Object.defineProperty(exports, "__esModule", {
@@ -5118,6 +5059,65 @@ var fetchMoreEvents = exports.fetchMoreEvents = function fetchMoreEvents(current
 // export const filterByDate = (categoryObj) => dispatch => (
 //   EventApiUtil.filterByDate(categoryObj).then(events => dispatch(receiveEvents(events)))
 // );
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {/**
+ * Copyright 2013-2015, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ */
+
+
+
+/**
+ * Use invariant() to assert state which your program assumes to be true.
+ *
+ * Provide sprintf-style format (only %s is supported) and arguments
+ * to provide information about what broke and what you were
+ * expecting.
+ *
+ * The invariant message will be stripped in production, but the invariant
+ * will remain to ensure logic does not differ in production.
+ */
+
+var invariant = function(condition, format, a, b, c, d, e, f) {
+  if (process.env.NODE_ENV !== 'production') {
+    if (format === undefined) {
+      throw new Error('invariant requires an error message argument');
+    }
+  }
+
+  if (!condition) {
+    var error;
+    if (format === undefined) {
+      error = new Error(
+        'Minified exception occurred; use the non-minified dev environment ' +
+        'for the full error message and additional helpful warnings.'
+      );
+    } else {
+      var args = [a, b, c, d, e, f];
+      var argIndex = 0;
+      error = new Error(
+        format.replace(/%s/g, function() { return args[argIndex++]; })
+      );
+      error.name = 'Invariant Violation';
+    }
+
+    error.framesToPop = 1; // we don't care about invariant's own frame
+    throw error;
+  }
+};
+
+module.exports = invariant;
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
 /* 9 */
@@ -22852,7 +22852,7 @@ var _category_util = __webpack_require__(49);
 
 var CategoryApiUtil = _interopRequireWildcard(_category_util);
 
-var _event_actions = __webpack_require__(8);
+var _event_actions = __webpack_require__(7);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -23450,7 +23450,7 @@ exports.default = createTransitionManager;
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_warning__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_invariant__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react__);
@@ -24558,7 +24558,7 @@ var storeShape = __WEBPACK_IMPORTED_MODULE_0_prop_types___default.a.shape({
 /* WEBPACK VAR INJECTION */(function(process) {/* harmony export (immutable) */ __webpack_exports__["a"] = connectAdvanced;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_hoist_non_react_statics__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_hoist_non_react_statics___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_hoist_non_react_statics__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_invariant__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react__);
@@ -25214,7 +25214,7 @@ var isExtraneousPopstateEvent = exports.isExtraneousPopstateEvent = function isE
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_invariant__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_invariant__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_invariant__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -25333,7 +25333,7 @@ Link.contextTypes = {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_warning__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_invariant__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react__);
@@ -25589,7 +25589,7 @@ var _location_date_filter = __webpack_require__(269);
 
 var _location_date_filter2 = _interopRequireDefault(_location_date_filter);
 
-var _event_actions = __webpack_require__(8);
+var _event_actions = __webpack_require__(7);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -37043,7 +37043,7 @@ var _root = __webpack_require__(222);
 
 var _root2 = _interopRequireDefault(_root);
 
-var _event_actions = __webpack_require__(8);
+var _event_actions = __webpack_require__(7);
 
 var _like_actions = __webpack_require__(27);
 
@@ -55094,7 +55094,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _event_actions = __webpack_require__(8);
+var _event_actions = __webpack_require__(7);
 
 var _lodash = __webpack_require__(10);
 
@@ -55370,7 +55370,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _event_actions = __webpack_require__(8);
+var _event_actions = __webpack_require__(7);
 
 var _lodash = __webpack_require__(10);
 
@@ -56722,7 +56722,7 @@ var _warning = __webpack_require__(5);
 
 var _warning2 = _interopRequireDefault(_warning);
 
-var _invariant = __webpack_require__(7);
+var _invariant = __webpack_require__(8);
 
 var _invariant2 = _interopRequireDefault(_invariant);
 
@@ -57099,7 +57099,7 @@ var _warning = __webpack_require__(5);
 
 var _warning2 = _interopRequireDefault(_warning);
 
-var _invariant = __webpack_require__(7);
+var _invariant = __webpack_require__(8);
 
 var _invariant2 = _interopRequireDefault(_invariant);
 
@@ -58210,7 +58210,7 @@ module.exports = Array.isArray || function (arr) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_invariant__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_invariant__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_invariant__);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -58314,7 +58314,7 @@ Prompt.contextTypes = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_warning__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_warning___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_warning__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_invariant__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_invariant__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_invariant__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_history__ = __webpack_require__(248);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -58445,7 +58445,7 @@ Redirect.contextTypes = {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_warning__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_invariant__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LocationUtils__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__PathUtils__ = __webpack_require__(16);
@@ -58749,7 +58749,7 @@ var createBrowserHistory = function createBrowserHistory() {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_warning__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_invariant__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LocationUtils__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__PathUtils__ = __webpack_require__(16);
@@ -59249,7 +59249,7 @@ var createMemoryHistory = function createMemoryHistory() {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_warning__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_invariant__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react__);
@@ -59447,7 +59447,7 @@ StaticRouter.childContextTypes = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_warning__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_warning___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_warning__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_invariant__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_invariant__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_invariant__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__matchPath__ = __webpack_require__(34);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -59687,11 +59687,11 @@ var _tickets_sell_splash_page_container = __webpack_require__(291);
 
 var _tickets_sell_splash_page_container2 = _interopRequireDefault(_tickets_sell_splash_page_container);
 
-var _sell_ticket_page_container = __webpack_require__(295);
+var _sell_ticket_page_container = __webpack_require__(293);
 
 var _sell_ticket_page_container2 = _interopRequireDefault(_sell_ticket_page_container);
 
-var _footer = __webpack_require__(294);
+var _footer = __webpack_require__(295);
 
 var _footer2 = _interopRequireDefault(_footer);
 
@@ -60932,7 +60932,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _reactRedux = __webpack_require__(4);
 
-var _event_actions = __webpack_require__(8);
+var _event_actions = __webpack_require__(7);
 
 var _reactRouterDom = __webpack_require__(2);
 
@@ -61073,7 +61073,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _reactRedux = __webpack_require__(4);
 
-var _event_actions = __webpack_require__(8);
+var _event_actions = __webpack_require__(7);
 
 var _events_list = __webpack_require__(274);
 
@@ -61750,7 +61750,7 @@ var _events_ul = __webpack_require__(280);
 
 var _events_ul2 = _interopRequireDefault(_events_ul);
 
-var _event_actions = __webpack_require__(8);
+var _event_actions = __webpack_require__(7);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -61903,7 +61903,7 @@ var _event_show_page2 = _interopRequireDefault(_event_show_page);
 
 var _reactRouterDom = __webpack_require__(2);
 
-var _event_actions = __webpack_require__(8);
+var _event_actions = __webpack_require__(7);
 
 var _ticket_actions = __webpack_require__(20);
 
@@ -62574,7 +62574,7 @@ var _reactRedux = __webpack_require__(4);
 
 var _reactRouterDom = __webpack_require__(2);
 
-var _event_actions = __webpack_require__(8);
+var _event_actions = __webpack_require__(7);
 
 var _ticket_actions = __webpack_require__(20);
 
@@ -62878,7 +62878,7 @@ var _tickets_sell_splash_page = __webpack_require__(292);
 
 var _tickets_sell_splash_page2 = _interopRequireDefault(_tickets_sell_splash_page);
 
-var _event_actions = __webpack_require__(8);
+var _event_actions = __webpack_require__(7);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -63072,6 +63072,50 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _reactRedux = __webpack_require__(4);
+
+var _sell_ticket_page = __webpack_require__(294);
+
+var _sell_ticket_page2 = _interopRequireDefault(_sell_ticket_page);
+
+var _reactRouterDom = __webpack_require__(2);
+
+var _event_actions = __webpack_require__(7);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    eventQ: state.entities.events,
+    venue_name: state.entities.events.venue,
+    city: state.entities.events.location,
+    state: state.entities.events.state,
+    name: state.entities.events.name,
+    currentUser: state.session.currentUser
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    fetchEvent: function fetchEvent(id) {
+      return dispatch((0, _event_actions.fetchEvent)(id));
+    }
+  };
+};
+
+exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_sell_ticket_page2.default));
+
+/***/ }),
+/* 294 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(1);
@@ -63154,129 +63198,163 @@ var SellTicketPage = function (_React$Component) {
         var time = (0, _moment2.default)(this.props.eventQ.date).format('h:MMa');
         return _react2.default.createElement(
           'div',
-          { className: 'sell-ticket-whole-container' },
+          null,
           _react2.default.createElement(
             'div',
-            { className: 'sell-ticket-block' },
+            { className: 'top-text-container' },
             _react2.default.createElement(
               'div',
-              { className: 'sell-ticket-header' },
-              ' ',
+              { className: 'sell-ticket-top-ext' },
               _react2.default.createElement(
                 'span',
                 null,
-                'FILL US IN ON YOUR TICKETS'
-              )
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'card-detail-container subcategory-card-detail-container ticket-sale' },
-              _react2.default.createElement(
-                'div',
-                { className: 'card-detail-date-block' },
-                _react2.default.createElement(
-                  'span',
-                  { className: 'card-detail-day' },
-                  dayString
-                ),
-                _react2.default.createElement(
-                  'span',
-                  { className: 'card-detail-date' },
-                  month,
-                  ' ',
-                  day
-                )
+                this.props.eventQ.name,
+                ' Tickets'
               ),
               _react2.default.createElement(
                 'div',
-                { className: 'card-detail-event-block subcategory-event-detail-block' },
-                _react2.default.createElement(
-                  'p',
-                  { className: 'card-detail-event-name' },
-                  this.props.name
-                ),
-                _react2.default.createElement(
-                  'span',
-                  { className: 'card-detail-date-venue' },
-                  time,
-                  '  at ',
-                  this.props.venue_name,
-                  ', ',
-                  this.props.city,
-                  ', ',
-                  this.props.state
-                )
-              )
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'form-container' },
-              _react2.default.createElement(
-                'div',
-                { className: 'num-tickets-container' },
+                { className: 'header-city-details' },
                 _react2.default.createElement(
                   'span',
                   null,
-                  'HOW MANY TICKETS DO YOU HAVE?'
+                  this.props.venue_name,
+                  ' |'
                 ),
                 _react2.default.createElement(
-                  'div',
-                  { className: 'num-tickets-selector' },
-                  'DROPDOWN'
+                  'span',
+                  null,
+                  ' ',
+                  this.props.city
+                )
+              )
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'sell-ticket-whole-container' },
+            _react2.default.createElement(
+              'div',
+              { className: 'sell-ticket-block' },
+              _react2.default.createElement(
+                'div',
+                { className: 'sell-ticket-header' },
+                ' ',
+                _react2.default.createElement(
+                  'span',
+                  null,
+                  'FILL US IN ON YOUR TICKETS'
                 )
               ),
               _react2.default.createElement(
                 'div',
-                { className: 'seats-container' },
+                { className: 'card-detail-container subcategory-card-detail-container ticket-sale' },
                 _react2.default.createElement(
                   'div',
-                  { className: 'seats-header-container' },
-                  _react2.default.createElement('span', null),
+                  { className: 'card-detail-date-block' },
                   _react2.default.createElement(
                     'span',
-                    { className: 'seats-text' },
-                    'WHERE ARE YOUR SEATS?'
+                    { className: 'card-detail-day' },
+                    dayString
+                  ),
+                  _react2.default.createElement(
+                    'span',
+                    { className: 'card-detail-date' },
+                    month,
+                    ' ',
+                    day
                   )
                 ),
                 _react2.default.createElement(
                   'div',
-                  { className: 'section-row-input-block' },
+                  { className: 'card-detail-event-block subcategory-event-detail-block' },
                   _react2.default.createElement(
-                    'div',
-                    { className: 'seat-input-block' },
-                    _react2.default.createElement(
-                      'span',
-                      null,
-                      'SECTION'
-                    ),
-                    _react2.default.createElement('input', { onChange: function onChange(e) {
-                        return _this2.update('section', e);
-                      } })
+                    'p',
+                    { className: 'card-detail-event-name' },
+                    this.props.name
+                  ),
+                  _react2.default.createElement(
+                    'span',
+                    { className: 'card-detail-date-venue' },
+                    time,
+                    '  at ',
+                    this.props.venue_name,
+                    ', ',
+                    this.props.city,
+                    ', ',
+                    this.props.state
+                  )
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'form-container' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'num-tickets-container' },
+                  _react2.default.createElement(
+                    'span',
+                    null,
+                    'HOW MANY TICKETS DO YOU HAVE?'
                   ),
                   _react2.default.createElement(
                     'div',
-                    { className: 'seat-input-block' },
+                    { className: 'num-tickets-selector' },
+                    'DROPDOWN'
+                  )
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'seats-container' },
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'seats-header-container' },
+                    _react2.default.createElement('span', null),
                     _react2.default.createElement(
                       'span',
-                      null,
-                      'ROW'
+                      { className: 'seats-text' },
+                      'WHERE ARE YOUR SEATS?'
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'section-row-input-block' },
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'seat-input-block' },
+                      _react2.default.createElement(
+                        'span',
+                        null,
+                        'SECTION'
+                      ),
+                      _react2.default.createElement('input', { onChange: function onChange(e) {
+                          return _this2.update('section', e);
+                        } })
                     ),
-                    _react2.default.createElement('input', { onChange: function onChange(e) {
-                        return _this2.update('row', e);
-                      } })
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'seat-input-block' },
+                      _react2.default.createElement(
+                        'span',
+                        null,
+                        'ROW'
+                      ),
+                      _react2.default.createElement('input', { onChange: function onChange(e) {
+                          return _this2.update('row', e);
+                        } })
+                    )
                   )
                 )
-              )
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'post-ticket-btn-container' },
+              ),
               _react2.default.createElement(
-                'button',
-                { onClick: function onClick() {
-                    return _this2.createTicket(_this2.props.eventQ.id, _this2.props.currentUser);
-                  }, className: 'post-ticket-btn' },
-                'Post my tickets'
+                'div',
+                { className: 'post-ticket-btn-container' },
+                _react2.default.createElement(
+                  'button',
+                  { onClick: function onClick() {
+                      return _this2.createTicket(_this2.props.eventQ.id, _this2.props.currentUser);
+                    }, className: 'post-ticket-btn' },
+                  'Post my tickets'
+                )
               )
             )
           )
@@ -63291,7 +63369,7 @@ var SellTicketPage = function (_React$Component) {
 exports.default = SellTicketPage;
 
 /***/ }),
-/* 294 */
+/* 295 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63486,50 +63564,6 @@ var Footer = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = Footer;
-
-/***/ }),
-/* 295 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _reactRedux = __webpack_require__(4);
-
-var _sell_ticket_page = __webpack_require__(293);
-
-var _sell_ticket_page2 = _interopRequireDefault(_sell_ticket_page);
-
-var _reactRouterDom = __webpack_require__(2);
-
-var _event_actions = __webpack_require__(8);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var mapStateToProps = function mapStateToProps(state) {
-  return {
-    eventQ: state.entities.events,
-    venue_name: state.entities.events.venue,
-    city: state.entities.events.location,
-    state: state.entities.events.state,
-    name: state.entities.events.name,
-    currentUser: state.session.currentUser
-  };
-};
-
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    fetchEvent: function fetchEvent(id) {
-      return dispatch((0, _event_actions.fetchEvent)(id));
-    }
-  };
-};
-
-exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_sell_ticket_page2.default));
 
 /***/ })
 /******/ ]);
