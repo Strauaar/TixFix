@@ -1,16 +1,42 @@
 import React from 'react';
 import moment from 'moment';
+import { merge } from 'lodash';
 
 
 class SellTicketPage extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
+    this.createTicket = this.createTicket.bind(this);
+    this.update = this.update.bind(this);
+    this.state = {price: 0, row: '-', type_of: "GA"}
   }
   componentWillMount(){
     console.log(this.props);
   }
+
   componentDidMount() {
     this.props.fetchEvent(this.props.match.params.eventId)
+  }
+
+  update(type, e) {
+    if(type === 'section') {
+      this.setState({type_of: e.target.value})
+    } else if (type === 'row') {
+      this.setState({row: e.target.value})
+    }
+  }
+
+  createTicket(event_id, seller) {
+    if (seller === null) {
+      this.props.history.push("/session")
+    } else {
+      let params = merge({}, this.state, { event_id, seller_id: seller.id });
+      $.ajax({
+        method: 'POST',
+        url: `api/tickets`,
+        data: params
+      })
+    }
   }
 
   render() {
@@ -55,17 +81,17 @@ class SellTicketPage extends React.Component {
                 <div className="section-row-input-block">
                   <div className="seat-input-block">
                     <span>SECTION</span>
-                    <input></input>
+                    <input onChange={(e) => this.update('section',e)}></input>
                   </div>
                   <div className="seat-input-block">
                     <span>ROW</span>
-                    <input></input>
+                    <input onChange={(e) => this.update('row',e)}></input>
                   </div>
                 </div>
               </div>
             </div>
             <div className="post-ticket-btn-container">
-              <button className="post-ticket-btn">Post my tickets</button>
+              <button onClick={() => this.createTicket(this.props.eventQ.id, this.props.currentUser)}className="post-ticket-btn">Post my tickets</button>
             </div>
           </div>
         </div>

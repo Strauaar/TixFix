@@ -8,7 +8,8 @@ const mapStateToProps = state => ({
   venue_name: state.entities.events.venue,
   city: state.entities.events.location,
   state: state.entities.events.state,
-  name: state.entities.events.name
+  name: state.entities.events.name,
+  currentUser: state.session.currentUser
 });
 
 const mapDispatchToProps = dispatch => ({

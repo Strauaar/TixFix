@@ -63082,6 +63082,8 @@ var _moment = __webpack_require__(0);
 
 var _moment2 = _interopRequireDefault(_moment);
 
+var _lodash = __webpack_require__(10);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -63096,7 +63098,12 @@ var SellTicketPage = function (_React$Component) {
   function SellTicketPage(props) {
     _classCallCheck(this, SellTicketPage);
 
-    return _possibleConstructorReturn(this, (SellTicketPage.__proto__ || Object.getPrototypeOf(SellTicketPage)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (SellTicketPage.__proto__ || Object.getPrototypeOf(SellTicketPage)).call(this, props));
+
+    _this.createTicket = _this.createTicket.bind(_this);
+    _this.update = _this.update.bind(_this);
+    _this.state = { price: 0, row: '-', type_of: "GA" };
+    return _this;
   }
 
   _createClass(SellTicketPage, [{
@@ -63110,8 +63117,33 @@ var SellTicketPage = function (_React$Component) {
       this.props.fetchEvent(this.props.match.params.eventId);
     }
   }, {
+    key: 'update',
+    value: function update(type, e) {
+      if (type === 'section') {
+        this.setState({ type_of: e.target.value });
+      } else if (type === 'row') {
+        this.setState({ row: e.target.value });
+      }
+    }
+  }, {
+    key: 'createTicket',
+    value: function createTicket(event_id, seller) {
+      if (seller === null) {
+        this.props.history.push("/session");
+      } else {
+        var params = (0, _lodash.merge)({}, this.state, { event_id: event_id, seller_id: seller.id });
+        $.ajax({
+          method: 'POST',
+          url: 'api/tickets',
+          data: params
+        });
+      }
+    }
+  }, {
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
       if (this.props.eventQ === undefined) {
         console.log("UNDEF");
         return null;
@@ -63217,7 +63249,9 @@ var SellTicketPage = function (_React$Component) {
                       null,
                       'SECTION'
                     ),
-                    _react2.default.createElement('input', null)
+                    _react2.default.createElement('input', { onChange: function onChange(e) {
+                        return _this2.update('section', e);
+                      } })
                   ),
                   _react2.default.createElement(
                     'div',
@@ -63227,7 +63261,9 @@ var SellTicketPage = function (_React$Component) {
                       null,
                       'ROW'
                     ),
-                    _react2.default.createElement('input', null)
+                    _react2.default.createElement('input', { onChange: function onChange(e) {
+                        return _this2.update('row', e);
+                      } })
                   )
                 )
               )
@@ -63237,7 +63273,9 @@ var SellTicketPage = function (_React$Component) {
               { className: 'post-ticket-btn-container' },
               _react2.default.createElement(
                 'button',
-                { className: 'post-ticket-btn' },
+                { onClick: function onClick() {
+                    return _this2.createTicket(_this2.props.eventQ.id, _this2.props.currentUser);
+                  }, className: 'post-ticket-btn' },
                 'Post my tickets'
               )
             )
@@ -63478,7 +63516,8 @@ var mapStateToProps = function mapStateToProps(state) {
     venue_name: state.entities.events.venue,
     city: state.entities.events.location,
     state: state.entities.events.state,
-    name: state.entities.events.name
+    name: state.entities.events.name,
+    currentUser: state.session.currentUser
   };
 };
 
