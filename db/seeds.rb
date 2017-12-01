@@ -58,8 +58,12 @@ giants_performer = Performer.create(name:"San Francisco Giants", category_id: ba
 nutcracker_performer = Performer.create(name:"The Nutcracker San Francisco", category_id: dance_subcategory.id)
 county_fair_performer = Performer.create(name:"County Fair", category_id:festivals_subcategory.id)
 
-
-billyg_venue = Venue.create(name:"Bill Graham Civic Auditorium", location:"123 Location", city: "San Franacisco", state:"CA")
+#VENUE
+billyg_venue = Venue.create(name:"Bill Graham Civic Auditorium", location:"99 Grove St.", city: "San Franacisco", state:"CA")
+warfield_venue = Venue.create(name:"The Warfield", location:"982 Market St." city:"San Francisco", state:"CA")
+fox_theater_venue = Venue.create(name:"Fox Theater", location:"1807 Telegraph Ave.", city:"Oakland", state:"CA")
+att_park_venue = Venue.create(name:"AT&T Park", location: "24 Willie Mays Plaza", city:"San Francisco", state:"CA")
+levis_stadium = Venue.create(name:"Levi's Stadium", location:"4900 Marie P DeBartolo Way", city:"Santa Clara", state:"CA")
 
 kaskade_event = Event.create(
 name: "Kaskade",
