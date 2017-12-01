@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { fetchLikedPerformers } from '../../actions/like_actions';
+import { fetchLikedPerformers, fetchLikedEvents } from '../../actions/like_actions';
 import UserFav from './user_fav';
 
 const mapStateToProps = state => ({
@@ -9,7 +9,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchLikedPerformers: () => dispatch(fetchLikedPerformers())
+  fetchLikedPerformers: () => dispatch(fetchLikedPerformers()),
+  fetchLikedEvents: () => dispatch(fetchLikedEvents())
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UserFav));

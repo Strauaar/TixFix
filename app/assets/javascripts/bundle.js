@@ -64579,6 +64579,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     fetchLikedPerformers: function fetchLikedPerformers() {
       return dispatch((0, _like_actions.fetchLikedPerformers)());
+    },
+    fetchLikedEvents: function fetchLikedEvents() {
+      return dispatch((0, _like_actions.fetchLikedEvents)());
     }
   };
 };
@@ -64624,6 +64627,7 @@ var UserFav = function (_React$Component) {
 
     _this.renderList = _this.renderList.bind(_this);
     _this.renderButtonClass = _this.renderButtonClass.bind(_this);
+    _this.handleTypeClick = _this.handleTypeClick.bind(_this);
     _this.state = { type: 'performer' };
     return _this;
   }
@@ -64660,6 +64664,20 @@ var UserFav = function (_React$Component) {
       }
     }
   }, {
+    key: 'handleTypeClick',
+    value: function handleTypeClick(typeClicked) {
+      switch (typeClicked) {
+        case 'performer':
+          this.setState({ type: typeClicked });
+          this.props.fetchLikedPerformers();
+        case 'event':
+          this.setState({ type: typeClicked });
+          this.props.fetchLikedEvents();
+        default:
+          return null;
+      }
+    }
+  }, {
     key: 'render',
     value: function render() {
       var _this3 = this;
@@ -64679,14 +64697,14 @@ var UserFav = function (_React$Component) {
               _react2.default.createElement(
                 'button',
                 { onClick: function onClick() {
-                    return _this3.setState({ type: 'performer' });
+                    return _this3.handleTypeClick('performer');
                   }, className: this.renderButtonClass('performer') },
                 'Performers'
               ),
               _react2.default.createElement(
                 'button',
                 { onClick: function onClick() {
-                    return _this3.setState({ type: 'event' });
+                    return _this3.handleTypeClick('event');
                   }, className: this.renderButtonClass('event') },
                 'Events'
               )
@@ -64745,6 +64763,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     deletePerformerLike: function deletePerformerLike(user_id, performer_id) {
       return dispatch((0, _like_actions.deletePerformerLike)(user_id, performer_id));
+    },
+    deleteEventLike: function deleteEventLike(user_id, event_id) {
+      return dispatch((0, _like_actions.deleteEventLike)(user_id, event_id));
     }
   };
 };
@@ -64768,6 +64789,10 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _moment = __webpack_require__(0);
+
+var _moment2 = _interopRequireDefault(_moment);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -64785,6 +64810,7 @@ var LikedCardItem = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (LikedCardItem.__proto__ || Object.getPrototypeOf(LikedCardItem)).call(this, props));
 
     _this.handleLikeClick = _this.handleLikeClick.bind(_this);
+    _this.renderDates = _this.renderDates.bind(_this);
     _this.state = { liked: true };
     return _this;
   }
@@ -64796,8 +64822,34 @@ var LikedCardItem = function (_React$Component) {
         case 'performer':
           this.props.deletePerformerLike(this.props.current_user.id, this.props.item.id);
           this.setState({ liked: false });
+        case 'event':
+          this.props.deleteEventLike(this.props.current_user.id, this.props.item.id);
+          this.setState({ liked: false });
         default:
           return null;
+      }
+    }
+  }, {
+    key: 'renderDates',
+    value: function renderDates() {
+
+      if (this.props.type === 'event') {
+        var month = (0, _moment2.default)(this.props.item.date).format('MMM');
+        var day = (0, _moment2.default)(this.props.item.date).format('DD');
+        var dayString = (0, _moment2.default)(this.props.item.date).format('ddd');
+        var time = (0, _moment2.default)(this.props.item.date).format('h:MMa');
+        return _react2.default.createElement(
+          'span',
+          { className: 'event-card-date' },
+          '   ',
+          month,
+          ', ',
+          day,
+          ' - ',
+          time,
+          ' | ',
+          this.props.item.name
+        );
       }
     }
   }, {
@@ -64808,6 +64860,7 @@ var LikedCardItem = function (_React$Component) {
       if (this.state.liked === false) {
         return null;
       } else {
+        console.log(this.props.item);
         return _react2.default.createElement(
           'div',
           { className: 'liked-card' },
@@ -64838,7 +64891,8 @@ var LikedCardItem = function (_React$Component) {
                 'span',
                 null,
                 this.props.item.name
-              )
+              ),
+              this.renderDates()
             )
           )
         );
