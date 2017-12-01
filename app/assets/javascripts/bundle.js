@@ -64660,9 +64660,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var LikedCardItem = function LikedCardItem(_ref) {
   var item = _ref.item;
   return _react2.default.createElement(
-    'div',
-    null,
-    'hi'
+    "div",
+    { className: "liked-card" },
+    _react2.default.createElement("div", { className: "liked-card-image", style: { backgroundImage: "url(" + item.img_url + ")" } }),
+    _react2.default.createElement("div", null)
   );
 };
 
