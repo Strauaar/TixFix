@@ -62339,15 +62339,15 @@ var EventShowPage = function (_React$Component) {
       if (this.props.liked_events_ids.includes(this.props.eventQ.id)) {
         return _react2.default.createElement(
           'div',
-          { className: 'header-icon-box event-show-like-box', onClick: function onClick() {
+          { className: 'header-icon-box event-show-like-box liked-box-event', onClick: function onClick() {
               return _this2.handleLikeClick('unlike');
             } },
-          _react2.default.createElement('i', { className: 'fa fa-heart fa-3x header-icon in-image-icon liked-icon shade', 'aria-hidden': 'true' })
+          _react2.default.createElement('i', { className: 'fa fa-heart fa-3x header-icon in-image-icon liked-icon shade show-event-liked', 'aria-hidden': 'true' })
         );
       } else {
         return _react2.default.createElement(
           'div',
-          { className: 'header-icon-box event-show-like-box', onClick: function onClick() {
+          { className: 'header-icon-box event-show-like-box unliked-box-event', onClick: function onClick() {
               return _this2.handleLikeClick('like');
             } },
           _react2.default.createElement('i', { className: 'fa fa-heart fa-3x header-icon in-image-icon shade', 'aria-hidden': 'true' })

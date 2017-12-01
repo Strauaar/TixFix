@@ -33,9 +33,9 @@ class EventShowPage extends React.Component {
 
   renderHeart(){
     if(this.props.liked_events_ids.includes(this.props.eventQ.id)){
-      return <div className="header-icon-box event-show-like-box" onClick={()=> this.handleLikeClick('unlike')}><i className="fa fa-heart fa-3x header-icon in-image-icon liked-icon shade" aria-hidden="true"></i></div>
+      return <div className="header-icon-box event-show-like-box liked-box-event" onClick={()=> this.handleLikeClick('unlike')}><i className="fa fa-heart fa-3x header-icon in-image-icon liked-icon shade show-event-liked" aria-hidden="true"></i></div>
     } else {
-      return <div className="header-icon-box event-show-like-box" onClick={() => this.handleLikeClick('like')}><i className="fa fa-heart fa-3x header-icon in-image-icon shade" aria-hidden="true"></i></div>
+      return <div className="header-icon-box event-show-like-box unliked-box-event" onClick={() => this.handleLikeClick('like')}><i className="fa fa-heart fa-3x header-icon in-image-icon shade" aria-hidden="true"></i></div>
     }
   }
 

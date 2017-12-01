@@ -60,6 +60,28 @@
     align-items: center;
 }
 
+.liked-box-event {
+  animation: 0.5s show ease-out forwards;
+}
+
+.unliked-box-event {
+  animation: 0.5s hide ease-out forwards;
+}
+
+@keyframes hide{
+  0% { background: rgba(255, 255, 255, 0.7) }
+  100% { background: rgba(255, 255, 255, 0.2) }
+}
+
+@keyframes show{
+  0% { background: rgba(255, 255, 255, 0.2) }
+  100% { background: rgba(255, 255, 255, 0.7) }
+}
+
 .shade {
   text-shadow: 4px 4px #9E2436;
+}
+
+.show-event-liked {
+  color: #DE334B;
 }
