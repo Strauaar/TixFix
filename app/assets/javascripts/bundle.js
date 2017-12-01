@@ -55201,11 +55201,16 @@ var _liked_reducer = __webpack_require__(217);
 
 var _liked_reducer2 = _interopRequireDefault(_liked_reducer);
 
+var _liked_events_reducer = __webpack_require__(307);
+
+var _liked_events_reducer2 = _interopRequireDefault(_liked_events_reducer);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = (0, _redux.combineReducers)({
   events: _events_reducer2.default,
   liked_performers_ids: _liked_performers_reducer2.default,
+  liked_events_ids: _liked_events_reducer2.default,
   tickets: _tickets_reducer2.default,
   liked_object_list: _liked_reducer2.default
 });
@@ -55432,6 +55437,11 @@ var likedReducer = function likedReducer() {
     case _like_actions.RECEIVE_LIKED_OBJECTS:
       return action.objects;
     case _like_actions.REMOVE_PERFORMER_LIKE:
+      newState = Object.assign({}, state);
+      delete newState[action.id];
+      return newState;
+      return state;
+    case _like_actions.REMOVE_EVENT_LIKE:
       newState = Object.assign({}, state);
       delete newState[action.id];
       return newState;
@@ -64992,6 +65002,48 @@ var clearFilter = exports.clearFilter = function clearFilter() {
     type: CLEAR_FILTER
   };
 };
+
+/***/ }),
+/* 307 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _like_actions = __webpack_require__(11);
+
+var _session_actions = __webpack_require__(15);
+
+var likedEventsReducer = function likedEventsReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var action = arguments[1];
+
+  Object.freeze(state);
+  var newState = void 0;
+  switch (action.type) {
+    case _like_actions.RECEIVE_ALL_EVENT_LIKES:
+      return action.list;
+    case _like_actions.REMOVE_EVENT_LIKE:
+      newState = Array.from(state);
+      var index = newState.indexOf(action.id);
+      newState.splice(index, 1);
+      return newState;
+    case _like_actions.RECEIVE_EVENT_LIKE:
+      newState = Array.from(state);
+      newState.push(action.id);
+      return newState;
+    case _session_actions.LOGOUT_CURRENT_USER:
+      return [];
+    default:
+      return state;
+  }
+};
+
+exports.default = likedEventsReducer;
 
 /***/ })
 /******/ ]);
