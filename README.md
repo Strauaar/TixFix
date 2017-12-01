@@ -21,3 +21,8 @@ Find events and make money on TixFix.
 
 ## User page
 ![TixFix-Sell-Page](https://github.com/Strauaar/TixFix/blob/no_subcats/screenshots/user-hub.png)
+
+## Technologies
++ [React](https://reactjs.org/)
++ [Ruby](https://www.ruby-lang.org/en/)
++ [Ruby on Rails](http://rubyonrails.org/)
