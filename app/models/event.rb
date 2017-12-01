@@ -21,10 +21,7 @@ class Event < ApplicationRecord
     class_name: :Subevent,
     foreign_key: :event_id
 
-  has_many :event_likes,
-    primary_key: :id,
-    class_name: :EventLike,
-    foreign_key: :event_id
+
 
   def self.filter_date(events, date_filter)
 

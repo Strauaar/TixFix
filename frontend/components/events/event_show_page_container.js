@@ -3,6 +3,7 @@ import EventShowPage from './event_show_page';
 import { withRouter } from 'react-router-dom';
 import { fetchEvent } from '../../actions/event_actions';
 import { fetchEventTickets } from '../../actions/ticket_actions';
+import { createEventLike, deleteEventLike } from '../../actions/like_actions';
 
 const mapStateToProps = state => ({
   eventQ: state.entities.events,

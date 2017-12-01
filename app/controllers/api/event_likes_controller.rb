@@ -6,9 +6,12 @@ class Api::EventLikesController < ApplicationController
   end
 
   def destroy
-    @like = EventLike.find_by(user_id: params[:user_id], event_id: params[:event_id])
-    @like.delete
+    @like = EventLike.find_by(user_id: params[:user_id].to_i, event_id: params[:event_id].to_i)
+    if @like
     render :show
+  else
+    render json: @like.errors.full_messages
+  end
   end
 
   def index

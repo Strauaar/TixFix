@@ -8,6 +8,7 @@ class EventShowPage extends React.Component {
     this.renderDetailsHeader = this.renderDetailsHeader.bind(this);
     this.handleLikeClick = this.handleLikeClick.bind(this);
     this.renderHeart = this.renderHeart.bind(this);
+    this.state = {clicked: false}
   }
 
   componentWillMount(){
@@ -16,17 +17,22 @@ class EventShowPage extends React.Component {
   }
 
   handleLikeClick(type) {
+    console.log(this.props.current_user.id, "user");
+    console.log(this.props.match.params.id, "path");
     if(this.props.current_user === null) {
       this.props.history.push("/session")
     } else if (type === 'unlike') {
       this.props.deleteEventLike(this.props.current_user.id, this.props.match.params.id)
+      this.setState({clicked: false})
     } else if (type === 'like') {
       this.props.createEventLike(this.props.current_user.id, this.props.match.params.id)
+      this.setState({clicked: true})
+
     }
   }
 
   renderHeart(){
-    if(this.props.liked_events_ids.includes(this.props.match.props.id)){
+    if(this.props.liked_events_ids.includes(this.props.eventQ.id)){
       return <div className="header-icon-box" onClick={()=> this.handleLikeClick('unlike')}><i className="fa fa-heart fa-2x header-icon in-image-icon liked-icon" aria-hidden="true"></i></div>
     } else {
       return <div className="header-icon-box" onClick={() => this.handleLikeClick('like')}><i className="fa fa-heart fa-2x header-icon in-image-icon" aria-hidden="true"></i></div>
@@ -71,7 +77,7 @@ class EventShowPage extends React.Component {
           {this.renderDetailsHeader()}
         </div>
         <div className="event-show-like-container">
-
+          {this.renderHeart()}
         </div>
         <div className="event-show-container">
           <div className="event-show-scroll-container">
