@@ -4,7 +4,8 @@ import { fetchLikedPerformers } from '../../actions/like_actions';
 import UserFav from './user_fav';
 
 const mapStateToProps = state => ({
-  liked: state.entities.liked_object_list
+  liked: Object.values(state.entities.liked_object_list),
+  currentUser: state.session.currentUser
 });
 
 const mapDispatchToProps = dispatch => ({

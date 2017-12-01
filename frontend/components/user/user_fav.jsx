@@ -1,10 +1,11 @@
 import React from 'react';
-import LikedCardItem from './liked_card_item';
+import LikedCardItemContainer from './liked_card_item_container';
 
 class UserFav extends React.Component {
   constructor(props) {
     super(props);
     this.renderList = this.renderList.bind(this);
+    this.state={type: 'performer'}
   }
 
   componentDidMount() {
@@ -16,7 +17,7 @@ class UserFav extends React.Component {
       return <span>No one here</span>
     } else {
       return this.props.liked.map(item =>
-        <LikedCardItem item={item}></LikedCardItem>
+        <LikedCardItemContainer current_user={this.props.currentUser} type={this.state.type} item={item}></LikedCardItemContainer>
       )
     }
   }

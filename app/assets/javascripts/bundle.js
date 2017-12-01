@@ -64233,7 +64233,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    liked: state.entities.liked_object_list
+    liked: Object.values(state.entities.liked_object_list),
+    currentUser: state.session.currentUser
   };
 };
 
@@ -64264,9 +64265,9 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _liked_card_item = __webpack_require__(304);
+var _liked_card_item_container = __webpack_require__(305);
 
-var _liked_card_item2 = _interopRequireDefault(_liked_card_item);
+var _liked_card_item_container2 = _interopRequireDefault(_liked_card_item_container);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -64285,6 +64286,7 @@ var UserFav = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (UserFav.__proto__ || Object.getPrototypeOf(UserFav)).call(this, props));
 
     _this.renderList = _this.renderList.bind(_this);
+    _this.state = { type: 'performer' };
     return _this;
   }
 
@@ -64296,6 +64298,8 @@ var UserFav = function (_React$Component) {
   }, {
     key: 'renderList',
     value: function renderList() {
+      var _this2 = this;
+
       if (this.props.liked.length === 0 || this.props.liked === undefined) {
         return _react2.default.createElement(
           'span',
@@ -64304,7 +64308,7 @@ var UserFav = function (_React$Component) {
         );
       } else {
         return this.props.liked.map(function (item) {
-          return _react2.default.createElement(_liked_card_item2.default, { item: item });
+          return _react2.default.createElement(_liked_card_item_container2.default, { current_user: _this2.props.currentUser, type: _this2.state.type, item: item });
         });
       }
     }
@@ -64625,14 +64629,19 @@ Object.defineProperty(exports, "__esModule", {
 var _like_actions = __webpack_require__(27);
 
 var likedReducer = function likedReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments[1];
 
   Object.freeze(state);
   var newState = void 0;
   switch (action.type) {
     case _like_actions.RECEIVE_LIKED_OBJECTS:
-      return Object.values(action.objects);
+      return action.objects;
+    case _like_actions.REMOVE_LIKE:
+      newState = Object.assign({}, state);
+      delete newState[action.id];
+      return newState;
+      return state;
     default:
       return state;
   }
@@ -64651,23 +64660,107 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var LikedCardItem = function LikedCardItem(_ref) {
-  var item = _ref.item;
-  return _react2.default.createElement(
-    "div",
-    { className: "liked-card" },
-    _react2.default.createElement("div", { className: "liked-card-image", style: { backgroundImage: "url(" + item.img_url + ")" } }),
-    _react2.default.createElement("div", null)
-  );
-};
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var LikedCardItem = function (_React$Component) {
+  _inherits(LikedCardItem, _React$Component);
+
+  function LikedCardItem(props) {
+    _classCallCheck(this, LikedCardItem);
+
+    var _this = _possibleConstructorReturn(this, (LikedCardItem.__proto__ || Object.getPrototypeOf(LikedCardItem)).call(this, props));
+
+    _this.handleLikeClick = _this.handleLikeClick.bind(_this);
+    _this.state = { liked: true };
+    return _this;
+  }
+
+  _createClass(LikedCardItem, [{
+    key: 'handleLikeClick',
+    value: function handleLikeClick(type) {
+      switch (type) {
+        case 'performer':
+          this.props.deletePerformerLike(this.props.current_user.id, this.props.item.id);
+          this.setState({ liked: false });
+        default:
+          return null;
+      }
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      if (this.state.liked === false) {
+        return null;
+      } else {
+        return _react2.default.createElement(
+          'div',
+          { className: 'liked-card' },
+          _react2.default.createElement('div', { className: 'liked-card-image', style: { backgroundImage: 'url(' + this.props.item.img_url + ')' } }),
+          _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'div',
+              { className: 'header-icon-box', onClick: function onClick() {
+                  return _this2.handleLikeClick(_this2.props.type);
+                } },
+              _react2.default.createElement('i', { className: 'fa fa-heart fa-2x header-icon in-image-icon liked-icon', 'aria-hidden': 'true' })
+            )
+          )
+        );
+      }
+    }
+  }]);
+
+  return LikedCardItem;
+}(_react2.default.Component);
 
 exports.default = LikedCardItem;
+
+/***/ }),
+/* 305 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = __webpack_require__(3);
+
+var _liked_card_item = __webpack_require__(304);
+
+var _liked_card_item2 = _interopRequireDefault(_liked_card_item);
+
+var _like_actions = __webpack_require__(27);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    deletePerformerLike: function deletePerformerLike(user_id, performer_id) {
+      return dispatch((0, _like_actions.deletePerformerLike)(user_id, performer_id));
+    }
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(_liked_card_item2.default);
 
 /***/ })
 /******/ ]);
