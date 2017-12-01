@@ -62175,7 +62175,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var mapStateToProps = function mapStateToProps(state) {
   return {
     eventQ: state.entities.events,
-    tickets: Object.values(state.entities.tickets)
+    tickets: Object.values(state.entities.tickets),
+    current_user: state.session.currentUser,
+    liked_events_ids: state.entities.liked_events_ids
   };
 };
 
@@ -62186,7 +62188,33 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     fetchEventTickets: function fetchEventTickets(id) {
       return dispatch((0, _ticket_actions.fetchEventTickets)(id));
-    }
+    },
+    deleteEventLike: function (_deleteEventLike) {
+      function deleteEventLike(_x, _x2) {
+        return _deleteEventLike.apply(this, arguments);
+      }
+
+      deleteEventLike.toString = function () {
+        return _deleteEventLike.toString();
+      };
+
+      return deleteEventLike;
+    }(function (user_id, event_id) {
+      return dispatch(deleteEventLike(user_id, event_id));
+    }),
+    createEventLike: function (_createEventLike) {
+      function createEventLike(_x3, _x4) {
+        return _createEventLike.apply(this, arguments);
+      }
+
+      createEventLike.toString = function () {
+        return _createEventLike.toString();
+      };
+
+      return createEventLike;
+    }(function (user_id, event_id) {
+      return dispatch(createEventLike(user_id, event_id));
+    })
   };
 };
 
@@ -62234,6 +62262,8 @@ var EventShowPage = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (EventShowPage.__proto__ || Object.getPrototypeOf(EventShowPage)).call(this, props));
 
     _this.renderDetailsHeader = _this.renderDetailsHeader.bind(_this);
+    _this.handleLikeClick = _this.handleLikeClick.bind(_this);
+    _this.renderHeart = _this.renderHeart.bind(_this);
     return _this;
   }
 
@@ -62244,8 +62274,39 @@ var EventShowPage = function (_React$Component) {
       this.props.fetchEventTickets(this.props.match.params.id);
     }
   }, {
-    key: 'componentDidMount',
-    value: function componentDidMount() {}
+    key: 'handleLikeClick',
+    value: function handleLikeClick(type) {
+      if (this.props.current_user === null) {
+        this.props.history.push("/session");
+      } else if (type === 'unlike') {
+        this.props.deleteEventLike(this.props.current_user.id, this.props.match.params.id);
+      } else if (type === 'like') {
+        this.props.createEventLike(this.props.current_user.id, this.props.match.params.id);
+      }
+    }
+  }, {
+    key: 'renderHeart',
+    value: function renderHeart() {
+      var _this2 = this;
+
+      if (this.props.liked_events_ids.includes(this.props.match.props.id)) {
+        return _react2.default.createElement(
+          'div',
+          { className: 'header-icon-box', onClick: function onClick() {
+              return _this2.handleLikeClick('unlike');
+            } },
+          _react2.default.createElement('i', { className: 'fa fa-heart fa-2x header-icon in-image-icon liked-icon', 'aria-hidden': 'true' })
+        );
+      } else {
+        return _react2.default.createElement(
+          'div',
+          { className: 'header-icon-box', onClick: function onClick() {
+              return _this2.handleLikeClick('like');
+            } },
+          _react2.default.createElement('i', { className: 'fa fa-heart fa-2x header-icon in-image-icon', 'aria-hidden': 'true' })
+        );
+      }
+    }
   }, {
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(newProps) {
@@ -62316,6 +62377,7 @@ var EventShowPage = function (_React$Component) {
           { className: 'event-show-top' },
           this.renderDetailsHeader()
         ),
+        _react2.default.createElement('div', { className: 'event-show-like-container' }),
         _react2.default.createElement(
           'div',
           { className: 'event-show-container' },

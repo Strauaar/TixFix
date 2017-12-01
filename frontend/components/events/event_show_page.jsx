@@ -6,6 +6,8 @@ class EventShowPage extends React.Component {
   constructor(props) {
     super(props)
     this.renderDetailsHeader = this.renderDetailsHeader.bind(this);
+    this.handleLikeClick = this.handleLikeClick.bind(this);
+    this.renderHeart = this.renderHeart.bind(this);
   }
 
   componentWillMount(){
@@ -13,7 +15,22 @@ class EventShowPage extends React.Component {
     this.props.fetchEventTickets(this.props.match.params.id);
   }
 
-  componentDidMount() {
+  handleLikeClick(type) {
+    if(this.props.current_user === null) {
+      this.props.history.push("/session")
+    } else if (type === 'unlike') {
+      this.props.deleteEventLike(this.props.current_user.id, this.props.match.params.id)
+    } else if (type === 'like') {
+      this.props.createEventLike(this.props.current_user.id, this.props.match.params.id)
+    }
+  }
+
+  renderHeart(){
+    if(this.props.liked_events_ids.includes(this.props.match.props.id)){
+      return <div className="header-icon-box" onClick={()=> this.handleLikeClick('unlike')}><i className="fa fa-heart fa-2x header-icon in-image-icon liked-icon" aria-hidden="true"></i></div>
+    } else {
+      return <div className="header-icon-box" onClick={() => this.handleLikeClick('like')}><i className="fa fa-heart fa-2x header-icon in-image-icon" aria-hidden="true"></i></div>
+    }
   }
 
   componentWillReceiveProps(newProps) {
@@ -52,6 +69,9 @@ class EventShowPage extends React.Component {
       <div className="event-show-page">
         <div className="event-show-top">
           {this.renderDetailsHeader()}
+        </div>
+        <div className="event-show-like-container">
+
         </div>
         <div className="event-show-container">
           <div className="event-show-scroll-container">
