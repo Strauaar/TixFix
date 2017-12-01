@@ -60,6 +60,10 @@
     align-items: center;
 }
 
+.event-show-like-box:hover {
+  cursor: pointer;
+}
+
 .liked-box-event {
   animation: 0.5s show ease-out forwards;
 }

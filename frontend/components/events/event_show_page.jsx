@@ -71,6 +71,9 @@ class EventShowPage extends React.Component {
 
 
   render() {
+    if (this.props.eventQ === undefined || this.props.tickets === undefined) {
+      return null;
+    }
     return (
       <div className="event-show-page">
         <div className="event-show-top">

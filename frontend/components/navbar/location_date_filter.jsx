@@ -24,6 +24,8 @@ class LocationDateFilter extends React.Component{
   }
 
   componentWillUnmount() {
+    $("body").off.bind(this);
+
     $("body").off('click', (e) => {
       if ($(e.target).context.className === "city-search"){
       } else if($(e.target).context.className === "date-select") {

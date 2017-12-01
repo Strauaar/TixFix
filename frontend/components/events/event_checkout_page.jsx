@@ -20,7 +20,8 @@ class EventCheckoutPage extends React.Component {
         method: 'PATCH',
         url: `api/tickets/${ticketId}`,
         data: { user_id: user.id }
-      })
+      }).then(res =>  this.props.history.push("/myhub"))
+
     }
   }
 

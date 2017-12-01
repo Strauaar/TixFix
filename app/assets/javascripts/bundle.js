@@ -60974,6 +60974,8 @@ var LocationDateFilter = function (_React$Component) {
     value: function componentWillUnmount() {
       var _this3 = this;
 
+      $("body").off.bind(this);
+
       $("body").off('click', function (e) {
         if ($(e.target).context.className === "city-search") {} else if ($(e.target).context.className === "date-select") {} else {
           _this3.setState({ dateClicked: false, locationClicked: false });
@@ -62417,6 +62419,9 @@ var EventShowPage = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
+      if (this.props.eventQ === undefined || this.props.tickets === undefined) {
+        return null;
+      }
       return _react2.default.createElement(
         'div',
         { className: 'event-show-page' },
@@ -63033,6 +63038,8 @@ var EventCheckoutPage = function (_React$Component) {
   }, {
     key: 'updateTicket',
     value: function updateTicket(ticketId, user) {
+      var _this2 = this;
+
       if (user === null) {
         this.props.history.push("/session");
       } else {
@@ -63040,13 +63047,15 @@ var EventCheckoutPage = function (_React$Component) {
           method: 'PATCH',
           url: 'api/tickets/' + ticketId,
           data: { user_id: user.id }
+        }).then(function (res) {
+          return _this2.props.history.push("/myhub");
         });
       }
     }
   }, {
     key: 'render',
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
 
       var _props = this.props,
           eventQ = _props.eventQ,
@@ -63222,7 +63231,7 @@ var EventCheckoutPage = function (_React$Component) {
             _react2.default.createElement(
               'button',
               { onClick: function onClick() {
-                  return _this2.updateTicket(ticket.id, currentUser);
+                  return _this3.updateTicket(ticket.id, currentUser);
                 } },
               'Go to checkout'
             )
