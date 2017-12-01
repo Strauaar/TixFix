@@ -18,7 +18,7 @@ football_subcategory = Category.create(name:"Football", parent_category_id: spor
 
 jayz_performer = Performer.create(name: "Jay Z", category_id: rap_subcategory.id)
 kaskade_performer = Performer.create(name:"Kaskade", category_id: electronic_subcategory.id)
-niners_performer = Performer.create(name:"49ers" category_id: football_subcategory.id)
+niners_performer = Performer.create(name:"49ers", category_id: football_subcategory.id)
 
 billyg_venue = Venue.create(name:"Bill Graham", location:"123 Location", city: "San Franacisco", state:"CA")
 
