@@ -24,5 +24,76 @@ Find events and make money on TixFix.
 
 ## Technologies
 + [React](https://reactjs.org/)
++ [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 + [Ruby](https://www.ruby-lang.org/en/)
 + [Ruby on Rails](http://rubyonrails.org/)
+
+## Code
+
+### Challenges
+###### Vertical Float:
++ In order to maintain consistent spacing in between event cards on the home page, a custom vertical float was implemented to allow for dynamic card sizing and maintain order of incoming events.
+
+
+      import React from 'react';
+      import { merge } from 'lodash';
+
+      class EventsUl extends React.Component {
+        constructor(props){
+          super(props)
+        }
+
+        loadMoreEvents(childrenCount, categoryId) {
+          if(categoryId === undefined) {
+            this.props.fetchMoreEvents(childrenCount, merge({}, this.props.filter,{categoryId: null}));
+          } else {
+            this.props.fetchMoreEvents(childrenCount, merge({}, this.props.filter,{categoryId}));
+          }
+        }
+
+        renderLoadMoreButton(childrenCount) {
+          if(childrenCount % 10 === 0 && childrenCount !== 0) {
+            return <div>
+              <button onClick={() =>
+                  this.loadMoreEvents(childrenCount, this.props.categoryId)} className="load-more-btn">
+                  Load More
+                </button>
+              </div>
+          }
+        }
+
+        renderEventCards(children, start_index) {
+          let result = [];
+          for (let i = start_index; i < children.length; i+=3) {
+            result.push(children[i]);
+          }
+          return result.map(EventCard => EventCard);
+        }
+        render() {
+          const childrenCount = React.Children.count(this.props.children);
+          const children = React.Children.toArray(this.props.children);
+
+          return (
+            <div>
+              <div className="event-list">
+                <div className="col">
+                  {
+                    this.renderEventCards(children, 0)
+                  }
+                </div>
+                <div className="col">
+                  {
+                    this.renderEventCards(children, 1)
+                  }
+                </div>
+                <div className="col">
+                  {
+                    this.renderEventCards(children, 2)
+                  }
+                </div>
+              </div>
+              {this.renderLoadMoreButton(childrenCount)}
+            </div>
+          )
+        }
+      }
