@@ -76,13 +76,14 @@ class EventShowPage extends React.Component {
         <div className="event-show-top">
           {this.renderDetailsHeader()}
         </div>
-        <div className="event-show-like-container">
-          {this.renderHeart()}
-        </div>
+
         <div className="event-show-container">
+
           <div className="event-show-scroll-container">
+
             <div className="events-show-filter-block">
-              <div>
+              <div className="event-show-like-container">
+                {this.renderHeart()}
               </div>
             </div>
             <div className="event-show-tickets-container">

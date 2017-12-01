@@ -62426,11 +62426,6 @@ var EventShowPage = function (_React$Component) {
         ),
         _react2.default.createElement(
           'div',
-          { className: 'event-show-like-container' },
-          this.renderHeart()
-        ),
-        _react2.default.createElement(
-          'div',
           { className: 'event-show-container' },
           _react2.default.createElement(
             'div',
@@ -62438,7 +62433,11 @@ var EventShowPage = function (_React$Component) {
             _react2.default.createElement(
               'div',
               { className: 'events-show-filter-block' },
-              _react2.default.createElement('div', null)
+              _react2.default.createElement(
+                'div',
+                { className: 'event-show-like-container' },
+                this.renderHeart()
+              )
             ),
             _react2.default.createElement(
               'div',
