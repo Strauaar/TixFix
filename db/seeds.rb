@@ -5,22 +5,61 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+#USERS
 demo_user1 = User.create(first_name: "demo_user", last_name: "1", email: "demoemail@email.com", password: "password")
 demo_user2 = User.create(first_name: "demo_user", last_name: "2", email: "email@email.com", password: "password")
 
+#MAIN CATEGORIES
 concerts_cateogry = Category.create(name:"Concerts")
 sports_category = Category.create(name:"Sports")
 theater_category = Category.create(name:"Theater and Comedy")
 
+#SUBCATEGORIES
+
+#CONCERTS SUBCATEGORIES
 electronic_subcategory = Category.create(name: "Electronic", parent_category_id: concerts_cateogry.id)
 rap_subcategory = Category.create(name:"Rap and Hip Hop", parent_category_id: concerts_cateogry.id)
-football_subcategory = Category.create(name:"Football", parent_category_id: sports_category.id)
+acoustic_subcategory = Category.create(name:"Acoustic", parent_category_id: concerts_cateogry.id)
+house_subcategory = Category.create(name:"House", parent_category_id: concerts_cateogry.id)
+rb_subcategory = Category.create(name:"R&B and Soul" parent_category_id: concerts_cateogry.id)
 
+
+#SPORTS SUBCATEGORIES
+football_subcategory = Category.create(name:"Football", parent_category_id: sports_category.id)
+baseball_subcategory = Category.create(name:"Baseball", parent_category_id: sports_category.id)
+basketball_subcategory = Category.create(name:"Basketball", parent_category_id: sports_category.id)
+hockey_subcategory = Category.create(name:"Hockey", parent_category_id:sports_category.id)
+soccer_subcategory = Category.create(name:"Soccer", parent_category_id: sports_category.id)
+
+#THEATER SUBCATEGORIES
+classical_subcategory = Category.create(name:"Classical Music and Opera", parent_category_id:theater_category.id)
+festivals_subcategory = Category.create(name:"Festivals and Fairs", parent_category_id: theater_category.id)
+musical_subcategory = Category.create(name:"Musicals", parent_category_id: theater_category.id)
+plays_subcategory = Category.create(name:"Plays", parent_category_id:theater_category.id)
+dance_subcategory = Category.create(name: "Dance/Ballet", parent_category_id: theater_category.id)
+
+
+#PERFORMERS
+
+#CONCERT PERFORMERS
 jayz_performer = Performer.create(name: "Jay Z", category_id: rap_subcategory.id)
 kaskade_performer = Performer.create(name:"Kaskade", category_id: electronic_subcategory.id)
-niners_performer = Performer.create(name:"49ers", category_id: football_subcategory.id)
+khalid_performer = Performer.create(name:"Khalid", category_id: rb_subcategory.id)
+san_holo = Performer.creaet(name:"San Holo", category_id: electronic_subcategory.id)
 
-billyg_venue = Venue.create(name:"Bill Graham", location:"123 Location", city: "San Franacisco", state:"CA")
+
+#SPORTS PERFORMERS
+niners_performer = Performer.create(name:"San Francisco 49ers", category_id: football_subcategory.id)
+raiders_performer = Performer.create(name:"Oakland Raiders", category_id: football_subcategory.id)
+giants_performer = Performer.create(name:"San Francisco Giants", category_id: baseball_subcategory.id)
+
+#THEATER PERFORMERS
+nutcracker_performer = Performer.create(name:"The Nutcracker San Francisco", category_id: dance_subcategory.id)
+county_fair_performer = Performer.create(name:"County Fair", category_id:festivals_subcategory.id)
+
+
+billyg_venue = Venue.create(name:"Bill Graham Civic Auditorium", location:"123 Location", city: "San Franacisco", state:"CA")
 
 kaskade_event = Event.create(
 name: "Kaskade",
