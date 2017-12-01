@@ -1,11 +1,13 @@
 .liked-card {
-  width: 350px;
-  height: 300px;
+  width: 420px;
+  height: 260px;
+  border: 1px solid #E6E9EB;
 }
 
 .liked-card-image {
   width: 100%;
   height: 80%;
-  background-size: cover;
+  background-repeat: no-repeat;
   background-position: 50% 50%;
+  border-bottom: 1px solid #828282;
 }
