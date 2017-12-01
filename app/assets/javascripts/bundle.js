@@ -23161,7 +23161,7 @@ module.exports = function(module) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.deletePerformerLike = exports.createPerformerLike = exports.fetchPerformerLikes = exports.REMOVE_LIKE = exports.RECEIVE_ALL_PERFORMER_LIKES = exports.RECEIVE_LIKE = undefined;
+exports.fetchLikedPerformers = exports.deletePerformerLike = exports.createPerformerLike = exports.fetchPerformerLikes = exports.RECEIVE_LIKED_OBJECTS = exports.REMOVE_LIKE = exports.RECEIVE_ALL_PERFORMER_LIKES = exports.RECEIVE_LIKE = undefined;
 
 var _like_util = __webpack_require__(215);
 
@@ -23172,6 +23172,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 var RECEIVE_LIKE = exports.RECEIVE_LIKE = "RECEIVE _LIKE";
 var RECEIVE_ALL_PERFORMER_LIKES = exports.RECEIVE_ALL_PERFORMER_LIKES = "RECEIVE_ALL_PERFORMER_LIKES";
 var REMOVE_LIKE = exports.REMOVE_LIKE = "REMOVE_LIKE";
+var RECEIVE_LIKED_OBJECTS = exports.RECEIVE_LIKED_OBJECTS = "RECEIVE_LIKED_OBJECTS";
 
 var receiveAllPerformerLikes = function receiveAllPerformerLikes(performer_id_list) {
   return {
@@ -23191,6 +23192,13 @@ var removeLike = function removeLike(unliked_performer_id) {
   return {
     type: REMOVE_LIKE,
     id: unliked_performer_id
+  };
+};
+
+var receiveLikedObjects = function receiveLikedObjects(objects) {
+  return {
+    type: RECEIVE_LIKED_OBJECTS,
+    objects: objects
   };
 };
 
@@ -23214,6 +23222,14 @@ var deletePerformerLike = exports.deletePerformerLike = function deletePerformer
   return function (dispatch) {
     return LikeApiUtil.deletePerformerLike(user_id, performer_id).then(function (unliked_performer_id_obj) {
       return dispatch(removeLike(unliked_performer_id_obj.id));
+    });
+  };
+};
+
+var fetchLikedPerformers = exports.fetchLikedPerformers = function fetchLikedPerformers() {
+  return function (dispatch) {
+    return LikeApiUtil.fetchLikedPerformers().then(function (objList) {
+      return dispatch(receiveLikedObjects(objList));
     });
   };
 };
@@ -55090,12 +55106,17 @@ var _tickets_reducer = __webpack_require__(216);
 
 var _tickets_reducer2 = _interopRequireDefault(_tickets_reducer);
 
+var _liked_reducer = __webpack_require__(303);
+
+var _liked_reducer2 = _interopRequireDefault(_liked_reducer);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = (0, _redux.combineReducers)({
   events: _events_reducer2.default,
   liked_performers_ids: _liked_performers_reducer2.default,
-  tickets: _tickets_reducer2.default
+  tickets: _tickets_reducer2.default,
+  liked_object_list: _liked_reducer2.default
 });
 
 /***/ }),
@@ -55217,6 +55238,13 @@ var deletePerformerLike = exports.deletePerformerLike = function deletePerformer
       performer_id: performer_id,
       user_id: user_id
     }
+  });
+};
+
+var fetchLikedPerformers = exports.fetchLikedPerformers = function fetchLikedPerformers() {
+  return $.ajax({
+    method: 'GET',
+    url: '/api/user/liked_performers'
   });
 };
 
@@ -64195,6 +64223,8 @@ var _reactRedux = __webpack_require__(3);
 
 var _reactRouterDom = __webpack_require__(2);
 
+var _like_actions = __webpack_require__(27);
+
 var _user_fav = __webpack_require__(300);
 
 var _user_fav2 = _interopRequireDefault(_user_fav);
@@ -64202,11 +64232,17 @@ var _user_fav2 = _interopRequireDefault(_user_fav);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state) {
-  return {};
+  return {
+    liked: state.entities.liked_object_list
+  };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {};
+  return {
+    fetchLikedPerformers: function fetchLikedPerformers() {
+      return dispatch((0, _like_actions.fetchLikedPerformers)());
+    }
+  };
 };
 
 exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_user_fav2.default));
@@ -64228,6 +64264,10 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _liked_card_item = __webpack_require__(304);
+
+var _liked_card_item2 = _interopRequireDefault(_liked_card_item);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -64242,52 +64282,75 @@ var UserFav = function (_React$Component) {
   function UserFav(props) {
     _classCallCheck(this, UserFav);
 
-    return _possibleConstructorReturn(this, (UserFav.__proto__ || Object.getPrototypeOf(UserFav)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (UserFav.__proto__ || Object.getPrototypeOf(UserFav)).call(this, props));
+
+    _this.renderList = _this.renderList.bind(_this);
+    return _this;
   }
 
   _createClass(UserFav, [{
-    key: "render",
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.props.fetchLikedPerformers();
+    }
+  }, {
+    key: 'renderList',
+    value: function renderList() {
+      if (this.props.liked.length === 0 || this.props.liked === undefined) {
+        return _react2.default.createElement(
+          'span',
+          null,
+          'No one here'
+        );
+      } else {
+        return this.props.liked.map(function (item) {
+          return _react2.default.createElement(_liked_card_item2.default, { item: item });
+        });
+      }
+    }
+  }, {
+    key: 'render',
     value: function render() {
       return _react2.default.createElement(
-        "div",
-        { className: "user-fav-whole-container" },
+        'div',
+        { className: 'user-fav-whole-container' },
         _react2.default.createElement(
-          "div",
-          { className: "user-fav-subcontainer" },
+          'div',
+          { className: 'user-fav-subcontainer' },
           _react2.default.createElement(
-            "div",
-            { className: "user-fav-options-container" },
+            'div',
+            { className: 'user-fav-options-container' },
             _react2.default.createElement(
-              "ul",
-              { className: "user-fav-list" },
+              'ul',
+              { className: 'user-fav-list' },
               _react2.default.createElement(
-                "button",
-                { className: "user-fav-button" },
-                "Performers"
+                'button',
+                { className: 'user-fav-button' },
+                'Performers'
               ),
               _react2.default.createElement(
-                "button",
-                { className: "user-fav-button" },
-                "Events"
+                'button',
+                { className: 'user-fav-button' },
+                'Events'
               )
             )
           ),
           _react2.default.createElement(
-            "div",
-            { className: "user-fav-note" },
+            'div',
+            { className: 'user-fav-note' },
             _react2.default.createElement(
-              "span",
+              'span',
               null,
-              "Click the heart to remove from favorites"
+              'Click the heart to remove from favorites'
             )
           ),
           _react2.default.createElement(
-            "div",
-            { className: "user-fav-card-list-container" },
+            'div',
+            { className: 'user-fav-card-list-container' },
             _react2.default.createElement(
-              "ul",
-              { className: "user-fav-card-list" },
-              "PUT LIST HERE"
+              'ul',
+              { className: 'user-fav-card-list' },
+              this.renderList()
             )
           )
         )
@@ -64547,6 +64610,63 @@ var Footer = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = Footer;
+
+/***/ }),
+/* 303 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _like_actions = __webpack_require__(27);
+
+var likedReducer = function likedReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var action = arguments[1];
+
+  Object.freeze(state);
+  var newState = void 0;
+  switch (action.type) {
+    case _like_actions.RECEIVE_LIKED_OBJECTS:
+      return Object.values(action.objects);
+    default:
+      return state;
+  }
+};
+
+exports.default = likedReducer;
+
+/***/ }),
+/* 304 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var LikedCardItem = function LikedCardItem(_ref) {
+  var item = _ref.item;
+  return _react2.default.createElement(
+    'div',
+    null,
+    'hi'
+  );
+};
+
+exports.default = LikedCardItem;
 
 /***/ })
 /******/ ]);

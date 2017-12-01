@@ -1,0 +1,29 @@
+.user-fav-whole-container {
+  width: 100%;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+.user-fav-subcontainer {
+  margin-top: 15px;
+  width: 70;
+}
+
+.user-fav-list {
+  padding: 0;
+  margin: 0;
+
+}
+
+.user-fav-list button:first-child {
+  margin-left: 0;
+}
+
+
+.user-fav-button {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 16px;
+  border: none;
+  height: 45px;
+  width: 160px;
+  margin-left: 20px;
+}

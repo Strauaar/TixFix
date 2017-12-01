@@ -27,3 +27,10 @@ export const deletePerformerLike = (user_id, performer_id) => (
           }
   })
 );
+
+export const fetchLikedPerformers = () => (
+  $.ajax({
+    method: 'GET',
+    url: '/api/user/liked_performers'
+  })
+);

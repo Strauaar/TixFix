@@ -50,8 +50,14 @@ class Api::UsersController < ApplicationController
     render :tickets
   end
 
+  def liked_performers
+    @performers = current_user.performers_liked
+    render :liked_performers
+  end
+
   def user_params
     params.permit(:first_name, :last_name, :email, :password)
   end
+
 
 end

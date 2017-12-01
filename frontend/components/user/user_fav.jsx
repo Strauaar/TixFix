@@ -1,8 +1,24 @@
 import React from 'react';
+import LikedCardItem from './liked_card_item';
 
 class UserFav extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
+    this.renderList = this.renderList.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.fetchLikedPerformers();
+  }
+
+  renderList() {
+    if(this.props.liked.length === 0 || this.props.liked === undefined) {
+      return <span>No one here</span>
+    } else {
+      return this.props.liked.map(item =>
+        <LikedCardItem item={item}></LikedCardItem>
+      )
+    }
   }
 
   render() {
@@ -22,7 +38,9 @@ class UserFav extends React.Component {
           </div>
           <div className="user-fav-card-list-container">
             <ul className="user-fav-card-list">
-              PUT LIST HERE
+              {
+                this.renderList()
+              }
             </ul>
           </div>
         </div>
