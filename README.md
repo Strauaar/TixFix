@@ -14,4 +14,7 @@ Find events and make money on TixFix.
 ![TixFix-Home](https://github.com/Strauaar/TixFix/blob/no_subcats/screenshots/tixfix-home.png "TixFix-Home")
 
 ## Login
-![Tix-Fix-Login]()
+![TixFix-Login](https://github.com/Strauaar/TixFix/blob/no_subcats/screenshots/login-page.png)
+
+## Sell Tickets
+![TixFix-Sell-Page](https://github.com/Strauaar/TixFix/blob/no_subcats/screenshots/sell-tickets-page.png)

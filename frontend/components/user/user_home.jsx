@@ -13,7 +13,7 @@ class UserHome extends React.Component {
     this.renderTicketListings = this.renderTicketListings.bind(this);
     this.renderSales = this.renderSales.bind(this);
     this.renderBoughtTickets = this.renderBoughtTickets.bind(this);
-    this.state = {cumulative_sold_price: null, bought_tickets: null, sold_tickets: null, selling_tickets: null}
+    this.state = {cumulative_sold_price: null, bought_tickets: null, sold_tickets: null, selling_tickets: null};
   }
 
 
@@ -181,7 +181,8 @@ class UserHome extends React.Component {
   }
 
   render() {
-        if(this.props.events === undefined || this.state.cumulative_sold_price === null || this.state.bought_tickets === null || this.state.sold_tickets === null || this.state.selling_tickets === null) {
+
+    if(this.props.events === undefined) {
       return null
     }
     return (

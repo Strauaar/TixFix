@@ -26,8 +26,8 @@ class MyHub extends React.Component {
         </UserNavBar>
         <div>
           <Switch>
-            <ProtectedRoute path="/myhub/favorites" component={UserFavContainer} />
-            <ProtectedRoute path="/myhub" component={UserHomeContainer} />
+            <Route path="/myhub/favorites" component={UserFavContainer} />
+            <Route path="/myhub" component={UserHomeContainer} />
           </Switch>
         </div>
       </div>

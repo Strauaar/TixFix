@@ -60075,7 +60075,7 @@ var App = function (_React$Component) {
           _react2.default.createElement(_reactRouterDom.Route, { path: '/subcategory/:id', component: _subcategory_page_container2.default }),
           _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/tickets/sell', component: _tickets_sell_splash_page_container2.default }),
           _react2.default.createElement(_reactRouterDom.Route, { path: '/events/:eventId/sell', component: _sell_ticket_page_container2.default }),
-          _react2.default.createElement(_route_util.ProtectedRoute, { path: '/myhub', component: _myhub_container2.default })
+          _react2.default.createElement(_reactRouterDom.Route, { path: '/myhub', component: _myhub_container2.default })
         ),
         _react2.default.createElement(_reactRouterDom.Route, { path: '/category/:id', component: _subcategory_list_container2.default }),
         _react2.default.createElement(
@@ -62307,7 +62307,6 @@ var EventShowPage = function (_React$Component) {
   }, {
     key: 'handleLikeClick',
     value: function handleLikeClick(type) {
-      debugger;
       if (this.props.current_user === null) {
         this.props.history.push("/session");
       } else if (type === 'unlike') {
@@ -63982,8 +63981,8 @@ var MyHub = function (_React$Component) {
           _react2.default.createElement(
             _reactRouterDom.Switch,
             null,
-            _react2.default.createElement(_route_util.ProtectedRoute, { path: '/myhub/favorites', component: _user_fav_container2.default }),
-            _react2.default.createElement(_route_util.ProtectedRoute, { path: '/myhub', component: _user_home_container2.default })
+            _react2.default.createElement(_reactRouterDom.Route, { path: '/myhub/favorites', component: _user_fav_container2.default }),
+            _react2.default.createElement(_reactRouterDom.Route, { path: '/myhub', component: _user_home_container2.default })
           )
         )
       );
@@ -64459,7 +64458,8 @@ var UserHome = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      if (this.props.events === undefined || this.state.cumulative_sold_price === null || this.state.bought_tickets === null || this.state.sold_tickets === null || this.state.selling_tickets === null) {
+
+      if (this.props.events === undefined) {
         return null;
       }
       return _react2.default.createElement(

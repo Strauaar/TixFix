@@ -56,7 +56,7 @@ class App extends React.Component {
           <Route path="/subcategory/:id" component={SubCategoryPageContainer} />
           <Route exact path="/tickets/sell" component={TicketSellSplashPageContainer} />
           <Route path="/events/:eventId/sell" component={SellTicketPageContainer} />
-          <ProtectedRoute path="/myhub" component={MyHubContainer} />
+          <Route path="/myhub" component={MyHubContainer} />
         </Switch>
 
         <Route path="/category/:id" component={SubCategoryListContainer} />
