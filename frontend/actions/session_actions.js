@@ -1,6 +1,6 @@
 import * as SessionApiUtil from '../utils/session_util';
 import { receiveErrors } from './error_actions';
-import { fetchPerformerLikes } from './like_actions';
+import { fetchPerformerLikes, fetchEventLikes } from './like_actions';
 
 export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 export const LOGOUT_CURRENT_USER = "LOGOUT_CURRENT_USER";
@@ -23,6 +23,9 @@ export const loginUser = (user) => dispatch => (
     )
     .then(
       () => dispatch(fetchPerformerLikes())
+    )
+    .then(
+      () => dispatch(fetchEventLikes())
     )
 );
 

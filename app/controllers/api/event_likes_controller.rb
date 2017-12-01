@@ -12,6 +12,7 @@ class Api::EventLikesController < ApplicationController
   end
 
   def index
-
+    @liked_events = current_user.events_liked
+    render :index
   end
 end

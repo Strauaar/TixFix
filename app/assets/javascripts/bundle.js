@@ -22279,7 +22279,7 @@ module.exports = emptyFunction;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.fetchLikedPerformers = exports.deletePerformerLike = exports.createPerformerLike = exports.fetchPerformerLikes = exports.RECEIVE_LIKED_OBJECTS = exports.REMOVE_PERFORMER_LIKE = exports.RECEIVE_ALL_PERFORMER_LIKES = exports.RECEIVE_LIKE = undefined;
+exports.fetchLikedEvents = exports.deleteEventLike = exports.createEventLike = exports.fetchEventLikes = exports.fetchLikedPerformers = exports.deletePerformerLike = exports.createPerformerLike = exports.fetchPerformerLikes = exports.RECEIVE_LIKED_OBJECTS = exports.REMOVE_EVENT_LIKE = exports.RECEIVE_ALL_EVENT_LIKES = exports.RECEIVE_EVENT_LIKE = exports.REMOVE_PERFORMER_LIKE = exports.RECEIVE_ALL_PERFORMER_LIKES = exports.RECEIVE_PERFORMER_LIKE = undefined;
 
 var _like_util = __webpack_require__(215);
 
@@ -22287,9 +22287,12 @@ var LikeApiUtil = _interopRequireWildcard(_like_util);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-var RECEIVE_LIKE = exports.RECEIVE_LIKE = "RECEIVE _LIKE";
+var RECEIVE_PERFORMER_LIKE = exports.RECEIVE_PERFORMER_LIKE = "RECEIVE_PERFORMER_LIKE";
 var RECEIVE_ALL_PERFORMER_LIKES = exports.RECEIVE_ALL_PERFORMER_LIKES = "RECEIVE_ALL_PERFORMER_LIKES";
 var REMOVE_PERFORMER_LIKE = exports.REMOVE_PERFORMER_LIKE = "REMOVE_PERFORMER_LIKE";
+var RECEIVE_EVENT_LIKE = exports.RECEIVE_EVENT_LIKE = "RECEIVE_EVENT_LIKE";
+var RECEIVE_ALL_EVENT_LIKES = exports.RECEIVE_ALL_EVENT_LIKES = "RECEIVE_ALL_EVENT_LIKES";
+var REMOVE_EVENT_LIKE = exports.REMOVE_EVENT_LIKE = "REMOVE_EVENT_LIKE";
 var RECEIVE_LIKED_OBJECTS = exports.RECEIVE_LIKED_OBJECTS = "RECEIVE_LIKED_OBJECTS";
 
 var receiveAllPerformerLikes = function receiveAllPerformerLikes(performer_id_list) {
@@ -22299,9 +22302,9 @@ var receiveAllPerformerLikes = function receiveAllPerformerLikes(performer_id_li
   };
 };
 
-var receiveLike = function receiveLike(liked_performer_id) {
+var receivePerformerLike = function receivePerformerLike(liked_performer_id) {
   return {
-    type: RECEIVE_LIKE,
+    type: RECEIVE_PERFORMER_LIKE,
     id: liked_performer_id
   };
 };
@@ -22331,7 +22334,7 @@ var fetchPerformerLikes = exports.fetchPerformerLikes = function fetchPerformerL
 var createPerformerLike = exports.createPerformerLike = function createPerformerLike(user_id, performer_id) {
   return function (dispatch) {
     return LikeApiUtil.createPerformerLike(user_id, performer_id).then(function (liked_performer_id_obj) {
-      return dispatch(receiveLike(liked_performer_id_obj.performer_id));
+      return dispatch(receivePerformerLike(liked_performer_id_obj.performer_id));
     });
   };
 };
@@ -22347,6 +22350,59 @@ var deletePerformerLike = exports.deletePerformerLike = function deletePerformer
 var fetchLikedPerformers = exports.fetchLikedPerformers = function fetchLikedPerformers() {
   return function (dispatch) {
     return LikeApiUtil.fetchLikedPerformers().then(function (objList) {
+      return dispatch(receiveLikedObjects(objList));
+    });
+  };
+};
+
+var receiveAllEventLikes = function receiveAllEventLikes(event_id_list) {
+  return {
+    type: RECEIVE_ALL_EVENT_LIKES,
+    list: event_id_list
+  };
+};
+
+var receiveEventLike = function receiveEventLike(liked_event_id) {
+  return {
+    type: RECEIVE_EVENT_LIKE,
+    id: liked_event_id
+  };
+};
+
+var removeEventLike = function removeEventLike(unliked_event_id) {
+  return {
+    type: REMOVE_EVENT_LIKE,
+    id: unliked_event_id
+  };
+};
+
+var fetchEventLikes = exports.fetchEventLikes = function fetchEventLikes() {
+  return function (dispatch) {
+    return LikeApiUtil.fetchEventLikes().then(function (event_id_list) {
+      return dispatch(receiveAllEventLikes(event_id_list));
+    });
+  };
+};
+
+var createEventLike = exports.createEventLike = function createEventLike(user_id, event_id) {
+  return function (dispatch) {
+    return LikeApiUtil.createEventLike(user_id, event_id).then(function (liked_event_id_obj) {
+      return dispatch(receiveEventLike(liked_event_id_obj.event_id));
+    });
+  };
+};
+
+var deleteEventLike = exports.deleteEventLike = function deleteEventLike(user_id, event_id) {
+  return function (dispatch) {
+    return LikeApiUtil.deleteEventLike(user_id, event_id).then(function (unliked_event_id_obj) {
+      return dispatch(removeEventLike(unliked_event_id_obj.id));
+    });
+  };
+};
+
+var fetchLikedEvents = exports.fetchLikedEvents = function fetchLikedEvents() {
+  return function (dispatch) {
+    return LikeApiUtil.fetchLikedEvents().then(function (objList) {
       return dispatch(receiveLikedObjects(objList));
     });
   };
@@ -22592,6 +22648,8 @@ var loginUser = exports.loginUser = function loginUser(user) {
       return dispatch((0, _error_actions.receiveErrors)(errors.responseJSON));
     }).then(function () {
       return dispatch((0, _like_actions.fetchPerformerLikes)());
+    }).then(function () {
+      return dispatch((0, _like_actions.fetchEventLikes)());
     });
   };
 };
@@ -55221,7 +55279,7 @@ var likedPerformersReducer = function likedPerformersReducer() {
       var index = newState.indexOf(action.id);
       newState.splice(index, 1);
       return newState;
-    case _like_actions.RECEIVE_LIKE:
+    case _like_actions.RECEIVE_PERFORMER_LIKE:
       newState = Array.from(state);
       newState.push(action.id);
       return newState;
@@ -55244,6 +55302,43 @@ exports.default = likedPerformersReducer;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+var createEventLike = exports.createEventLike = function createEventLike(user_id, event_id) {
+  return $.ajax({
+    method: 'POST',
+    url: '/api/event_likes',
+    data: {
+      event_id: event_id,
+      user_id: user_id
+    }
+  });
+};
+
+var fetchEventLikes = exports.fetchEventLikes = function fetchEventLikes(user_id) {
+  return $.ajax({
+    method: 'GET',
+    url: '/api/event_likes',
+    data: { user_id: user_id }
+  });
+};
+
+var deleteEventLike = exports.deleteEventLike = function deleteEventLike(user_id, event_id) {
+  return $.ajax({
+    method: 'DELETE',
+    url: '/api/event_likes/1',
+    data: {
+      event_id: event_id,
+      user_id: user_id
+    }
+  });
+};
+
+var fetchLikedEvents = exports.fetchLikedEvents = function fetchLikedEvents() {
+  return $.ajax({
+    method: 'GET',
+    url: '/api/user/liked_events'
+  });
+};
+
 var createPerformerLike = exports.createPerformerLike = function createPerformerLike(user_id, performer_id) {
   return $.ajax({
     method: 'POST',
