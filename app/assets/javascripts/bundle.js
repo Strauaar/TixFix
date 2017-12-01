@@ -62292,6 +62292,8 @@ var EventShowPage = function (_React$Component) {
     _this.renderDetailsHeader = _this.renderDetailsHeader.bind(_this);
     _this.handleLikeClick = _this.handleLikeClick.bind(_this);
     _this.renderHeart = _this.renderHeart.bind(_this);
+    _this.renderScrollList = _this.renderScrollList.bind(_this);
+
     _this.state = { clicked: false };
     return _this;
   }
@@ -62399,6 +62401,25 @@ var EventShowPage = function (_React$Component) {
       }
     }
   }, {
+    key: 'renderScrollList',
+    value: function renderScrollList() {
+      if (this.props.tickets.length === 0) {
+        return _react2.default.createElement(
+          'div',
+          { className: 'no-tickets-container' },
+          _react2.default.createElement(
+            'span',
+            { className: 'no-tickets-text' },
+            'No tickets being sold'
+          )
+        );
+      } else {
+        return this.props.tickets.map(function (ticket) {
+          return _react2.default.createElement(_scroll_ticket_item2.default, { ticket: ticket });
+        });
+      }
+    }
+  }, {
     key: 'render',
     value: function render() {
       if (this.props.eventQ === undefined || this.props.tickets === undefined) {
@@ -62433,9 +62454,7 @@ var EventShowPage = function (_React$Component) {
               _react2.default.createElement(
                 'div',
                 { className: 'event-show-ticket-scrollable-container' },
-                this.props.tickets.map(function (ticket) {
-                  return _react2.default.createElement(_scroll_ticket_item2.default, { ticket: ticket });
-                })
+                this.renderScrollList()
               )
             )
           )

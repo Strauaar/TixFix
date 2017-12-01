@@ -8,6 +8,8 @@ class EventShowPage extends React.Component {
     this.renderDetailsHeader = this.renderDetailsHeader.bind(this);
     this.handleLikeClick = this.handleLikeClick.bind(this);
     this.renderHeart = this.renderHeart.bind(this);
+    this.renderScrollList= this.renderScrollList.bind(this);
+
     this.state = {clicked: false}
   }
 
@@ -68,6 +70,15 @@ class EventShowPage extends React.Component {
     }
   }
 
+  renderScrollList() {
+    if (this.props.tickets.length === 0 ) {
+      return <div className="no-tickets-container"><span className="no-tickets-text">No tickets being sold</span></div>
+    } else {
+      return this.props.tickets.map(ticket => (
+        <ScrollTicketItem ticket={ticket} />
+      ))
+    }
+  }
 
   render() {
     if (this.props.eventQ === undefined || this.props.tickets === undefined) {
@@ -91,9 +102,7 @@ class EventShowPage extends React.Component {
             <div className="event-show-tickets-container">
               <div className="event-show-ticket-scrollable-container">
                 {
-                  this.props.tickets.map(ticket => (
-                    <ScrollTicketItem ticket={ticket} />
-                  ))
+                  this.renderScrollList()
                 }
               </div>
             </div>
