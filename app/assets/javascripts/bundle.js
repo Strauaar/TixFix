@@ -61290,8 +61290,6 @@ var CategoryCard = function (_React$Component) {
         this.props.history.push("/");
         this.props.fetchEvents((0, _lodash.merge)({}, this.props.filter, { categoryId: id }));
       } else {
-        console.log(this.props.filter);
-        console.log(id);
         this.props.history.push('/category/' + id);
         this.props.fetchEvents((0, _lodash.merge)({}, this.props.filter, { categoryId: id }));
       }
@@ -61443,8 +61441,6 @@ var EventsList = function (_React$Component) {
   }, {
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(newProps) {
-      console.log("new", newProps);
-      console.log("old", this.props);
       if (newProps.match.params.id !== this.props.match.params.id && newProps.match.path !== this.props.match.path && this.props.categoryId !== newProps.categoryId) {
         if (newProps.match.path === "/") {
           this.props.clearFilter();
@@ -62285,7 +62281,6 @@ var EventShowPage = function (_React$Component) {
     value: function handleLikeClick(type) {
       debugger;
       if (this.props.current_user === null) {
-        console.log("NO USER");
         this.props.history.push("/session");
       } else if (type === 'unlike') {
         this.props.deleteEventLike(this.props.current_user.id, this.props.match.params.id);
@@ -63557,7 +63552,6 @@ var SellTicketPage = function (_React$Component) {
       var _this3 = this;
 
       if (this.props.eventQ === undefined) {
-        console.log("UNDEF");
         return null;
       } else {
         var month = (0, _moment2.default)(this.props.eventQ.date).format('MMM');
@@ -64105,9 +64099,7 @@ var UserHome = function (_React$Component) {
   }, {
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(newProps) {
-      if (this.props.events.length !== newProps.events.length) {
-        console.log(newProps.events);
-      }
+      if (this.props.events.length !== newProps.events.length) {}
     }
   }, {
     key: 'renderUpcomingEvents',
@@ -64842,7 +64834,6 @@ var LikedCardItem = function (_React$Component) {
       if (this.state.liked === false) {
         return null;
       } else {
-        console.log(this.props.item);
         return _react2.default.createElement(
           'div',
           { className: 'liked-card' },

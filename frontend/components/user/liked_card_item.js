@@ -37,7 +37,6 @@ class LikedCardItem extends React.Component {
     if (this.state.liked === false) {
       return null
     } else {
-      console.log(this.props.item);
     return(
       <div className="liked-card">
           <div className="liked-card-image" style={{backgroundImage: `url(${this.props.item.img_url})`}}></div>

@@ -19,7 +19,6 @@ class EventShowPage extends React.Component {
   handleLikeClick(type) {
     debugger
     if(this.props.current_user === null) {
-      console.log("NO USER");
       this.props.history.push("/session")
     } else if (type === 'unlike') {
       this.props.deleteEventLike(this.props.current_user.id, this.props.match.params.id)

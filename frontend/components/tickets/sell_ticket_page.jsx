@@ -49,7 +49,6 @@ class SellTicketPage extends React.Component {
 
   render() {
     if (this.props.eventQ === undefined) {
-      console.log("UNDEF");
       return null
     } else {
       const month = moment(this.props.eventQ.date).format('MMM');

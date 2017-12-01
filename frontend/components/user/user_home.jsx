@@ -57,7 +57,6 @@ class UserHome extends React.Component {
 
   componentWillReceiveProps(newProps) {
     if(this.props.events.length !== newProps.events.length) {
-      console.log(newProps.events);
     }
   }
 

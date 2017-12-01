@@ -17,8 +17,6 @@ class EventsList extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    console.log("new", newProps);
-    console.log("old", this.props);
     if( (newProps.match.params.id !== this.props.match.params.id) && (newProps.match.path !== this.props.match.path) && (this.props.categoryId !== newProps.categoryId) ) {
       if(newProps.match.path === "/") {
         this.props.clearFilter();
