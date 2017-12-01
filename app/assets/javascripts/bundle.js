@@ -63771,41 +63771,46 @@ var UserHome = function (_React$Component) {
         return this.props.events.map(function (eventQ) {
           return _react2.default.createElement(
             'div',
-            { className: 'myhub-list-item' },
+            { className: 'row event-item-container-with-image' },
+            _react2.default.createElement('img', { className: 'item-img', src: eventQ.img_url }),
             _react2.default.createElement(
               'div',
-              null,
+              { className: 'myhub-list-item myhub-list-item-with-image' },
               _react2.default.createElement(
-                'span',
-                { className: 'list-item-event-name' },
-                eventQ.name
-              )
-            ),
-            _react2.default.createElement(
-              'div',
-              null,
-              _react2.default.createElement(
-                'span',
-                { className: 'list-item-venue-name' },
-                (0, _moment2.default)(eventQ.date).format('h:mma'),
-                ' at '
+                'div',
+                null,
+                _react2.default.createElement(
+                  'span',
+                  { className: 'list-item-event-name' },
+                  eventQ.name
+                )
               ),
               _react2.default.createElement(
-                'span',
-                { className: 'list-item-venue-name' },
-                eventQ.venue.name,
-                ' | '
-              ),
-              _react2.default.createElement(
-                'span',
-                { className: 'list-item-venue-name' },
-                eventQ.venue.city,
-                ', '
-              ),
-              _react2.default.createElement(
-                'span',
-                { className: 'list-item-venue-name' },
-                eventQ.venue.state
+                'div',
+                null,
+                _react2.default.createElement(
+                  'span',
+                  { className: 'list-item-venue-name' },
+                  (0, _moment2.default)(eventQ.date).format('h:mma'),
+                  ' at '
+                ),
+                _react2.default.createElement(
+                  'span',
+                  { className: 'list-item-venue-name' },
+                  eventQ.venue.name,
+                  ' | '
+                ),
+                _react2.default.createElement(
+                  'span',
+                  { className: 'list-item-venue-name' },
+                  eventQ.venue.city,
+                  ', '
+                ),
+                _react2.default.createElement(
+                  'span',
+                  { className: 'list-item-venue-name' },
+                  eventQ.venue.state
+                )
               )
             )
           );

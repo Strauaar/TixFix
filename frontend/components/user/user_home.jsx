@@ -66,15 +66,18 @@ class UserHome extends React.Component {
       return <span>You dont have any upcoming events</span>
     } else {
       return this.props.events.map(eventQ =>
-        <div className="myhub-list-item">
-          <div>
-            <span className="list-item-event-name">{eventQ.name}</span>
-          </div>
-          <div>
-            <span className="list-item-venue-name">{moment(eventQ.date).format('h:mma')} at </span>
-            <span className="list-item-venue-name">{eventQ.venue.name} | </span>
-            <span className="list-item-venue-name">{eventQ.venue.city}, </span>
-            <span className="list-item-venue-name">{eventQ.venue.state}</span>
+        <div className="row event-item-container-with-image">
+          <img className="item-img" src={eventQ.img_url}></img>
+          <div className="myhub-list-item myhub-list-item-with-image">
+            <div>
+              <span className="list-item-event-name">{eventQ.name}</span>
+            </div>
+            <div>
+              <span className="list-item-venue-name">{moment(eventQ.date).format('h:mma')} at </span>
+              <span className="list-item-venue-name">{eventQ.venue.name} | </span>
+              <span className="list-item-venue-name">{eventQ.venue.city}, </span>
+              <span className="list-item-venue-name">{eventQ.venue.state}</span>
+            </div>
           </div>
         </div>
       )
@@ -157,9 +160,7 @@ class UserHome extends React.Component {
             <span className="list-item-venue-name">{ticket.venue.name} | </span>
             <span className="list-item-venue-name">{ticket.venue.city}, </span>
             <span className="list-item-venue-name">{ticket.venue.state}</span>
-
           </div>
-
         </div>
       )
     }
