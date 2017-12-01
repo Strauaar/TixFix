@@ -16,7 +16,7 @@ class MyHub extends React.Component {
           <div className="darken-div"></div>
           <div className="myhub-user-pic-container">
             <div className="myhub-user-pic"></div>
-            <span className="myhub-user-name">USER NAME</span>
+            <span className="myhub-user-name">{this.props.currentUser.first_name} {this.props.currentUser.last_name}</span>
           </div>
         </div>
         <UserNavBar>

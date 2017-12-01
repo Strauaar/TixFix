@@ -63494,7 +63494,9 @@ var _reactRouterDom = __webpack_require__(2);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state) {
-  return {};
+  return {
+    currentUser: state.session.currentUser
+  };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
@@ -63568,7 +63570,9 @@ var MyHub = function (_React$Component) {
             _react2.default.createElement(
               'span',
               { className: 'myhub-user-name' },
-              'USER NAME'
+              this.props.currentUser.first_name,
+              ' ',
+              this.props.currentUser.last_name
             )
           )
         ),
@@ -64242,12 +64246,51 @@ var UserFav = function (_React$Component) {
   }
 
   _createClass(UserFav, [{
-    key: 'render',
+    key: "render",
     value: function render() {
       return _react2.default.createElement(
-        'div',
-        null,
-        'USERFAV'
+        "div",
+        { className: "user-fav-whole-container" },
+        _react2.default.createElement(
+          "div",
+          { className: "user-fav-subcontainer" },
+          _react2.default.createElement(
+            "div",
+            { className: "user-fav-options-container" },
+            _react2.default.createElement(
+              "ul",
+              { className: "user-fav-list" },
+              _react2.default.createElement(
+                "button",
+                { className: "user-fav-button" },
+                "Performers"
+              ),
+              _react2.default.createElement(
+                "button",
+                { className: "user-fav-button" },
+                "Events"
+              )
+            )
+          ),
+          _react2.default.createElement(
+            "div",
+            { className: "user-fav-note" },
+            _react2.default.createElement(
+              "span",
+              null,
+              "Click the heart to remove from favorites"
+            )
+          ),
+          _react2.default.createElement(
+            "div",
+            { className: "user-fav-card-list-container" },
+            _react2.default.createElement(
+              "ul",
+              { className: "user-fav-card-list" },
+              "PUT LIST HERE"
+            )
+          )
+        )
       );
     }
   }]);
