@@ -5,12 +5,22 @@ class UserFav extends React.Component {
   constructor(props) {
     super(props);
     this.renderList = this.renderList.bind(this);
+    this.renderButtonClass = this.renderButtonClass.bind(this);
     this.state={type: 'performer'}
   }
 
   componentDidMount() {
     this.props.fetchLikedPerformers();
   }
+
+  renderButtonClass(typeClicked) {
+    if(this.state.type === typeClicked) {
+      return "user-fav-button user-fav-button-clicked ease-up"
+    } else {
+      return "user-fav-button fade-in"
+    }
+  }
+
 
   renderList() {
     if(this.props.liked.length === 0 || this.props.liked === undefined) {
@@ -28,8 +38,8 @@ class UserFav extends React.Component {
         <div className="user-fav-subcontainer">
           <div className="user-fav-options-container">
             <ul className="user-fav-list">
-              <button className="user-fav-button">Performers</button>
-              <button className="user-fav-button">Events</button>
+              <button onClick={() => this.setState({type: 'performer'})} className={this.renderButtonClass('performer')}>Performers</button>
+              <button onClick={() => this.setState({type: 'events'})} className={this.renderButtonClass('events')}>Events</button>
             </ul>
           </div>
           <div className="user-fav-note">

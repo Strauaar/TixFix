@@ -45,7 +45,6 @@
   margin-left: 0;
 }
 
-
 .user-fav-button {
   font-family: 'Roboto Condensed', sans-serif;
   font-size: 16px;
@@ -53,4 +52,19 @@
   height: 40px;
   width: 155px;
   margin-left: 20px;
+}
+
+.user-fav-button-clicked {
+  background-color: white;
+  border-bottom: 4px solid #00A1A1;
+}
+
+.ease-up {
+  animation: 0.3s up ease-in-out ;
+}
+
+@keyframes up {
+  0% {border-bottom: 1px solid #00A1A1}
+  80% {border-bottom: 7px solid #00A1A1}
+  100% {border-bottom: 4px solid  #00A1A1}
 }

@@ -63643,12 +63643,12 @@ var MyHub = function (_React$Component) {
           null,
           _react2.default.createElement(
             _reactRouterDom.NavLink,
-            { activeClassName: 'nav-selected', exact: true, to: '/myhub' },
+            { activeClassName: 'nav-selected ease-up', exact: true, to: '/myhub' },
             'My Hub'
           ),
           _react2.default.createElement(
             _reactRouterDom.NavLink,
-            { activeClassName: 'nav-selected', to: '/myhub/favorites' },
+            { activeClassName: 'nav-selected ease-up', to: '/myhub/favorites' },
             'Favorites'
           )
         ),
@@ -64320,6 +64320,7 @@ var UserFav = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (UserFav.__proto__ || Object.getPrototypeOf(UserFav)).call(this, props));
 
     _this.renderList = _this.renderList.bind(_this);
+    _this.renderButtonClass = _this.renderButtonClass.bind(_this);
     _this.state = { type: 'performer' };
     return _this;
   }
@@ -64328,6 +64329,15 @@ var UserFav = function (_React$Component) {
     key: 'componentDidMount',
     value: function componentDidMount() {
       this.props.fetchLikedPerformers();
+    }
+  }, {
+    key: 'renderButtonClass',
+    value: function renderButtonClass(typeClicked) {
+      if (this.state.type === typeClicked) {
+        return "user-fav-button user-fav-button-clicked ease-up";
+      } else {
+        return "user-fav-button fade-in";
+      }
     }
   }, {
     key: 'renderList',
@@ -64349,6 +64359,8 @@ var UserFav = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
+      var _this3 = this;
+
       return _react2.default.createElement(
         'div',
         { className: 'user-fav-whole-container' },
@@ -64363,12 +64375,16 @@ var UserFav = function (_React$Component) {
               { className: 'user-fav-list' },
               _react2.default.createElement(
                 'button',
-                { className: 'user-fav-button' },
+                { onClick: function onClick() {
+                    return _this3.setState({ type: 'performer' });
+                  }, className: this.renderButtonClass('performer') },
                 'Performers'
               ),
               _react2.default.createElement(
                 'button',
-                { className: 'user-fav-button' },
+                { onClick: function onClick() {
+                    return _this3.setState({ type: 'events' });
+                  }, className: this.renderButtonClass('events') },
                 'Events'
               )
             )
