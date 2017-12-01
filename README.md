@@ -1,24 +1,11 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# [TixFix](https://tixfix.herokuapp.com/#/)
 
-Things you may want to cover:
+Find events and make money on TixFix.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Features
++ Search and filter events by date, location, category, or name of the event
++ Sell and buy tickets from the TixFix community
++ Like your favorite bands, artists, teams or troupe to keep track of their events
++ Like your favorite events
++ View all your ticket listings, sales, and purchases all in one place on the user page
