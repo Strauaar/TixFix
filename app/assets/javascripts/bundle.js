@@ -54559,6 +54559,7 @@ var check_state = function check_state() {
         currentUser: window.currentUser
       }
     };
+    delete window.currentUser;
   }
   return state;
 };
@@ -63533,7 +63534,8 @@ var SellTicketPage = function (_React$Component) {
 
     _this.createTicket = _this.createTicket.bind(_this);
     _this.update = _this.update.bind(_this);
-    _this.state = { price: 0, row: '-', type_of: "GA", num_tickets: 0 };
+    _this.renderResponse = _this.renderResponse.bind(_this);
+    _this.state = { price: 0, row: '-', type_of: "GA", num_tickets: 0, errors: null };
     return _this;
   }
 
@@ -63561,8 +63563,6 @@ var SellTicketPage = function (_React$Component) {
   }, {
     key: 'createTicket',
     value: function createTicket(event_id, seller) {
-      var _this2 = this;
-
       if (seller === null) {
         this.props.history.push("/session");
       } else {
@@ -63571,15 +63571,16 @@ var SellTicketPage = function (_React$Component) {
           method: 'POST',
           url: 'api/tickets',
           data: params
-        }).then(function (e) {
-          return _this2.props.history.push("/myhub");
         });
       }
     }
   }, {
+    key: 'renderResponse',
+    value: function renderResponse() {}
+  }, {
     key: 'render',
     value: function render() {
-      var _this3 = this;
+      var _this2 = this;
 
       if (this.props.eventQ === undefined) {
         console.log("UNDEF");
@@ -63695,7 +63696,7 @@ var SellTicketPage = function (_React$Component) {
                     _react2.default.createElement(
                       'select',
                       { onChange: function onChange(e) {
-                          return _this3.update('num_tickets', e);
+                          return _this2.update('num_tickets', e);
                         }, 'class': 'ticket-qty' },
                       _react2.default.createElement(
                         'option',
@@ -63775,7 +63776,7 @@ var SellTicketPage = function (_React$Component) {
                         'SECTION'
                       ),
                       _react2.default.createElement('input', { onChange: function onChange(e) {
-                          return _this3.update('section', e);
+                          return _this2.update('section', e);
                         } })
                     ),
                     _react2.default.createElement(
@@ -63787,7 +63788,7 @@ var SellTicketPage = function (_React$Component) {
                         'ROW'
                       ),
                       _react2.default.createElement('input', { onChange: function onChange(e) {
-                          return _this3.update('row', e);
+                          return _this2.update('row', e);
                         } })
                     )
                   )
@@ -63803,8 +63804,8 @@ var SellTicketPage = function (_React$Component) {
                       { className: 'dollar-sign' },
                       '$'
                     ),
-                    _react2.default.createElement('input', { onChange: function onChange(e) {
-                        return _this3.update('price', e);
+                    _react2.default.createElement('input', { type: 'number', onChange: function onChange(e) {
+                        return _this2.update('price', e);
                       }, className: 'price-input' })
                   ),
                   _react2.default.createElement(
@@ -63816,11 +63817,16 @@ var SellTicketPage = function (_React$Component) {
               ),
               _react2.default.createElement(
                 'div',
+                null,
+                this.renderResponse()
+              ),
+              _react2.default.createElement(
+                'div',
                 { className: 'post-ticket-btn-container' },
                 _react2.default.createElement(
                   'button',
                   { onClick: function onClick() {
-                      return _this3.createTicket(_this3.props.eventQ.id, _this3.props.currentUser);
+                      return _this2.createTicket(_this2.props.eventQ.id, _this2.props.currentUser);
                     }, className: 'post-ticket-btn' },
                   'Post my tickets'
                 )
@@ -64440,7 +64446,7 @@ var UserHome = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      if (this.props.events === undefined) {
+      if (this.props.events === undefined || this.state.cumulative_sold_price === null || this.state.bought_tickets === null || this.state.sold_tickets === null || this.state.selling_tickets === null) {
         return null;
       }
       return _react2.default.createElement(

@@ -182,7 +182,7 @@ class UserHome extends React.Component {
   }
 
   render() {
-    if(this.props.events === undefined) {
+        if(this.props.events === undefined || this.state.cumulative_sold_price === null || this.state.bought_tickets === null || this.state.sold_tickets === null || this.state.selling_tickets === null) {
       return null
     }
     return (

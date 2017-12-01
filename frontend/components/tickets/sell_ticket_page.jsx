@@ -8,7 +8,8 @@ class SellTicketPage extends React.Component {
     super(props);
     this.createTicket = this.createTicket.bind(this);
     this.update = this.update.bind(this);
-    this.state = {price: 0, row: '-', type_of: "GA", num_tickets:0}
+    this.renderResponse = this.renderResponse.bind(this);
+    this.state = {price: 0, row: '-', type_of: "GA", num_tickets:0 , errors: null}
   }
   componentWillMount(){
   }
@@ -38,8 +39,12 @@ class SellTicketPage extends React.Component {
         method: 'POST',
         url: `api/tickets`,
         data: params
-      }).then(e => this.props.history.push("/myhub"))
+      })
     }
+  }
+
+  renderResponse() {
+
   }
 
   render() {
@@ -116,9 +121,14 @@ class SellTicketPage extends React.Component {
                   </div>
                 </div>
                 <div className="price-container">
-                  <div><strong className="dollar-sign">$</strong><input onChange={(e)=>this.update('price',e)} className="price-input"></input></div>
+                  <div><strong className="dollar-sign">$</strong><input type="number" onChange={(e)=>this.update('price',e)} className="price-input"></input></div>
                   <span>price per ticket</span>
                 </div>
+              </div>
+              <div>
+                {
+                  this.renderResponse()
+                }
               </div>
               <div className="post-ticket-btn-container">
                 <button onClick={() => this.createTicket(this.props.eventQ.id, this.props.currentUser)}className="post-ticket-btn">Post my tickets</button>
