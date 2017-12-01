@@ -62,7 +62,7 @@ class UserHome extends React.Component {
 
   renderUpcomingEvents() {
     if(this.props.events.length === 0){
-      return <span>You dont have any upcoming events</span>
+      return <span className="no-listing-text">You don't have any upcoming events</span>
     } else {
       return this.props.events.map(eventQ =>
         <div className="row event-item-container-with-image">
@@ -85,7 +85,7 @@ class UserHome extends React.Component {
 
   renderTicketListings() {
     if(this.state.selling_tickets === 0 || this.state.selling_tickets === null){
-      return <span>You dont have any listings</span>
+      return <span className="no-listing-text">You dont have any listings</span>
     } else {
       return this.state.selling_tickets.map(ticket =>
         <div className="myhub-list-item">
@@ -113,7 +113,7 @@ class UserHome extends React.Component {
 
   renderSales() {
     if(this.state.sold_tickets === 0 || this.state.sold_tickets === null){
-      return <span>You dont have any sales</span>
+      return <span className="no-listing-text">You don't have any sales</span>
     } else {
       return this.state.sold_tickets.map(ticket =>
         <div className="myhub-list-item">
@@ -141,7 +141,7 @@ class UserHome extends React.Component {
 
   renderBoughtTickets() {
     if(this.state.bought_tickets === 0 || this.state.bought_tickets === null){
-      return <span>You dont have any listings</span>
+      return <span className="no-listing-text">You don't have any listings</span>
     } else {
       return this.state.bought_tickets.map(ticket =>
         <div className="myhub-list-item">

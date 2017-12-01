@@ -64151,8 +64151,8 @@ var UserHome = function (_React$Component) {
       if (this.props.events.length === 0) {
         return _react2.default.createElement(
           'span',
-          null,
-          'You dont have any upcoming events'
+          { className: 'no-listing-text' },
+          'You don\'t have any upcoming events'
         );
       } else {
         return this.props.events.map(function (eventQ) {
@@ -64210,7 +64210,7 @@ var UserHome = function (_React$Component) {
       if (this.state.selling_tickets === 0 || this.state.selling_tickets === null) {
         return _react2.default.createElement(
           'span',
-          null,
+          { className: 'no-listing-text' },
           'You dont have any listings'
         );
       } else {
@@ -64288,8 +64288,8 @@ var UserHome = function (_React$Component) {
       if (this.state.sold_tickets === 0 || this.state.sold_tickets === null) {
         return _react2.default.createElement(
           'span',
-          null,
-          'You dont have any sales'
+          { className: 'no-listing-text' },
+          'You don\'t have any sales'
         );
       } else {
         return this.state.sold_tickets.map(function (ticket) {
@@ -64366,8 +64366,8 @@ var UserHome = function (_React$Component) {
       if (this.state.bought_tickets === 0 || this.state.bought_tickets === null) {
         return _react2.default.createElement(
           'span',
-          null,
-          'You dont have any listings'
+          { className: 'no-listing-text' },
+          'You don\'t have any listings'
         );
       } else {
         return this.state.bought_tickets.map(function (ticket) {
