@@ -13,10 +13,6 @@
   margin-bottom: 5px;
 }
 
-.event-show-scroll-container {
-  border-top-left-radius: 7px;
-  border-top-right-radius: 7px;
-}
 
 .event-show-day-text {
   font-size: 24px;
@@ -48,5 +44,6 @@
   align-items: center;
   margin:0;
   padding: 0;
-
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
 }
