@@ -24,6 +24,18 @@
   // flex-wrap: wrap;
 }
 
+@media screen and (max-width: 1770px) {
+  .event-list {
+    flex-wrap: nowrap;
+  }
+}
+
+@media screen and (max-width: 1029px) {
+  .event-list {
+    flex-wrap: wrap;
+  }
+}
+
 .event-list li {
   list-style: none;
 }
