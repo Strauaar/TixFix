@@ -147,7 +147,7 @@ symphony_event2 = Event.create(
 )
 
 2.times do |i|
-  Subevent.create(
+  event = Subevent.create(
     name: "Jay Z",
     venue_id: billyg_venue.id,
     performer_id: jayz_performer.id,
@@ -156,7 +156,7 @@ symphony_event2 = Event.create(
     date: (DateTime.now + i).beginning_of_hour,
     event_id: jayz_event.id
   )
-    Ticket.create(seller_id:demo_user1, event_id: event.id, price: 140, type_of:VIP, row: A)
+    Ticket.create(seller_id:demo_user1, event_id: event.id, price: 140, type_of:"VIP", row: "A")
 end
 
 3.times do |i|
@@ -169,7 +169,7 @@ end
     date: (DateTime.now + i).beginning_of_hour,
     event_id: kaskade_event.id
   )
-    Ticket.create(seller_id:demo_user1, event_id: event.id, price: 80, type_of:GA, row: A)
+    Ticket.create(seller_id:demo_user1, event_id: event.id, price: 80, type_of:"GA", row: "A")
 end
 
 2.times do |i|
@@ -182,7 +182,7 @@ end
     date: (DateTime.now + i + 10).beginning_of_hour,
     event_id: khalid_event.id
   )
-  Ticket.create(seller_id:demo_user1, event_id: event.id, price: 190, type_of:VIP, row: A)
+  Ticket.create(seller_id:demo_user1, event_id: event.id, price: 190, type_of:"VIP", row: "A")
 end
 
 Subevent.create(
@@ -223,7 +223,7 @@ Subevent.create(
     date: (DateTime.now + i + 18).end_of_week.beginning_of_hour,
     event_id: jayz_event2.id
   )
-    Ticket.create(seller_id:demo_user2, buyer_id: demo_user1, event_id: event.id, price: 70, type_of:VIP, row: A)
+    Ticket.create(seller_id:demo_user2, buyer_id: demo_user1, event_id: event.id, price: 70, type_of:"VIP", row: "A")
 end
 
 Subevent.create(
@@ -244,7 +244,7 @@ Subevent.create(
     date: (DateTime.now + 22 + i).end_of_week.beginning_of_day,
     event_id: nutcracker_event.id
   )
-  Ticket.create(seller_id:demo_user2, buyer_id: demo_user1, event_id: event.id, price: 90, type_of:GA, row: C)
+  Ticket.create(seller_id:demo_user2, buyer_id: demo_user1, event_id: event.id, price: 90, type_of:"GA", row: "C")
 end
 
 3.times do |i|
@@ -256,7 +256,7 @@ end
     date: (DateTime.now + 30 + i).end_of_week.beginning_of_day,
     event_id: symphony_event.id
     )
-    Ticket.create(seller_id:demo_user1, buyer_id: demo_user2, event_id: event.id, price: 120, type_of:GA, row: C)
+    Ticket.create(seller_id:demo_user1, buyer_id: demo_user2, event_id: event.id, price: 120, type_of:"GA", row: "C")
 end
 
 2.times do |i|
@@ -268,5 +268,5 @@ end
     date: (DateTime.now + 40 + i).end_of_week.beginning_of_day,
     event_id: symphony_event2.id
   )
-  Ticket.create(seller_id:demo_user1, event_id: event.id, price: 100, type_of:GA, row: A)
+  Ticket.create(seller_id:demo_user1, event_id: event.id, price: 100, type_of:"GA", row: "A")
 end
