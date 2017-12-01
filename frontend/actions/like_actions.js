@@ -27,8 +27,8 @@ const receiveLikedObjects = objects => ({
 })
 
 
-export const fetchPerformerLikes = (user_id) => dispatch => (
-  LikeApiUtil.fetchPerformerLikes(user_id).then(performer_id_list => dispatch(receiveAllPerformerLikes(performer_id_list)))
+export const fetchPerformerLikes = () => dispatch => (
+  LikeApiUtil.fetchPerformerLikes().then(performer_id_list => dispatch(receiveAllPerformerLikes(performer_id_list)))
 );
 
 export const createPerformerLike = (user_id, performer_id) => dispatch => (

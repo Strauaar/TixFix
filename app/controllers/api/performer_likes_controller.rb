@@ -12,8 +12,7 @@ class Api::PerformerLikesController < ApplicationController
   end
 
   def index
-    user = User.find(params[:user_id])
-    @liked_performers = user.performers_liked
+    @liked_performers = current_user.performers_liked
     render :index
   end
 end

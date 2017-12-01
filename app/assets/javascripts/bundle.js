@@ -22320,9 +22320,9 @@ var receiveLikedObjects = function receiveLikedObjects(objects) {
   };
 };
 
-var fetchPerformerLikes = exports.fetchPerformerLikes = function fetchPerformerLikes(user_id) {
+var fetchPerformerLikes = exports.fetchPerformerLikes = function fetchPerformerLikes() {
   return function (dispatch) {
-    return LikeApiUtil.fetchPerformerLikes(user_id).then(function (performer_id_list) {
+    return LikeApiUtil.fetchPerformerLikes().then(function (performer_id_list) {
       return dispatch(receiveAllPerformerLikes(performer_id_list));
     });
   };
@@ -22564,6 +22564,8 @@ var SessionApiUtil = _interopRequireWildcard(_session_util);
 
 var _error_actions = __webpack_require__(28);
 
+var _like_actions = __webpack_require__(11);
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 var RECEIVE_CURRENT_USER = exports.RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
@@ -22588,6 +22590,8 @@ var loginUser = exports.loginUser = function loginUser(user) {
       return dispatch(receiveCurrentUser(user));
     }, function (errors) {
       return dispatch((0, _error_actions.receiveErrors)(errors.responseJSON));
+    }).then(function () {
+      return dispatch((0, _like_actions.fetchPerformerLikes)());
     });
   };
 };
