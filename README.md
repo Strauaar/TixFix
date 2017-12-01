@@ -44,22 +44,11 @@ Find events and make money on TixFix.
         }
 
         loadMoreEvents(childrenCount, categoryId) {
-          if(categoryId === undefined) {
-            this.props.fetchMoreEvents(childrenCount, merge({}, this.props.filter,{categoryId: null}));
-          } else {
-            this.props.fetchMoreEvents(childrenCount, merge({}, this.props.filter,{categoryId}));
-          }
+          ...
         }
 
         renderLoadMoreButton(childrenCount) {
-          if(childrenCount % 10 === 0 && childrenCount !== 0) {
-            return <div>
-              <button onClick={() =>
-                  this.loadMoreEvents(childrenCount, this.props.categoryId)} className="load-more-btn">
-                  Load More
-                </button>
-              </div>
-          }
+          ...
         }
 
         renderEventCards(children, start_index) {
@@ -97,3 +86,46 @@ Find events and make money on TixFix.
           )
         }
       }
+
+###### Search function
++ The search method implemented allowed for a single multi-use function both on the backend and frontend of the app.
+
++ Frontend AJAX request for search(called through a thunk action creator)
+      export const fetchSearchEvents = (filter) => (
+        $.ajax({
+          method: 'GET',
+          url: 'api/event/searching',
+          data: { filter }
+        })
+      );
++ Backend corresponding rails controller action:
+      def search
+        @count = params[:current_count]
+        @events = Event.all
+        if  @count
+          @events = Event.filter_by(params[:filter]).limit(10).offset(@count.to_i)
+        else
+          @events = Event.filter_by(params[:filter]).limit(10)
+        end
+        render :index
+      end
++ `Event` class `filter_by` method:
+      def self.filter_by(filters)
+        events = Event.includes(:subevents)
+
+         if filters["name"] != ""
+           query =  '%' + filters["name"].downcase.split('').join("%") + '%'
+           events = Event.where("lower(name) LIKE ?", query)
+         end
+         if filters["categoryId"] != ""
+           child_cat_ids = Category.find(filters["categoryId"]).subcategories.pluck(:id)
+           events = events.where(category_id: child_cat_ids)
+         end
+         if filters["date"] != ""
+           events = Event.filter_date(events, filters["date"])
+         end
+         if filters["location"] != ""
+           events = Event.filter_location(events, filters["location"])
+         end
+         events
+      end
