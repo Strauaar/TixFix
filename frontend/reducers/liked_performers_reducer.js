@@ -1,4 +1,4 @@
-import { RECEIVE_LIKE, RECEIVE_ALL_PERFORMER_LIKES, REMOVE_LIKE } from '../actions/like_actions';
+import { RECEIVE_LIKE, RECEIVE_ALL_PERFORMER_LIKES, REMOVE_PERFORMER_LIKE } from '../actions/like_actions';
 import { LOGOUT_CURRENT_USER } from '../actions/session_actions';
 
 const likedPerformersReducer = (state = [], action) => {
@@ -7,7 +7,7 @@ const likedPerformersReducer = (state = [], action) => {
   switch(action.type){
     case RECEIVE_ALL_PERFORMER_LIKES:
       return action.list;
-    case REMOVE_LIKE:
+    case REMOVE_PERFORMER_LIKE:
       newState = Array.from(state);
       let index = newState.indexOf(action.id);
       newState.splice(index,1);

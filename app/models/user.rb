@@ -33,6 +33,10 @@ class User < ApplicationRecord
     class_name: :EventLike,
     foreign_key: :user_id
 
+  has_many :events_liked,
+    through: :event_likes,
+    source: :event
+
 
   attr_reader :password
 

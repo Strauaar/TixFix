@@ -2,7 +2,7 @@ import * as LikeApiUtil from '../utils/like_util';
 
 export const RECEIVE_LIKE = "RECEIVE _LIKE";
 export const RECEIVE_ALL_PERFORMER_LIKES ="RECEIVE_ALL_PERFORMER_LIKES";
-export const REMOVE_LIKE = "REMOVE_LIKE";
+export const REMOVE_PERFORMER_LIKE = "REMOVE_PERFORMER_LIKE";
 export const RECEIVE_LIKED_OBJECTS = "RECEIVE_LIKED_OBJECTS";
 
 
@@ -16,8 +16,8 @@ const receiveLike = liked_performer_id => ({
   id: liked_performer_id
 });
 
-const removeLike = unliked_performer_id => ({
-  type: REMOVE_LIKE,
+const removePerformerLike = unliked_performer_id => ({
+  type: REMOVE_PERFORMER_LIKE,
   id: unliked_performer_id
 });
 
@@ -36,7 +36,7 @@ export const createPerformerLike = (user_id, performer_id) => dispatch => (
 );
 
 export const deletePerformerLike = (user_id, performer_id) => dispatch => (
-  LikeApiUtil.deletePerformerLike(user_id, performer_id).then(unliked_performer_id_obj => dispatch(removeLike(unliked_performer_id_obj.id)))
+  LikeApiUtil.deletePerformerLike(user_id, performer_id).then(unliked_performer_id_obj => dispatch(removePerformerLike(unliked_performer_id_obj.id)))
 );
 
 export const fetchLikedPerformers = () => dispatch => (

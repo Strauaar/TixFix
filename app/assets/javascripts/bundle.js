@@ -22279,7 +22279,7 @@ module.exports = emptyFunction;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.fetchLikedPerformers = exports.deletePerformerLike = exports.createPerformerLike = exports.fetchPerformerLikes = exports.RECEIVE_LIKED_OBJECTS = exports.REMOVE_LIKE = exports.RECEIVE_ALL_PERFORMER_LIKES = exports.RECEIVE_LIKE = undefined;
+exports.fetchLikedPerformers = exports.deletePerformerLike = exports.createPerformerLike = exports.fetchPerformerLikes = exports.RECEIVE_LIKED_OBJECTS = exports.REMOVE_PERFORMER_LIKE = exports.RECEIVE_ALL_PERFORMER_LIKES = exports.RECEIVE_LIKE = undefined;
 
 var _like_util = __webpack_require__(215);
 
@@ -22289,7 +22289,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 var RECEIVE_LIKE = exports.RECEIVE_LIKE = "RECEIVE _LIKE";
 var RECEIVE_ALL_PERFORMER_LIKES = exports.RECEIVE_ALL_PERFORMER_LIKES = "RECEIVE_ALL_PERFORMER_LIKES";
-var REMOVE_LIKE = exports.REMOVE_LIKE = "REMOVE_LIKE";
+var REMOVE_PERFORMER_LIKE = exports.REMOVE_PERFORMER_LIKE = "REMOVE_PERFORMER_LIKE";
 var RECEIVE_LIKED_OBJECTS = exports.RECEIVE_LIKED_OBJECTS = "RECEIVE_LIKED_OBJECTS";
 
 var receiveAllPerformerLikes = function receiveAllPerformerLikes(performer_id_list) {
@@ -22306,9 +22306,9 @@ var receiveLike = function receiveLike(liked_performer_id) {
   };
 };
 
-var removeLike = function removeLike(unliked_performer_id) {
+var removePerformerLike = function removePerformerLike(unliked_performer_id) {
   return {
-    type: REMOVE_LIKE,
+    type: REMOVE_PERFORMER_LIKE,
     id: unliked_performer_id
   };
 };
@@ -22339,7 +22339,7 @@ var createPerformerLike = exports.createPerformerLike = function createPerformer
 var deletePerformerLike = exports.deletePerformerLike = function deletePerformerLike(user_id, performer_id) {
   return function (dispatch) {
     return LikeApiUtil.deletePerformerLike(user_id, performer_id).then(function (unliked_performer_id_obj) {
-      return dispatch(removeLike(unliked_performer_id_obj.id));
+      return dispatch(removePerformerLike(unliked_performer_id_obj.id));
     });
   };
 };
@@ -55212,7 +55212,7 @@ var likedPerformersReducer = function likedPerformersReducer() {
   switch (action.type) {
     case _like_actions.RECEIVE_ALL_PERFORMER_LIKES:
       return action.list;
-    case _like_actions.REMOVE_LIKE:
+    case _like_actions.REMOVE_PERFORMER_LIKE:
       newState = Array.from(state);
       var index = newState.indexOf(action.id);
       newState.splice(index, 1);
@@ -55332,7 +55332,7 @@ var likedReducer = function likedReducer() {
   switch (action.type) {
     case _like_actions.RECEIVE_LIKED_OBJECTS:
       return action.objects;
-    case _like_actions.REMOVE_LIKE:
+    case _like_actions.REMOVE_PERFORMER_LIKE:
       newState = Object.assign({}, state);
       delete newState[action.id];
       return newState;
