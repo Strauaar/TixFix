@@ -132,7 +132,14 @@ nutcracker_event = Event.create(
   venue_id: warner_theater.id
 )
 
-symphony_event - Event.create(
+symphony_event = Event.create(
+  name:"SF Symphony",
+  category_id: classical_subcategory.id,
+  performer_id: sf_symphony_performer.id,
+  venue_id: davies_venue.id
+)
+
+symphony_event2 = Event.create(
   name:"SF Symphony",
   category_id: classical_subcategory.id,
   performer_id: sf_symphony_performer.id,
@@ -149,10 +156,11 @@ symphony_event - Event.create(
     date: (DateTime.now + i).beginning_of_hour,
     event_id: jayz_event.id
   )
+    Ticket.create(seller_id:demo_user1, event_id: event.id, price: 140, type_of:VIP, row: A)
 end
 
 3.times do |i|
-  Subevent.create(
+  event = Subevent.create(
     name: "Kaskade",
     venue_id: billyg_venue.id,
     performer_id: kaskade_performer.id,
@@ -161,10 +169,11 @@ end
     date: (DateTime.now + i).beginning_of_hour,
     event_id: kaskade_event.id
   )
+    Ticket.create(seller_id:demo_user1, event_id: event.id, price: 80, type_of:GA, row: A)
 end
 
 2.times do |i|
-  Subevent.create(
+  event = Subevent.create(
     name: "Khalid",
     venue_id: warfield_venue.id,
     performer_id: khalid_performer.id,
@@ -173,6 +182,7 @@ end
     date: (DateTime.now + i + 10).beginning_of_hour,
     event_id: khalid_event.id
   )
+  Ticket.create(seller_id:demo_user1, event_id: event.id, price: 190, type_of:VIP, row: A)
 end
 
 Subevent.create(
@@ -204,7 +214,7 @@ Subevent.create(
 )
 
 1.times do |i|
-  Subevent.create(
+  event = Subevent.create(
     name: "Jay Z",
     venue_id: billyg_venue.id,
     performer_id: jayz_performer.id,
@@ -213,6 +223,7 @@ Subevent.create(
     date: (DateTime.now + i + 18).end_of_week.beginning_of_hour,
     event_id: jayz_event2.id
   )
+    Ticket.create(seller_id:demo_user2, buyer_id: demo_user1, event_id: event.id, price: 70, type_of:VIP, row: A)
 end
 
 Subevent.create(
@@ -220,28 +231,42 @@ Subevent.create(
   venue_id: oakland_stadium.id,
   performer_id: raiders_performer.id,
   category_id: football_subcategory.id,
-  date: (DateTime.now + 20).end_of_week.beginning_of_day
+  date: (DateTime.now + 20).end_of_week.beginning_of_day,
   event_id: raiders_event.id
 )
 
 2.times do |i|
-  Subevent.create(
-    name:"The Nutcracker",
+  event = Subevent.create(
+    event = name:"The Nutcracker",
     venue_id: warner_theater.id,
     performer_id: nutcracker_performer.id,
     category_id: dance_subcategory.id,
-    date: (DateTime.now + 22 + i).end_of_week.beginning_of_day
+    date: (DateTime.now + 22 + i).end_of_week.beginning_of_day,
     event_id: nutcracker_event.id
   )
+  Ticket.create(seller_id:demo_user2, buyer_id: demo_user1, event_id: event.id, price: 90, type_of:GA, row: C)
 end
 
 3.times do |i|
   Subevent.create(
-    name:"The Nutcracker",
+    event = name:"SF Symphony",
     venue_id: davies_venue.id,
     performer_id: sf_symphony_performer.id,
     category_id: classical_subcategory.id,
-    date: (DateTime.now + 30 + i).end_of_week.beginning_of_day
+    date: (DateTime.now + 30 + i).end_of_week.beginning_of_day,
     event_id: symphony_event.id
+    )
+    Ticket.create(seller_id:demo_user1, buyer_id: demo_user2, event_id: event.id, price: 120, type_of:GA, row: C)
+end
+
+2.times do |i|
+  event = Subevent.create(
+    name:"SF Symphony",
+    venue_id: davies_venue.id,
+    performer_id: sf_symphony_performer.id,
+    category_id: classical_subcategory.id,
+    date: (DateTime.now + 40 + i).end_of_week.beginning_of_day,
+    event_id: symphony_event2.id
   )
+  Ticket.create(seller_id:demo_user1, event_id: event.id, price: 100, type_of:GA, row: A)
 end
