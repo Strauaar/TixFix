@@ -64336,7 +64336,7 @@ var UserFav = function (_React$Component) {
       if (this.state.type === typeClicked) {
         return "user-fav-button user-fav-button-clicked ease-up";
       } else {
-        return "user-fav-button fade-in";
+        return "user-fav-button";
       }
     }
   }, {
@@ -64348,7 +64348,7 @@ var UserFav = function (_React$Component) {
         return _react2.default.createElement(
           'span',
           null,
-          'No one here'
+          'No ' + this.state.type + 's here'
         );
       } else {
         return this.props.liked.map(function (item) {
@@ -64383,8 +64383,8 @@ var UserFav = function (_React$Component) {
               _react2.default.createElement(
                 'button',
                 { onClick: function onClick() {
-                    return _this3.setState({ type: 'events' });
-                  }, className: this.renderButtonClass('events') },
+                    return _this3.setState({ type: 'event' });
+                  }, className: this.renderButtonClass('event') },
                 'Events'
               )
             )

@@ -17,14 +17,14 @@ class UserFav extends React.Component {
     if(this.state.type === typeClicked) {
       return "user-fav-button user-fav-button-clicked ease-up"
     } else {
-      return "user-fav-button fade-in"
+      return "user-fav-button"
     }
   }
 
 
   renderList() {
     if(this.props.liked.length === 0 || this.props.liked === undefined) {
-      return <span>No one here</span>
+      return <span>{`No ${this.state.type}s here`}</span>
     } else {
       return this.props.liked.map(item =>
         <LikedCardItemContainer current_user={this.props.currentUser} type={this.state.type} item={item}></LikedCardItemContainer>
@@ -39,7 +39,7 @@ class UserFav extends React.Component {
           <div className="user-fav-options-container">
             <ul className="user-fav-list">
               <button onClick={() => this.setState({type: 'performer'})} className={this.renderButtonClass('performer')}>Performers</button>
-              <button onClick={() => this.setState({type: 'events'})} className={this.renderButtonClass('events')}>Events</button>
+              <button onClick={() => this.setState({type: 'event'})} className={this.renderButtonClass('event')}>Events</button>
             </ul>
           </div>
           <div className="user-fav-note">
