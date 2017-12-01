@@ -46,7 +46,7 @@ dance_subcategory = Category.create(name: "Dance/Ballet", parent_category_id: th
 jayz_performer = Performer.create(name: "Jay Z", category_id: rap_subcategory.id)
 kaskade_performer = Performer.create(name:"Kaskade", category_id: electronic_subcategory.id)
 khalid_performer = Performer.create(name:"Khalid", category_id: rb_subcategory.id)
-san_holo = Performer.creaet(name:"San Holo", category_id: electronic_subcategory.id)
+san_holo_performer = Performer.creaet(name:"San Holo", category_id: electronic_subcategory.id)
 
 
 #SPORTS PERFORMERS
@@ -72,7 +72,6 @@ image_url: "kaskade.jpg",
 performer_id: kaskade_performer.id,
 venue_id: billyg_venue.id
 )
-
 jayz_event = Event.create(
   name: "Jay Z",
   category_id: rap_subcategory.id,
@@ -80,85 +79,73 @@ jayz_event = Event.create(
   performer_id: jayz_performer.id,
   venue_id: billyg_venue.id
 )
+khalid_event = Event.create(
+  name:"Khalid",
+  category_id: rb_subcategory.id,
+  performer_id:khalid_performer.id,
+  venue_id: warfield_venue.id
+)
 
-kaskade_event1 = Event.create(
-  name: "Kaskade",
+san_holo_event = Event.create(
+  name:"San Holo",
   category_id: electronic_subcategory.id,
-  image_url: "kaskade.jpg",
-  performer_id: kaskade_performer.id,
-  venue_id: billyg_venue.id
+  performer_id: san_holo_performer.id,
+  venue_id: fox_theater_venue.id
 )
 
-jayz_event1 = Event.create(
-  name: "Jay Z",
-  category_id: rap_subcategory.id,
-  image_url: "jayz.jpg",
-  performer_id: jayz_performer.id,
-  venue_id: billyg_venue.id
-)
-
-subevent = Subevent.create(
-  name: "Jay Z",
-  venue_id: billyg_venue.id,
-  performer_id: jayz_performer.id,
-  category_id: rap_subcategory.id,
-      image_url: "jayz.jpg",
-  date: "Dec 24, 2017",
-  event_id: jayz_event.id
-)
-
-
-#JAYZ
+2.times do |i|
   Subevent.create(
     name: "Jay Z",
     venue_id: billyg_venue.id,
     performer_id: jayz_performer.id,
     category_id: rap_subcategory.id,
-        image_url: "jayz.jpg",
-    date: "Dec 15, 2017",
+    image_url: "jayz.jpg",
+    date: (DateTime.now + i).beginning_of_hour,
     event_id: jayz_event.id
   )
+end
 
-  Subevent.create(
-    name: "Jay Z",
-    venue_id: billyg_venue.id,
-    performer_id: jayz_performer.id,
-    category_id: rap_subcategory.id,
-        image_url: "jayz.jpg",
-    date: "Dec 16, 2017",
-    event_id: jayz_event.id
-  )
-
-  Subevent.create(
-    name: "Jay Z",
-    venue_id: billyg_venue.id,
-    performer_id: jayz_performer.id,
-    category_id: rap_subcategory.id,
-        image_url: "jayz.jpg",
-    date: "Dec 17, 2017",
-    event_id: jayz_event.id
-  )
-
-#KASKADE
-  Subevent.create(
-    name: "Kaskade",
-    venue_id: billyg_venue.id,
-    performer_id: jayz_performer.id,
-    category_id: electronic_subcategory.id,
-    image_url: "kaskade.jpg",
-    date: "Dec 30, 2017",
-    event_id: kaskade_event.id
-  )
-
+3.times do |i|
   Subevent.create(
     name: "Kaskade",
     venue_id: billyg_venue.id,
     performer_id: kaskade_performer.id,
-    category_id: electronic_subcategory.id,
+    category_id: rap_subcategory.id,
     image_url: "kaskade.jpg",
-    date: "Dec 31, 2017",
+    date: (DateTime.now + i).beginning_of_hour,
     event_id: kaskade_event.id
   )
+end
+
+2.times do |i|
+  Subevent.create(
+    name: "Khalid",
+    venue_id: warfield_venue.id,
+    performer_id: khalid_performer.id,
+    category_id: rb_subcategory.id,
+    image_url: "khalid.jpg",
+    date: (DateTime.now + i + 10).beginning_of_hour,
+    event_id: khalid_event.id
+  )
+end
+
+Subevent.create(
+  name:"San Holo",
+  venue_id: fox_theater_venue.id,
+  performer_id: san_holo_performer.id,
+  category_id: electronic_subcategory.id,
+  image_url:"san_holo.jpg",
+  date:(DateTime.now + 13).beginning_of_hour,
+  event_id: san_holo_event.id
+)
+
+
+
+
+
+
+
+
 
 
 

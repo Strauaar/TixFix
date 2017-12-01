@@ -39,13 +39,22 @@ class EventCard extends React.Component {
         <div className="event-card-image-layer"></div>
       </div>
     } else {
-      return <div className="event-card-header">
-        <div className="event-card-header-block">
-          <i className="fa fa-heart-o fa-2x header-icon" aria-hidden="true"></i>
-          <p className="event-card-header-text">{this.props.event.name}</p>
-        </div>
-      </div>
-    }
+        if(this.props.liked_performers_ids.includes(this.props.event.performer.id)){
+          return <div className="event-card-header">
+            <div className="event-card-header-block">
+              <i onClick={()=> this.handleLikeClick('unlike')} className="fa fa-heart-o fa-2x header-icon liked-icon-no-image" aria-hidden="true"></i>
+              <p className="event-card-header-text">{this.props.event.name}</p>
+            </div>
+          </div>
+        } else {
+          return <div className="event-card-header">
+            <div className="event-card-header-block">
+              <i onClick={()=> this.handleLikeClick('like')} className="fa fa-heart-o fa-2x header-icon" aria-hidden="true"></i>
+              <p className="event-card-header-text">{this.props.event.name}</p>
+            </div>
+          </div>
+        }
+      }
   }
 
   render() {
