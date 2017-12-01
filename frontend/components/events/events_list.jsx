@@ -10,7 +10,8 @@ class EventsList extends React.Component {
   }
 
   componentDidMount() {
-    if(this.props.match.pathname="/"){
+    if(this.props.match.path ==="/"){
+      this.props.fetchEvents({date: null, location: null, categoryId : null, name: null});
     }
     this.props.fetchEvents(this.props.filter);
   }
@@ -18,11 +19,11 @@ class EventsList extends React.Component {
   componentWillReceiveProps(newProps) {
     console.log("new", newProps);
     console.log("old", this.props);
-    if( (newProps.match.params.id !== this.props.match.params.id) && (newProps.match.pathname !== this.props.match.pathname) ) {
-      if(newProps.match.pathname === "/") {
-        this.props.fetchEvents({categoryId: null, location: null, date: null})
+    if( (newProps.match.params.id !== this.props.match.params.id) && (newProps.match.path !== this.props.match.path) && (this.props.categoryId !== newProps.categoryId) ) {
+      if(newProps.match.path === "/") {
+        this.props.fetchEvents({categoryId: null, location: null, date: null, name: null})
       } else {
-        this.props.fetchEvents(merge({}, this.props.filter, { categoryId: newProps.match.params.id}))
+        this.props.fetchEvents(merge({}, this.props.filter, { categoryId: newProps.match.params.id}, { name: null }))
       }
     }
   }
@@ -38,9 +39,9 @@ class EventsList extends React.Component {
   }
 
   render() {
-    // if(this.props.events == undefined) {
-    //   return null
-    // }
+    if(this.props.events === undefined) {
+      return null
+    }
     return(
       <div className="events-list-container">
         <div className="events-list-header-container">

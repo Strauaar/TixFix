@@ -4,7 +4,8 @@ import { merge } from 'lodash';
 const initialState = {
   categoryId: null,
   date: null,
-  location: null
+  location: null,
+  name: null
 }
 
 const filterReducer = (state = initialState, action ) => {
