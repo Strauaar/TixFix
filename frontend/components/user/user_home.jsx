@@ -47,7 +47,7 @@ class UserHome extends React.Component {
     }).then(tickets => this.setState({selling_tickets: Object.values(tickets)}))
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.upcomingEvents();
     this.ticketsSoldPrice();
     this.soldTickets();

@@ -8,10 +8,9 @@ class SellTicketPage extends React.Component {
     super(props);
     this.createTicket = this.createTicket.bind(this);
     this.update = this.update.bind(this);
-    this.state = {price: 0, row: '-', type_of: "GA"}
+    this.state = {price: 0, row: '-', type_of: "GA", num_tickets:0}
   }
   componentWillMount(){
-    console.log(this.props);
   }
 
   componentDidMount() {
@@ -39,7 +38,7 @@ class SellTicketPage extends React.Component {
         method: 'POST',
         url: `api/tickets`,
         data: params
-      }).then(e => console.log(e))
+      }).then(e => this.props.history.push("/myhub"))
     }
   }
 

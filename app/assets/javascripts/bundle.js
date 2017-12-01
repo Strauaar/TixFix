@@ -25589,14 +25589,21 @@ var _searchbar = __webpack_require__(268);
 
 var _searchbar2 = _interopRequireDefault(_searchbar);
 
+var _reactRouterDom = __webpack_require__(2);
+
+var _event_actions = __webpack_require__(7);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var mapStateToProps = function mapStateToProps(state) {
-  return {};
-};
-
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {};
+  return {
+    fetchEvents: function fetchEvents(currentCount, filter) {
+      return dispatch((0, _event_actions.fetchEvents)(currentCount, filter));
+    },
+    clearEvents: function clearEvents() {
+      return dispatch((0, _event_actions.clearEvents)());
+    }
+  };
 };
 
 exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(_searchbar2.default);
@@ -60607,10 +60614,20 @@ var Searchbar = function (_React$Component) {
   function Searchbar(props) {
     _classCallCheck(this, Searchbar);
 
-    return _possibleConstructorReturn(this, (Searchbar.__proto__ || Object.getPrototypeOf(Searchbar)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (Searchbar.__proto__ || Object.getPrototypeOf(Searchbar)).call(this, props));
+
+    _this.state = { input: "" };
+    _this.keyPress = _this.keyPress.bind(_this);
+    return _this;
   }
 
   _createClass(Searchbar, [{
+    key: "keyPress",
+    value: function keyPress(e) {
+      if (e.keyCode === 13) {}
+      this.setState({ input: e.target.value });
+    }
+  }, {
     key: "render",
     value: function render() {
 
@@ -60620,7 +60637,7 @@ var Searchbar = function (_React$Component) {
         _react2.default.createElement(
           "div",
           { className: "searchbar-container" },
-          _react2.default.createElement("input", { className: "searchbar", placeholder: "Search for events, artists, teams, or venues" }),
+          _react2.default.createElement("input", { onKeyUp: this.keyPress, className: "searchbar", placeholder: "Search for events..." }),
           _react2.default.createElement(
             "span",
             { className: "icon-container" },
@@ -63233,15 +63250,13 @@ var SellTicketPage = function (_React$Component) {
 
     _this.createTicket = _this.createTicket.bind(_this);
     _this.update = _this.update.bind(_this);
-    _this.state = { price: 0, row: '-', type_of: "GA" };
+    _this.state = { price: 0, row: '-', type_of: "GA", num_tickets: 0 };
     return _this;
   }
 
   _createClass(SellTicketPage, [{
     key: 'componentWillMount',
-    value: function componentWillMount() {
-      console.log(this.props);
-    }
+    value: function componentWillMount() {}
   }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
@@ -63263,6 +63278,8 @@ var SellTicketPage = function (_React$Component) {
   }, {
     key: 'createTicket',
     value: function createTicket(event_id, seller) {
+      var _this2 = this;
+
       if (seller === null) {
         this.props.history.push("/session");
       } else {
@@ -63272,14 +63289,14 @@ var SellTicketPage = function (_React$Component) {
           url: 'api/tickets',
           data: params
         }).then(function (e) {
-          return console.log(e);
+          return _this2.props.history.push("/myhub");
         });
       }
     }
   }, {
     key: 'render',
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
 
       if (this.props.eventQ === undefined) {
         console.log("UNDEF");
@@ -63395,7 +63412,7 @@ var SellTicketPage = function (_React$Component) {
                     _react2.default.createElement(
                       'select',
                       { onChange: function onChange(e) {
-                          return _this2.update('num_tickets', e);
+                          return _this3.update('num_tickets', e);
                         }, 'class': 'ticket-qty' },
                       _react2.default.createElement(
                         'option',
@@ -63475,7 +63492,7 @@ var SellTicketPage = function (_React$Component) {
                         'SECTION'
                       ),
                       _react2.default.createElement('input', { onChange: function onChange(e) {
-                          return _this2.update('section', e);
+                          return _this3.update('section', e);
                         } })
                     ),
                     _react2.default.createElement(
@@ -63487,7 +63504,7 @@ var SellTicketPage = function (_React$Component) {
                         'ROW'
                       ),
                       _react2.default.createElement('input', { onChange: function onChange(e) {
-                          return _this2.update('row', e);
+                          return _this3.update('row', e);
                         } })
                     )
                   )
@@ -63504,7 +63521,7 @@ var SellTicketPage = function (_React$Component) {
                       '$'
                     ),
                     _react2.default.createElement('input', { onChange: function onChange(e) {
-                        return _this2.update('price', e);
+                        return _this3.update('price', e);
                       }, className: 'price-input' })
                   ),
                   _react2.default.createElement(
@@ -63520,7 +63537,7 @@ var SellTicketPage = function (_React$Component) {
                 _react2.default.createElement(
                   'button',
                   { onClick: function onClick() {
-                      return _this2.createTicket(_this2.props.eventQ.id, _this2.props.currentUser);
+                      return _this3.createTicket(_this3.props.eventQ.id, _this3.props.currentUser);
                     }, className: 'post-ticket-btn' },
                   'Post my tickets'
                 )
@@ -63812,8 +63829,8 @@ var UserHome = function (_React$Component) {
       });
     }
   }, {
-    key: 'componentDidMount',
-    value: function componentDidMount() {
+    key: 'componentWillMount',
+    value: function componentWillMount() {
       this.props.upcomingEvents();
       this.ticketsSoldPrice();
       this.soldTickets();
