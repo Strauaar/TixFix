@@ -93,6 +93,20 @@ san_holo_event = Event.create(
   venue_id: fox_theater_venue.id
 )
 
+niners_event = Event.create(
+  name:"San Francisco 49ers",
+  category_id: football_subcategory.id,
+  performer_id: niners_performer.id,
+  venue_id: levis_stadium.id
+)
+
+giants_event = Event.create(
+  name:"San Francisco Giants",
+  category_id: baseball_subcategory.id,
+  performer_id: giants_performer.id,
+  venue_id: att_park_venue.id
+)
+
 2.times do |i|
   Subevent.create(
     name: "Jay Z",
@@ -137,6 +151,24 @@ Subevent.create(
   image_url:"san_holo.jpg",
   date:(DateTime.now + 13).beginning_of_hour,
   event_id: san_holo_event.id
+)
+
+Subevent.create(
+  name:"Oakland Raiders at San Francisco 49ers",
+  venue_id: levis_stadium.id,
+  performer_id: niners_performer.id,
+  category_id: football_subcategory.id,
+  date: (DateTime.now.end_of_week.beginning_of_hour),
+  event_id: niners_event.id
+)
+
+Subevent.create(
+  name:"Oakland Athletics at San Francisco Giants",
+  venue_id: att_park_venue.id,
+  performer_id: giants_performer.id,
+  category_id: baseball_subcategory.id,
+  date: ((DateTime.now + 15).end_of_week.beginning_of_day,
+  event_id: giants_event.id
 )
 
 
