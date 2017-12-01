@@ -62533,6 +62533,7 @@ var ScrollTicketItem = function (_React$Component) {
                 _react2.default.createElement(
                   'span',
                   null,
+                  'Type: ',
                   this.props.ticket.type_of
                 )
               ),
@@ -62557,6 +62558,7 @@ var ScrollTicketItem = function (_React$Component) {
               _react2.default.createElement(
                 'span',
                 null,
+                'Row: ',
                 this.props.ticket.row
               )
             ),
