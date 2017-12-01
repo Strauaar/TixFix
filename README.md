@@ -90,7 +90,7 @@ Find events and make money on TixFix.
 ###### Search function
 + The search method implemented allowed for a single multi-use function both on the backend and frontend of the app.
 
-+ Frontend AJAX request for search(called through a thunk action creator)
++ Frontend AJAX request for search(called through a thunk action creator):
       export const fetchSearchEvents = (filter) => (
         $.ajax({
           method: 'GET',
@@ -129,3 +129,26 @@ Find events and make money on TixFix.
          end
          events
       end
++ `filter_date` method utilizing the given value in the filter object:
+        def self.filter_date(events, date_filter)
+
+          if date_filter == 'This weekend'
+            start_date = DateTime.now.end_of_week - 2
+            end_date = DateTime.now.end_of_week
+          elsif date_filter == 'Today'
+            start_date = DateTime.now.beginning_of_day
+            end_date = DateTime.now.end_of_day
+          elsif date_filter == 'This month'
+            start_date = DateTime.now
+            end_date = DateTime.now.end_of_month
+          elsif date_filter == 'All dates'
+            return events
+          end
+          result = [];
+          events.each do |event|
+            if event.subevents.any?{|subevent| (start_date..end_date).cover?(subevent.date)}
+              result << event
+            end
+          end
+          self.where(id: result.map(&:id))
+        end
