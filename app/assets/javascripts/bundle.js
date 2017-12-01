@@ -61314,6 +61314,7 @@ var EventsList = function (_React$Component) {
       console.log("old", this.props);
       if (newProps.match.params.id !== this.props.match.params.id && newProps.match.path !== this.props.match.path && this.props.categoryId !== newProps.categoryId) {
         if (newProps.match.path === "/") {
+          this.props.clearFilter();
           this.props.fetchSearchEvents({ categoryId: null, location: null, date: null, name: null });
         } else {
           this.props.fetchSearchEvents((0, _lodash.merge)({}, this.props.filter, { categoryId: newProps.match.params.id }, { name: null }));
