@@ -1,5 +1,6 @@
 import React from 'react';
 import { Switch, Route, NavLink } from 'react-router-dom';
+import { ProtectedRoute } from "../../utils/route_util";
 import UserHomeContainer from './user_home_container';
 import UserFavContainer from './user_fav_container';
 import UserNavBar from './user_navigation_bar';
@@ -25,8 +26,8 @@ class MyHub extends React.Component {
         </UserNavBar>
         <div>
           <Switch>
-            <Route path="/myhub/favorites" component={UserFavContainer} />
-            <Route path="/myhub" component={UserHomeContainer} />
+            <ProtectedRoute path="/myhub/favorites" component={UserFavContainer} />
+            <ProtectedRoute path="/myhub" component={UserHomeContainer} />
           </Switch>
         </div>
       </div>

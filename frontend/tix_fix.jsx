@@ -19,24 +19,6 @@ import { receiveTickets, fetchSellingTickets } from './actions/ticket_actions';
 
 document.addEventListener("DOMContentLoaded", () => {
   const store = configureStore();
-
-  window.store = store;
-  window.loginUser = loginUser;
-  window.logoutUser = logoutUser;
-  window.createUser = createUser;
-  window.fetchEvents = fetchEvents;
-  window.fetchEventByCategory = fetchEventByCategory;
-
-  window.fetchMoreEvents = fetchMoreEvents;
-  window.fetchSubCategoryList = fetchSubCategoryList;
-  window.fetchSubCategoryEvents = fetchSubCategoryEvents;
-  window.fetchPerformerLikes = fetchPerformerLikes;
-  window.createPerformerLike = createPerformerLike;
-  window.fetchEventTickets = TicketApiUtil.fetchEventTickets;
-  window.fetchSellingTickets = fetchSellingTickets;
-  window.fetchBuyingTickets = TicketApiUtil.fetchBuyingTickets;
-  window.receiveTickets = receiveTickets;
-
   const rootEl = document.getElementById("root");
   ReactDOM.render(<Root store={store} />, rootEl);
 });

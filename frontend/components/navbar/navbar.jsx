@@ -33,9 +33,9 @@ class NavBar extends React.Component {
           </div>
         </div>
 
-        
 
-        <Route path="/new" component={SessionsModalContainer}></Route>
+
+        <AuthRoute path="/new" component={SessionsModalContainer}></AuthRoute>
         <AuthRoute path="/session" component={SessionsModalContainer}></AuthRoute>
       </div>
     )

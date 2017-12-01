@@ -37212,27 +37212,9 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 document.addEventListener("DOMContentLoaded", function () {
-  var store = (0, _store2.default)();
-
-  window.store = store;
-  window.loginUser = _session_actions.loginUser;
-  window.logoutUser = _session_actions.logoutUser;
-  window.createUser = _session_actions.createUser;
-  window.fetchEvents = _event_util.fetchEvents;
-  window.fetchEventByCategory = _event_util.fetchEventByCategory;
-
-  window.fetchMoreEvents = _event_actions.fetchMoreEvents;
-  window.fetchSubCategoryList = _category_actions.fetchSubCategoryList;
-  window.fetchSubCategoryEvents = _category_actions.fetchSubCategoryEvents;
-  window.fetchPerformerLikes = _like_actions.fetchPerformerLikes;
-  window.createPerformerLike = _like_actions.createPerformerLike;
-  window.fetchEventTickets = TicketApiUtil.fetchEventTickets;
-  window.fetchSellingTickets = _ticket_actions.fetchSellingTickets;
-  window.fetchBuyingTickets = TicketApiUtil.fetchBuyingTickets;
-  window.receiveTickets = _ticket_actions.receiveTickets;
-
-  var rootEl = document.getElementById("root");
-  _reactDom2.default.render(_react2.default.createElement(_root2.default, { store: store }), rootEl);
+         var store = (0, _store2.default)();
+         var rootEl = document.getElementById("root");
+         _reactDom2.default.render(_react2.default.createElement(_root2.default, { store: store }), rootEl);
 });
 
 /***/ }),
@@ -59933,6 +59915,8 @@ var _reactRedux = __webpack_require__(3);
 
 var _reactRouterDom = __webpack_require__(2);
 
+var _route_util = __webpack_require__(271);
+
 var _navbar_container = __webpack_require__(264);
 
 var _navbar_container2 = _interopRequireDefault(_navbar_container);
@@ -60042,7 +60026,7 @@ var App = function (_React$Component) {
           _react2.default.createElement(_reactRouterDom.Route, { path: '/subcategory/:id', component: _subcategory_page_container2.default }),
           _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/tickets/sell', component: _tickets_sell_splash_page_container2.default }),
           _react2.default.createElement(_reactRouterDom.Route, { path: '/events/:eventId/sell', component: _sell_ticket_page_container2.default }),
-          _react2.default.createElement(_reactRouterDom.Route, { path: '/myhub', component: _myhub_container2.default })
+          _react2.default.createElement(_route_util.ProtectedRoute, { path: '/myhub', component: _myhub_container2.default })
         ),
         _react2.default.createElement(_reactRouterDom.Route, { path: '/category/:id', component: _subcategory_list_container2.default }),
         _react2.default.createElement(
@@ -60196,7 +60180,7 @@ var NavBar = function (_React$Component) {
             _react2.default.createElement(_navbar_user_menu_items2.default, { currentUser: this.props.currentUser, logout: this.props.logout })
           )
         ),
-        _react2.default.createElement(_reactRouterDom.Route, { path: '/new', component: _sessions_modal_container2.default }),
+        _react2.default.createElement(_route_util.AuthRoute, { path: '/new', component: _sessions_modal_container2.default }),
         _react2.default.createElement(_route_util.AuthRoute, { path: '/session', component: _sessions_modal_container2.default })
       );
     }
@@ -62299,9 +62283,9 @@ var EventShowPage = function (_React$Component) {
   }, {
     key: 'handleLikeClick',
     value: function handleLikeClick(type) {
-      console.log(this.props.current_user.id, "user");
-      console.log(this.props.match.params.id, "path");
+      debugger;
       if (this.props.current_user === null) {
+        console.log("NO USER");
         this.props.history.push("/session");
       } else if (type === 'unlike') {
         this.props.deleteEventLike(this.props.current_user.id, this.props.match.params.id);
@@ -63885,6 +63869,8 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = __webpack_require__(2);
 
+var _route_util = __webpack_require__(271);
+
 var _user_home_container = __webpack_require__(300);
 
 var _user_home_container2 = _interopRequireDefault(_user_home_container);
@@ -63957,8 +63943,8 @@ var MyHub = function (_React$Component) {
           _react2.default.createElement(
             _reactRouterDom.Switch,
             null,
-            _react2.default.createElement(_reactRouterDom.Route, { path: '/myhub/favorites', component: _user_fav_container2.default }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: '/myhub', component: _user_home_container2.default })
+            _react2.default.createElement(_route_util.ProtectedRoute, { path: '/myhub/favorites', component: _user_fav_container2.default }),
+            _react2.default.createElement(_route_util.ProtectedRoute, { path: '/myhub', component: _user_home_container2.default })
           )
         )
       );

@@ -7,6 +7,7 @@ import {
   Link,
   HashRouter
 } from 'react-router-dom';
+import { ProtectedRoute } from '../utils/route_util';
 import NavBarContainer from './navbar/navbar_container';
 import CategoryCardList from './categories/category_card_list';
 import LocationDateFilterContainer from './navbar/location_date_filter_container';
@@ -55,7 +56,7 @@ class App extends React.Component {
           <Route path="/subcategory/:id" component={SubCategoryPageContainer} />
           <Route exact path="/tickets/sell" component={TicketSellSplashPageContainer} />
           <Route path="/events/:eventId/sell" component={SellTicketPageContainer} />
-          <Route path="/myhub" component={MyHubContainer} />
+          <ProtectedRoute path="/myhub" component={MyHubContainer} />
         </Switch>
 
         <Route path="/category/:id" component={SubCategoryListContainer} />
