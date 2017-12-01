@@ -1,4 +1,5 @@
 import React from 'react';
+import { merge } from 'lodash';
 
 class EventsUl extends React.Component {
   constructor(props){
@@ -7,11 +8,9 @@ class EventsUl extends React.Component {
 
   loadMoreEvents(childrenCount, categoryId) {
     if(categoryId === undefined) {
-      this.props.fetchMoreEvents(childrenCount);
-    } else if(this.props.categoryId != 1 || this.props.categoryId != 2 || this.props.categoryId != 3) {
-      // this.props.filterByDate()
+      this.props.fetchMoreEvents(childrenCount, merge({}, this.props.filter,{categoryId: null}));
     } else {
-      this.props.fetchMoreEventsByCategory(childrenCount, this.props.categoryId)
+      this.props.fetchMoreEvents(childrenCount, merge({}, this.props.filter,{categoryId}));
     }
   }
 

@@ -12,6 +12,7 @@ const check_state = () => {
                     currentUser: window.currentUser
                   }
             };
+    delete window.currentUser
   }
   return state
 }

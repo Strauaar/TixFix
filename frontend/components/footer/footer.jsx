@@ -9,9 +9,7 @@ class Footer extends React.Component {
     return(
       <div className="footer-container">
         <div className="footer-top">
-          <div className="footer-apps">
 
-          </div>
           <div className="footer-social">
               <h4 className="footer-list-header">Connect with me</h4>
               <div className="footer-social-icon-row">
@@ -42,9 +40,7 @@ class Footer extends React.Component {
               <li><a>The TixFix Promise</a></li>
             </ul>
           </div>
-          <div className="footer-bottom">
-
-          </div>
+  
         </div>
       </div>
     )

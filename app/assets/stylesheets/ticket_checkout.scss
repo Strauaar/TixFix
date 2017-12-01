@@ -1,0 +1,91 @@
+.event-ticket-checkout-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+.event-ticket-checkout-details {
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+}
+
+.checkout-event-detail {
+  padding-bottom: 5px;
+  align-items: center;
+}
+
+.selected-seats-container {
+  padding: 20px 0;
+  padding-top: 0px;
+  width: 100%;
+  border-bottom: 3px dotted #ccc;
+}
+
+.selected-seats-container p {
+  font-size: 20px;
+  font-weight: 700;
+  color: #87909A;
+
+}
+
+.seats-sub-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0;
+}
+
+.detail-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.ticket-detail-subheader {
+  font-weight: 700;
+  color: #87909A;
+}
+
+.ticket-detail-subheader + span {
+  color: #5C6570;
+  font-weight: 700;
+  padding: 10px 0;
+}
+
+.delivery-method-container {
+  padding: 20px 0;
+  border-bottom: 3px dotted #ccc;
+}
+
+.ticket-details-container {
+  padding: 20px 0;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.ticket-checkout-button-container {
+  padding-top: 20px;
+}
+
+.ticket-checkout-button-container  button{
+  width: 100%;
+  padding: 15px;
+  border-style: none;
+  font-size: 20px;
+  color: white;
+  background-color: #d92b79;
+}
+
+.ticket-checkout-button-container  button:hover {
+  cursor:pointer
+}
+
+.each {
+  font-size: 13px;
+  font-weight: 500;
+}

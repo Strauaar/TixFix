@@ -21,14 +21,39 @@ class Subevent < ApplicationRecord
     class_name: :Event,
     foreign_key: :event_id
 
-  def self.filter_date(category_id, date_filter)
-    if date_filter == 'weekend'
-      dates = DateTime.now.end_of_week - 2..DateTime.now.end_of_week
-    elsif date_filter == 'today'
-      dates = DateTime.now.beginning_of_day..DateTime.now.end_of_day
-    elsif date_filter == 'month'
-      dates = DateTime.now..DateTime.now.end_of_month
+  has_many :tickets,
+    primary_key: :id,
+    class_name: :Ticket,
+    foreign_key: :event_id
+
+    has_many :event_likes,
+      primary_key: :id,
+      class_name: :EventLike,
+      foreign_key: :event_id
+
+  def self.filter_date(category_ids, date_filter)
+    if date_filter == 'This weekend'
+      start_date = DateTime.now.end_of_week - 2
+      end_date = DateTime.now.end_of_week
+    elsif date_filter == 'Today'
+      start_date = DateTime.now.beginning_of_day
+      end_date = DateTime.now.end_of_day
+    elsif date_filter == 'This month'
+      start_date = DateTime.now
+      end_date = DateTime.now.end_of_month
+    elsif date_filter == 'All dates'
+      if category_ids == -1
+        return Subevent.all
+      else
+        return Subevent.where(category_id: category_ids)
+      end
     end
-    Subevent.where(:subcategory_id => category_id, :date => dates )
+    # Subevent.where(:category_ids => #in cat_id, :date => dates )
+    first_filter =Subevent.where(["date BETWEEN (?) AND (?)", start_date, end_date])
+    if category_ids != -1
+      return second_filter = first_filter.where(category_id: category_ids)
+    else
+      return first_filter
+    end
   end
 end

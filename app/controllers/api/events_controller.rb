@@ -1,11 +1,27 @@
 class Api::EventsController < ApplicationController
   def index
-    @count = params[:currentCount]
-
-    if @count
-      @events = Event.all.limit(10).offset(@count.to_i)
+    @count = params[:current_count]
+    if params[:filter][:name] != ""
+      query =  '%' + params[:filter][:name].downcase.split('').join("%") + '%'
+      @subevents = Subevent.where("lower(name) LIKE ?", query).limit(10)
+      render :subevents
     else
-      @events = Event.all.limit(10)
+      if @count
+        @events = Event.filter(params[:filter]).limit(10).offset(@count.to_i)
+      else
+        @events = Event.filter(params[:filter]).limit(10)
+      end
+      render :index
+    end
+  end
+
+  def search
+    @count = params[:current_count]
+    @events = Event.all
+    if  @count
+      @events = Event.filter_by(params[:filter]).limit(10).offset(@count.to_i)
+    else
+      @events = Event.filter_by(params[:filter]).limit(10)
     end
     render :index
   end

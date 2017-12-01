@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171127194607) do
+ActiveRecord::Schema.define(version: 20171201091635) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,16 @@ ActiveRecord::Schema.define(version: 20171127194607) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "parent_category_id"
+  end
+
+  create_table "event_likes", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "event_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_event_likes_on_event_id"
+    t.index ["user_id"], name: "index_event_likes_on_user_id"
   end
 
   create_table "events", force: :cascade do |t|
@@ -29,9 +39,17 @@ ActiveRecord::Schema.define(version: 20171127194607) do
     t.string "image_url"
     t.integer "performer_id", null: false
     t.integer "venue_id"
-    t.integer "subcategory_id"
     t.index ["category_id"], name: "index_events_on_category_id"
     t.index ["performer_id"], name: "index_events_on_performer_id"
+  end
+
+  create_table "performer_likes", force: :cascade do |t|
+    t.integer "performer_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["performer_id"], name: "index_performer_likes_on_performer_id"
+    t.index ["user_id"], name: "index_performer_likes_on_user_id"
   end
 
   create_table "performers", force: :cascade do |t|
@@ -40,14 +58,6 @@ ActiveRecord::Schema.define(version: 20171127194607) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_performers_on_category_id"
-  end
-
-  create_table "subcategories", force: :cascade do |t|
-    t.string "name", null: false
-    t.integer "category_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_subcategories_on_category_id"
   end
 
   create_table "subevents", force: :cascade do |t|
@@ -60,11 +70,24 @@ ActiveRecord::Schema.define(version: 20171127194607) do
     t.integer "performer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "subcategory_id"
     t.index ["category_id"], name: "index_subevents_on_category_id"
     t.index ["event_id"], name: "index_subevents_on_event_id"
     t.index ["performer_id"], name: "index_subevents_on_performer_id"
     t.index ["venue_id"], name: "index_subevents_on_venue_id"
+  end
+
+  create_table "tickets", force: :cascade do |t|
+    t.integer "seller_id", null: false
+    t.integer "buyer_id"
+    t.integer "event_id", null: false
+    t.integer "price", null: false
+    t.string "type_of", null: false
+    t.string "row", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["buyer_id"], name: "index_tickets_on_buyer_id"
+    t.index ["event_id"], name: "index_tickets_on_event_id"
+    t.index ["seller_id"], name: "index_tickets_on_seller_id"
   end
 
   create_table "users", force: :cascade do |t|

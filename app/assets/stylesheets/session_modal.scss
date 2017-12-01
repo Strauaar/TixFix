@@ -241,8 +241,10 @@ form {
   display: flex;
   flex-direction: column;
   list-style: none;
-  font-size: 11px;
-  margin-top: 7px;
+  font-size: 14px;
+  margin: 0px;
+  padding: 0px;
+  justify-content: flex-start;
 }
 
 .error-list li {

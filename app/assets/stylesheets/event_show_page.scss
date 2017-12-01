@@ -13,6 +13,7 @@
   margin-bottom: 5px;
 }
 
+
 .event-show-day-text {
   font-size: 24px;
 }
@@ -31,4 +32,60 @@
 
 .event-show-detail-venue {
 
+}
+
+.event-show-like-container {
+  width: 100%;
+  height: 100%;
+  border-radius: 7px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin:0;
+  padding: 0;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  background-color: #DE334B;
+
+}
+
+.event-show-like-box {
+    background: rgba(255, 255, 255, 0.2);
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.event-show-like-box:hover {
+  cursor: pointer;
+}
+
+.liked-box-event {
+  animation: 0.5s show ease-out forwards;
+}
+
+.unliked-box-event {
+  animation: 0.5s hide ease-out forwards;
+}
+
+@keyframes hide{
+  0% { background: rgba(255, 255, 255, 0.7) }
+  100% { background: rgba(255, 255, 255, 0.2) }
+}
+
+@keyframes show{
+  0% { background: rgba(255, 255, 255, 0.2) }
+  100% { background: rgba(255, 255, 255, 0.7) }
+}
+
+.shade {
+  text-shadow: 4px 4px #9E2436;
+}
+
+.show-event-liked {
+  color: #DE334B;
 }

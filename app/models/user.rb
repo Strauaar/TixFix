@@ -5,6 +5,39 @@ class User < ApplicationRecord
 
   before_validation :ensure_session_token
 
+  has_many :user_likes,
+    primary_key: :id,
+    class_name: :PerformerLike,
+    foreign_key: :user_id
+
+  has_many :performers_liked,
+    through: :user_likes,
+    source: :performer
+
+  has_many :selling_tickets,
+    primary_key: :id,
+    class_name: :Ticket,
+    foreign_key: :seller_id
+
+  has_many :bought_tickets,
+    primary_key: :id,
+    class_name: :Ticket,
+    foreign_key: :buyer_id
+
+  has_many :events_attending,
+    through: :bought_tickets,
+    source: :event
+
+  has_many :event_likes,
+    primary_key: :id,
+    class_name: :EventLike,
+    foreign_key: :user_id
+
+  has_many :events_liked,
+    through: :event_likes,
+    source: :event
+
+
   attr_reader :password
 
   def password=(password)
@@ -31,6 +64,23 @@ class User < ApplicationRecord
     else
       return nil
     end
+  end
+
+
+  def sold_tickets
+    self.selling_tickets.where("buyer_id IS NOT NULL")
+  end
+  def tickets_sold_price
+    cumulative_price = self.sold_tickets.pluck(:price).inject(:+)
+    cumulative_price
+  end
+
+  def upcoming_events
+    self.events_attending.where("date > ?", DateTime.now)
+  end
+
+  def tickets_selling
+    self.selling_tickets.where("buyer_id IS NULL")
   end
 
 end

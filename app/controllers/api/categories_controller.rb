@@ -1,13 +1,14 @@
 class Api::CategoriesController < ApplicationController
 
   def show
-    @count = params[:currentCount]
-    if @count
-      @events = Category.find(params[:id]).events.limit(10).offset(@count.to_i)
-    else
-      @events = Category.find(params[:id]).events.limit(10)
+    if params[:type] == 'list'
+      @category = Category.find(params[:id])
+      render :subcategory_list
+    elsif params[:type] == 'events'
+      @events = Category.find(params[:id]).events
+      render :show
     end
-    render :show
+
   end
 
 

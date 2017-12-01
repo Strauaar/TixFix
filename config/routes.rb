@@ -7,6 +7,18 @@ Rails.application.routes.draw do
     resources :events, only: [:index]
     resources :subevents, path: :events, only: [:show]
     resources :categories, only: [:show]
-    resources :subcategories, only: [:show]
+    resources :performer_likes, only: [:create, :destroy, :index]
+    resources :event_likes, only: [:create, :destroy, :index]
+    resources :tickets, only: [:create, :index, :show, :update]
+    get 'users/:id/tickets_selling' => 'users#tickets_selling'
+    get 'users/:id/tickets_buying' => 'users#tickets_buying'
+    get 'events/:id/tickets' => 'subevents#available_tickets'
+    get 'user/tickets/sold/price' => 'users#tickets_sold_price'
+    get 'user/tickets/bought' => 'users#tickets_bought'
+    get 'user/upcoming_events' => 'users#upcoming_events'
+    get 'user/tickets/sold' => 'users#sold_tickets'
+    get 'user/tickets/selling' => 'users#tickets_selling'
+    get 'user/liked_performers' => 'users#liked_performers'
+    get 'event/searching' => 'events#search'
   end
 end
