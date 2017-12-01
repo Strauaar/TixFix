@@ -63549,6 +63549,8 @@ var SellTicketPage = function (_React$Component) {
   }, {
     key: 'createTicket',
     value: function createTicket(event_id, seller) {
+      var _this2 = this;
+
       if (seller === null) {
         this.props.history.push("/session");
       } else {
@@ -63557,6 +63559,8 @@ var SellTicketPage = function (_React$Component) {
           method: 'POST',
           url: 'api/tickets',
           data: params
+        }).then(function (res) {
+          return _this2.props.history.push("/myhub");
         });
       }
     }
@@ -63566,7 +63570,7 @@ var SellTicketPage = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
 
       if (this.props.eventQ === undefined) {
         console.log("UNDEF");
@@ -63682,7 +63686,7 @@ var SellTicketPage = function (_React$Component) {
                     _react2.default.createElement(
                       'select',
                       { onChange: function onChange(e) {
-                          return _this2.update('num_tickets', e);
+                          return _this3.update('num_tickets', e);
                         }, 'class': 'ticket-qty' },
                       _react2.default.createElement(
                         'option',
@@ -63762,7 +63766,7 @@ var SellTicketPage = function (_React$Component) {
                         'SECTION'
                       ),
                       _react2.default.createElement('input', { onChange: function onChange(e) {
-                          return _this2.update('section', e);
+                          return _this3.update('section', e);
                         } })
                     ),
                     _react2.default.createElement(
@@ -63774,7 +63778,7 @@ var SellTicketPage = function (_React$Component) {
                         'ROW'
                       ),
                       _react2.default.createElement('input', { onChange: function onChange(e) {
-                          return _this2.update('row', e);
+                          return _this3.update('row', e);
                         } })
                     )
                   )
@@ -63791,7 +63795,7 @@ var SellTicketPage = function (_React$Component) {
                       '$'
                     ),
                     _react2.default.createElement('input', { type: 'number', onChange: function onChange(e) {
-                        return _this2.update('price', e);
+                        return _this3.update('price', e);
                       }, className: 'price-input' })
                   ),
                   _react2.default.createElement(
@@ -63812,7 +63816,7 @@ var SellTicketPage = function (_React$Component) {
                 _react2.default.createElement(
                   'button',
                   { onClick: function onClick() {
-                      return _this2.createTicket(_this2.props.eventQ.id, _this2.props.currentUser);
+                      return _this3.createTicket(_this3.props.eventQ.id, _this3.props.currentUser);
                     }, className: 'post-ticket-btn' },
                   'Post my tickets'
                 )

@@ -39,7 +39,7 @@ class SellTicketPage extends React.Component {
         method: 'POST',
         url: `api/tickets`,
         data: params
-      })
+      }).then(res => this.props.history.push("/myhub"))
     }
   }
 
