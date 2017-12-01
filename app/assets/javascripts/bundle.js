@@ -64712,13 +64712,31 @@ var LikedCardItem = function (_React$Component) {
           _react2.default.createElement('div', { className: 'liked-card-image', style: { backgroundImage: 'url(' + this.props.item.img_url + ')' } }),
           _react2.default.createElement(
             'div',
-            null,
+            { className: 'liked-card-tag' },
+            _react2.default.createElement(
+              'span',
+              null,
+              'on tour'
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'liked-card-footer' },
             _react2.default.createElement(
               'div',
               { className: 'header-icon-box', onClick: function onClick() {
                   return _this2.handleLikeClick(_this2.props.type);
                 } },
               _react2.default.createElement('i', { className: 'fa fa-heart fa-2x header-icon in-image-icon liked-icon', 'aria-hidden': 'true' })
+            ),
+            _react2.default.createElement(
+              'div',
+              null,
+              _react2.default.createElement(
+                'span',
+                null,
+                this.props.item.name
+              )
             )
           )
         );

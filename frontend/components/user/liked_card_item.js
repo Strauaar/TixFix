@@ -24,9 +24,13 @@ class LikedCardItem extends React.Component {
     return(
       <div className="liked-card">
           <div className="liked-card-image" style={{backgroundImage: `url(${this.props.item.img_url})`}}></div>
-          <div>
+          <div className="liked-card-tag"><span>on tour</span></div>
+          <div className="liked-card-footer">
             <div className="header-icon-box" onClick={()=> this.handleLikeClick(this.props.type)}>
               <i className="fa fa-heart fa-2x header-icon in-image-icon liked-icon" aria-hidden="true"></i>
+            </div>
+            <div>
+              <span>{this.props.item.name}</span>
             </div>
           </div>
         </div>
