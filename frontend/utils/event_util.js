@@ -25,7 +25,7 @@ export const fetchMoreEvents = (currentCount, filter) => (
     method: 'GET',
     url: 'api/events',
     data: { currentCount,
-            filter}
+            filter }
   })
 );
 

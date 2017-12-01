@@ -8,7 +8,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchMoreEvents: (currentCount) => dispatch(fetchMoreEvents(currentCount))
+  fetchMoreEvents: (currentCount, filter) => dispatch(fetchMoreEvents(currentCount, filter))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EventsUl);

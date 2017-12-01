@@ -6,7 +6,7 @@ class Api::EventsController < ApplicationController
       @subevents = Subevent.where("lower(name) LIKE ?", query).limit(10)
       render :subevents
     else
-      if  @count
+      if @count
         @events = Event.filter(params[:filter]).limit(10).offset(@count.to_i)
       else
         @events = Event.filter(params[:filter]).limit(10)
@@ -17,6 +17,7 @@ class Api::EventsController < ApplicationController
 
   def search
     @count = params[:current_count]
+    @events = Event.all
     if  @count
       @events = Event.filter_by(params[:filter]).limit(10).offset(@count.to_i)
     else

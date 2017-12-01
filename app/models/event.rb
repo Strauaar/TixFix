@@ -69,6 +69,7 @@ class Event < ApplicationRecord
 
   def self.filter_by(filters)
     events = Event.includes(:subevents)
+
      if filters["name"] != ""
        query =  '%' + filters["name"].downcase.split('').join("%") + '%'
        events = Event.where("lower(name) LIKE ?", query)

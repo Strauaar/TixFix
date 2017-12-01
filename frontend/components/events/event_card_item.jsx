@@ -50,7 +50,7 @@ class EventCard extends React.Component {
           return <div className="event-card-header">
             <div className="event-card-header-block">
               <i onClick={()=> this.handleLikeClick('like')} className="fa fa-heart-o fa-2x header-icon" aria-hidden="true"></i>
-              <p className="event-card-header-text">{this.props.event.name}</p>
+              <p className="event-card-header-text">{this.props.event.performer.name}</p>
             </div>
           </div>
         }
@@ -58,6 +58,9 @@ class EventCard extends React.Component {
   }
 
   render() {
+    if(this.props.event.name === undefined) {
+      return null
+    }
     return (
       <div className="top-event-card-block fade-in">
 
