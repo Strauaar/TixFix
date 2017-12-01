@@ -11,7 +11,7 @@ const UserNavBar = (props) => {
           <ul className="myhub-ul">
             {
               props.children.map(navlink => (
-                  <li className="myhub-list-item">{navlink}</li>
+                  <li className="myhub-list-item-fav">{navlink}</li>
               ))
             }
           </ul>

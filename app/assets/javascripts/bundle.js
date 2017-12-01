@@ -64571,7 +64571,7 @@ var UserNavBar = function UserNavBar(props) {
           props.children.map(function (navlink) {
             return _react2.default.createElement(
               "li",
-              { className: "myhub-list-item" },
+              { className: "myhub-list-item-fav" },
               navlink
             );
           })

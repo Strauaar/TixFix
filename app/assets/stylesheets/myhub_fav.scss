@@ -3,6 +3,13 @@
   font-family: 'Roboto Condensed', sans-serif;
 }
 
+.myhub-list-item-fav {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border-bottom: 1px solid #E7EAEC;
+}
+
 .user-fav-subcontainer {
   margin-top: 15px;
   width: 70;
