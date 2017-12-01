@@ -237,7 +237,7 @@ Subevent.create(
 
 2.times do |i|
   event = Subevent.create(
-    event = name:"The Nutcracker",
+    name:"The Nutcracker",
     venue_id: warner_theater.id,
     performer_id: nutcracker_performer.id,
     category_id: dance_subcategory.id,
@@ -248,8 +248,8 @@ Subevent.create(
 end
 
 3.times do |i|
-  Subevent.create(
-    event = name:"SF Symphony",
+  event = Subevent.create(
+    name:"SF Symphony",
     venue_id: davies_venue.id,
     performer_id: sf_symphony_performer.id,
     category_id: classical_subcategory.id,
