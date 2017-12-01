@@ -57,6 +57,7 @@ giants_performer = Performer.create(name:"SF Giants", category_id: baseball_subc
 #THEATER PERFORMERS
 nutcracker_performer = Performer.create(name:"The Nutcracker SF", category_id: dance_subcategory.id)
 county_fair_performer = Performer.create(name:"County Fair", category_id:festivals_subcategory.id)
+sf_symphony_performer = Performer.create(name:"SF Symphony", category_id: classical_subcategory.id)
 
 #VENUE
 billyg_venue = Venue.create(name:"Bill Graham Civic Auditorium", location:"99 Grove St.", city: "San Franacisco", state:"CA")
@@ -64,6 +65,9 @@ warfield_venue = Venue.create(name:"The Warfield", location:"982 Market St.", ci
 fox_theater_venue = Venue.create(name:"Fox Theater", location:"1807 Telegraph Ave.", city:"Oakland", state:"CA")
 att_park_venue = Venue.create(name:"AT&T Park", location: "24 Willie Mays Plaza", city:"SF", state:"CA")
 levis_stadium = Venue.create(name:"Levi's Stadium", location:"4900 Marie P DeBartolo Way", city:"Santa Clara", state:"CA")
+oakland_stadium = Venue.create(name:"Oakland Coliseum", location:"7000 Coliseum Way,", city:"Oakland", state:"CA")
+warner_theater = Venue.create(name:"Warner Theatre", location:"513 13th Street", city:"San Franacisco", state:"CA")
+davies_venue = Venue.create(name:"Davies Symphony Hall", location:"201 Van Ness Ave.", city: "San Franacisco", state: "CA")
 
 kaskade_event = Event.create(
 name: "Kaskade",
@@ -105,6 +109,34 @@ giants_event = Event.create(
   category_id: baseball_subcategory.id,
   performer_id: giants_performer.id,
   venue_id: att_park_venue.id
+)
+jayz_event2 = Event.create(
+  name: "Jay Z",
+  category_id: rap_subcategory.id,
+  image_url: "jayz.jpg",
+  performer_id: jayz_performer.id,
+  venue_id: billyg_venue.id
+)
+
+raiders_event = Event.create(
+  name: "Oakland Raiders",
+  category_id: football_subcategory.id,
+  performer_id: raiders_performer.id,
+  venue_id: oakland_stadium.id
+)
+
+nutcracker_event = Event.create(
+  name:"The Nutcracker",
+  category_id: dance_subcategory.id,
+  performer_id: nutcracker_performer.id,
+  venue_id: warner_theater.id
+)
+
+symphony_event - Event.create(
+  name:"SF Symphony",
+  category_id: classical_subcategory.id,
+  performer_id: sf_symphony_performer.id,
+  venue_id: davies_venue.id
 )
 
 2.times do |i|
@@ -170,3 +202,46 @@ Subevent.create(
   date: (DateTime.now + 15).end_of_week.beginning_of_day,
   event_id: giants_event.id
 )
+
+1.times do |i|
+  Subevent.create(
+    name: "Jay Z",
+    venue_id: billyg_venue.id,
+    performer_id: jayz_performer.id,
+    category_id: rap_subcategory.id,
+    image_url: "jayz.jpg",
+    date: (DateTime.now + i + 18).end_of_week.beginning_of_hour,
+    event_id: jayz_event2.id
+  )
+end
+
+Subevent.create(
+  name:"SF 49ers at Oakland Raiders",
+  venue_id: oakland_stadium.id,
+  performer_id: raiders_performer.id,
+  category_id: football_subcategory.id,
+  date: (DateTime.now + 20).end_of_week.beginning_of_day
+  event_id: raiders_event.id
+)
+
+2.times do |i|
+  Subevent.create(
+    name:"The Nutcracker",
+    venue_id: warner_theater.id,
+    performer_id: nutcracker_performer.id,
+    category_id: dance_subcategory.id,
+    date: (DateTime.now + 22 + i).end_of_week.beginning_of_day
+    event_id: nutcracker_event.id
+  )
+end
+
+3.times do |i|
+  Subevent.create(
+    name:"The Nutcracker",
+    venue_id: davies_venue.id,
+    performer_id: sf_symphony_performer.id,
+    category_id: classical_subcategory.id,
+    date: (DateTime.now + 30 + i).end_of_week.beginning_of_day
+    event_id: symphony_event.id
+  )
+end
