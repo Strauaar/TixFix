@@ -28,6 +28,11 @@ class User < ApplicationRecord
     through: :bought_tickets,
     source: :event
 
+  has_many :event_likes,
+    primary_key: :id,
+    class_name: :EventLike,
+    foreign_key: :user_id
+
 
   attr_reader :password
 
