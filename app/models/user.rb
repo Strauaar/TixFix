@@ -66,12 +66,6 @@ class User < ApplicationRecord
     cumulative_price
   end
 
-  def tickets_bought_price
-    all_bought_tickets = self.bought_tickets
-    cumulative_price = all_bought_tickets.pluck(:price).inject(:+)
-    cumulative_price
-  end
-
   def upcoming_events
     self.events_attending.where("date > ?", DateTime.now)
   end

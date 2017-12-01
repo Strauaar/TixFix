@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     get 'users/:id/tickets_buying' => 'users#tickets_buying'
     get 'events/:id/tickets' => 'subevents#available_tickets'
     get 'user/tickets/sold/price' => 'users#tickets_sold_price'
-    get 'user/tickets/bought/price' => 'users#tickets_bought_price'
+    get 'user/tickets/bought' => 'users#tickets_bought'
     get 'user/upcoming_events' => 'users#upcoming_events'
     get 'user/tickets/sold' => 'users#sold_tickets'
     get 'user/tickets/selling' => 'users#tickets_selling'

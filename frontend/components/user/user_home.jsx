@@ -6,13 +6,14 @@ class UserHome extends React.Component {
     super(props);
     this.render = this.render.bind(this);
     this.ticketsSoldPrice = this.ticketsSoldPrice.bind(this);
-    this.ticketsBoughtPrice = this.ticketsBoughtPrice.bind(this);
+    this.ticketsBought = this.ticketsBought.bind(this);
     this.soldTickets = this.soldTickets.bind(this);
     this.ticketsSelling = this.ticketsSelling.bind(this);
     this.renderUpcomingEvents = this.renderUpcomingEvents.bind(this);
     this.renderTicketListings = this.renderTicketListings.bind(this);
     this.renderSales = this.renderSales.bind(this);
-    this.state = {cumulative_sold_price: null, cumulative_bought_price: null, sold_tickets: null, selling_tickets: null}
+    this.renderBoughtTickets = this.renderBoughtTickets.bind(this);
+    this.state = {cumulative_sold_price: null, bought_tickets: null, sold_tickets: null, selling_tickets: null}
   }
 
 
@@ -23,11 +24,11 @@ class UserHome extends React.Component {
     }).then(res => this.setState({cumulative_sold_price:res.price}))
   }
 
-  ticketsBoughtPrice() {
+  ticketsBought() {
     $.ajax({
       method: 'GET',
-      url: 'api/user/tickets/bought/price'
-    }).then(res => this.setState({cumulative_bought_price:res.prices}))
+      url: 'api/user/tickets/bought'
+    }).then(tickets => this.setState({bought_tickets: Object.values(tickets)}))
   }
 
 
@@ -51,6 +52,7 @@ class UserHome extends React.Component {
     this.ticketsSoldPrice();
     this.soldTickets();
     this.ticketsSelling();
+    this.ticketsBought();
   }
 
   componentWillReceiveProps(newProps) {
@@ -135,6 +137,34 @@ class UserHome extends React.Component {
     }
   }
 
+  renderBoughtTickets() {
+    if(this.state.bought_tickets === 0 || this.state.bought_tickets === null){
+      return <span>You dont have any listings</span>
+    } else {
+      return this.state.bought_tickets.map(ticket =>
+        <div className="myhub-list-item">
+          <div>
+            <span className="list-item-event-name">Purchased -  {ticket.event.name} Ticket</span>
+          </div>
+
+          <div className="list-item-ticket-info">
+            <span className="list-item-venue-name">Price: ${ticket.price} | </span>
+            <span className="list-item-venue-name">{ticket.type_of} | </span>
+            <span className="list-item-venue-name">Row: {ticket.row}</span>
+          </div>
+          <div className="list-item-venue-info">
+            <span className="list-item-venue-name">{moment(ticket.event.date).format('h:mma')} at </span>
+            <span className="list-item-venue-name">{ticket.venue.name} | </span>
+            <span className="list-item-venue-name">{ticket.venue.city}, </span>
+            <span className="list-item-venue-name">{ticket.venue.state}</span>
+
+          </div>
+
+        </div>
+      )
+    }
+  }
+
   renderList(type) {
     switch(type) {
       case 'upcoming_events':
@@ -143,6 +173,8 @@ class UserHome extends React.Component {
         return this.renderTicketListings();
       case 'sales':
         return this.renderSales();
+      case 'bought_tickets':
+        return this.renderBoughtTickets();
       default:
         return 'defuadaslat';
     }
@@ -180,7 +212,7 @@ class UserHome extends React.Component {
           <div className="myhub-sales-payments-container">
             <div className="myhub-sales-block home-block sale-block">
               <div className="header-block">
-                <span>SALES</span>
+                <span>SALES - <span className="total-price">TOTAL ${this.state.cumulative_sold_price}</span></span>
               </div>
               <div className="list-container">
                 {
@@ -193,9 +225,9 @@ class UserHome extends React.Component {
                 <span>PAYMENTS</span>
               </div>
               <div className="list-container">
-                <span>
-
-                </span>
+                {
+                  this.renderList('bought_tickets')
+                }
               </div>
             </div>
           </div>

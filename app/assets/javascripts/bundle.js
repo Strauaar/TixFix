@@ -63683,13 +63683,14 @@ var UserHome = function (_React$Component) {
 
     _this.render = _this.render.bind(_this);
     _this.ticketsSoldPrice = _this.ticketsSoldPrice.bind(_this);
-    _this.ticketsBoughtPrice = _this.ticketsBoughtPrice.bind(_this);
+    _this.ticketsBought = _this.ticketsBought.bind(_this);
     _this.soldTickets = _this.soldTickets.bind(_this);
     _this.ticketsSelling = _this.ticketsSelling.bind(_this);
     _this.renderUpcomingEvents = _this.renderUpcomingEvents.bind(_this);
     _this.renderTicketListings = _this.renderTicketListings.bind(_this);
     _this.renderSales = _this.renderSales.bind(_this);
-    _this.state = { cumulative_sold_price: null, cumulative_bought_price: null, sold_tickets: null, selling_tickets: null };
+    _this.renderBoughtTickets = _this.renderBoughtTickets.bind(_this);
+    _this.state = { cumulative_sold_price: null, bought_tickets: null, sold_tickets: null, selling_tickets: null };
     return _this;
   }
 
@@ -63706,15 +63707,15 @@ var UserHome = function (_React$Component) {
       });
     }
   }, {
-    key: 'ticketsBoughtPrice',
-    value: function ticketsBoughtPrice() {
+    key: 'ticketsBought',
+    value: function ticketsBought() {
       var _this3 = this;
 
       $.ajax({
         method: 'GET',
-        url: 'api/user/tickets/bought/price'
-      }).then(function (res) {
-        return _this3.setState({ cumulative_bought_price: res.prices });
+        url: 'api/user/tickets/bought'
+      }).then(function (tickets) {
+        return _this3.setState({ bought_tickets: Object.values(tickets) });
       });
     }
   }, {
@@ -63748,6 +63749,7 @@ var UserHome = function (_React$Component) {
       this.ticketsSoldPrice();
       this.soldTickets();
       this.ticketsSelling();
+      this.ticketsBought();
     }
   }, {
     key: 'componentWillReceiveProps',
@@ -63967,6 +63969,85 @@ var UserHome = function (_React$Component) {
       }
     }
   }, {
+    key: 'renderBoughtTickets',
+    value: function renderBoughtTickets() {
+      if (this.state.bought_tickets === 0 || this.state.bought_tickets === null) {
+        return _react2.default.createElement(
+          'span',
+          null,
+          'You dont have any listings'
+        );
+      } else {
+        return this.state.bought_tickets.map(function (ticket) {
+          return _react2.default.createElement(
+            'div',
+            { className: 'myhub-list-item' },
+            _react2.default.createElement(
+              'div',
+              null,
+              _react2.default.createElement(
+                'span',
+                { className: 'list-item-event-name' },
+                'Purchased -  ',
+                ticket.event.name,
+                ' Ticket'
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'list-item-ticket-info' },
+              _react2.default.createElement(
+                'span',
+                { className: 'list-item-venue-name' },
+                'Price: $',
+                ticket.price,
+                ' | '
+              ),
+              _react2.default.createElement(
+                'span',
+                { className: 'list-item-venue-name' },
+                ticket.type_of,
+                ' | '
+              ),
+              _react2.default.createElement(
+                'span',
+                { className: 'list-item-venue-name' },
+                'Row: ',
+                ticket.row
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'list-item-venue-info' },
+              _react2.default.createElement(
+                'span',
+                { className: 'list-item-venue-name' },
+                (0, _moment2.default)(ticket.event.date).format('h:mma'),
+                ' at '
+              ),
+              _react2.default.createElement(
+                'span',
+                { className: 'list-item-venue-name' },
+                ticket.venue.name,
+                ' | '
+              ),
+              _react2.default.createElement(
+                'span',
+                { className: 'list-item-venue-name' },
+                ticket.venue.city,
+                ', '
+              ),
+              _react2.default.createElement(
+                'span',
+                { className: 'list-item-venue-name' },
+                ticket.venue.state
+              )
+            )
+          );
+        });
+      }
+    }
+  }, {
     key: 'renderList',
     value: function renderList(type) {
       switch (type) {
@@ -63976,6 +64057,8 @@ var UserHome = function (_React$Component) {
           return this.renderTicketListings();
         case 'sales':
           return this.renderSales();
+        case 'bought_tickets':
+          return this.renderBoughtTickets();
         default:
           return 'defuadaslat';
       }
@@ -64044,7 +64127,13 @@ var UserHome = function (_React$Component) {
                 _react2.default.createElement(
                   'span',
                   null,
-                  'SALES'
+                  'SALES - ',
+                  _react2.default.createElement(
+                    'span',
+                    { className: 'total-price' },
+                    'TOTAL $',
+                    this.state.cumulative_sold_price
+                  )
                 )
               ),
               _react2.default.createElement(
@@ -64068,7 +64157,7 @@ var UserHome = function (_React$Component) {
               _react2.default.createElement(
                 'div',
                 { className: 'list-container' },
-                _react2.default.createElement('span', null)
+                this.renderList('bought_tickets')
               )
             )
           )

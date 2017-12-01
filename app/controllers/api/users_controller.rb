@@ -30,9 +30,9 @@ class Api::UsersController < ApplicationController
     render :price
   end
 
-  def tickets_bought_price
-    @price = current_user.tickets_bought_price
-    render :price
+  def tickets_bought
+    @tickets = current_user.bought_tickets
+    render :tickets
   end
 
   def upcoming_events
