@@ -65,4 +65,22 @@ class Event < ApplicationRecord
     events
   end
 
+  def self.filter_by(filters)
+     if filters["name"] != ""
+       query =  '%' + filters["name"].downcase.split('').join("%") + '%'
+       events = Event.where("lower(name) LIKE ?", query)
+     end
+     if filters["categoryId"] != ""
+       child_cat_ids = Category.find(filters["categoryId"]).subcategories.pluck(:id)
+       events = events.where(category_id: child_cat_ids)
+     end
+     if filters["date"] != ""
+       events = Event.filter_date(events, filters["date"])
+     end
+     if filters["location"] != ""
+       events = Event.filter_location(events, filters["location"])
+     end
+     events
+  end
+
 end

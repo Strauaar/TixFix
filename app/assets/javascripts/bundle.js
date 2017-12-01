@@ -4981,7 +4981,7 @@ if (process.env.NODE_ENV !== 'production') {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.upcomingEvents = exports.fetchMoreEvents = exports.fetchEvents = exports.fetchEvent = exports.clearEvents = exports.receiveEvents = exports.CLEAR_EVENTS = exports.RECEIVE_EVENT = exports.RECEIVE_MORE_EVENTS = exports.RECEIVE_EVENTS = undefined;
+exports.fetchSearchEvents = exports.upcomingEvents = exports.fetchMoreEvents = exports.fetchEvents = exports.fetchEvent = exports.clearEvents = exports.receiveEvents = exports.CLEAR_EVENTS = exports.RECEIVE_EVENT = exports.RECEIVE_MORE_EVENTS = exports.RECEIVE_EVENTS = undefined;
 
 var _event_util = __webpack_require__(46);
 
@@ -5050,6 +5050,14 @@ var fetchMoreEvents = exports.fetchMoreEvents = function fetchMoreEvents(current
 var upcomingEvents = exports.upcomingEvents = function upcomingEvents() {
   return function (dispatch) {
     return EventApiUtil.fetchUpcomingEvents().then(function (events) {
+      return dispatch(receiveEvents(events));
+    });
+  };
+};
+
+var fetchSearchEvents = exports.fetchSearchEvents = function fetchSearchEvents(filter) {
+  return function (dispatch) {
+    return EventApiUtil.fetchSearchEvents(filter).then(function (events) {
       return dispatch(receiveEvents(events));
     });
   };
@@ -24441,6 +24449,14 @@ var fetchUpcomingEvents = exports.fetchUpcomingEvents = function fetchUpcomingEv
     url: 'api/user/upcoming_events'
   });
 };
+
+var fetchSearchEvents = exports.fetchSearchEvents = function fetchSearchEvents(filter) {
+  return $.ajax({
+    method: 'GET',
+    url: 'api/event/searching',
+    data: { filter: filter }
+  });
+};
 //
 // export const fetchMoreEventsByCategory = (currentCount, categoryId) => (
 //   $.ajax({
@@ -25595,10 +25611,16 @@ var _event_actions = __webpack_require__(7);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    filter: state.ui.filter
+  };
+};
+
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    fetchEvents: function fetchEvents(currentCount, filter) {
-      return dispatch((0, _event_actions.fetchEvents)(currentCount, filter));
+    fetchSearchEvents: function fetchSearchEvents(filter) {
+      return dispatch((0, _event_actions.fetchSearchEvents)(filter));
     },
     clearEvents: function clearEvents() {
       return dispatch((0, _event_actions.clearEvents)());
@@ -25606,7 +25628,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   };
 };
 
-exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(_searchbar2.default);
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_searchbar2.default);
 
 /***/ }),
 /* 63 */
@@ -55456,6 +55478,8 @@ Object.defineProperty(exports, "__esModule", {
 
 var _event_actions = __webpack_require__(7);
 
+var _ui_actions = __webpack_require__(306);
+
 var _lodash = __webpack_require__(10);
 
 var initialState = {
@@ -55475,6 +55499,13 @@ var filterReducer = function filterReducer() {
     case _event_actions.RECEIVE_EVENTS:
       newState = (0, _lodash.merge)({}, state, action.filter);
       return newState;
+    case _ui_actions.CLEAR_FILTER:
+      return {
+        categoryId: null,
+        date: null,
+        location: null,
+        name: null
+      };
     default:
       return state;
   }
@@ -60600,6 +60631,8 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _lodash = __webpack_require__(10);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -60618,30 +60651,38 @@ var Searchbar = function (_React$Component) {
 
     _this.state = { input: "" };
     _this.keyPress = _this.keyPress.bind(_this);
+    _this.fetchEvents = _this.fetchEvents.bind(_this);
     return _this;
   }
 
   _createClass(Searchbar, [{
-    key: "keyPress",
+    key: 'fetchEvents',
+    value: function fetchEvents() {
+      this.props.fetchSearchEvents((0, _lodash.merge)({}, this.props.filter, { name: this.state.input }));
+    }
+  }, {
+    key: 'keyPress',
     value: function keyPress(e) {
-      if (e.keyCode === 13) {}
+      if (e.keyCode === 13) {
+        this.fetchEvents();
+      }
       this.setState({ input: e.target.value });
     }
   }, {
-    key: "render",
+    key: 'render',
     value: function render() {
 
       return _react2.default.createElement(
-        "div",
-        { className: "searchbar-block" },
+        'div',
+        { className: 'searchbar-block' },
         _react2.default.createElement(
-          "div",
-          { className: "searchbar-container" },
-          _react2.default.createElement("input", { onKeyUp: this.keyPress, className: "searchbar", placeholder: "Search for events..." }),
+          'div',
+          { className: 'searchbar-container' },
+          _react2.default.createElement('input', { onKeyUp: this.keyPress, className: 'searchbar', placeholder: 'Search for events...' }),
           _react2.default.createElement(
-            "span",
-            { className: "icon-container" },
-            _react2.default.createElement("i", { className: "fa fa-search search-icon fa-2x", "aria-hidden": "true" })
+            'span',
+            { onClick: this.fetchEvents, className: 'icon-container' },
+            _react2.default.createElement('i', { className: 'fa fa-search search-icon fa-2x', 'aria-hidden': 'true' })
           )
         )
       );
@@ -61183,6 +61224,8 @@ var _events_list2 = _interopRequireDefault(_events_list);
 
 var _reactRouterDom = __webpack_require__(2);
 
+var _ui_actions = __webpack_require__(306);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state) {
@@ -61197,6 +61240,12 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     fetchEvents: function fetchEvents(filter) {
       return dispatch((0, _event_actions.fetchEvents)(filter));
+    },
+    fetchSearchEvents: function fetchSearchEvents(filter) {
+      return dispatch((0, _event_actions.fetchSearchEvents)(filter));
+    },
+    clearFilter: function clearFilter() {
+      return dispatch((0, _ui_actions.clearFilter)());
     }
   };
 };
@@ -61254,9 +61303,9 @@ var EventsList = function (_React$Component) {
     key: 'componentDidMount',
     value: function componentDidMount() {
       if (this.props.match.path === "/") {
-        this.props.fetchEvents({ date: null, location: null, categoryId: null, name: null });
+        this.props.fetchSearchEvents({ date: null, location: null, categoryId: null, name: null });
       }
-      this.props.fetchEvents(this.props.filter);
+      this.props.fetchSearchEvents(this.props.filter);
     }
   }, {
     key: 'componentWillReceiveProps',
@@ -61265,9 +61314,9 @@ var EventsList = function (_React$Component) {
       console.log("old", this.props);
       if (newProps.match.params.id !== this.props.match.params.id && newProps.match.path !== this.props.match.path && this.props.categoryId !== newProps.categoryId) {
         if (newProps.match.path === "/") {
-          this.props.fetchEvents({ categoryId: null, location: null, date: null, name: null });
+          this.props.fetchSearchEvents({ categoryId: null, location: null, date: null, name: null });
         } else {
-          this.props.fetchEvents((0, _lodash.merge)({}, this.props.filter, { categoryId: newProps.match.params.id }, { name: null }));
+          this.props.fetchSearchEvents((0, _lodash.merge)({}, this.props.filter, { categoryId: newProps.match.params.id }, { name: null }));
         }
       }
     }
@@ -62984,6 +63033,8 @@ var _tickets_sell_splash_page2 = _interopRequireDefault(_tickets_sell_splash_pag
 
 var _event_actions = __webpack_require__(7);
 
+var _ui_actions = __webpack_require__(306);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state) {
@@ -62999,6 +63050,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     clearEvents: function clearEvents() {
       return dispatch((0, _event_actions.clearEvents)());
+    },
+    clearFilter: function clearFilter() {
+      return dispatch((0, _ui_actions.clearFilter)());
     }
   };
 };
@@ -63052,6 +63106,11 @@ var TicketPage = function (_React$Component) {
   }
 
   _createClass(TicketPage, [{
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      this.props.clearFilter();
+    }
+  }, {
     key: 'handleInput',
     value: function handleInput(e) {
       if (e.target.value === "") {
@@ -64815,6 +64874,24 @@ var Footer = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = Footer;
+
+/***/ }),
+/* 306 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var CLEAR_FILTER = exports.CLEAR_FILTER = "CLEAR_FILTER";
+
+var clearFilter = exports.clearFilter = function clearFilter() {
+  return {
+    type: CLEAR_FILTER
+  };
+};
 
 /***/ })
 /******/ ]);

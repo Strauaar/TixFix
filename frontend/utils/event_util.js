@@ -35,6 +35,14 @@ export const fetchUpcomingEvents = () => (
     url: 'api/user/upcoming_events'
   })
 );
+
+export const fetchSearchEvents = (filter) => (
+  $.ajax({
+    method: 'GET',
+    url: 'api/event/searching',
+    data: { filter }
+  })
+);
 //
 // export const fetchMoreEventsByCategory = (currentCount, categoryId) => (
 //   $.ajax({

@@ -11,6 +11,10 @@ class TicketPage extends React.Component {
     this.renderSearchList = this.renderSearchList.bind(this);
   }
 
+  componentWillUnmount() {
+    this.props.clearFilter();
+  }
+
   handleInput(e) {
     if(e.target.value === "") {
       this.props.clearEvents();

@@ -11,9 +11,9 @@ class EventsList extends React.Component {
 
   componentDidMount() {
     if(this.props.match.path ==="/"){
-      this.props.fetchEvents({date: null, location: null, categoryId : null, name: null});
+      this.props.fetchSearchEvents({date: null, location: null, categoryId : null, name: null});
     }
-    this.props.fetchEvents(this.props.filter);
+    this.props.fetchSearchEvents(this.props.filter);
   }
 
   componentWillReceiveProps(newProps) {
@@ -21,9 +21,9 @@ class EventsList extends React.Component {
     console.log("old", this.props);
     if( (newProps.match.params.id !== this.props.match.params.id) && (newProps.match.path !== this.props.match.path) && (this.props.categoryId !== newProps.categoryId) ) {
       if(newProps.match.path === "/") {
-        this.props.fetchEvents({categoryId: null, location: null, date: null, name: null})
+        this.props.fetchSearchEvents({categoryId: null, location: null, date: null, name: null})
       } else {
-        this.props.fetchEvents(merge({}, this.props.filter, { categoryId: newProps.match.params.id}, { name: null }))
+        this.props.fetchSearchEvents(merge({}, this.props.filter, { categoryId: newProps.match.params.id}, { name: null }))
       }
     }
   }

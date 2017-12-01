@@ -15,4 +15,14 @@ class Api::EventsController < ApplicationController
     end
   end
 
+  def search
+    @count = params[:current_count]
+    if  @count
+      @events = Event.filter_by(params[:filter]).limit(10).offset(@count.to_i)
+    else
+      @events = Event.filter_by(params[:filter]).limit(10)
+    end
+    render :index
+  end
+
 end

@@ -18,5 +18,6 @@ Rails.application.routes.draw do
     get 'user/tickets/sold' => 'users#sold_tickets'
     get 'user/tickets/selling' => 'users#tickets_selling'
     get 'user/liked_performers' => 'users#liked_performers'
+    get 'event/searching' => 'events#search'
   end
 end

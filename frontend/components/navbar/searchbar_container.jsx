@@ -1,11 +1,14 @@
 import { connect } from 'react-redux';
 import SearchBar from './searchbar';
 import { withRouter } from 'react-router-dom';
-import { fetchEvents, clearEvents } from '../../actions/event_actions';
+import { fetchSearchEvents, clearEvents } from '../../actions/event_actions';
+const mapStateToProps = state => ({
+  filter: state.ui.filter
+});
 
 const mapDispatchToProps = dispatch => ({
-  fetchEvents: (currentCount, filter) => dispatch(fetchEvents(currentCount,filter)),
+  fetchSearchEvents: (filter) => dispatch(fetchSearchEvents(filter)),
   clearEvents: () => dispatch(clearEvents())
 });
 
-export default connect(null, mapDispatchToProps)(SearchBar);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);

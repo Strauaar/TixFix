@@ -3,7 +3,7 @@ import * as EventApiUtil  from '../utils/event_util';
 export const RECEIVE_EVENTS = "RECEIVE_EVENTS";
 export const RECEIVE_MORE_EVENTS ="RECEIVE_MORE_EVENTS";
 export const RECEIVE_EVENT = "RECEIVE_EVENT";
-export const CLEAR_EVENTS = "CLEAR_EVENTS"
+export const CLEAR_EVENTS = "CLEAR_EVENTS";
 
 export const receiveEvents = (events, filter) => ({
   type: RECEIVE_EVENTS,
@@ -40,6 +40,10 @@ export const fetchMoreEvents = (currentCount, filter) => dispatch => (
 
 export const upcomingEvents = () => dispatch => (
   EventApiUtil.fetchUpcomingEvents().then(events => dispatch(receiveEvents(events)))
+);
+
+export const fetchSearchEvents = (filter) => dispatch => (
+  EventApiUtil.fetchSearchEvents(filter).then(events => dispatch(receiveEvents(events)))
 );
 
 // export const filterByCategory = categoryId => dispatch => (
