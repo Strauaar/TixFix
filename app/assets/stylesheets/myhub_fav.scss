@@ -17,6 +17,10 @@
 
 .user-fav-card-list {
   padding: 0;
+  width: 85vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .user-fav-list {
