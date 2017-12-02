@@ -61690,7 +61690,7 @@ var EventCard = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      if (this.props.event.name === undefined) {
+      if (this.props.event.id === undefined) {
         return null;
       }
       return _react2.default.createElement(
@@ -62316,6 +62316,7 @@ var EventShowPage = function (_React$Component) {
     value: function componentWillMount() {
       this.props.fetchEvent(this.props.match.params.id);
       this.props.fetchEventTickets(this.props.match.params.id);
+      this.props.fetchEventLikes();
     }
   }, {
     key: 'handleLikeClick',
@@ -64145,9 +64146,9 @@ var UserHome = function (_React$Component) {
       });
     }
   }, {
-    key: 'componentWillMount',
-    value: function componentWillMount() {
-      this.props.upcomingEvents();
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+
       this.ticketsSoldPrice();
       this.soldTickets();
       this.ticketsSelling();
@@ -64161,7 +64162,7 @@ var UserHome = function (_React$Component) {
   }, {
     key: 'renderUpcomingEvents',
     value: function renderUpcomingEvents() {
-      if (this.props.events.length === 0) {
+      if (this.props.events.length === 0 || this.props.events === undefined) {
         return _react2.default.createElement(
           'span',
           { className: 'no-listing-text' },
@@ -64455,9 +64456,13 @@ var UserHome = function (_React$Component) {
   }, {
     key: 'renderList',
     value: function renderList(type) {
+      var _this6 = this;
+
       switch (type) {
         case 'upcoming_events':
-          return this.renderUpcomingEvents();
+          this.props.upcomingEvents().then(function (e) {
+            return _this6.renderUpcomingEvents();
+          });
         case 'listings':
           return this.renderTicketListings();
         case 'sales':
@@ -64472,7 +64477,7 @@ var UserHome = function (_React$Component) {
     key: 'render',
     value: function render() {
 
-      if (this.props.events === undefined) {
+      if (this.props.events === undefined || this.state.selling_tickets === undefined || this.state.bought_tickets === undefined) {
         return null;
       }
       return _react2.default.createElement(

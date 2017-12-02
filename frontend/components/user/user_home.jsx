@@ -47,8 +47,8 @@ class UserHome extends React.Component {
     }).then(tickets => this.setState({selling_tickets: Object.values(tickets)}))
   }
 
-  componentWillMount() {
-    this.props.upcomingEvents();
+  componentDidMount() {
+
     this.ticketsSoldPrice();
     this.soldTickets();
     this.ticketsSelling();
@@ -61,7 +61,7 @@ class UserHome extends React.Component {
   }
 
   renderUpcomingEvents() {
-    if(this.props.events.length === 0){
+    if(this.props.events.length === 0 || this.props.events === undefined){
       return <span className="no-listing-text">You don't have any upcoming events</span>
     } else {
       return this.props.events.map(eventQ =>
@@ -168,7 +168,7 @@ class UserHome extends React.Component {
   renderList(type) {
     switch(type) {
       case 'upcoming_events':
-        return this.renderUpcomingEvents();
+        this.props.upcomingEvents().then(e => this.renderUpcomingEvents());
       case 'listings':
         return this.renderTicketListings();
       case 'sales':
@@ -182,7 +182,7 @@ class UserHome extends React.Component {
 
   render() {
 
-    if(this.props.events === undefined) {
+    if(this.props.events === undefined || this.state.selling_tickets === undefined || this.state.bought_tickets === undefined) {
       return null
     }
     return (

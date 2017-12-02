@@ -58,7 +58,7 @@ class EventCard extends React.Component {
   }
 
   render() {
-    if(this.props.event.name === undefined) {
+    if(this.props.event.id === undefined) {
       return null
     }
     return (
