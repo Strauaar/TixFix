@@ -61357,6 +61357,8 @@ var _reactRouterDom = __webpack_require__(2);
 
 var _ui_actions = __webpack_require__(29);
 
+var _like_actions = __webpack_require__(10);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state) {
@@ -61377,6 +61379,12 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     clearFilter: function clearFilter() {
       return dispatch((0, _ui_actions.clearFilter)());
+    },
+    fetchPerformerLikes: function fetchPerformerLikes() {
+      return dispatch((0, _like_actions.fetchPerformerLikes)());
+    },
+    fetchEventLikes: function fetchEventLikes() {
+      return dispatch((0, _like_actions.fetchEventLikes)());
     }
   };
 };
@@ -61437,6 +61445,8 @@ var EventsList = function (_React$Component) {
         this.props.fetchSearchEvents({ date: null, location: null, categoryId: null, name: null });
       }
       this.props.fetchSearchEvents(this.props.filter);
+      this.props.fetchPerformerLikes();
+      this.props.fetchEventLikes();
     }
   }, {
     key: 'componentWillReceiveProps',
@@ -62242,6 +62252,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     createEventLike: function createEventLike(user_id, event_id) {
       return dispatch((0, _like_actions.createEventLike)(user_id, event_id));
+    },
+    fetchEventLikes: function fetchEventLikes() {
+      return dispatch((0, _like_actions.fetchEventLikes)());
     }
   };
 };

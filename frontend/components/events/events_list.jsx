@@ -14,6 +14,8 @@ class EventsList extends React.Component {
       this.props.fetchSearchEvents({date: null, location: null, categoryId : null, name: null});
     }
     this.props.fetchSearchEvents(this.props.filter);
+    this.props.fetchPerformerLikes();
+    this.props.fetchEventLikes();
   }
 
   componentWillReceiveProps(newProps) {
