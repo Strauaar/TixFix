@@ -61690,7 +61690,7 @@ var EventCard = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      if (this.props.event.id === undefined) {
+      if (this.props.event.performer === undefined) {
         return null;
       }
       return _react2.default.createElement(
