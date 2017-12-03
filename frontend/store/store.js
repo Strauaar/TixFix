@@ -19,7 +19,7 @@ const check_state = () => {
 
 const configureStore = () => {
   let preloadedState = check_state();
-  return createStore(rootReducer,preloadedState, applyMiddleware(thunk, logger))
+  return createStore(rootReducer,preloadedState, applyMiddleware(thunk))
 };
 
 export default configureStore;
