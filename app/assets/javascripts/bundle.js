@@ -5139,6 +5139,145 @@ module.exports = invariant;
 /* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.fetchLikedEvents = exports.deleteEventLike = exports.createEventLike = exports.fetchEventLikes = exports.fetchLikedPerformers = exports.deletePerformerLike = exports.createPerformerLike = exports.fetchPerformerLikes = exports.RECEIVE_LIKED_OBJECTS = exports.REMOVE_EVENT_LIKE = exports.RECEIVE_ALL_EVENT_LIKES = exports.RECEIVE_EVENT_LIKE = exports.REMOVE_PERFORMER_LIKE = exports.RECEIVE_ALL_PERFORMER_LIKES = exports.RECEIVE_PERFORMER_LIKE = undefined;
+
+var _like_util = __webpack_require__(217);
+
+var LikeApiUtil = _interopRequireWildcard(_like_util);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+var RECEIVE_PERFORMER_LIKE = exports.RECEIVE_PERFORMER_LIKE = "RECEIVE_PERFORMER_LIKE";
+var RECEIVE_ALL_PERFORMER_LIKES = exports.RECEIVE_ALL_PERFORMER_LIKES = "RECEIVE_ALL_PERFORMER_LIKES";
+var REMOVE_PERFORMER_LIKE = exports.REMOVE_PERFORMER_LIKE = "REMOVE_PERFORMER_LIKE";
+var RECEIVE_EVENT_LIKE = exports.RECEIVE_EVENT_LIKE = "RECEIVE_EVENT_LIKE";
+var RECEIVE_ALL_EVENT_LIKES = exports.RECEIVE_ALL_EVENT_LIKES = "RECEIVE_ALL_EVENT_LIKES";
+var REMOVE_EVENT_LIKE = exports.REMOVE_EVENT_LIKE = "REMOVE_EVENT_LIKE";
+var RECEIVE_LIKED_OBJECTS = exports.RECEIVE_LIKED_OBJECTS = "RECEIVE_LIKED_OBJECTS";
+
+var receiveAllPerformerLikes = function receiveAllPerformerLikes(performer_id_list) {
+  return {
+    type: RECEIVE_ALL_PERFORMER_LIKES,
+    list: performer_id_list
+  };
+};
+
+var receivePerformerLike = function receivePerformerLike(liked_performer_id) {
+  return {
+    type: RECEIVE_PERFORMER_LIKE,
+    id: liked_performer_id
+  };
+};
+
+var removePerformerLike = function removePerformerLike(unliked_performer_id) {
+  return {
+    type: REMOVE_PERFORMER_LIKE,
+    id: unliked_performer_id
+  };
+};
+
+var receiveLikedObjects = function receiveLikedObjects(objects) {
+  return {
+    type: RECEIVE_LIKED_OBJECTS,
+    objects: objects
+  };
+};
+
+var fetchPerformerLikes = exports.fetchPerformerLikes = function fetchPerformerLikes() {
+  return function (dispatch) {
+    return LikeApiUtil.fetchPerformerLikes().then(function (performer_id_list) {
+      return dispatch(receiveAllPerformerLikes(performer_id_list));
+    });
+  };
+};
+
+var createPerformerLike = exports.createPerformerLike = function createPerformerLike(user_id, performer_id) {
+  return function (dispatch) {
+    return LikeApiUtil.createPerformerLike(user_id, performer_id).then(function (liked_performer_id_obj) {
+      return dispatch(receivePerformerLike(liked_performer_id_obj.performer_id));
+    });
+  };
+};
+
+var deletePerformerLike = exports.deletePerformerLike = function deletePerformerLike(user_id, performer_id) {
+  return function (dispatch) {
+    return LikeApiUtil.deletePerformerLike(user_id, performer_id).then(function (unliked_performer_id_obj) {
+      return dispatch(removePerformerLike(unliked_performer_id_obj.id));
+    });
+  };
+};
+
+var fetchLikedPerformers = exports.fetchLikedPerformers = function fetchLikedPerformers() {
+  return function (dispatch) {
+    return LikeApiUtil.fetchLikedPerformers().then(function (objList) {
+      return dispatch(receiveLikedObjects(objList));
+    });
+  };
+};
+
+var receiveAllEventLikes = function receiveAllEventLikes(event_id_list) {
+  return {
+    type: RECEIVE_ALL_EVENT_LIKES,
+    list: event_id_list
+  };
+};
+
+var receiveEventLike = function receiveEventLike(liked_event_id) {
+  return {
+    type: RECEIVE_EVENT_LIKE,
+    id: liked_event_id
+  };
+};
+
+var removeEventLike = function removeEventLike(unliked_event_id) {
+  return {
+    type: REMOVE_EVENT_LIKE,
+    id: unliked_event_id
+  };
+};
+
+var fetchEventLikes = exports.fetchEventLikes = function fetchEventLikes() {
+  return function (dispatch) {
+    return LikeApiUtil.fetchEventLikes().then(function (event_id_list) {
+      return dispatch(receiveAllEventLikes(event_id_list));
+    });
+  };
+};
+
+var createEventLike = exports.createEventLike = function createEventLike(user_id, event_id) {
+  return function (dispatch) {
+    return LikeApiUtil.createEventLike(user_id, event_id).then(function (liked_event_id_obj) {
+      return dispatch(receiveEventLike(liked_event_id_obj.event_id));
+    });
+  };
+};
+
+var deleteEventLike = exports.deleteEventLike = function deleteEventLike(user_id, event_id) {
+  return function (dispatch) {
+    return LikeApiUtil.deleteEventLike(user_id, event_id).then(function (unliked_event_id_obj) {
+      return dispatch(removeEventLike(unliked_event_id_obj.id));
+    });
+  };
+};
+
+var fetchLikedEvents = exports.fetchLikedEvents = function fetchLikedEvents() {
+  return function (dispatch) {
+    return LikeApiUtil.fetchLikedEvents().then(function (objList) {
+      return dispatch(receiveLikedObjects(objList));
+    });
+  };
+};
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
  * @license
  * Lodash <https://lodash.com/>
@@ -22228,145 +22367,6 @@ module.exports = invariant;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(20), __webpack_require__(27)(module)))
 
 /***/ }),
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.fetchLikedEvents = exports.deleteEventLike = exports.createEventLike = exports.fetchEventLikes = exports.fetchLikedPerformers = exports.deletePerformerLike = exports.createPerformerLike = exports.fetchPerformerLikes = exports.RECEIVE_LIKED_OBJECTS = exports.REMOVE_EVENT_LIKE = exports.RECEIVE_ALL_EVENT_LIKES = exports.RECEIVE_EVENT_LIKE = exports.REMOVE_PERFORMER_LIKE = exports.RECEIVE_ALL_PERFORMER_LIKES = exports.RECEIVE_PERFORMER_LIKE = undefined;
-
-var _like_util = __webpack_require__(217);
-
-var LikeApiUtil = _interopRequireWildcard(_like_util);
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-var RECEIVE_PERFORMER_LIKE = exports.RECEIVE_PERFORMER_LIKE = "RECEIVE_PERFORMER_LIKE";
-var RECEIVE_ALL_PERFORMER_LIKES = exports.RECEIVE_ALL_PERFORMER_LIKES = "RECEIVE_ALL_PERFORMER_LIKES";
-var REMOVE_PERFORMER_LIKE = exports.REMOVE_PERFORMER_LIKE = "REMOVE_PERFORMER_LIKE";
-var RECEIVE_EVENT_LIKE = exports.RECEIVE_EVENT_LIKE = "RECEIVE_EVENT_LIKE";
-var RECEIVE_ALL_EVENT_LIKES = exports.RECEIVE_ALL_EVENT_LIKES = "RECEIVE_ALL_EVENT_LIKES";
-var REMOVE_EVENT_LIKE = exports.REMOVE_EVENT_LIKE = "REMOVE_EVENT_LIKE";
-var RECEIVE_LIKED_OBJECTS = exports.RECEIVE_LIKED_OBJECTS = "RECEIVE_LIKED_OBJECTS";
-
-var receiveAllPerformerLikes = function receiveAllPerformerLikes(performer_id_list) {
-  return {
-    type: RECEIVE_ALL_PERFORMER_LIKES,
-    list: performer_id_list
-  };
-};
-
-var receivePerformerLike = function receivePerformerLike(liked_performer_id) {
-  return {
-    type: RECEIVE_PERFORMER_LIKE,
-    id: liked_performer_id
-  };
-};
-
-var removePerformerLike = function removePerformerLike(unliked_performer_id) {
-  return {
-    type: REMOVE_PERFORMER_LIKE,
-    id: unliked_performer_id
-  };
-};
-
-var receiveLikedObjects = function receiveLikedObjects(objects) {
-  return {
-    type: RECEIVE_LIKED_OBJECTS,
-    objects: objects
-  };
-};
-
-var fetchPerformerLikes = exports.fetchPerformerLikes = function fetchPerformerLikes() {
-  return function (dispatch) {
-    return LikeApiUtil.fetchPerformerLikes().then(function (performer_id_list) {
-      return dispatch(receiveAllPerformerLikes(performer_id_list));
-    });
-  };
-};
-
-var createPerformerLike = exports.createPerformerLike = function createPerformerLike(user_id, performer_id) {
-  return function (dispatch) {
-    return LikeApiUtil.createPerformerLike(user_id, performer_id).then(function (liked_performer_id_obj) {
-      return dispatch(receivePerformerLike(liked_performer_id_obj.performer_id));
-    });
-  };
-};
-
-var deletePerformerLike = exports.deletePerformerLike = function deletePerformerLike(user_id, performer_id) {
-  return function (dispatch) {
-    return LikeApiUtil.deletePerformerLike(user_id, performer_id).then(function (unliked_performer_id_obj) {
-      return dispatch(removePerformerLike(unliked_performer_id_obj.id));
-    });
-  };
-};
-
-var fetchLikedPerformers = exports.fetchLikedPerformers = function fetchLikedPerformers() {
-  return function (dispatch) {
-    return LikeApiUtil.fetchLikedPerformers().then(function (objList) {
-      return dispatch(receiveLikedObjects(objList));
-    });
-  };
-};
-
-var receiveAllEventLikes = function receiveAllEventLikes(event_id_list) {
-  return {
-    type: RECEIVE_ALL_EVENT_LIKES,
-    list: event_id_list
-  };
-};
-
-var receiveEventLike = function receiveEventLike(liked_event_id) {
-  return {
-    type: RECEIVE_EVENT_LIKE,
-    id: liked_event_id
-  };
-};
-
-var removeEventLike = function removeEventLike(unliked_event_id) {
-  return {
-    type: REMOVE_EVENT_LIKE,
-    id: unliked_event_id
-  };
-};
-
-var fetchEventLikes = exports.fetchEventLikes = function fetchEventLikes() {
-  return function (dispatch) {
-    return LikeApiUtil.fetchEventLikes().then(function (event_id_list) {
-      return dispatch(receiveAllEventLikes(event_id_list));
-    });
-  };
-};
-
-var createEventLike = exports.createEventLike = function createEventLike(user_id, event_id) {
-  return function (dispatch) {
-    return LikeApiUtil.createEventLike(user_id, event_id).then(function (liked_event_id_obj) {
-      return dispatch(receiveEventLike(liked_event_id_obj.event_id));
-    });
-  };
-};
-
-var deleteEventLike = exports.deleteEventLike = function deleteEventLike(user_id, event_id) {
-  return function (dispatch) {
-    return LikeApiUtil.deleteEventLike(user_id, event_id).then(function (unliked_event_id_obj) {
-      return dispatch(removeEventLike(unliked_event_id_obj.id));
-    });
-  };
-};
-
-var fetchLikedEvents = exports.fetchLikedEvents = function fetchLikedEvents() {
-  return function (dispatch) {
-    return LikeApiUtil.fetchLikedEvents().then(function (objList) {
-      return dispatch(receiveLikedObjects(objList));
-    });
-  };
-};
-
-/***/ }),
 /* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -22426,7 +22426,7 @@ var SessionApiUtil = _interopRequireWildcard(_session_util);
 
 var _error_actions = __webpack_require__(28);
 
-var _like_actions = __webpack_require__(10);
+var _like_actions = __webpack_require__(9);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -37234,7 +37234,7 @@ var _root2 = _interopRequireDefault(_root);
 
 var _event_actions = __webpack_require__(6);
 
-var _like_actions = __webpack_require__(10);
+var _like_actions = __webpack_require__(9);
 
 var _event_util = __webpack_require__(48);
 
@@ -55278,7 +55278,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _event_actions = __webpack_require__(6);
 
-var _lodash = __webpack_require__(9);
+var _lodash = __webpack_require__(10);
 
 var eventsReducer = function eventsReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
@@ -55316,7 +55316,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _like_actions = __webpack_require__(10);
+var _like_actions = __webpack_require__(9);
 
 var _session_actions = __webpack_require__(12);
 
@@ -55475,7 +55475,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _like_actions = __webpack_require__(10);
+var _like_actions = __webpack_require__(9);
 
 var likedReducer = function likedReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
@@ -55514,7 +55514,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _like_actions = __webpack_require__(10);
+var _like_actions = __webpack_require__(9);
 
 var _session_actions = __webpack_require__(12);
 
@@ -55648,7 +55648,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _category_actions = __webpack_require__(22);
 
-var _lodash = __webpack_require__(9);
+var _lodash = __webpack_require__(10);
 
 var categoryListReducer = function categoryListReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
@@ -55681,7 +55681,7 @@ var _event_actions = __webpack_require__(6);
 
 var _ui_actions = __webpack_require__(29);
 
-var _lodash = __webpack_require__(9);
+var _lodash = __webpack_require__(10);
 
 var initialState = {
   categoryId: null,
@@ -60811,7 +60811,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _lodash = __webpack_require__(9);
+var _lodash = __webpack_require__(10);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -60891,7 +60891,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _lodash = __webpack_require__(9);
+var _lodash = __webpack_require__(10);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -61252,7 +61252,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = __webpack_require__(2);
 
-var _lodash = __webpack_require__(9);
+var _lodash = __webpack_require__(10);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -61357,7 +61357,7 @@ var _reactRouterDom = __webpack_require__(2);
 
 var _ui_actions = __webpack_require__(29);
 
-var _like_actions = __webpack_require__(10);
+var _like_actions = __webpack_require__(9);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -61408,7 +61408,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _lodash = __webpack_require__(9);
+var _lodash = __webpack_require__(10);
 
 var _event_card_item_container = __webpack_require__(278);
 
@@ -61524,7 +61524,7 @@ var _event_card_item = __webpack_require__(279);
 
 var _event_card_item2 = _interopRequireDefault(_event_card_item);
 
-var _like_actions = __webpack_require__(10);
+var _like_actions = __webpack_require__(9);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -62107,7 +62107,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _lodash = __webpack_require__(9);
+var _lodash = __webpack_require__(10);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -62226,7 +62226,7 @@ var _event_actions = __webpack_require__(6);
 
 var _ticket_actions = __webpack_require__(21);
 
-var _like_actions = __webpack_require__(10);
+var _like_actions = __webpack_require__(9);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -63537,7 +63537,7 @@ var _moment = __webpack_require__(0);
 
 var _moment2 = _interopRequireDefault(_moment);
 
-var _lodash = __webpack_require__(9);
+var _lodash = __webpack_require__(10);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -64597,7 +64597,7 @@ var _reactRedux = __webpack_require__(3);
 
 var _reactRouterDom = __webpack_require__(2);
 
-var _like_actions = __webpack_require__(10);
+var _like_actions = __webpack_require__(9);
 
 var _user_fav = __webpack_require__(303);
 
@@ -64792,7 +64792,7 @@ var _liked_card_item = __webpack_require__(305);
 
 var _liked_card_item2 = _interopRequireDefault(_liked_card_item);
 
-var _like_actions = __webpack_require__(10);
+var _like_actions = __webpack_require__(9);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
