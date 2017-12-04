@@ -62435,7 +62435,7 @@ var EventShowPage = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      if (this.props.eventQ === undefined || this.props.tickets === undefined) {
+      if (this.props.eventQ === undefined || this.props.tickets === undefined || this.props.liked_event_ids === undefined) {
         return null;
       }
       return _react2.default.createElement(
@@ -62532,7 +62532,7 @@ var ScrollTicketItem = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      if (this.props.ticket === undefined) {
+      if (this.props.ticket === undefined || this.props.ticket === null) {
         return null;
       }
       return _react2.default.createElement(

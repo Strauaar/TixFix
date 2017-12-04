@@ -81,7 +81,7 @@ class EventShowPage extends React.Component {
   }
 
   render() {
-    if (this.props.eventQ === undefined || this.props.tickets === undefined) {
+    if (this.props.eventQ === undefined || this.props.tickets === undefined || this.props.liked_event_ids === undefined) {
       return null;
     }
     return (
