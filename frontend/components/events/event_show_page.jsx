@@ -75,13 +75,13 @@ class EventShowPage extends React.Component {
       return <div className="no-tickets-container"><span className="no-tickets-text">No tickets being sold</span></div>
     } else {
       return this.props.tickets.map(ticket => (
-        <ScrollTicketItem ticket={ticket} />
+        <ScrollTicketItem ticket={ticket} event_id={ticket.event_id}/>
       ))
     }
   }
 
   render() {
-    if (this.props.eventQ === undefined || this.props.tickets === undefined || this.props.liked_event_ids === undefined) {
+    if (this.props.eventQ === undefined || this.props.tickets === undefined) {
       return null;
     }
     return (

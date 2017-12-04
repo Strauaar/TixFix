@@ -62428,14 +62428,14 @@ var EventShowPage = function (_React$Component) {
         );
       } else {
         return this.props.tickets.map(function (ticket) {
-          return _react2.default.createElement(_scroll_ticket_item2.default, { ticket: ticket });
+          return _react2.default.createElement(_scroll_ticket_item2.default, { ticket: ticket, event_id: ticket.event_id });
         });
       }
     }
   }, {
     key: 'render',
     value: function render() {
-      if (this.props.eventQ === undefined || this.props.tickets === undefined || this.props.liked_event_ids === undefined) {
+      if (this.props.eventQ === undefined || this.props.tickets === undefined) {
         return null;
       }
       return _react2.default.createElement(
@@ -62518,26 +62518,18 @@ var ScrollTicketItem = function (_React$Component) {
   function ScrollTicketItem(props) {
     _classCallCheck(this, ScrollTicketItem);
 
-    var _this = _possibleConstructorReturn(this, (ScrollTicketItem.__proto__ || Object.getPrototypeOf(ScrollTicketItem)).call(this, props));
-
-    _this.handleClick = _this.handleClick.bind(_this);
-    return _this;
+    return _possibleConstructorReturn(this, (ScrollTicketItem.__proto__ || Object.getPrototypeOf(ScrollTicketItem)).call(this, props));
   }
 
   _createClass(ScrollTicketItem, [{
-    key: 'handleClick',
-    value: function handleClick() {
-      // this.props.history.push
-    }
-  }, {
     key: 'render',
     value: function render() {
-      if (this.props.ticket === undefined || this.props.ticket === null) {
+      if (this.props.ticket === undefined) {
         return null;
       }
       return _react2.default.createElement(
         _reactRouterDom.Link,
-        { to: '/events/' + this.props.ticket.event_id + '/ticket/' + this.props.ticket.id },
+        { to: '/events/' + this.props.event_id + '/ticket/' + this.props.ticket.id },
         _react2.default.createElement(
           'div',
           { onClick: this.handleClick, className: 'ticket-item-container' },

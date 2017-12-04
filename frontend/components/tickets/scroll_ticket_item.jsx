@@ -12,7 +12,7 @@ class ScrollTicketItem extends React.Component {
       return null;
     }
     return(
-      <Link to={`/events/${this.props.ticket.event_id}/ticket/${this.props.ticket.id}`}><div onClick={this.handleClick} className="ticket-item-container">
+      <Link to={`/events/${this.props.event_id}/ticket/${this.props.ticket.id}`}><div onClick={this.handleClick} className="ticket-item-container">
         <div className="ticket-item">
           <div className="ticket-item-left-block">
             <div className="ticket-type">
