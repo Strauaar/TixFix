@@ -65046,8 +65046,16 @@ var Footer = function (_React$Component) {
             _react2.default.createElement(
               "div",
               { className: "footer-social-icon-row" },
-              _react2.default.createElement("div", { className: "github-icon" }),
-              _react2.default.createElement("div", { className: "linkedin-icon" })
+              _react2.default.createElement(
+                "a",
+                { href: "https://github.com/Strauaar", target: "_blank" },
+                _react2.default.createElement("div", { className: "github-icon" })
+              ),
+              _react2.default.createElement(
+                "a",
+                { href: "https://www.linkedin.com/in/aaron-strauli-1a6883a2/", target: "_blank" },
+                _react2.default.createElement("div", { className: "linkedin-icon" })
+              )
             )
           ),
           _react2.default.createElement(

@@ -13,8 +13,12 @@ class Footer extends React.Component {
           <div className="footer-social">
               <h4 className="footer-list-header">Connect with me</h4>
               <div className="footer-social-icon-row">
-                <div className="github-icon"></div>
-                <div className="linkedin-icon"></div>
+                <a href="https://github.com/Strauaar" target="_blank">
+                  <div className="github-icon"></div>
+                </a>
+                <a href="https://www.linkedin.com/in/aaron-strauli-1a6883a2/" target="_blank">
+                  <div className="linkedin-icon"></div>
+                </a>
               </div>
           </div>
           <div className="footer-about">
@@ -40,7 +44,7 @@ class Footer extends React.Component {
               <li><a>The TixFix Promise</a></li>
             </ul>
           </div>
-  
+
         </div>
       </div>
     )
