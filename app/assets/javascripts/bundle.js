@@ -60543,12 +60543,12 @@ var SessionsModal = function (_React$Component) {
       if (i <= word.length) {
         setTimeout(function () {
           return _this2.type(field, word, i);
-        }, 110);
+        }, 100);
       } else {
         if (field === 'email') {
           setTimeout(function () {
             return _this2.props.loginUser(_this2.state);
-          }, 200);
+          }, 250);
         }
       }
     }

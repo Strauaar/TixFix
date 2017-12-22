@@ -25,10 +25,10 @@ class SessionsModal extends React.Component {
     this.setState({[field]: word.substr(0, i)});
     i++;
     if (i <= word.length) {
-      setTimeout(() => this.type(field, word, i), 110);
+      setTimeout(() => this.type(field, word, i), 100);
     } else {
       if (field === 'email') {
-        setTimeout(() => this.props.loginUser(this.state), 200);
+        setTimeout(() => this.props.loginUser(this.state), 250);
       }
     }
   }
