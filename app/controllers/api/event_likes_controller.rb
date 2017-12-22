@@ -15,7 +15,11 @@ class Api::EventLikesController < ApplicationController
   end
 
   def index
-    @liked_events = current_user.events_liked
-    render :index
+    if current_user
+      @liked_events = current_user.events_liked
+      render :index
+    else
+      render json: []
+    end
   end
 end
