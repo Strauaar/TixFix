@@ -14,7 +14,8 @@ class EventCheckoutPage extends React.Component {
 
   updateTicket(ticketId, user) {
     if (user === null) {
-      this.props.history.push("/session")
+      this.props.addRedirect(this.props.location.pathname);
+      this.props.history.push("/session");
     } else {
       $.ajax({
         method: 'PATCH',

@@ -47,6 +47,9 @@ class UserFav extends React.Component {
   }
 
   render() {
+    if(this.props.loading === null) {
+      return null
+    }
     return (
       <div className="user-fav-whole-container">
         <div className="user-fav-subcontainer">
@@ -63,13 +66,11 @@ class UserFav extends React.Component {
           </div>
           <div className="user-fav-card-list-container">
             {
-               this.props.loading ? <div className="loader">Loading...</div> : <ul className="user-fav-card-list">
+               this.props.loading ? <div className="loader">Loading...</div> :<ul className="user-fav-card-list">
                   {
                     this.renderList()
                   }
                 </ul>
-
-
             }
           </div>
         </div>

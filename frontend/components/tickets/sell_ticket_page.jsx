@@ -33,7 +33,6 @@ class SellTicketPage extends React.Component {
   createTicket(event_id, seller) {
     if (seller === null) {
       this.props.addRedirect(this.props.location.pathname)
-      console.log("CURRENT URL", this.props.location.pathname);
       this.props.history.push("/session")
     } else {
       let params = merge({}, this.state, { event_id, seller_id: seller.id });

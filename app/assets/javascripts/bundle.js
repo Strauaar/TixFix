@@ -60472,6 +60472,8 @@ var _session_actions = __webpack_require__(12);
 
 var _error_actions = __webpack_require__(28);
 
+var _ui_actions = __webpack_require__(29);
+
 var _sessions_modal = __webpack_require__(270);
 
 var _sessions_modal2 = _interopRequireDefault(_sessions_modal);
@@ -60495,6 +60497,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     clearErrors: function clearErrors() {
       return dispatch((0, _error_actions.receiveErrors)([]));
+    },
+    clearRedirect: function clearRedirect() {
+      return dispatch((0, _ui_actions.clearRedirect)());
     }
   };
 };
@@ -63020,6 +63025,8 @@ var _event_actions = __webpack_require__(6);
 
 var _ticket_actions = __webpack_require__(21);
 
+var _ui_actions = __webpack_require__(29);
+
 var _event_checkout_page = __webpack_require__(293);
 
 var _event_checkout_page2 = _interopRequireDefault(_event_checkout_page);
@@ -63041,6 +63048,12 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     fetchEventTicket: function fetchEventTicket(id) {
       return dispatch((0, _ticket_actions.fetchEventTicket)(id));
+    },
+    addRedirect: function addRedirect(url) {
+      return dispatch((0, _ui_actions.addRedirect)(url));
+    },
+    clearRedirect: function clearRedirect() {
+      return dispatch((0, _ui_actions.clearRedirect)());
     }
   };
 };
@@ -63100,6 +63113,7 @@ var EventCheckoutPage = function (_React$Component) {
       var _this2 = this;
 
       if (user === null) {
+        this.props.addRedirect(this.props.location.pathname);
         this.props.history.push("/session");
       } else {
         $.ajax({
@@ -63653,7 +63667,6 @@ var SellTicketPage = function (_React$Component) {
 
       if (seller === null) {
         this.props.addRedirect(this.props.location.pathname);
-        console.log("CURRENT URL", this.props.location.pathname);
         this.props.history.push("/session");
       } else {
         var params = (0, _lodash.merge)({}, this.state, { event_id: event_id, seller_id: seller.id });
@@ -64785,6 +64798,9 @@ var UserFav = function (_React$Component) {
     value: function render() {
       var _this3 = this;
 
+      if (this.props.loading === null) {
+        return null;
+      }
       return _react2.default.createElement(
         'div',
         { className: 'user-fav-whole-container' },
