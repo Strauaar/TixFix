@@ -159,7 +159,9 @@ symphony_event2 = Event.create(
     date: (DateTime.now + i).beginning_of_hour,
     event_id: jayz_event.id
   )
-    Ticket.create(seller_id:demo_user2.id, event_id: event.id, price: 140, type_of:"VIP", row: "A")
+    50.times do |j|
+      Ticket.create(seller_id:demo_user2.id, event_id: event.id, price: 140, type_of:"VIP", row: ROW_ARRAY[(rand() * 10).ceil])
+    end
 end
 
 3.times do |i|
@@ -172,7 +174,9 @@ end
     date: (DateTime.now + i).beginning_of_hour,
     event_id: kaskade_event.id
   )
-    Ticket.create(seller_id:demo_user2.id, event_id: event.id, price: 80, type_of:"GA", row: "A")
+  50.times do |j|
+    Ticket.create(seller_id:demo_user2.id, event_id: event.id, price: 90, type_of:"VIP", row: ROW_ARRAY[(rand() * 10).ceil])
+  end
 end
 
 2.times do |i|
@@ -185,7 +189,9 @@ end
     date: (DateTime.now + i + 10).beginning_of_hour,
     event_id: khalid_event.id
   )
-  Ticket.create(seller_id:demo_user2.id, event_id: event.id, price: 190, type_of:"VIP", row: "A")
+  50.times do |j|
+    Ticket.create(seller_id:demo_user2.id, event_id: event.id, price: 100, type_of:"VIP", row: ROW_ARRAY[(rand() * 10).ceil])
+  end
 end
 
 event = Subevent.create(
@@ -197,7 +203,9 @@ event = Subevent.create(
   date:(DateTime.now + 13).beginning_of_hour,
   event_id: san_holo_event.id
 )
-Ticket.create(seller_id:demo_user2.id, event_id: event.id, price: 190, type_of:"VIP", row: "A")
+50.times do |j|
+  Ticket.create(seller_id:demo_user2.id, event_id: event.id, price: 140, type_of:"VIP", row: ROW_ARRAY[(rand() * 10).ceil])
+end
 
 event = Subevent.create(
   name:"Oakland Raiders at SF 49ers",
@@ -207,7 +215,9 @@ event = Subevent.create(
   date: (DateTime.now.end_of_week.beginning_of_hour),
   event_id: niners_event.id
 )
-Ticket.create(seller_id:demo_user2.id, event_id: event.id, price: 190, type_of:"VIP", row: "A")
+50.times do |j|
+  Ticket.create(seller_id:demo_user2.id, event_id: event.id, price: 140, type_of:"VIP", row: ROW_ARRAY[(rand() * 10).ceil])
+end
 
 event = Subevent.create(
   name:"Oakland Athletics at SF Giants",
@@ -217,7 +227,9 @@ event = Subevent.create(
   date: (DateTime.now + 15).end_of_week.beginning_of_day,
   event_id: giants_event.id
 )
-Ticket.create(seller_id:demo_user2.id, event_id: event.id, price: 190, type_of:"VIP", row: "A")
+50.times do |j|
+  Ticket.create(seller_id:demo_user2.id, event_id: event.id, price: 140, type_of:"VIP", row: ROW_ARRAY[(rand() * 10).ceil])
+end
 
 1.times do |i|
   event = Subevent.create(
@@ -229,7 +241,9 @@ Ticket.create(seller_id:demo_user2.id, event_id: event.id, price: 190, type_of:"
     date: (DateTime.now + i + 18).end_of_week.beginning_of_hour,
     event_id: jayz_event2.id
   )
-    Ticket.create(seller_id:demo_user2.id, buyer_id: demo_user1.id, event_id: event.id, price: 70, type_of:"VIP", row: "A")
+  50.times do |j|
+    Ticket.create(seller_id:demo_user1.id, event_id: event.id, price: 140, type_of:"VIP", row: ROW_ARRAY[(rand() * 10).ceil])
+  end
 end
 
 event = Subevent.create(
@@ -240,7 +254,9 @@ event = Subevent.create(
   date: (DateTime.now + 20).end_of_week.beginning_of_day,
   event_id: raiders_event.id
 )
-Ticket.create(seller_id:demo_user1.id, event_id: event.id, price: 190, type_of:"VIP", row: "A")
+50.times do |j|
+  Ticket.create(seller_id:demo_user1.id, event_id: event.id, price: 200, type_of:"VIP", row: ROW_ARRAY[(rand() * 10).ceil])
+end
 
 2.times do |i|
   event = Subevent.create(
@@ -251,7 +267,9 @@ Ticket.create(seller_id:demo_user1.id, event_id: event.id, price: 190, type_of:"
     date: (DateTime.now + 22 + i).end_of_week.beginning_of_day,
     event_id: nutcracker_event.id
   )
-  Ticket.create(seller_id:demo_user2.id, buyer_id: demo_user1.id, event_id: event.id, price: 90, type_of:"GA", row: "C")
+  50.times do |j|
+    Ticket.create(seller_id:demo_user2.id, event_id: event.id, price: 80, type_of:"GA", row: ROW_ARRAY[(rand() * 10).ceil])
+  end
 end
 
 3.times do |i|
@@ -263,7 +281,9 @@ end
     date: (DateTime.now + 30 + i).end_of_week.beginning_of_day,
     event_id: symphony_event.id
     )
-    Ticket.create(seller_id:demo_user2.id, buyer_id: demo_user2.id, event_id: event.id, price: 120, type_of:"GA", row: "C")
+    50.times do |j|
+      Ticket.create(seller_id:demo_user2.id, event_id: event.id, price: 100, type_of:"GA", row: ROW_ARRAY[(rand() * 10).ceil])
+    end
 end
 
 2.times do |i|
@@ -275,5 +295,7 @@ end
     date: (DateTime.now + 40 + i).end_of_week.beginning_of_day,
     event_id: symphony_event2.id
   )
-  Ticket.create(seller_id:demo_user2.id, event_id: event.id, price: 100, type_of:"GA", row: "A")
+  50.times do |j|
+    Ticket.create(seller_id:demo_user2.id, event_id: event.id, price: 140, type_of:"VIP", row: ROW_ARRAY[(rand() * 10).ceil])
+  end
 end
