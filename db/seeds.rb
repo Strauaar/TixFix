@@ -6,6 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+#CONSTANTS
+ROW_ARRAY = %w[A B C D E F G H I J]
+
 #USERS
 demo_user1 = User.create(first_name: "demo_user", last_name: "1", email: "demoemail@email.com", password: "password")
 demo_user2 = User.create(first_name: "demo_user", last_name: "2", email: "email@email.com", password: "password")
@@ -156,7 +159,7 @@ symphony_event2 = Event.create(
     date: (DateTime.now + i).beginning_of_hour,
     event_id: jayz_event.id
   )
-    Ticket.create(seller_id:demo_user1.id, event_id: event.id, price: 140, type_of:"VIP", row: "A")
+    Ticket.create(seller_id:demo_user2.id, event_id: event.id, price: 140, type_of:"VIP", row: "A")
 end
 
 3.times do |i|
@@ -169,7 +172,7 @@ end
     date: (DateTime.now + i).beginning_of_hour,
     event_id: kaskade_event.id
   )
-    Ticket.create(seller_id:demo_user1.id, event_id: event.id, price: 80, type_of:"GA", row: "A")
+    Ticket.create(seller_id:demo_user2.id, event_id: event.id, price: 80, type_of:"GA", row: "A")
 end
 
 2.times do |i|
@@ -182,10 +185,10 @@ end
     date: (DateTime.now + i + 10).beginning_of_hour,
     event_id: khalid_event.id
   )
-  Ticket.create(seller_id:demo_user1.id, event_id: event.id, price: 190, type_of:"VIP", row: "A")
+  Ticket.create(seller_id:demo_user2.id, event_id: event.id, price: 190, type_of:"VIP", row: "A")
 end
 
-Subevent.create(
+event = Subevent.create(
   name:"San Holo",
   venue_id: fox_theater_venue.id,
   performer_id: san_holo_performer.id,
@@ -194,8 +197,9 @@ Subevent.create(
   date:(DateTime.now + 13).beginning_of_hour,
   event_id: san_holo_event.id
 )
+Ticket.create(seller_id:demo_user2.id, event_id: event.id, price: 190, type_of:"VIP", row: "A")
 
-Subevent.create(
+event = Subevent.create(
   name:"Oakland Raiders at SF 49ers",
   venue_id: levis_stadium.id,
   performer_id: niners_performer.id,
@@ -203,8 +207,9 @@ Subevent.create(
   date: (DateTime.now.end_of_week.beginning_of_hour),
   event_id: niners_event.id
 )
+Ticket.create(seller_id:demo_user2.id, event_id: event.id, price: 190, type_of:"VIP", row: "A")
 
-Subevent.create(
+event = Subevent.create(
   name:"Oakland Athletics at SF Giants",
   venue_id: att_park_venue.id,
   performer_id: giants_performer.id,
@@ -212,6 +217,7 @@ Subevent.create(
   date: (DateTime.now + 15).end_of_week.beginning_of_day,
   event_id: giants_event.id
 )
+Ticket.create(seller_id:demo_user2.id, event_id: event.id, price: 190, type_of:"VIP", row: "A")
 
 1.times do |i|
   event = Subevent.create(
@@ -226,7 +232,7 @@ Subevent.create(
     Ticket.create(seller_id:demo_user2.id, buyer_id: demo_user1.id, event_id: event.id, price: 70, type_of:"VIP", row: "A")
 end
 
-Subevent.create(
+event = Subevent.create(
   name:"SF 49ers at Oakland Raiders",
   venue_id: oakland_stadium.id,
   performer_id: raiders_performer.id,
@@ -234,6 +240,7 @@ Subevent.create(
   date: (DateTime.now + 20).end_of_week.beginning_of_day,
   event_id: raiders_event.id
 )
+Ticket.create(seller_id:demo_user1.id, event_id: event.id, price: 190, type_of:"VIP", row: "A")
 
 2.times do |i|
   event = Subevent.create(
@@ -256,7 +263,7 @@ end
     date: (DateTime.now + 30 + i).end_of_week.beginning_of_day,
     event_id: symphony_event.id
     )
-    Ticket.create(seller_id:demo_user1.id, buyer_id: demo_user2.id, event_id: event.id, price: 120, type_of:"GA", row: "C")
+    Ticket.create(seller_id:demo_user2.id, buyer_id: demo_user2.id, event_id: event.id, price: 120, type_of:"GA", row: "C")
 end
 
 2.times do |i|
@@ -268,5 +275,5 @@ end
     date: (DateTime.now + 40 + i).end_of_week.beginning_of_day,
     event_id: symphony_event2.id
   )
-  Ticket.create(seller_id:demo_user1.id, event_id: event.id, price: 100, type_of:"GA", row: "A")
+  Ticket.create(seller_id:demo_user2.id, event_id: event.id, price: 100, type_of:"GA", row: "A")
 end

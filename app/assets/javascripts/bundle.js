@@ -5037,19 +5037,6 @@ var fetchSearchEvents = exports.fetchSearchEvents = function fetchSearchEvents(f
   };
 };
 
-// export const filterByCategory = categoryId => dispatch => (
-//   EventApiUtil.fetchEventByCategory(categoryId).then(events => dispatch(receiveEvents(events, categoryId)))
-// );
-
-
-// export const fetchMoreEventsByCategory = (currentCount, categoryId) => dispatch => (
-//   EventApiUtil.fetchMoreEventsByCategory(currentCount, categoryId).then(events => dispatch(receiveMoreEvents(events)))
-// );
-//
-// export const filterByDate = (categoryObj) => dispatch => (
-//   EventApiUtil.filterByDate(categoryObj).then(events => dispatch(receiveEvents(events)))
-// );
-
 /***/ }),
 /* 7 */
 /***/ (function(module, exports, __webpack_require__) {
