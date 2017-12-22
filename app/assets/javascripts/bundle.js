@@ -4946,11 +4946,13 @@ module.exports = warning;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.fetchSearchEvents = exports.upcomingEvents = exports.fetchMoreEvents = exports.fetchEvents = exports.fetchEvent = exports.clearEvents = exports.receiveEvents = exports.LOADING_FALSE = exports.LOADING_TRUE = exports.CLEAR_EVENTS = exports.RECEIVE_EVENT = exports.RECEIVE_MORE_EVENTS = exports.RECEIVE_EVENTS = undefined;
+exports.fetchSearchEvents = exports.upcomingEvents = exports.fetchMoreEvents = exports.fetchEvents = exports.fetchEvent = exports.clearEvents = exports.receiveEvents = exports.CLEAR_EVENTS = exports.RECEIVE_EVENT = exports.RECEIVE_MORE_EVENTS = exports.RECEIVE_EVENTS = undefined;
 
 var _event_util = __webpack_require__(48);
 
 var EventApiUtil = _interopRequireWildcard(_event_util);
+
+var _misc_const = __webpack_require__(310);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -4958,8 +4960,6 @@ var RECEIVE_EVENTS = exports.RECEIVE_EVENTS = "RECEIVE_EVENTS";
 var RECEIVE_MORE_EVENTS = exports.RECEIVE_MORE_EVENTS = "RECEIVE_MORE_EVENTS";
 var RECEIVE_EVENT = exports.RECEIVE_EVENT = "RECEIVE_EVENT";
 var CLEAR_EVENTS = exports.CLEAR_EVENTS = "CLEAR_EVENTS";
-var LOADING_TRUE = exports.LOADING_TRUE = "LOADING_TRUE";
-var LOADING_FALSE = exports.LOADING_FALSE = "LOADING_FALSE";
 
 var receiveEvents = exports.receiveEvents = function receiveEvents(events, filter) {
   return {
@@ -5002,14 +5002,14 @@ var fetchEvents = exports.fetchEvents = function fetchEvents(filter) {
   return function (dispatch) {
     EventApiUtil.fetchEvents(filter).then(function (events) {
       setTimeout(function () {
-        return dispatch({ type: LOADING_FALSE });
+        return dispatch({ type: _misc_const.LOADING_FALSE });
       }, (Math.random() + 1) * 400);
       return events;
     }).then(function (events) {
       return dispatch(receiveEvents(events, filter));
     });
 
-    dispatch({ type: LOADING_TRUE });
+    dispatch({ type: _misc_const.LOADING_TRUE });
   };
 };
 
@@ -5147,7 +5147,7 @@ var _like_util = __webpack_require__(217);
 
 var LikeApiUtil = _interopRequireWildcard(_like_util);
 
-var _event_actions = __webpack_require__(6);
+var _misc_const = __webpack_require__(310);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -5215,14 +5215,14 @@ var fetchLikedPerformers = exports.fetchLikedPerformers = function fetchLikedPer
   return function (dispatch) {
     LikeApiUtil.fetchLikedPerformers().then(function (objList) {
       setTimeout(function () {
-        return dispatch({ type: _event_actions.LOADING_FALSE });
+        return dispatch({ type: _misc_const.LOADING_FALSE });
       }, (Math.random() + 1) * 1000);
       return objList;
     }).then(function (objList) {
       return dispatch(receiveLikedObjects(objList));
     });
 
-    dispatch({ type: _event_actions.LOADING_TRUE });
+    dispatch({ type: _misc_const.LOADING_TRUE });
   };
 };
 
@@ -5275,14 +5275,14 @@ var fetchLikedEvents = exports.fetchLikedEvents = function fetchLikedEvents() {
   return function (dispatch) {
     LikeApiUtil.fetchLikedEvents().then(function (objList) {
       setTimeout(function () {
-        return dispatch({ type: _event_actions.LOADING_FALSE });
+        return dispatch({ type: _misc_const.LOADING_FALSE });
       }, (Math.random() + 1) * 1000);
       return objList;
     }).then(function (objList) {
       return dispatch(receiveLikedObjects(objList));
     });
 
-    dispatch({ type: _event_actions.LOADING_TRUE });
+    dispatch({ type: _misc_const.LOADING_TRUE });
   };
 };
 
@@ -23345,11 +23345,28 @@ var receiveErrors = exports.receiveErrors = function receiveErrors(errors) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.clearRedirect = exports.addRedirect = exports.clearFilter = exports.CLEAR_FILTER = undefined;
+
+var _misc_const = __webpack_require__(310);
+
 var CLEAR_FILTER = exports.CLEAR_FILTER = "CLEAR_FILTER";
 
 var clearFilter = exports.clearFilter = function clearFilter() {
   return {
     type: CLEAR_FILTER
+  };
+};
+
+var addRedirect = exports.addRedirect = function addRedirect(url) {
+  return {
+    type: _misc_const.ADD_REDIRECT,
+    url: url
+  };
+};
+
+var clearRedirect = exports.clearRedirect = function clearRedirect() {
+  return {
+    type: _misc_const.CLEAR_REDIRECT
   };
 };
 
@@ -55644,12 +55661,17 @@ var _loadingReducer = __webpack_require__(308);
 
 var _loadingReducer2 = _interopRequireDefault(_loadingReducer);
 
+var _redirectReducer = __webpack_require__(309);
+
+var _redirectReducer2 = _interopRequireDefault(_redirectReducer);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = (0, _redux.combineReducers)({
     filter: _filterReducer2.default,
     subcategory_list: _categoryListReducer2.default,
-    loading: _loadingReducer2.default
+    loading: _loadingReducer2.default,
+    redirect_url: _redirectReducer2.default
 });
 
 /***/ }),
@@ -60458,7 +60480,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    errors: state.errors
+    errors: state.errors,
+    redirect_url: state.ui.redirect_url
   };
 };
 
@@ -60547,7 +60570,11 @@ var SessionsModal = function (_React$Component) {
       } else {
         if (field === 'email') {
           setTimeout(function () {
-            return _this2.props.loginUser(_this2.state);
+            _this2.props.loginUser(_this2.state).then(function () {
+              if (_this2.props.redirect_url !== null) {
+                _this2.props.history.push(_this2.props.redirect_url);
+              }
+            });
           }, 250);
         }
       }
@@ -60653,7 +60680,9 @@ var SessionsModal = function (_React$Component) {
           _react2.default.createElement(
             'button',
             { onClick: function onClick() {
-                return _this4.props.loginUser(_this4.state);
+                _this4.props.loginUser(_this4.state).then(function () {
+                  return console.log("HELLO");
+                });
               } },
             _react2.default.createElement(
               'span',
@@ -63509,6 +63538,8 @@ var _reactRouterDom = __webpack_require__(2);
 
 var _event_actions = __webpack_require__(6);
 
+var _ui_actions = __webpack_require__(29);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state) {
@@ -63526,7 +63557,23 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     fetchEvent: function fetchEvent(id) {
       return dispatch((0, _event_actions.fetchEvent)(id));
-    }
+    },
+    addRedirect: function addRedirect(url) {
+      return dispatch((0, _ui_actions.addRedirect)(url));
+    },
+    clearRedirect: function (_clearRedirect) {
+      function clearRedirect() {
+        return _clearRedirect.apply(this, arguments);
+      }
+
+      clearRedirect.toString = function () {
+        return _clearRedirect.toString();
+      };
+
+      return clearRedirect;
+    }(function () {
+      return dispatch(clearRedirect());
+    })
   };
 };
 
@@ -63605,6 +63652,8 @@ var SellTicketPage = function (_React$Component) {
       var _this2 = this;
 
       if (seller === null) {
+        this.props.addRedirect(this.props.location.pathname);
+        console.log("CURRENT URL", this.props.location.pathname);
         this.props.history.push("/session");
       } else {
         var params = (0, _lodash.merge)({}, this.state, { event_id: event_id, seller_id: seller.id });
@@ -65245,6 +65294,50 @@ var loadingReducer = function loadingReducer() {
 };
 
 exports.default = loadingReducer;
+
+/***/ }),
+/* 309 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _misc_const = __webpack_require__(310);
+
+var redirectReducer = function redirectReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+  var action = arguments[1];
+
+  switch (action.type) {
+    case _misc_const.ADD_REDIRECT:
+      return action.url;
+    case _misc_const.CLEAR_REDIRECT:
+      return null;
+    default:
+      return state;
+  };
+};
+
+exports.default = redirectReducer;
+
+/***/ }),
+/* 310 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var ADD_REDIRECT = exports.ADD_REDIRECT = "ADD_REDIRECT";
+var CLEAR_REDIRECT = exports.CLEAR_REDIRECT = "CLEAR_REDIRECT";
+var LOADING_TRUE = exports.LOADING_TRUE = "LOADING_TRUE";
+var LOADING_FALSE = exports.LOADING_FALSE = "LOADING_FALSE";
 
 /***/ })
 /******/ ]);

@@ -28,7 +28,14 @@ class SessionsModal extends React.Component {
       setTimeout(() => this.type(field, word, i), 100);
     } else {
       if (field === 'email') {
-        setTimeout(() => this.props.loginUser(this.state), 250);
+        setTimeout(() => {
+          this.props.loginUser(this.state)
+          .then(() => {
+            if(this.props.redirect_url !== null) {
+              this.props.history.push(this.props.redirect_url)
+            }
+          });
+        }, 250);
       }
     }
   }
@@ -90,7 +97,11 @@ class SessionsModal extends React.Component {
     if(this.props.location.pathname === '/session') {
       return (
         <div className="submit">
-          <button onClick={() => this.props.loginUser(this.state)}><span>Sign In</span></button><br/>
+          <button onClick={() => {
+              this.props.loginUser(this.state)
+              .then(() => console.log("HELLO"))
+            }
+          }><span>Sign In</span></button><br/>
         </div>
       )
     } else {

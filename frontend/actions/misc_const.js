@@ -1,0 +1,4 @@
+export const ADD_REDIRECT = "ADD_REDIRECT";
+export const CLEAR_REDIRECT = "CLEAR_REDIRECT";
+export const LOADING_TRUE = "LOADING_TRUE";
+export const LOADING_FALSE = "LOADING_FALSE";

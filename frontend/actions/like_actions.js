@@ -1,5 +1,5 @@
 import * as LikeApiUtil from '../utils/like_util';
-import { LOADING_TRUE, LOADING_FALSE } from './event_actions';
+import { LOADING_TRUE, LOADING_FALSE } from './misc_const';
 
 export const RECEIVE_PERFORMER_LIKE = "RECEIVE_PERFORMER_LIKE";
 export const RECEIVE_ALL_PERFORMER_LIKES ="RECEIVE_ALL_PERFORMER_LIKES";

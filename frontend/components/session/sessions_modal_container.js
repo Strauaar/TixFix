@@ -4,7 +4,8 @@ import { receiveErrors } from '../../actions/error_actions';
 import SessionsModal from './sessions_modal';
 
 const mapStateToProps = state => ({
-  errors: state.errors
+  errors: state.errors,
+  redirect_url: state.ui.redirect_url
 });
 
 const mapDispatchToProps = dispatch => ({
