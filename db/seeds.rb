@@ -412,7 +412,7 @@ marshmello_event = Event.create(
     performer_id: jayz_performer.id,
     category_id: rap_subcategory.id,
     image_url: "jayz.jpg",
-    date: (DateTime.now + i).beginning_of_hour,
+    date: (DateTime.now + 7 + i).beginning_of_hour,
     event_id: jayz_event.id
   )
     50.times do |j|
@@ -427,7 +427,7 @@ end
     performer_id: kaskade_performer.id,
     category_id: electronic_subcategory.id,
     image_url: "kaskade.jpg",
-    date: (DateTime.now + i).beginning_of_hour,
+    date: (DateTime.now + 9 + i).beginning_of_hour,
     event_id: kaskade_event.id
   )
   50.times do |j|
@@ -442,7 +442,7 @@ end
     performer_id: marshmello_performer.id,
     category_id: electronic_subcategory.id,
     image_url: "marshmello.jpg",
-    date: (DateTime.now + i).beginning_of_hour,
+    date: (DateTime.now + 10 + i).beginning_of_hour,
     event_id: marshmello_event.id
   )
   50.times do |j|
@@ -457,7 +457,7 @@ end
     performer_id: khalid_performer.id,
     category_id: rb_subcategory.id,
     image_url: "khalid.jpg",
-    date: (DateTime.now + i + 10).beginning_of_hour,
+    date: (DateTime.now + i + 20).beginning_of_hour,
     event_id: khalid_event.id
   )
   50.times do |j|
@@ -471,7 +471,7 @@ event = Subevent.create(
   performer_id: san_holo_performer.id,
   category_id: electronic_subcategory.id,
   image_url:"san_holo.jpg",
-  date:(DateTime.now + 13).beginning_of_hour,
+  date:(DateTime.now + 18).beginning_of_hour,
   event_id: san_holo_event.id
 )
 50.times do |j|
@@ -483,7 +483,7 @@ event = Subevent.create(
   venue_id: levis_stadium.id,
   performer_id: niners_performer.id,
   category_id: football_subcategory.id,
-  date: (DateTime.now.end_of_week.beginning_of_hour),
+  date: (DateTime.now + 30).end_of_week,
   event_id: niners_event.id
 )
 50.times do |j|
@@ -495,7 +495,7 @@ event = Subevent.create(
   venue_id: att_park_venue.id,
   performer_id: giants_performer.id,
   category_id: baseball_subcategory.id,
-  date: (DateTime.now + 15).end_of_week.beginning_of_day,
+  date: (DateTime.now + 30).end_of_week.beginning_of_day,
   event_id: giants_event.id
 )
 50.times do |j|
@@ -522,7 +522,7 @@ event = Subevent.create(
   venue_id: oakland_stadium.id,
   performer_id: raiders_performer.id,
   category_id: football_subcategory.id,
-  date: (DateTime.now + 20).end_of_week.beginning_of_day,
+  date: (DateTime.now + 40).end_of_week.beginning_of_day,
   event_id: raiders_event.id
 )
 50.times do |j|
@@ -535,7 +535,7 @@ end
     venue_id: warner_theater.id,
     performer_id: nutcracker_performer.id,
     category_id: dance_subcategory.id,
-    date: (DateTime.now + 22 + i).end_of_week.beginning_of_day,
+    date: (DateTime.now + 27 + i).end_of_week.beginning_of_day,
     event_id: nutcracker_event.id
   )
   50.times do |j|
@@ -549,7 +549,7 @@ end
     venue_id: davies_venue.id,
     performer_id: sf_symphony_performer.id,
     category_id: classical_subcategory.id,
-    date: (DateTime.now + 30 + i).end_of_week.beginning_of_day,
+    date: (DateTime.now + 40 + i).end_of_week.beginning_of_day,
     event_id: symphony_event.id
     )
     50.times do |j|
@@ -563,7 +563,7 @@ end
     venue_id: davies_venue.id,
     performer_id: sf_symphony_performer.id,
     category_id: classical_subcategory.id,
-    date: (DateTime.now + 40 + i).end_of_week.beginning_of_day,
+    date: (DateTime.now + 60 + i).end_of_week.beginning_of_day,
     event_id: symphony_event2.id
   )
   50.times do |j|
