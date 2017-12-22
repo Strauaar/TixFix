@@ -24,7 +24,7 @@ export const fetchMoreEvents = (currentCount, filter) => (
   $.ajax({
     method: 'GET',
     url: 'api/events',
-    data: { currentCount,
+    data: { current_count: currentCount,
             filter }
   })
 );

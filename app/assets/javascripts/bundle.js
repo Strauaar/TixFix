@@ -24579,7 +24579,7 @@ var fetchMoreEvents = exports.fetchMoreEvents = function fetchMoreEvents(current
   return $.ajax({
     method: 'GET',
     url: 'api/events',
-    data: { currentCount: currentCount,
+    data: { current_count: currentCount,
       filter: filter }
   });
 };
