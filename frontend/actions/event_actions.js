@@ -4,6 +4,8 @@ export const RECEIVE_EVENTS = "RECEIVE_EVENTS";
 export const RECEIVE_MORE_EVENTS ="RECEIVE_MORE_EVENTS";
 export const RECEIVE_EVENT = "RECEIVE_EVENT";
 export const CLEAR_EVENTS = "CLEAR_EVENTS";
+export const LOADING_TRUE = "LOADING_TRUE";
+export const LOADING_FALSE = "LOADING_FALSE";
 
 export const receiveEvents = (events, filter) => ({
   type: RECEIVE_EVENTS,

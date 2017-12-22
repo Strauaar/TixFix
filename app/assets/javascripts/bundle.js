@@ -4946,7 +4946,7 @@ module.exports = warning;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.fetchSearchEvents = exports.upcomingEvents = exports.fetchMoreEvents = exports.fetchEvents = exports.fetchEvent = exports.clearEvents = exports.receiveEvents = exports.CLEAR_EVENTS = exports.RECEIVE_EVENT = exports.RECEIVE_MORE_EVENTS = exports.RECEIVE_EVENTS = undefined;
+exports.fetchSearchEvents = exports.upcomingEvents = exports.fetchMoreEvents = exports.fetchEvents = exports.fetchEvent = exports.clearEvents = exports.receiveEvents = exports.LOADING_FALSE = exports.LOADING_TRUE = exports.CLEAR_EVENTS = exports.RECEIVE_EVENT = exports.RECEIVE_MORE_EVENTS = exports.RECEIVE_EVENTS = undefined;
 
 var _event_util = __webpack_require__(48);
 
@@ -4958,6 +4958,8 @@ var RECEIVE_EVENTS = exports.RECEIVE_EVENTS = "RECEIVE_EVENTS";
 var RECEIVE_MORE_EVENTS = exports.RECEIVE_MORE_EVENTS = "RECEIVE_MORE_EVENTS";
 var RECEIVE_EVENT = exports.RECEIVE_EVENT = "RECEIVE_EVENT";
 var CLEAR_EVENTS = exports.CLEAR_EVENTS = "CLEAR_EVENTS";
+var LOADING_TRUE = exports.LOADING_TRUE = "LOADING_TRUE";
+var LOADING_FALSE = exports.LOADING_FALSE = "LOADING_FALSE";
 
 var receiveEvents = exports.receiveEvents = function receiveEvents(events, filter) {
   return {
@@ -54597,7 +54599,7 @@ var check_state = function check_state() {
 
 var configureStore = function configureStore() {
   var preloadedState = check_state();
-  return (0, _redux.createStore)(_root_reducer2.default, preloadedState, (0, _redux.applyMiddleware)(_reduxThunk2.default));
+  return (0, _redux.createStore)(_root_reducer2.default, preloadedState, (0, _redux.applyMiddleware)(_reduxThunk2.default, _reduxLogger2.default));
 };
 
 exports.default = configureStore;
@@ -55628,11 +55630,16 @@ var _filterReducer = __webpack_require__(225);
 
 var _filterReducer2 = _interopRequireDefault(_filterReducer);
 
+var _loadingReducer = __webpack_require__(308);
+
+var _loadingReducer2 = _interopRequireDefault(_loadingReducer);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = (0, _redux.combineReducers)({
     filter: _filterReducer2.default,
-    subcategory_list: _categoryListReducer2.default
+    subcategory_list: _categoryListReducer2.default,
+    loading: _loadingReducer2.default
 });
 
 /***/ }),
@@ -60082,6 +60089,7 @@ var App = function (_React$Component) {
           _reactRouterDom.Switch,
           null,
           _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _footer2.default }),
+          _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/myhub', component: _footer2.default }),
           _react2.default.createElement(_reactRouterDom.Route, { path: '/subcategory/:id', component: _footer2.default }),
           _react2.default.createElement(_reactRouterDom.Route, { path: '/category/:id', component: _footer2.default }),
           _react2.default.createElement(_reactRouterDom.Route, { path: '/tickets/sell', component: _footer2.default }),
@@ -65188,6 +65196,35 @@ var Footer = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = Footer;
+
+/***/ }),
+/* 308 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _event_actions = __webpack_require__(6);
+
+var loadingReducer = function loadingReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+  var action = arguments[1];
+
+  switch (action.type) {
+    case _event_actions.LOADING_TRUE:
+      return true;
+    case _event_actions.LOADING_FALSE:
+      return false;
+    default:
+      return false;
+  }
+};
+
+exports.default = loadingReducer;
 
 /***/ })
 /******/ ]);

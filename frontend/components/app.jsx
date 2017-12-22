@@ -62,6 +62,7 @@ class App extends React.Component {
         <Route path="/category/:id" component={SubCategoryListContainer} />
         <Switch>
           <Route exact path="/" component={CFooter}/>
+          <Route exact path="/myhub" component={CFooter}/>
           <Route path="/subcategory/:id" component={CFooter}/>
           <Route path="/category/:id" component={CFooter}/>
           <Route path="/tickets/sell" component={CFooter}/>
