@@ -50,6 +50,7 @@ jayz_performer = Performer.create(name: "Jay Z", category_id: rap_subcategory.id
 kaskade_performer = Performer.create(name:"Kaskade", category_id: electronic_subcategory.id)
 khalid_performer = Performer.create(name:"Khalid", category_id: rb_subcategory.id)
 san_holo_performer = Performer.create(name:"San Holo", category_id: electronic_subcategory.id)
+marshmello_performer = Performer.create(name:"Marshmello", category_id: electronic_subcategory.id)
 
 
 #SPORTS PERFORMERS
@@ -148,6 +149,12 @@ symphony_event2 = Event.create(
   performer_id: sf_symphony_performer.id,
   venue_id: davies_venue.id
 )
+marshmello_event = Event.create(
+  name:"Marshmello",
+  category_id: electronic_subcategory.id,
+  performer_id: marshmello_performer.id,
+  venue_id: billyg_venue.id
+)
 
 2.times do |i|
   event = Subevent.create(
@@ -169,10 +176,25 @@ end
     name: "Kaskade",
     venue_id: billyg_venue.id,
     performer_id: kaskade_performer.id,
-    category_id: rap_subcategory.id,
+    category_id: electronic_subcategory.id,
     image_url: "kaskade.jpg",
     date: (DateTime.now + i).beginning_of_hour,
     event_id: kaskade_event.id
+  )
+  50.times do |j|
+    Ticket.create(seller_id:demo_user2.id, event_id: event.id, price: 90, type_of:"VIP", row: ROW_ARRAY[(rand() * 10).ceil])
+  end
+end
+
+3.times do |i|
+  event = Subevent.create(
+    name: "Marshmello",
+    venue_id: billyg_venue.id,
+    performer_id: marshmello_performer.id,
+    category_id: electronic_subcategory.id,
+    image_url: "marshmello.jpg",
+    date: (DateTime.now + i).beginning_of_hour,
+    event_id: marshmello_event.id
   )
   50.times do |j|
     Ticket.create(seller_id:demo_user2.id, event_id: event.id, price: 90, type_of:"VIP", row: ROW_ARRAY[(rand() * 10).ceil])
