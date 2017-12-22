@@ -62,11 +62,15 @@ class UserFav extends React.Component {
             </span>
           </div>
           <div className="user-fav-card-list-container">
-            <ul className="user-fav-card-list">
-              {
-                this.renderList()
-              }
-            </ul>
+            {
+               this.props.loading ? <div className="loader">Loading...</div> : <ul className="user-fav-card-list">
+                  {
+                    this.renderList()
+                  }
+                </ul>
+
+
+            }
           </div>
         </div>
       </div>

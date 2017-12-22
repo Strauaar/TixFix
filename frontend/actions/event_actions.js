@@ -32,9 +32,16 @@ export const fetchEvent = (id) => dispatch => (
   EventApiUtil.fetchEvent(id).then(eventQ => dispatch(receiveEvent(eventQ)))
 );
 
-export const fetchEvents = (filter) => dispatch => (
-  EventApiUtil.fetchEvents(filter).then(events => dispatch(receiveEvents(events, filter)))
-);
+export const fetchEvents = (filter) => dispatch => {
+  EventApiUtil.fetchEvents(filter)
+  .then((events) => {
+      setTimeout(() => dispatch({type: LOADING_FALSE}), ((Math.random() + 1) * 400));
+      return events;
+  })
+  .then(events => dispatch(receiveEvents(events, filter)))
+
+  dispatch({type: LOADING_TRUE})
+};
 
 export const fetchMoreEvents = (currentCount, filter) => dispatch => (
   EventApiUtil.fetchMoreEvents(currentCount, filter).then(events => dispatch(receiveMoreEvents(events, filter)))

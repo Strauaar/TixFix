@@ -5000,9 +5000,16 @@ var fetchEvent = exports.fetchEvent = function fetchEvent(id) {
 
 var fetchEvents = exports.fetchEvents = function fetchEvents(filter) {
   return function (dispatch) {
-    return EventApiUtil.fetchEvents(filter).then(function (events) {
+    EventApiUtil.fetchEvents(filter).then(function (events) {
+      setTimeout(function () {
+        return dispatch({ type: LOADING_FALSE });
+      }, (Math.random() + 1) * 400);
+      return events;
+    }).then(function (events) {
       return dispatch(receiveEvents(events, filter));
     });
+
+    dispatch({ type: LOADING_TRUE });
   };
 };
 
@@ -5153,6 +5160,8 @@ var _like_util = __webpack_require__(217);
 
 var LikeApiUtil = _interopRequireWildcard(_like_util);
 
+var _event_actions = __webpack_require__(6);
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 var RECEIVE_PERFORMER_LIKE = exports.RECEIVE_PERFORMER_LIKE = "RECEIVE_PERFORMER_LIKE";
@@ -5217,9 +5226,16 @@ var deletePerformerLike = exports.deletePerformerLike = function deletePerformer
 
 var fetchLikedPerformers = exports.fetchLikedPerformers = function fetchLikedPerformers() {
   return function (dispatch) {
-    return LikeApiUtil.fetchLikedPerformers().then(function (objList) {
+    LikeApiUtil.fetchLikedPerformers().then(function (objList) {
+      setTimeout(function () {
+        return dispatch({ type: _event_actions.LOADING_FALSE });
+      }, (Math.random() + 1) * 1000);
+      return objList;
+    }).then(function (objList) {
       return dispatch(receiveLikedObjects(objList));
     });
+
+    dispatch({ type: _event_actions.LOADING_TRUE });
   };
 };
 
@@ -5270,9 +5286,16 @@ var deleteEventLike = exports.deleteEventLike = function deleteEventLike(user_id
 
 var fetchLikedEvents = exports.fetchLikedEvents = function fetchLikedEvents() {
   return function (dispatch) {
-    return LikeApiUtil.fetchLikedEvents().then(function (objList) {
+    LikeApiUtil.fetchLikedEvents().then(function (objList) {
+      setTimeout(function () {
+        return dispatch({ type: _event_actions.LOADING_FALSE });
+      }, (Math.random() + 1) * 1000);
+      return objList;
+    }).then(function (objList) {
       return dispatch(receiveLikedObjects(objList));
     });
+
+    dispatch({ type: _event_actions.LOADING_TRUE });
   };
 };
 
@@ -60089,6 +60112,7 @@ var App = function (_React$Component) {
           _reactRouterDom.Switch,
           null,
           _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _footer2.default }),
+          '// ',
           _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/myhub', component: _footer2.default }),
           _react2.default.createElement(_reactRouterDom.Route, { path: '/subcategory/:id', component: _footer2.default }),
           _react2.default.createElement(_reactRouterDom.Route, { path: '/category/:id', component: _footer2.default }),
@@ -61373,7 +61397,8 @@ var mapStateToProps = function mapStateToProps(state) {
   return {
     events: Object.values(state.entities.events),
     categoryId: state.ui.filter.categoryId,
-    filter: state.ui.filter
+    filter: state.ui.filter,
+    loading: state.ui.loading
   };
 };
 
@@ -61497,7 +61522,11 @@ var EventsList = function (_React$Component) {
             this.renderHeader()
           )
         ),
-        _react2.default.createElement(
+        this.props.loading ? _react2.default.createElement(
+          'div',
+          { className: 'loader' },
+          'Loading...'
+        ) : _react2.default.createElement(
           _events_ul_container2.default,
           null,
           this.props.events.map(function (event) {
@@ -64608,7 +64637,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var mapStateToProps = function mapStateToProps(state) {
   return {
     liked: Object.values(state.entities.liked_object_list),
-    currentUser: state.session.currentUser
+    currentUser: state.session.currentUser,
+    loading: state.ui.loading
   };
 };
 
@@ -64759,7 +64789,11 @@ var UserFav = function (_React$Component) {
           _react2.default.createElement(
             'div',
             { className: 'user-fav-card-list-container' },
-            _react2.default.createElement(
+            this.props.loading ? _react2.default.createElement(
+              'div',
+              { className: 'loader' },
+              'Loading...'
+            ) : _react2.default.createElement(
               'ul',
               { className: 'user-fav-card-list' },
               this.renderList()
@@ -65219,9 +65253,8 @@ var loadingReducer = function loadingReducer() {
       return true;
     case _event_actions.LOADING_FALSE:
       return false;
-    default:
-      return false;
   }
+  return state;
 };
 
 exports.default = loadingReducer;

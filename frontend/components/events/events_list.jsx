@@ -48,11 +48,14 @@ class EventsList extends React.Component {
         <div className="events-list-header-container">
           <p className="events-list-header fade-in">{this.renderHeader()}</p>
         </div>
-        <EventsUlContainer>
-          {
-            this.props.events.map(event => <EventCardItemContainer key={event.id} id={event.id} event={event}/>)
-          }
-        </EventsUlContainer>
+        {
+          this.props.loading ? <div className="loader">Loading...</div> : <EventsUlContainer>
+            {
+              this.props.events.map(event => <EventCardItemContainer key={event.id} id={event.id} event={event}/>)
+            }
+          </EventsUlContainer>
+
+        }
       </div>
     )
   }

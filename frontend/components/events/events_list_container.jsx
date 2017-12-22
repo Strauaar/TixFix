@@ -8,7 +8,8 @@ import { fetchPerformerLikes, fetchEventLikes } from '../../actions/like_actions
 const mapStateToProps = state => ({
   events: Object.values(state.entities.events),
   categoryId: state.ui.filter.categoryId,
-  filter: state.ui.filter
+  filter: state.ui.filter,
+  loading: state.ui.loading
 });
 
 const mapDispatchToProps = dispatch => ({

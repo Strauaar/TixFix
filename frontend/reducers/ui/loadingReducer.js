@@ -6,9 +6,8 @@ const loadingReducer = (state = false, action) => {
       return true;
     case LOADING_FALSE:
       return false;
-    default:
-      return false;
   }
+  return state
 };
 
 export default loadingReducer;
