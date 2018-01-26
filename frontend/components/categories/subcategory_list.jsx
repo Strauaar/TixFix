@@ -13,10 +13,6 @@ class SubCategoryList extends React.Component {
       }
   }
 
-  componentDidMount() {
-    // this.props.fetchSubCategoryList(this.props.categoryId);
-  }
-
   renderHeader() {
     if(this.props.categoryId === 1) {
       return "Concert Tickets"
