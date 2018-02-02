@@ -14,6 +14,7 @@ class SubCategoryList extends React.Component {
   }
 
   renderHeader() {
+    // TODO: look into subs
     if(this.props.categoryId === 1) {
       return "Concert Tickets"
     } else if (this.props.categoryId === 2) {
