@@ -60761,18 +60761,6 @@ var UserMenuItems = function UserMenuItems(_ref) {
       _react2.default.createElement(
         'a',
         { href: '#' },
-        _react2.default.createElement('i', { className: 'fa fa-ticket lg', 'aria-hidden': 'true' }),
-        'My tickets',
-        _react2.default.createElement('i', { className: 'fa fa-angle-down', 'aria-hidden': 'true' })
-      ),
-      _react2.default.createElement('ul', { className: 'menu-dropdown' })
-    ),
-    _react2.default.createElement(
-      'li',
-      null,
-      _react2.default.createElement(
-        'a',
-        { href: '#' },
         _react2.default.createElement('i', { className: 'fa fa-user-o lg', 'aria-hidden': 'true' }),
         '  ',
         renderMenuItem(),

@@ -92,7 +92,6 @@ body {
 .misc-help a {
   color: white;
   text-decoration: none;
-  /*margin-left: 20px;*/
   font-size: 15px;
   font-family: 'Roboto Condensed', sans-serif;
   font-weight: 700;
@@ -105,26 +104,23 @@ body {
 
 a i {
   padding-right: 10px;
-  padding-left: 10px;
+  padding-left: 20px;
 }
 
 .sign-in-row {
   display: flex;
   flex-direction:row;
   list-style: none;
-  min-width: 400px;
-  justify-content: space-between;
-  /*float:right;*/
+  min-width: 200px;
+  justify-content: flex-end;
 }
 
 .sign-in-row a {
   color: white;
   text-decoration: none;
-  /*margin-left: 20px;*/
   font-size: 17px;
   font-family: 'Roboto Condensed', sans-serif;
   font-weight: 700;
-  /*float:right;*/
 }
 
 .sign-in-row li {

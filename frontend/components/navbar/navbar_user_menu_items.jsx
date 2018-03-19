@@ -32,16 +32,6 @@ const UserMenuItems = ({currentUser, logout}) => {
       <li><Link to="/tickets/sell"><i className="fa fa-envelope-open-o" aria-hidden="true"></i>
         Sell tickets</Link>
       </li>
-
-      <li>
-        <a href="#"><i className="fa fa-ticket lg" aria-hidden="true"></i>
-        My tickets<i className="fa fa-angle-down" aria-hidden="true"></i>
-        </a>
-        <ul className="menu-dropdown">
-          
-        </ul>
-      </li>
-
       <li>
         <a href="#"><i className="fa fa-user-o lg" aria-hidden="true"></i>  {renderMenuItem()}<i className="fa  fa-angle-down"  aria-hidden="true"></i>
         </a>
