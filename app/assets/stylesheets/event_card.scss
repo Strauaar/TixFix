@@ -12,16 +12,12 @@
   padding-left: 20px;
 }
 
-
 .event-list {
   padding: 0;
   height: auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-
-  // display: inline-flex;
-  // flex-wrap: wrap;
 }
 
 @media screen and (max-width: 1770px) {
@@ -111,15 +107,19 @@
   width:420px;
   background-color: white;
   border: 1px solid #E6E9EB;
-
-  // margin-left: 25px;
-  // overflow:hidden;
   font-family: 'Roboto Condensed', sans-serif;
 }
 
-// .event-list div:nth-child(3n+1){
-//   margin-left: 0;
-// }
+@media screen and (max-width: 1500px) {
+  .event-card-block {
+    min-height: 420;
+    max-width: 350px;
+    width:350px;
+    background-color: white;
+    border: 1px solid #E6E9EB;
+    font-family: 'Roboto Condensed', sans-serif;
+  }
+}
 
 .event-card-image {
   background-size: cover;
