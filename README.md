@@ -1,11 +1,10 @@
 
 # [TixFix](https://tixfix.herokuapp.com/#/)
-
-Find events and make money on TixFix.
+TixFix is a StubHub.com clone (legacy) with features listed as follows.
 
 ## Features
 + Search and filter events by date, location, category, or name of the event
-+ Sell and buy tickets from the TixFix community
++ Sell and buy tickets
 + Like your favorite bands, artists, teams or troupe to keep track of their events
 + Like your favorite events
 + View all your ticket listings, sales, and purchases all in one place on the user page
@@ -99,7 +98,7 @@ Find events and make money on TixFix.
         })
       );
 + Backend corresponding rails controller action:
-      def search
+      `def search
         @count = params[:current_count]
         @events = Event.all
         if  @count
@@ -108,7 +107,7 @@ Find events and make money on TixFix.
           @events = Event.filter_by(params[:filter]).limit(10)
         end
         render :index
-      end
+      end`
 + `Event` class `filter_by` method:
       def self.filter_by(filters)
         events = Event.includes(:subevents)
