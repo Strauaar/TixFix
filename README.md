@@ -132,8 +132,8 @@ TixFix is a StubHub.com clone (legacy) with features listed as follows.
          events
       end
 + `filter_date` method utilizing the given value in the filter object:
+        
         def self.filter_date(events, date_filter)
-
           if date_filter == 'This weekend'
             start_date = DateTime.now.end_of_week - 2
             end_date = DateTime.now.end_of_week
