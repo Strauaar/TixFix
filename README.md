@@ -90,6 +90,7 @@ TixFix is a StubHub.com clone (legacy) with features listed as follows.
 + The search method implemented allowed for a single multi-use function both on the backend and frontend of the app.
 
 + Frontend AJAX request for search(called through a thunk action creator):
+
       export const fetchSearchEvents = (filter) => (
         $.ajax({
           method: 'GET',
@@ -98,7 +99,7 @@ TixFix is a StubHub.com clone (legacy) with features listed as follows.
         })
       );
 + Backend corresponding rails controller action:
-      
+
       def search
         @count = params[:current_count]
         @events = Event.all
