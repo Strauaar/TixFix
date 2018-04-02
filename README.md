@@ -30,7 +30,6 @@ TixFix is a StubHub.com clone (legacy) with features listed as follows.
 
 ## Code
 
-### Challenges
 ###### Vertical Float:
 + In order to maintain consistent spacing in between event cards on the home page, a custom vertical float was implemented to allow for dynamic card sizing and maintain order of incoming events.
 
@@ -89,6 +88,16 @@ TixFix is a StubHub.com clone (legacy) with features listed as follows.
 
 ###### Search function
 + The search method implemented allowed for a single multi-use function both on the backend and frontend of the app.
++ The filter was passed as one object into the function which held the status of all the filters in the current moment at the time of calling.
++ State was managed using Redux which allowed the filter to be currently maintained at all times.
++ The corresponding filter object structure was as follows and can be seen decomposed in the second listed function: 
+
+      filter: {
+        name: ...,
+        categoryId: ...,
+        date: ...,
+        location: ...
+      }
 
 + Frontend AJAX request for search(called through a thunk action creator):
 
