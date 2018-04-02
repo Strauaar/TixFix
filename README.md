@@ -8,6 +8,7 @@ TixFix is a StubHub.com clone (legacy) with features listed as follows.
 + Like your favorite bands, artists, teams or troupe to keep track of their events
 + Like your favorite events
 + View all your ticket listings, sales, and purchases all in one place on the user page
+
 (TixFix uses limited seeded data as live data for events is not free)
 
 ## Home
