@@ -98,7 +98,8 @@ TixFix is a StubHub.com clone (legacy) with features listed as follows.
         })
       );
 + Backend corresponding rails controller action:
-      `def search
+      
+      def search
         @count = params[:current_count]
         @events = Event.all
         if  @count
@@ -107,7 +108,7 @@ TixFix is a StubHub.com clone (legacy) with features listed as follows.
           @events = Event.filter_by(params[:filter]).limit(10)
         end
         render :index
-      end`
+      end
 + `Event` class `filter_by` method:
       def self.filter_by(filters)
         events = Event.includes(:subevents)
