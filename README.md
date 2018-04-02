@@ -111,6 +111,7 @@ TixFix is a StubHub.com clone (legacy) with features listed as follows.
         render :index
       end
 + `Event` class `filter_by` method:
+
       def self.filter_by(filters)
         events = Event.includes(:subevents)
 
