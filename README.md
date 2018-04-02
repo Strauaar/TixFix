@@ -1,7 +1,7 @@
 
 # [TixFix](https://tixfix.herokuapp.com/#/)
 TixFix is a StubHub.com clone (legacy) with features listed as follows.
-
+(TixFix uses limited seeded data as live data is not free)
 ## Features
 + Login to view user specific data
 + Search and filter events by date, location, category, or name of the event
@@ -108,11 +108,10 @@ TixFix is a StubHub.com clone (legacy) with features listed as follows.
           data: { filter }
         })
       );
-+ Backend corresponding rails controller action:
++ Backend corresponding rails controller action which took in the data from the above function:
 
       def search
-        @count = params[:current_count]
-        @events = Event.all
+        @count = params[:current_count] #used by another function
         if  @count
           @events = Event.filter_by(params[:filter]).limit(10).offset(@count.to_i)
         else
@@ -120,7 +119,7 @@ TixFix is a StubHub.com clone (legacy) with features listed as follows.
         end
         render :index
       end
-+ `Event` class `filter_by` method:
++ Below is the `Event` class `filter_by` method used in the above function:
 
       def self.filter_by(filters)
         events = Event.includes(:subevents)
@@ -141,7 +140,7 @@ TixFix is a StubHub.com clone (legacy) with features listed as follows.
          end
          events
       end
-+ `filter_date` method utilizing the given value in the filter object:
++ Below is the `filter_date` method utilizing the given value in the filter object:
         
         def self.filter_date(events, date_filter)
           if date_filter == 'This weekend'
