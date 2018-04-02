@@ -3,6 +3,7 @@
 TixFix is a StubHub.com clone (legacy) with features listed as follows.
 
 ## Features
++ Login to view user specific data
 + Search and filter events by date, location, category, or name of the event
 + Sell and buy tickets
 + Like your favorite bands, artists, teams or troupe to keep track of their events
