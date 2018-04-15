@@ -43,6 +43,13 @@ export const fetchSearchEvents = (filter) => (
     data: { filter }
   })
 );
+
+export const fetchVenuePicture = () => (
+  $.ajax({
+    method: 'GET',
+    url: 'api/venue_picture'
+  })
+)
 //
 // export const fetchMoreEventsByCategory = (currentCount, categoryId) => (
 //   $.ajax({

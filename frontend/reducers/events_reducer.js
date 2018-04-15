@@ -2,7 +2,8 @@ import { RECEIVE_EVENTS,
          FILTER_BY_CATEGORY,
          RECEIVE_MORE_EVENTS,
          RECEIVE_EVENT,
-         CLEAR_EVENTS } from '../actions/event_actions';
+         CLEAR_EVENTS,
+        } from '../actions/event_actions';
 import { merge } from 'lodash';
 
 const eventsReducer = (state = {}, action) => {
@@ -20,6 +21,7 @@ const eventsReducer = (state = {}, action) => {
       return newState;
     case CLEAR_EVENTS:
       return {};
+    case 
     default:
       return state;
   }

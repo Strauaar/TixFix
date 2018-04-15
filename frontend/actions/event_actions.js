@@ -5,6 +5,7 @@ export const RECEIVE_EVENTS = "RECEIVE_EVENTS";
 export const RECEIVE_MORE_EVENTS ="RECEIVE_MORE_EVENTS";
 export const RECEIVE_EVENT = "RECEIVE_EVENT";
 export const CLEAR_EVENTS = "CLEAR_EVENTS";
+export const RECEIVE_VENUE = "RECEIVE_VENUE";
 
 
 export const receiveEvents = (events, filter) => ({
@@ -22,6 +23,11 @@ const receiveMoreEvents = (events, filter) => ({
 const receiveEvent = eventQ => ({
   type: RECEIVE_EVENT,
   eventQ
+});
+
+const receiveVenuePicture = image => ({
+  type: RECEIVE_VENUE,
+  image
 });
 
 export const clearEvents = () => ({
@@ -54,3 +60,7 @@ export const upcomingEvents = () => dispatch => (
 export const fetchSearchEvents = (filter) => dispatch => (
   EventApiUtil.fetchSearchEvents(filter).then(events => dispatch(receiveEvents(events)))
 );
+
+export const fetchVenuePicture = () => dispatch => (
+  EventApiUtil.fetchVenuePicture().then(res => dispatch(receiveVenuePicture(res.img_url)))
+)

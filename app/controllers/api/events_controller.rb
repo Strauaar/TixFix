@@ -26,4 +26,9 @@ class Api::EventsController < ApplicationController
     render :index
   end
 
+  def venue
+    @venue = 'bill_g.png'
+    render :venue_picture
+  end
+
 end

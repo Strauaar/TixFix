@@ -13,10 +13,11 @@ class EventShowPage extends React.Component {
     this.state = {clicked: false}
   }
 
-  componentWillMount(){
+  componentDidMount(){
     this.props.fetchEvent(this.props.match.params.id);
     this.props.fetchEventTickets(this.props.match.params.id);
     this.props.fetchEventLikes();
+    this.props.fetchVenuePicture();
   }
 
   handleLikeClick(type) {
@@ -89,11 +90,10 @@ class EventShowPage extends React.Component {
         <div className="event-show-top">
           {this.renderDetailsHeader()}
         </div>
-
         <div className="event-show-container">
+          <div className="venue_image" style={{backgroundImage: 'url(' + this.props.venue_image_url + ')'}} />
 
           <div className="event-show-scroll-container">
-
             <div className="events-show-filter-block">
               <div className="event-show-like-container">
                 {this.renderHeart()}
