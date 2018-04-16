@@ -21,7 +21,6 @@ const eventsReducer = (state = {}, action) => {
       return newState;
     case CLEAR_EVENTS:
       return {};
-    case 
     default:
       return state;
   }

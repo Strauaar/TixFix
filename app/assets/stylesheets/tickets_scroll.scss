@@ -1,17 +1,16 @@
 .event-show-container {
   display:flex;
-  justify-content: center;
-  padding: 80px 200px;
+  justify-content: space-around;
+  padding: 80px 50px;
   padding-top: 50px;
   background-color: #fff;
-  // box-sizing: border-box;
-
-  height: 65vh;
+  height: 61vh;
+  align-items: center;
 }
 
 .event-show-scroll-container {
   height: 100%;
-  width: 500px;
+  width: 300px;
   background-color: #F6F8F9;
   border: 1px solid #E6E9EB;
   overflow:hidden;
@@ -20,7 +19,7 @@
 }
 
 .events-show-filter-block {
-  height: 100px;
+  height: 80px;
   width: 100%;
 }
 

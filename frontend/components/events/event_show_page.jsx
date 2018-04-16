@@ -14,10 +14,10 @@ class EventShowPage extends React.Component {
   }
 
   componentDidMount(){
+    this.props.fetchVenuePicture();
     this.props.fetchEvent(this.props.match.params.id);
     this.props.fetchEventTickets(this.props.match.params.id);
     this.props.fetchEventLikes();
-    this.props.fetchVenuePicture();
   }
 
   handleLikeClick(type) {

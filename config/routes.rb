@@ -21,6 +21,6 @@ Rails.application.routes.draw do
     get 'user/liked_performers' => 'users#liked_performers'
     get 'user/liked_events' => 'users#liked_events'
     get 'event/searching' => 'events#search'
-    get 'events/venue_picture => events#venue'
+    get 'event/venue_picture' => 'events#venue'
   end
 end

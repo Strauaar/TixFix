@@ -47,7 +47,7 @@ export const fetchSearchEvents = (filter) => (
 export const fetchVenuePicture = () => (
   $.ajax({
     method: 'GET',
-    url: 'api/venue_picture'
+    url: 'api/event/venue_picture'
   })
 )
 //
