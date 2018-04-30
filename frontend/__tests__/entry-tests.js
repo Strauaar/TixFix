@@ -22,6 +22,6 @@ describe('entry', () => {
 
   it('invokes the configureStore function', () => {
     expect(configureStore).toBeCalled();
-  });
+  }); 
 
 });
